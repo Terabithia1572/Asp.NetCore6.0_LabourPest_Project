@@ -1,0 +1,1 @@
+# Asp.NetCore6.0_LabourPest_Project
