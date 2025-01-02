@@ -20,32 +20,32 @@ namespace BusinessLayer.Concrete
 
         public List<Admin> GetAdminByID(int id)
         {
-            throw new NotImplementedException();
+            return _adminDal.GetListAll(x=>x.AdminID == id);
         }
 
         public List<Admin> GetAll()
         {
-            throw new NotImplementedException();
+            return _adminDal.GetListAll();
         }
 
         public void TAdd(Admin t)
         {
-            throw new NotImplementedException();
+            _adminDal.Insert(t);
         }
 
         public void TDelete(Admin t)
         {
-            throw new NotImplementedException();
+            _adminDal.Delete(t);
         }
 
         public Admin TGetByID(int id)
         {
-            throw new NotImplementedException();
+            return _adminDal.GetByID(id);
         }
 
         public void TUpdate(Admin t)
         {
-            throw new NotImplementedException();
+           _adminDal.Update(t);
         }
     }
 }
