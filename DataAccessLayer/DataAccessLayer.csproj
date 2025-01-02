@@ -21,8 +21,8 @@
 
   <ItemGroup>
     <Folder Include="Context\" />
-    <Folder Include="Abstract\" />
-    <Folder Include="Repositories\" />
+    <Folder Include="EntityFramework\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>
