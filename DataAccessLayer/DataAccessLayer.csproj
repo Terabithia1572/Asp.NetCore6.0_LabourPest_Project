@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <Folder Include="Context\" />
-    <Folder Include="EntityFramework\" />
     <Folder Include="Models\" />
   </ItemGroup>
 
