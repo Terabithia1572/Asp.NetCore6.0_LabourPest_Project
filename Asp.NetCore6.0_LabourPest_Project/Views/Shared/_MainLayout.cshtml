@@ -2,37 +2,39 @@
 @{
     Layout = null;
 }
-@RenderBody()
+
 <!DOCTYPE html>
 
 <html class="no-js">
-
 <head>
 	<title>Canabicom</title>
 	<meta charset="utf-8">
 	
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
-	<link rel="stylesheet" href="~/canabicom/css/bootstrap.min.css">
-	<link rel="stylesheet" href="~/canabicom/css/animations.css">
-	<link rel="stylesheet" href="~/canabicom/css/font-awesome5.css">
-	<link rel="stylesheet" href="~/canabicom/css/fontello.css">
-	<link rel="stylesheet" href="~/canabicom/css/main.css" class="color-switcher-link">
-	<link rel="stylesheet" href="~/canabicom/css/shop.css" class="color-switcher-link">
-	<script src="~/canabicom/js/vendor/modernizr-2.6.2.min.js"></script>
 
-	
+
+
+    <link href="~/canabicom/css/animations.css" rel="stylesheet" />
+    <link href="~/canabicom/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/canabicom/css/font-awesome5.css" rel="stylesheet" />
+    <link href="~/canabicom/css/fontello.css" rel="stylesheet" />
+    <link href="~/canabicom/css/main.css" rel="stylesheet" />
+    <link href="~/canabicom/css/shop.css" rel="stylesheet" />
+    <script src="~/canabicom/js/vendor/modernizr-2.6.2.min.js"></script>
+
+
 
 </head>
 
 <body>
-	
+
 
 	<div class="preloader">
 		<div class="preloader_image"></div>
 	</div>
 
+	<!-- search modal -->
 	<div class="modal" tabindex="-1" role="dialog" aria-labelledby="search_modal" id="search_modal">
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
@@ -175,7 +177,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 ds column-overlay">
-					<img src="images/signup.jpg" alt="">
+					<img src="~/canabicom/images/signup.jpg" alt="">
 				</div>
 				<div class="col-md-6 align-items-center d-flex flex-column justify-content-center ls">
 					<div class="divider-65 hidden-below-md"></div>
@@ -224,11 +226,11 @@
 
 	
 
+
 	<!-- Unyson messages modal -->
 	
-	<div id="canvas">
 		<div id="box_wrapper">
-			
+
 			<!-- template sections -->
 			<!--topline section visible only on small screens|-->
 
@@ -337,537 +339,661 @@
 			<!-- header with two Bootstrap columns - left for logo and right for navigation -->
 			<header class="page_header header-1 ls s-py-20 ">
 
-				<div class="container">
+			<div class="container">
 
-					<div class="row ">
-						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-8 col-12">
-							<a href="index.html" class="logo">
-								<img src="~/canabicom/images/logo.png" alt="">
-								<span class="d-flex flex-column">
-									<span class="logo-text color-darkgrey">Canabicom</span>
-									<span class="logo-subtext">medical</span>
-								</span>
-							</a>
-						</div>
-						<div class="col-xl-9 col-lg-9 col-md-8 col-sm-4 col-12 d-flex align-items-center justify-content-end ">
-							<!-- main nav start -->
-							<nav class="top-nav">
-								<ul class="nav sf-menu">
+				<div class="row ">
+					<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+						<a href="index.html" class="logo">
+							<img src="images/logo.png" alt="">
+							<span class="d-flex flex-column">
+								<span class="logo-text color-darkgrey">Canabicom</span>
+								<span class="logo-subtext">medical</span>
+							</span>
+						</a>
+					</div>
+					<div class="col-xl-7 col-lg-6 col-md-5 col-sm-4 col-12 d-flex align-items-center justify-content-end ">
+						<!-- main nav start -->
+						<nav class="top-nav">
+							<ul class="nav sf-menu">
 
 
-									<li class="active">
-										<a href="index-2.html">Home</a>
-										<ul>
-											<li>
-												<a href="index-2.html">MultiPage</a>
+								<li class="active">
+									<a href="index-2.html">Home</a>
+									<ul>
+										<li>
+											<a href="index-2.html">MultiPage</a>
+										</li>
+										<li>
+											<a href="index-alt.html">MultiPage Alternative</a>
+										</li>
+										<li>
+											<a href="index_static.html">Static Intro</a>
+										</li>
+										<li>
+											<a href="index_singlepage.html">Single Page</a>
+										</li>
+
+									</ul>
+								</li>
+
+								<li>
+									<a href="about.html">Pages</a>
+									<ul>
+
+
+										<li>
+											<a href="about.html">About</a>
+										</li>
+
+
+										<li>
+											<a href="pricing.html">Pricing</a>
+										</li>
+
+
+										<!-- features -->
+										<li>
+											<a href="shortcodes_iconbox.html">Shortcodes</a>
+											<ul>
+												<li>
+													<a href="shortcodes_typography.html">Typography</a>
+												</li>
+												<li>
+													<a href="shortcodes_buttons.html">Buttons</a>
+												</li>
+												<li>
+													<a href="shortcodes_pricing.html">Pricing</a>
+												</li>
+												<li>
+													<a href="shortcodes_iconbox.html">Icon Boxes</a>
+												</li>
+												<li>
+													<a href="shortcodes_progress.html">Progress</a>
+												</li>
+												<li>
+													<a href="shortcodes_tabs.html">Tabs &amp; Collapse</a>
+												</li>
+												<li>
+													<a href="shortcodes_bootstrap.html">Bootstrap Elements</a>
+												</li>
+												<li>
+													<a href="shortcodes_animation.html">Animation</a>
+												</li>
+
+
+											</ul>
+										</li>
+										<!-- eof shortcodes -->
+
+										<li>
+											<a href="shortcodes_widgets_default.html">Widgets</a>
+											<ul>
+												<li>
+													<a href="shortcodes_widgets_default.html">Default Widgets</a>
+												</li>
+												<li>
+													<a href="shortcodes_widgets_shop.html">Shop Widgets</a>
+												</li>
+												<li>
+													<a href="shortcodes_widgets_custom.html">Custom Widgets</a>
+												</li>
+											</ul>
+
+										</li>
+										<li>
+											<a href="services.html">Services</a>
+											<ul>
+												<li>
+													<a href="services.html">Services 1</a>
+												</li>
+												<li>
+													<a href="services2.html">Services 2</a>
+												</li>
+												<li>
+													<a href="service-single.html">Single Service</a>
+												</li>
+											</ul>
+										</li>
+										<!-- gallery -->
+										<li>
+											<a href="gallery-image.html">Gallery</a>
+											<ul>
+												<!-- Gallery image only -->
+												<li>
+													<a href="gallery-image.html">Image Only</a>
+													<ul>
+														<li>
+															<a href="gallery-image-2-cols.html">2 columns</a>
+														</li>
+														<li>
+															<a href="gallery-image.html">3 columns</a>
+														</li>
+														<li>
+															<a href="gallery-image-4-cols-fullwidth.html">4 columns fullwidth</a>
+														</li>
+
+													</ul>
+												</li>
+												<!-- eof Gallery image only -->
+												<!-- Gallery with title -->
+												<li>
+													<a href="gallery-title.html">Image With Title</a>
+													<ul>
+														<li>
+															<a href="gallery-title-2-cols.html">2 columns</a>
+														</li>
+														<li>
+															<a href="gallery-title.html">3 column</a>
+														</li>
+														<li>
+															<a href="gallery-title-4-cols-fullwidth.html">4 columns fullwidth</a>
+														</li>
+													</ul>
+												</li>
+												<!-- eof Gallery with title -->
+												<!-- Gallery with excerpt -->
+												<li>
+													<a href="gallery-excerpt.html">Image with Excerpt</a>
+													<ul>
+														<li>
+															<a href="gallery-excerpt-2-cols.html">2 columns</a>
+														</li>
+														<li>
+															<a href="gallery-excerpt.html">3 column</a>
+														</li>
+														<li>
+															<a href="gallery-excerpt-4-cols-fullwidth.html">4 columns fullwdith</a>
+														</li>
+													</ul>
+												</li>
+												<!-- eof Gallery with excerpt -->
+												<!-- Gallery item -->
+												<li>
+													<a href="gallery-single.html">Gallery Item</a>
+													<ul>
+														<li>
+															<a href="gallery-single.html">Style 1</a>
+														</li>
+														<li>
+															<a href="gallery-single2.html">Style 2</a>
+														</li>
+													</ul>
+												</li>
+												<!-- eof Gallery item -->
+											</ul>
+										</li>
+										<!-- eof Gallery -->
+
+
+										<li>
+											<a href="team.html">Team</a>
+											<ul>
+												<li>
+													<a href="team.html">Team List</a>
+												</li>
+												<li>
+													<a href="team-single.html">Team Member</a>
+												</li>
+											</ul>
+										</li>
+
+										<li>
+											<a href="faq.html">FAQ</a>
+											<ul>
+												<li>
+													<a href="faq.html">FAQ</a>
+												</li>
+												<li>
+													<a href="faq2.html">FAQ 2</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="404.html">404</a>
+										</li>
+
+									</ul>
+								</li>
+								<!-- eof pages -->
+
+
+								<li>
+									<a href="#">Features</a>
+									<div class="mega-menu">
+										<ul class="mega-menu-row">
+											<li class="mega-menu-col">
+												<a href="#">Headers</a>
+												<ul>
+													<li>
+														<a href="header1.html">Header Type 1</a>
+													</li>
+													<li>
+														<a href="header2.html">Header Type 2</a>
+													</li>
+													<li>
+														<a href="header3.html">Header Type 3</a>
+													</li>
+													<li>
+														<a href="header4.html">Header Type 4</a>
+													</li>
+													<li>
+														<a href="header5.html">Header Type 5</a>
+													</li>
+													<li>
+														<a href="header6.html">Header Type 6</a>
+													</li>
+												</ul>
 											</li>
-											<li>
-												<a href="index-alt.html">MultiPage Alternative</a>
+											<li class="mega-menu-col">
+												<a href="#">Side Menus</a>
+												<ul>
+													<li>
+														<a href="header-side.html">Push Left</a>
+													</li>
+													<li>
+														<a href="header-side-right.html">Push Right</a>
+													</li>
+													<li>
+														<a href="header-side-slide.html">Slide Left</a>
+													</li>
+													<li>
+														<a href="header-side-slide-right.html">Slide Right</a>
+													</li>
+													<li>
+														<a href="header-side-sticked.html">Sticked Left</a>
+													</li>
+													<li>
+														<a href="header-side-sticked-right.html">Sticked Right</a>
+													</li>
+												</ul>
 											</li>
-											<li>
-												<a href="index_static.html">Static Intro</a>
+											<li class="mega-menu-col">
+												<a href="title1.html">Title Sections</a>
+												<ul>
+													<li>
+														<a href="title1.html">Title section 1</a>
+													</li>
+													<li>
+														<a href="title2.html">Title section 2</a>
+													</li>
+													<li>
+														<a href="title3.html">Title section 3</a>
+													</li>
+													<li>
+														<a href="title4.html">Title section 4</a>
+													</li>
+													<li>
+														<a href="title5.html">Title section 5</a>
+													</li>
+													<li>
+														<a href="title6.html">Title section 6</a>
+													</li>
+												</ul>
 											</li>
-											<li>
-												<a href="index_singlepage.html">Single Page</a>
+											<li class="mega-menu-col">
+												<a href="footer1.html#footer">Footers</a>
+												<ul>
+													<li>
+														<a href="footer1.html#footer">Footer Type 1</a>
+													</li>
+													<li>
+														<a href="footer2.html#footer">Footer Type 2</a>
+													</li>
+													<li>
+														<a href="footer3.html#footer">Footer Type 3</a>
+													</li>
+													<li>
+														<a href="footer4.html#footer">Footer Type 4</a>
+													</li>
+													<li>
+														<a href="footer5.html#footer">Footer Type 5</a>
+													</li>
+													<li>
+														<a href="footer6.html#footer">Footer Type 6</a>
+													</li>
+												</ul>
+											</li>
+											<li class="mega-menu-col">
+												<a href="copyright1.html#copyright">Copyright</a>
+
+												<ul>
+													<li>
+														<a href="copyright1.html#copyright">Copyright 1</a>
+													</li>
+													<li>
+														<a href="copyright2.html#copyright">Copyright 2</a>
+													</li>
+													<li>
+														<a href="copyright3.html#copyright">Copyright 3</a>
+													</li>
+													<li>
+														<a href="copyright4.html#copyright">Copyright 4</a>
+													</li>
+													<li>
+														<a href="copyright5.html#copyright">Copyright 5</a>
+													</li>
+													<li>
+														<a href="copyright6.html#copyright">Copyright 6</a>
+													</li>
+												</ul>
 											</li>
 
 										</ul>
-									</li>
+									</div> <!-- eof mega menu -->
+								</li>
+								<!-- eof features -->
+								<!-- blog -->
+								<li>
+									<a href="blog-right.html">Blog</a>
+									<ul>
 
-									<li>
-										<a href="about.html">Pages</a>
-										<ul>
-
-
-											<li>
-												<a href="about.html">About</a>
-											</li>
-
-
-											<li>
-												<a href="pricing.html">Pricing</a>
-											</li>
-
-
-											<!-- features -->
-											<li>
-												<a href="shortcodes_iconbox.html">Shortcodes</a>
-												<ul>
-													<li>
-														<a href="shortcodes_typography.html">Typography</a>
-													</li>
-													<li>
-														<a href="shortcodes_buttons.html">Buttons</a>
-													</li>
-													<li>
-														<a href="shortcodes_pricing.html">Pricing</a>
-													</li>
-													<li>
-														<a href="shortcodes_iconbox.html">Icon Boxes</a>
-													</li>
-													<li>
-														<a href="shortcodes_progress.html">Progress</a>
-													</li>
-													<li>
-														<a href="shortcodes_tabs.html">Tabs &amp; Collapse</a>
-													</li>
-													<li>
-														<a href="shortcodes_bootstrap.html">Bootstrap Elements</a>
-													</li>
-													<li>
-														<a href="shortcodes_animation.html">Animation</a>
-													</li>
+										<li>
+											<a href="blog-right.html">Right Sidebar</a>
+										</li>
+										<li>
+											<a href="blog-left.html">Left Sidebar</a>
+										</li>
+										<li>
+											<a href="blog-full.html">No Sidebar</a>
+										</li>
 
 
-												</ul>
-											</li>
-											<!-- eof shortcodes -->
-
-											<li>
-												<a href="shortcodes_widgets_default.html">Widgets</a>
-												<ul>
-													<li>
-														<a href="shortcodes_widgets_default.html">Default Widgets</a>
-													</li>
-													<li>
-														<a href="shortcodes_widgets_shop.html">Shop Widgets</a>
-													</li>
-													<li>
-														<a href="shortcodes_widgets_custom.html">Custom Widgets</a>
-													</li>
-												</ul>
-
-											</li>
-											<li>
-												<a href="services.html">Services</a>
-												<ul>
-													<li>
-														<a href="services.html">Services 1</a>
-													</li>
-													<li>
-														<a href="services2.html">Services 2</a>
-													</li>
-													<li>
-														<a href="service-single.html">Single Service</a>
-													</li>
-												</ul>
-											</li>
-											<!-- gallery -->
-											<li>
-												<a href="gallery-image.html">Gallery</a>
-												<ul>
-													<!-- Gallery image only -->
-													<li>
-														<a href="gallery-image.html">Image Only</a>
-														<ul>
-															<li>
-																<a href="gallery-image-2-cols.html">2 columns</a>
-															</li>
-															<li>
-																<a href="gallery-image.html">3 columns</a>
-															</li>
-															<li>
-																<a href="gallery-image-4-cols-fullwidth.html">4 columns fullwidth</a>
-															</li>
-
-														</ul>
-													</li>
-													<!-- eof Gallery image only -->
-													<!-- Gallery with title -->
-													<li>
-														<a href="gallery-title.html">Image With Title</a>
-														<ul>
-															<li>
-																<a href="gallery-title-2-cols.html">2 columns</a>
-															</li>
-															<li>
-																<a href="gallery-title.html">3 column</a>
-															</li>
-															<li>
-																<a href="gallery-title-4-cols-fullwidth.html">4 columns fullwidth</a>
-															</li>
-														</ul>
-													</li>
-													<!-- eof Gallery with title -->
-													<!-- Gallery with excerpt -->
-													<li>
-														<a href="gallery-excerpt.html">Image with Excerpt</a>
-														<ul>
-															<li>
-																<a href="gallery-excerpt-2-cols.html">2 columns</a>
-															</li>
-															<li>
-																<a href="gallery-excerpt.html">3 column</a>
-															</li>
-															<li>
-																<a href="gallery-excerpt-4-cols-fullwidth.html">4 columns fullwdith</a>
-															</li>
-														</ul>
-													</li>
-													<!-- eof Gallery with excerpt -->
-													<!-- Gallery item -->
-													<li>
-														<a href="gallery-single.html">Gallery Item</a>
-														<ul>
-															<li>
-																<a href="gallery-single.html">Style 1</a>
-															</li>
-															<li>
-																<a href="gallery-single2.html">Style 2</a>
-															</li>
-														</ul>
-													</li>
-													<!-- eof Gallery item -->
-												</ul>
-											</li>
-											<!-- eof Gallery -->
-
-
-											<li>
-												<a href="team.html">Team</a>
-												<ul>
-													<li>
-														<a href="team.html">Team List</a>
-													</li>
-													<li>
-														<a href="team-single.html">Team Member</a>
-													</li>
-												</ul>
-											</li>
-
-											<li>
-												<a href="faq.html">FAQ</a>
-												<ul>
-													<li>
-														<a href="faq.html">FAQ</a>
-													</li>
-													<li>
-														<a href="faq2.html">FAQ 2</a>
-													</li>
-												</ul>
-											</li>
-											<li>
-												<a href="404.html">404</a>
-											</li>
-
-										</ul>
-									</li>
-									<!-- eof pages -->
-
-
-									<li>
-										<a href="#">Features</a>
-										<div class="mega-menu">
-											<ul class="mega-menu-row">
-												<li class="mega-menu-col">
-													<a href="#">Headers</a>
-													<ul>
-														<li>
-															<a href="header1.html">Header Type 1</a>
-														</li>
-														<li>
-															<a href="header2.html">Header Type 2</a>
-														</li>
-														<li>
-															<a href="header3.html">Header Type 3</a>
-														</li>
-														<li>
-															<a href="header4.html">Header Type 4</a>
-														</li>
-														<li>
-															<a href="header5.html">Header Type 5</a>
-														</li>
-														<li>
-															<a href="header6.html">Header Type 6</a>
-														</li>
-													</ul>
+										<li>
+											<a href="blog-single-right.html">Post</a>
+											<ul>
+												<li>
+													<a href="blog-single-right.html">Right Sidebar</a>
 												</li>
-												<li class="mega-menu-col">
-													<a href="#">Side Menus</a>
-													<ul>
-														<li>
-															<a href="header-side.html">Push Left</a>
-														</li>
-														<li>
-															<a href="header-side-right.html">Push Right</a>
-														</li>
-														<li>
-															<a href="header-side-slide.html">Slide Left</a>
-														</li>
-														<li>
-															<a href="header-side-slide-right.html">Slide Right</a>
-														</li>
-														<li>
-															<a href="header-side-sticked.html">Sticked Left</a>
-														</li>
-														<li>
-															<a href="header-side-sticked-right.html">Sticked Right</a>
-														</li>
-													</ul>
+												<li>
+													<a href="blog-single-left.html">Left Sidebar</a>
 												</li>
-												<li class="mega-menu-col">
-													<a href="title1.html">Title Sections</a>
-													<ul>
-														<li>
-															<a href="title1.html">Title section 1</a>
-														</li>
-														<li>
-															<a href="title2.html">Title section 2</a>
-														</li>
-														<li>
-															<a href="title3.html">Title section 3</a>
-														</li>
-														<li>
-															<a href="title4.html">Title section 4</a>
-														</li>
-														<li>
-															<a href="title5.html">Title section 5</a>
-														</li>
-														<li>
-															<a href="title6.html">Title section 6</a>
-														</li>
-													</ul>
+												<li>
+													<a href="blog-single-full.html">No Sidebar</a>
 												</li>
-												<li class="mega-menu-col">
-													<a href="footer1.html#footer">Footers</a>
-													<ul>
-														<li>
-															<a href="footer1.html#footer">Footer Type 1</a>
-														</li>
-														<li>
-															<a href="footer2.html#footer">Footer Type 2</a>
-														</li>
-														<li>
-															<a href="footer3.html#footer">Footer Type 3</a>
-														</li>
-														<li>
-															<a href="footer4.html#footer">Footer Type 4</a>
-														</li>
-														<li>
-															<a href="footer5.html#footer">Footer Type 5</a>
-														</li>
-														<li>
-															<a href="footer6.html#footer">Footer Type 6</a>
-														</li>
-													</ul>
-												</li>
-												<li class="mega-menu-col">
-													<a href="copyright1.html#copyright">Copyright</a>
+											</ul>
+										</li>
 
-													<ul>
-														<li>
-															<a href="copyright1.html#copyright">Copyright 1</a>
-														</li>
-														<li>
-															<a href="copyright2.html#copyright">Copyright 2</a>
-														</li>
-														<li>
-															<a href="copyright3.html#copyright">Copyright 3</a>
-														</li>
-														<li>
-															<a href="copyright4.html#copyright">Copyright 4</a>
-														</li>
-														<li>
-															<a href="copyright5.html#copyright">Copyright 5</a>
-														</li>
-														<li>
-															<a href="copyright6.html#copyright">Copyright 6</a>
-														</li>
-													</ul>
+
+									</ul>
+								</li>
+								<!-- eof blog -->
+								<!-- shop -->
+								<li>
+									<a href="shop-right.html">Shop</a>
+									<ul>
+										<li>
+											<a href="shop-account-dashboard.html">Account</a>
+											<ul>
+
+												<li>
+													<a href="shop-account-details.html">Account details</a>
+												</li>
+												<li>
+													<a href="shop-account-addresses.html">Addresses</a>
+												</li>
+												<li>
+													<a href="shop-account-address-edit.html">Edit Address</a>
+												</li>
+												<li>
+													<a href="shop-account-orders.html">Orders</a>
+												</li>
+												<li>
+													<a href="shop-account-order-single.html">Single Order</a>
+												</li>
+												<li>
+													<a href="shop-account-downloads.html">Downloads</a>
+												</li>
+												<li>
+													<a href="shop-account-password-reset.html">Password Reset</a>
+												</li>
+												<li>
+													<a href="shop-account-login.html">Login/Logout</a>
 												</li>
 
 											</ul>
-										</div> <!-- eof mega menu -->
-									</li>
-									<!-- eof features -->
-									<!-- blog -->
-									<li>
-										<a href="blog-right.html">Blog</a>
-										<ul>
+										</li>
+										<li>
+											<a href="shop-right.html">Right Sidebar</a>
+										</li>
+										<li>
+											<a href="shop-left.html">Left Sidebar</a>
+										</li>
+										<li>
+											<a href="shop-product-right.html">Product Right Sidebar</a>
+										</li>
+										<li>
+											<a href="shop-product-left.html">Product Left Sidebar</a>
+										</li>
+										<li>
+											<a href="shop-cart.html">Cart</a>
+										</li>
+										<li>
+											<a href="shop-checkout.html">Checkout</a>
+										</li>
+										<li>
+											<a href="shop-order-received.html">Order Received</a>
+										</li>
 
-											<li>
-												<a href="blog-right.html">Right Sidebar</a>
-											</li>
-											<li>
-												<a href="blog-left.html">Left Sidebar</a>
-											</li>
-											<li>
-												<a href="blog-full.html">No Sidebar</a>
-											</li>
-
-
-											<li>
-												<a href="blog-single-right.html">Post</a>
-												<ul>
-													<li>
-														<a href="blog-single-right.html">Right Sidebar</a>
-													</li>
-													<li>
-														<a href="blog-single-left.html">Left Sidebar</a>
-													</li>
-													<li>
-														<a href="blog-single-full.html">No Sidebar</a>
-													</li>
-												</ul>
-											</li>
-
-
-										</ul>
-									</li>
-									<!-- eof blog -->
-									<!-- shop -->
-									<li>
-										<a href="shop-right.html">Shop</a>
-										<ul>
-											<li>
-												<a href="shop-account-dashboard.html">Account</a>
-												<ul>
-
-													<li>
-														<a href="shop-account-details.html">Account details</a>
-													</li>
-													<li>
-														<a href="shop-account-addresses.html">Addresses</a>
-													</li>
-													<li>
-														<a href="shop-account-address-edit.html">Edit Address</a>
-													</li>
-													<li>
-														<a href="shop-account-orders.html">Orders</a>
-													</li>
-													<li>
-														<a href="shop-account-order-single.html">Single Order</a>
-													</li>
-													<li>
-														<a href="shop-account-downloads.html">Downloads</a>
-													</li>
-													<li>
-														<a href="shop-account-password-reset.html">Password Reset</a>
-													</li>
-													<li>
-														<a href="shop-account-login.html">Login/Logout</a>
-													</li>
-
-												</ul>
-											</li>
-											<li>
-												<a href="shop-right.html">Right Sidebar</a>
-											</li>
-											<li>
-												<a href="shop-left.html">Left Sidebar</a>
-											</li>
-											<li>
-												<a href="shop-product-right.html">Product Right Sidebar</a>
-											</li>
-											<li>
-												<a href="shop-product-left.html">Product Left Sidebar</a>
-											</li>
-											<li>
-												<a href="shop-cart.html">Cart</a>
-											</li>
-											<li>
-												<a href="shop-checkout.html">Checkout</a>
-											</li>
-											<li>
-												<a href="shop-order-received.html">Order Received</a>
-											</li>
-
-										</ul>
-									</li>
-									<!-- eof shop -->
-									<!-- contacts -->
-									<li>
-										<a href="contact.html">Contact</a>
-										<ul>
-											<li>
-												<a href="contact.html">Contact 1</a>
-											</li>
-											<li>
-												<a href="contact2.html">Contact 2</a>
-											</li>
-											<li>
-												<a href="contact3.html">Contact 3</a>
-											</li>
-											<li>
-												<a href="contact4.html">Contact 4</a>
-											</li>
-										</ul>
-									</li>
-									<!-- eof contacts -->
-								</ul>
+									</ul>
+								</li>
+								<!-- eof shop -->
+								<!-- contacts -->
+								<li>
+									<a href="contact.html">Contact</a>
+									<ul>
+										<li>
+											<a href="contact.html">Contact 1</a>
+										</li>
+										<li>
+											<a href="contact2.html">Contact 2</a>
+										</li>
+										<li>
+											<a href="contact3.html">Contact 3</a>
+										</li>
+										<li>
+											<a href="contact4.html">Contact 4</a>
+										</li>
+									</ul>
+								</li>
+								<!-- eof contacts -->
+							</ul>
 
 
-							</nav>
-							<!-- eof main nav -->
-						</div>
+						</nav>
+						<!-- eof main nav -->
 
+					</div>
+					<div class="col-xl-2 col-lg-3 col-md-4 col-sm-5 col-12 d-none d-sm-flex align-items-center justify-content-md-center justify-content-xl-end">
+						<a href="#" class="btn btn-maincolor">Giriş Yap</a>
 					</div>
 
 				</div>
+
+			</div>
 				<!-- header toggler -->
 				<span class="toggle_menu"><span></span></span>
 			</header>
 
-
-			<section class="page_slider text-center">
+			<section class="page_slider">
 				<div class="mouse_down">
+					<a href="#about"><img src="~/canabicom/images/mouse.png" alt=""></a>
+					<svg width="320" height="45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+						<g>
+							<title>Layer 1</title>
+							<g stroke="null" transform="translate(0,41) scale(0.10000000149011612,-0.10000000149011612) " fill="#000000" id="svg_1">
+								<path stroke="null" d="m1473.10742,340.22054c-80.80281,-29.99595 -133.2782,-69.99055 -259.12626,-198.97314c-125.84807,-128.98259 -190.39744,-170.97692 -286.52491,-184.97503c-28.32742,-4.99933 271.66462,-7.99891 666.39101,-7.99891c394.72638,0 695.64718,2.99959 668.71292,6.99905c-98.4494,14.99798 -159.74809,53.99271 -290.23998,186.97476c-132.34943,134.98178 -177.39467,168.97719 -260.05503,197.97328c-51.54662,17.99757 -189.93304,17.99757 -239.15775,0l0,-0.00001z" id="svg_2" />
+							</g>
+						</g>
+					</svg>
 				</div>
-				<img src="~/canabicom/images/slide01.jpg" alt="img">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="ds cover-image s-overlay text-left">
-								<img src="~/canabicom/images/slide01.jpg" alt="img">
-								<div class="container">
-									<div class="row">
-										<div class="col-md-12">
-											<div class="intro_layers_wrapper">
-												<div class="intro_layers">
-													<div class="intro_layer">
+				<div class="flexslider">
+					<ul class="slides">
+						<li class="ds cover-image s-overlay text-left">
+							<img src="~/canabicom/images/slide01.jpg" alt="img">
+							<div class="container">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="intro_layers_wrapper">
+											<div class="intro_layers">
+												<div class="intro_layer">
 
-														<h2 class="text-capitalize intro_featured_word">
-															<span class="color-main">Recreational</span> &
-															Medical Marijuana
-														</h2>
-														<p class="intro_after_featured_word text-sm-left">
-															Welcome to Canabicon! Our medical cannabis dispensary is one of the most renowned shops in.
-														</p>
-														<a href="#" class="btn btn-maincolor2 medium-btn">Buy now</a>
+													<h2 class="text-capitalize intro_featured_word">
+														<span class="color-main">Recreational</span> &
+														Medical Marijuana
+													</h2>
+													<p class="intro_after_featured_word text-sm-left">
+														Welcome to Canabicon! Our medical cannabis dispensary is one of the most renowned shops in.
+													</p>
+													<a href="#" class="btn btn-maincolor2 medium-btn">Buy now</a>
 
-													</div>
-												</div> <!-- eof .intro_layers -->
-											</div> <!-- eof .intro_layers_wrapper -->
-										</div> <!-- eof .col-* -->
-									</div><!-- eof .row -->
-								</div><!-- eof .container-fluid -->
-							</div>
-						</div> <!-- eof .col-* -->
-					</div><!-- eof .row -->
-				</div><!-- eof .container-fluid -->
+												</div>
+											</div> <!-- eof .intro_layers -->
+										</div> <!-- eof .intro_layers_wrapper -->
+									</div> <!-- eof .col-* -->
+								</div><!-- eof .row -->
+							</div><!-- eof .container-fluid -->
+						</li>
+						<li class="ds cover-image s-overlay text-left">
+							<img src="~/canabicom/images/slide02.jpg" alt="img">
+							<div class="container">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="intro_layers_wrapper">
+											<div class="intro_layers">
+												<div class="intro_layer">
+
+													<h2 class="text-capitalize intro_featured_word">
+														<span class="color-main">Recreational</span> &
+														Medical Marijuana
+													</h2>
+													<p class="intro_after_featured_word text-sm-left">
+														Welcome to Canabicon! Our medical cannabis dispensary is one of the most renowned shops in.
+													</p>
+													<a href="#" class="btn btn-maincolor2 medium-btn">Buy now</a>
+
+												</div>
+											</div> <!-- eof .intro_layers -->
+										</div> <!-- eof .intro_layers_wrapper -->
+									</div> <!-- eof .col-* -->
+								</div><!-- eof .row -->
+							</div><!-- eof .container-fluid -->
+						</li>
+						<li class="ds cover-image s-overlay text-left">
+							<img src="~/canabicom/images/slide03.jpg" alt="img">
+							<div class="container">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="intro_layers_wrapper">
+											<div class="intro_layers">
+												<div class="intro_layer">
+
+													<h2 class="text-capitalize intro_featured_word">
+														<span class="color-main">Recreational</span> &
+														Medical Marijuana
+													</h2>
+													<p class="intro_after_featured_word text-sm-left">
+														Welcome to Canabicon! Our medical cannabis dispensary is one of the most renowned shops in.
+													</p>
+													<a href="#" class="btn btn-maincolor2 medium-btn">Buy now</a>
+
+												</div>
+											</div> <!-- eof .intro_layers -->
+										</div> <!-- eof .intro_layers_wrapper -->
+									</div> <!-- eof .col-* -->
+								</div><!-- eof .row -->
+							</div><!-- eof .container-fluid -->
+						</li>
+					</ul>
+				</div> <!-- eof flexslider -->
 			</section>
 
-			<section id="about" class="ls section-about s-pt-xl-140 s-pt-lg-120 s-pt-md-80 s-pt-50 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55 text-center text-sm-left">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-6">
-							<h6 class="special-heading sub-title"><span>Who is marijuana factory?</span></h6>
-							<h2 class="special-heading">History About Factory</h2>
-							<div class="divider-45 hidden-below-md"></div>
-							<div class="divider-30 hidden-above-md"></div>
-							<p>We are a Marijuana Dispensary - Family Owned & Operated Tier III Producer & Processor located Colorado.</p>
+
+		<section class="ls  s-pt-xl-140 s-pt-lg-120 s-pt-md-80 s-pt-50 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55  text-center text-sm-left">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<h6 class="special-heading sub-title text-center"><span>own production</span></h6>
+						<h2 class="special-heading text-center">Popular Products</h2>
+						<div class="divider-50 hidden-below-md"></div>
+						<div class="divider-30 hidden-above-md"></div>
+					</div>
+				</div>
+				<div class="row c-mb-50 c-gutter-40">
+					<div class="col-lg-4 col-md-6">
+						<div class="icon-box text-center">
+							<div class="icon-styled fs-60 color-main2">
+								<i class="icon-fonts icon-lotus"></i>
+							</div>
+							<h6 class="text-uppercase">
+								<a href="shop-right.html">Flowers</a>
+							</h6>
 							<p>
-								From seed to sale, we take pride in our cannabis to ensure a smooth experience with attention to detail and quality. We have established ourselves along various points
-								in the cannabis, industrial hemp, and related services supply chain and related services supply chain.
+								Cannabis and cannabinoid drugs are widely used to treat disease.
 							</p>
-							<div class="divider-50 hidden-below-md"></div>
-							<div class="divider-30 hidden-above-md"></div>
-							<a href="index.html" class="btn btn-maincolor medium-btn">learn more</a>
-							<span>or</span>
-							<a href="contact.html" class="btn btn-with-border">go to catalog</a>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-6">
+						<div class="icon-box text-center">
+							<div class="icon-styled fs-60 color-main2">
+								<i class="icon-fonts icon-marijuana"></i>
+							</div>
+							<h6 class="text-uppercase"><a href="shop-right.html">Concentrates</a></h6>
+							<p>
+								To conduct a systematic review of the benefits and adverse.
+							</p>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="icon-box text-center">
+							<div class="icon-styled fs-60 color-main2">
+								<i class="icon-fonts icon-candy"></i>
+							</div>
+							<h6 class="text-uppercase"><a href="shop-right.html">Edibles</a></h6>
+							<p>
+								Patient-relevant/disease-specific outcomes, activities of daily living.
+							</p>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-6">
+						<div class="icon-box text-center">
+							<div class="icon-styled fs-60 color-main2">
+								<i class="icon-fonts icon-cigar"></i>
+							</div>
+							<h6 class="text-uppercase"><a href="shop-right.html">Cartridges</a></h6>
+							<p>
+								Medical cannabis refers to the use as medical therapy.
+							</p>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-6">
+						<div class="icon-box text-center">
+							<div class="icon-styled fs-60 color-main2">
+								<i class="icon-fonts icon-cigarette"></i>
+							</div>
+							<h6 class="text-uppercase"><a href="shop-right.html">Prerolls</a></h6>
+							<p>
+								Dank weed is really an advent of the of the medical.
+							</p>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="icon-box text-center">
+							<div class="icon-styled fs-60 color-main2">
+								<i class="icon-fonts icon-conserve"></i>
+							</div>
+							<h6 class="text-uppercase"><a href="shop-right.html">Apothecary</a></h6>
+							<p>
+								Apothecary is generally going to be very dry, and full of seeds.
+							</p>
 						</div>
 					</div>
 				</div>
-			</section>
+				<div class="mt--50"></div>
+			</div>
+		</section>
 
 			<section class="ds s-parallax s-overlay section-features s-pt-xl-140 s-pt-lg-120 s-pt-md-80 s-pt-50 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55 c-mb-30 text-center text-sm-left">
 				<div class="container">
@@ -1085,7 +1211,7 @@
 
 												<li class="product">
 													<a class="woocommerce-LoopProduct-link" href="shop-product-left.html">
-														<img src="images/shop/05.jpg" alt="">
+														<img src="~/canabicom/images/shop/05.jpg" alt="">
 														<h2>Medical marijuana extract</h2>
 														<div class="star-rating">
 															<span style="width:80%">Rated <strong class="rating">4.00</strong> out of 5</span>
@@ -1396,7 +1522,7 @@
 
 												<li class="product">
 													<a class="woocommerce-LoopProduct-link" href="shop-product-left.html">
-														<img src="images/shop/02.jpg" alt="">
+														<img src="~/canabicom/images/shop/02.jpg" alt="">
 														<h2>Medical marijuana extract</h2>
 														<div class="star-rating">
 															<span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5</span>
@@ -1427,7 +1553,7 @@
 
 												<li class="product">
 													<a class="woocommerce-LoopProduct-link" href="shop-product-left.html">
-														<img src="images/shop/03.jpg" alt="">
+														<img src="~/canabicom/images/shop/03.jpg" alt="">
 														<h2>Marijuana oil cbd bottle</h2>
 														<div class="star-rating">
 															<span style="width:60%">Rated <strong class="rating">3.00</strong> out of 5</span>
@@ -1489,7 +1615,7 @@
 
 												<li class="product">
 													<a class="woocommerce-LoopProduct-link" href="shop-product-left.html">
-														<img src="images/shop/05.jpg" alt="">
+														<img src="~/canabicom/images/shop/05.jpg" alt="">
 														<h2>Medical marijuana extract</h2>
 														<div class="star-rating">
 															<span style="width:80%">Rated <strong class="rating">4.00</strong> out of 5</span>
@@ -1520,7 +1646,7 @@
 
 												<li class="product">
 													<a class="woocommerce-LoopProduct-link" href="shop-product-left.html">
-														<img src="images/shop/06.jpg" alt="">
+														<img src="~/canabicom/images/shop/06.jpg" alt="">
 														<h2>Marijuana oil cbd bottle</h2>
 														<div class="star-rating">
 															<span style="width:93.4%">Rated <strong class="rating">4.67</strong> out of 5</span>
@@ -1659,7 +1785,7 @@
 
 												<li class="product">
 													<a class="woocommerce-LoopProduct-link" href="shop-product-left.html">
-														<img src="images/shop/04.jpg" alt="">
+														<img src="~/canabicom/images/shop/04.jpg" alt="">
 														<h2>Marijuana oil cbd bottle</h2>
 														<div class="star-rating">
 															<span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5</span>
@@ -1972,12 +2098,12 @@
 						<div class="col-md-6 corporate">
 							<div class="vertical-item item-gallery content-absolute text-center ">
 								<div class="item-media">
-									<img src="images/gallery/tiled/01.jpg" alt="img">
+									<img src="~/canabicom/images/gallery/tiled/01.jpg" alt="img">
 								</div>
 								<div class="item-content">
 
 									<div class="icons-link">
-										<a class="link-zoom photoswipe-link" title="" href="images/gallery/full/01.jpg"><i class="fa fa-search-plus"></i></a>
+										<a class="link-zoom photoswipe-link" title="" href="~/canabicom/images/gallery/full/01.jpg"><i class="fa fa-search-plus"></i></a>
 									</div>
 								</div>
 							</div>
@@ -1991,7 +2117,7 @@
 								<div class="item-content">
 
 									<div class="icons-link">
-										<a class="link-zoom photoswipe-link" title="" href="images/gallery/full/04.jpg"><i class="fa fa-search-plus"></i></a>
+										<a class="link-zoom photoswipe-link" title="" href="~/canabicom/images/gallery/full/04.jpg"><i class="fa fa-search-plus"></i></a>
 									</div>
 								</div>
 							</div>
@@ -2004,7 +2130,7 @@
 								<div class="item-content">
 
 									<div class="icons-link">
-										<a class="link-zoom photoswipe-link" title="" href="images/gallery/full/02.jpg"><i class="fa fa-search-plus"></i></a>
+										<a class="link-zoom photoswipe-link" title="" href="~/canabicom/images/gallery/full/02.jpg"><i class="fa fa-search-plus"></i></a>
 									</div>
 								</div>
 							</div>
@@ -2017,7 +2143,7 @@
 								<div class="item-content">
 
 									<div class="icons-link">
-										<a class="link-zoom photoswipe-link" title="" href="images/gallery/full/03.jpg"><i class="fa fa-search-plus"></i></a>
+										<a class="link-zoom photoswipe-link" title="" href="~/canabicom/images/gallery/full/03.jpg"><i class="fa fa-search-plus"></i></a>
 									</div>
 								</div>
 							</div>
@@ -2179,7 +2305,7 @@
 								<article class="vertical-item text-center">
 									<div class="item-media post-thumbnail">
 										<a href="blog-single-right.html">
-											<img src="images/blog/slide2.jpg" alt="img">
+											<img src="~/canabicom/images/blog/slide2.jpg" alt="img">
 										</a>
 									</div><!-- .post-thumbnail -->
 									<div class="item-content">
@@ -2306,7 +2432,7 @@
 										</p>
 									</blockquote>
 									<div class="quote-image">
-										<img src="images/team/testimonial3.jpg" alt="">
+										<img src="~/canabicom/images/team/testimonial3.jpg" alt="">
 									</div>
 									<div class="quote-title">
 										<p>
@@ -2395,7 +2521,7 @@
 										<i class="fa fa-envelope"></i>
 									</div>
 									<p>
-										<a href="#"><span class="__cf_email__" data-cfemail="7211131c13101b111d1f32170a131f021e175c111d1f">[email&#160;protected]</span></a>
+										<a href="#"><span class="__cf_email__" data-cfemail="e98a8887888b808a8684a98c91888499858cc78a8684">[email&#160;protected]</span></a>
 									</p>
 								</li>
 							</ul>
@@ -2492,7 +2618,7 @@
 											<i class="fa fa-envelope"></i>
 										</div>
 										<p>
-											<a href="#"><span class="__cf_email__" data-cfemail="aac9c5c4cbc8c3c9c5c7eacfd2cbc7dac6cf84c9c5c7">[email&#160;protected]</span></a>
+											<a href="#"><span class="__cf_email__" data-cfemail="72111d1c13101b111d1f32170a131f021e175c111d1f">[email&#160;protected]</span></a>
 										</p>
 									</li>
 								</ul>
@@ -2516,16 +2642,22 @@
 				</div>
 			</section>
 
-			
+
 		</div><!-- eof #box_wrapper -->
 	</div><!-- eof #canvas -->
 
+
 	<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-	<script src="~/canabicom/js/compressed.js"></script>
-	<script src="~/canabicom/js/main.js"></script>
-	<script src="~/canabicom/js/switcher.js"></script>
+    <script src="~/canabicom/js/compressed.js"></script>
+    <script src="~/canabicom/js/main.js"></script>
+    <script src="~/canabicom/js/switcher.js"></script>
+
+	<!-- Google Map Script -->
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0pr5xCHpaTGv12l73IExOHDJisBP2FK4&amp;callback=initGoogleMap"></script>
 
 </body>
 
 
+<!-- Mirrored from html.modernwebtemplates.com/canabicom/index_singlepage.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 Jan 2025 14:45:15 GMT -->
 </html>
+@RenderBody()
