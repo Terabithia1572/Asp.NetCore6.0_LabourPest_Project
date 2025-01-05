@@ -4,15 +4,25 @@
 }
 
 <!DOCTYPE html>
-
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
 <html class="no-js">
+<!--<![endif]-->
+
+
+<!-- Mirrored from html.modernwebtemplates.com/canabicom/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 Jan 2025 14:43:18 GMT -->
 <head>
-	<title>LabourPest</title>
+	<title>Canabicom</title>
 	<meta charset="utf-8">
-	
+	<!--[if IE]>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<![endif]-->
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
 
     <link href="~/canabicom/css/animations.css" rel="stylesheet" />
@@ -22,13 +32,25 @@
     <link href="~/canabicom/css/main.css" rel="stylesheet" />
     <link href="~/canabicom/css/shop.css" rel="stylesheet" />
     <script src="~/canabicom/js/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="~/canabicom/dynamic/dynamic.js"></script>
+    <link href="~/canabicom/dynamic/dynamic.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 
+
+	<!--[if lt IE 9]>
+		<script src="js/vendor/html5shiv.min.js"></script>
+		<script src="js/vendor/respond.min.js"></script>
+		<script src="js/vendor/jquery-1.12.4.min.js"></script>
+	<![endif]-->
 
 </head>
 
 <body>
-
+	<!--[if lt IE 9]>
+		<div class="bg-danger text-center">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" class="color-main">upgrade your browser</a> to improve your experience.</div>
+	<![endif]-->
 
 	<div class="preloader">
 		<div class="preloader_image"></div>
@@ -223,15 +245,14 @@
 		</div>
 	</div>
 
-
+	
 	
 
-
-	<!-- Unyson messages modal -->
-	
+	<div id="canvas">
 		<div id="box_wrapper">
 
 			<!-- template sections -->
+
 			<!--topline section visible only on small screens|-->
 
 			<section class="page_topline topline-1 ls s-borderbottom py-9">
@@ -289,8 +310,7 @@
 														<img src="~/canabicom/images/shop/26.jpg" alt="">Medical marijuana THC
 													</a>
 
-													<span class="quantity">
-														1 ×
+													<span class="quantity">1 ×
 														<span class="woocommerce-Price-amount amount">
 															<span class="woocommerce-Price-currencySymbol">$</span>
 															12.00
@@ -303,8 +323,7 @@
 														<img src="~/canabicom/images/shop/26.jpg" alt="">Medical marijuana THC
 													</a>
 
-													<span class="quantity">
-														1 ×
+													<span class="quantity">1 ×
 														<span class="woocommerce-Price-amount amount">
 															<span class="woocommerce-Price-currencySymbol">$</span>
 															15.00
@@ -336,480 +355,485 @@
 				</div>
 			</section>
 			<!--eof topline-->
+
 			<!-- header with two Bootstrap columns - left for logo and right for navigation -->
 			<header class="page_header header-1 ls s-py-20 ">
 
-			<div class="container">
+				<div class="container">
 
-				<div class="row ">
-					<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
-						<a href="index.html" class="logo">
-							<img src="images/logo.png" alt="">
-							<span class="d-flex flex-column">
-								<span class="logo-text color-darkgrey">Labour</span>
-								<span class="logo-subtext">Pest</span>
-							</span>
-						</a>
-					</div>
-					<div class="col-xl-7 col-lg-6 col-md-5 col-sm-4 col-12 d-flex align-items-center justify-content-end ">
-						<!-- main nav start -->
-						<nav class="top-nav">
-							<ul class="nav sf-menu">
-
-
-								<li class="active">
-									<a href="index-2.html">Home</a>
-									<ul>
-										<li>
-											<a href="index-2.html">MultiPage</a>
-										</li>
-										<li>
-											<a href="index-alt.html">MultiPage Alternative</a>
-										</li>
-										<li>
-											<a href="index_static.html">Static Intro</a>
-										</li>
-										<li>
-											<a href="index_singlepage.html">Single Page</a>
-										</li>
-
-									</ul>
-								</li>
-
-								<li>
-									<a href="about.html">Pages</a>
-									<ul>
+					<div class="row ">
+						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-8 col-12">
+							<a href="index.html" class="logo">
+								<img src="~/canabicom/images/logo.png" alt="">
+								<span class="d-flex flex-column">
+									<span class="logo-text color-darkgrey">Canabicom</span>
+									<span class="logo-subtext">medical</span>
+								</span>
+							</a>
+						</div>
+						<div class="col-xl-9 col-lg-9 col-md-8 col-sm-4 col-12 d-flex align-items-center justify-content-end ">
+							<!-- main nav start -->
+							<nav class="top-nav">
+								<ul class="nav sf-menu">
 
 
-										<li>
-											<a href="about.html">About</a>
-										</li>
-
-
-										<li>
-											<a href="pricing.html">Pricing</a>
-										</li>
-
-
-										<!-- features -->
-										<li>
-											<a href="shortcodes_iconbox.html">Shortcodes</a>
-											<ul>
-												<li>
-													<a href="shortcodes_typography.html">Typography</a>
-												</li>
-												<li>
-													<a href="shortcodes_buttons.html">Buttons</a>
-												</li>
-												<li>
-													<a href="shortcodes_pricing.html">Pricing</a>
-												</li>
-												<li>
-													<a href="shortcodes_iconbox.html">Icon Boxes</a>
-												</li>
-												<li>
-													<a href="shortcodes_progress.html">Progress</a>
-												</li>
-												<li>
-													<a href="shortcodes_tabs.html">Tabs &amp; Collapse</a>
-												</li>
-												<li>
-													<a href="shortcodes_bootstrap.html">Bootstrap Elements</a>
-												</li>
-												<li>
-													<a href="shortcodes_animation.html">Animation</a>
-												</li>
-
-
-											</ul>
-										</li>
-										<!-- eof shortcodes -->
-
-										<li>
-											<a href="shortcodes_widgets_default.html">Widgets</a>
-											<ul>
-												<li>
-													<a href="shortcodes_widgets_default.html">Default Widgets</a>
-												</li>
-												<li>
-													<a href="shortcodes_widgets_shop.html">Shop Widgets</a>
-												</li>
-												<li>
-													<a href="shortcodes_widgets_custom.html">Custom Widgets</a>
-												</li>
-											</ul>
-
-										</li>
-										<li>
-											<a href="services.html">Services</a>
-											<ul>
-												<li>
-													<a href="services.html">Services 1</a>
-												</li>
-												<li>
-													<a href="services2.html">Services 2</a>
-												</li>
-												<li>
-													<a href="service-single.html">Single Service</a>
-												</li>
-											</ul>
-										</li>
-										<!-- gallery -->
-										<li>
-											<a href="gallery-image.html">Gallery</a>
-											<ul>
-												<!-- Gallery image only -->
-												<li>
-													<a href="gallery-image.html">Image Only</a>
-													<ul>
-														<li>
-															<a href="gallery-image-2-cols.html">2 columns</a>
-														</li>
-														<li>
-															<a href="gallery-image.html">3 columns</a>
-														</li>
-														<li>
-															<a href="gallery-image-4-cols-fullwidth.html">4 columns fullwidth</a>
-														</li>
-
-													</ul>
-												</li>
-												<!-- eof Gallery image only -->
-												<!-- Gallery with title -->
-												<li>
-													<a href="gallery-title.html">Image With Title</a>
-													<ul>
-														<li>
-															<a href="gallery-title-2-cols.html">2 columns</a>
-														</li>
-														<li>
-															<a href="gallery-title.html">3 column</a>
-														</li>
-														<li>
-															<a href="gallery-title-4-cols-fullwidth.html">4 columns fullwidth</a>
-														</li>
-													</ul>
-												</li>
-												<!-- eof Gallery with title -->
-												<!-- Gallery with excerpt -->
-												<li>
-													<a href="gallery-excerpt.html">Image with Excerpt</a>
-													<ul>
-														<li>
-															<a href="gallery-excerpt-2-cols.html">2 columns</a>
-														</li>
-														<li>
-															<a href="gallery-excerpt.html">3 column</a>
-														</li>
-														<li>
-															<a href="gallery-excerpt-4-cols-fullwidth.html">4 columns fullwdith</a>
-														</li>
-													</ul>
-												</li>
-												<!-- eof Gallery with excerpt -->
-												<!-- Gallery item -->
-												<li>
-													<a href="gallery-single.html">Gallery Item</a>
-													<ul>
-														<li>
-															<a href="gallery-single.html">Style 1</a>
-														</li>
-														<li>
-															<a href="gallery-single2.html">Style 2</a>
-														</li>
-													</ul>
-												</li>
-												<!-- eof Gallery item -->
-											</ul>
-										</li>
-										<!-- eof Gallery -->
-
-
-										<li>
-											<a href="team.html">Team</a>
-											<ul>
-												<li>
-													<a href="team.html">Team List</a>
-												</li>
-												<li>
-													<a href="team-single.html">Team Member</a>
-												</li>
-											</ul>
-										</li>
-
-										<li>
-											<a href="faq.html">FAQ</a>
-											<ul>
-												<li>
-													<a href="faq.html">FAQ</a>
-												</li>
-												<li>
-													<a href="faq2.html">FAQ 2</a>
-												</li>
-											</ul>
-										</li>
-										<li>
-											<a href="404.html">404</a>
-										</li>
-
-									</ul>
-								</li>
-								<!-- eof pages -->
-
-
-								<li>
-									<a href="#">Features</a>
-									<div class="mega-menu">
-										<ul class="mega-menu-row">
-											<li class="mega-menu-col">
-												<a href="#">Headers</a>
-												<ul>
-													<li>
-														<a href="header1.html">Header Type 1</a>
-													</li>
-													<li>
-														<a href="header2.html">Header Type 2</a>
-													</li>
-													<li>
-														<a href="header3.html">Header Type 3</a>
-													</li>
-													<li>
-														<a href="header4.html">Header Type 4</a>
-													</li>
-													<li>
-														<a href="header5.html">Header Type 5</a>
-													</li>
-													<li>
-														<a href="header6.html">Header Type 6</a>
-													</li>
-												</ul>
+									<li class="active">
+										<a href="index-2.html">Home</a>
+										<ul>
+											<li>
+												<a href="index-2.html">MultiPage</a>
 											</li>
-											<li class="mega-menu-col">
-												<a href="#">Side Menus</a>
-												<ul>
-													<li>
-														<a href="header-side.html">Push Left</a>
-													</li>
-													<li>
-														<a href="header-side-right.html">Push Right</a>
-													</li>
-													<li>
-														<a href="header-side-slide.html">Slide Left</a>
-													</li>
-													<li>
-														<a href="header-side-slide-right.html">Slide Right</a>
-													</li>
-													<li>
-														<a href="header-side-sticked.html">Sticked Left</a>
-													</li>
-													<li>
-														<a href="header-side-sticked-right.html">Sticked Right</a>
-													</li>
-												</ul>
+											<li>
+												<a href="index-alt.html">MultiPage Alternative</a>
 											</li>
-											<li class="mega-menu-col">
-												<a href="title1.html">Title Sections</a>
-												<ul>
-													<li>
-														<a href="title1.html">Title section 1</a>
-													</li>
-													<li>
-														<a href="title2.html">Title section 2</a>
-													</li>
-													<li>
-														<a href="title3.html">Title section 3</a>
-													</li>
-													<li>
-														<a href="title4.html">Title section 4</a>
-													</li>
-													<li>
-														<a href="title5.html">Title section 5</a>
-													</li>
-													<li>
-														<a href="title6.html">Title section 6</a>
-													</li>
-												</ul>
+											<li>
+												<a href="index_static.html">Static Intro</a>
 											</li>
-											<li class="mega-menu-col">
-												<a href="footer1.html#footer">Footers</a>
-												<ul>
-													<li>
-														<a href="footer1.html#footer">Footer Type 1</a>
-													</li>
-													<li>
-														<a href="footer2.html#footer">Footer Type 2</a>
-													</li>
-													<li>
-														<a href="footer3.html#footer">Footer Type 3</a>
-													</li>
-													<li>
-														<a href="footer4.html#footer">Footer Type 4</a>
-													</li>
-													<li>
-														<a href="footer5.html#footer">Footer Type 5</a>
-													</li>
-													<li>
-														<a href="footer6.html#footer">Footer Type 6</a>
-													</li>
-												</ul>
-											</li>
-											<li class="mega-menu-col">
-												<a href="copyright1.html#copyright">Copyright</a>
-
-												<ul>
-													<li>
-														<a href="copyright1.html#copyright">Copyright 1</a>
-													</li>
-													<li>
-														<a href="copyright2.html#copyright">Copyright 2</a>
-													</li>
-													<li>
-														<a href="copyright3.html#copyright">Copyright 3</a>
-													</li>
-													<li>
-														<a href="copyright4.html#copyright">Copyright 4</a>
-													</li>
-													<li>
-														<a href="copyright5.html#copyright">Copyright 5</a>
-													</li>
-													<li>
-														<a href="copyright6.html#copyright">Copyright 6</a>
-													</li>
-												</ul>
+											<li>
+												<a href="index_singlepage.html">Single Page</a>
 											</li>
 
 										</ul>
-									</div> <!-- eof mega menu -->
-								</li>
-								<!-- eof features -->
-								<!-- blog -->
-								<li>
-									<a href="blog-right.html">Blog</a>
-									<ul>
+									</li>
 
-										<li>
-											<a href="blog-right.html">Right Sidebar</a>
-										</li>
-										<li>
-											<a href="blog-left.html">Left Sidebar</a>
-										</li>
-										<li>
-											<a href="blog-full.html">No Sidebar</a>
-										</li>
+									<li>
+										<a href="about.html">Pages</a>
+										<ul>
 
 
-										<li>
-											<a href="blog-single-right.html">Post</a>
-											<ul>
-												<li>
-													<a href="blog-single-right.html">Right Sidebar</a>
+											<li>
+												<a href="about.html">About</a>
+											</li>
+
+
+											<li>
+												<a href="pricing.html">Pricing</a>
+											</li>
+
+
+											<!-- features -->
+											<li>
+												<a href="shortcodes_iconbox.html">Shortcodes</a>
+												<ul>
+													<li>
+														<a href="shortcodes_typography.html">Typography</a>
+													</li>
+													<li>
+														<a href="shortcodes_buttons.html">Buttons</a>
+													</li>
+													<li>
+														<a href="shortcodes_pricing.html">Pricing</a>
+													</li>
+													<li>
+														<a href="shortcodes_iconbox.html">Icon Boxes</a>
+													</li>
+													<li>
+														<a href="shortcodes_progress.html">Progress</a>
+													</li>
+													<li>
+														<a href="shortcodes_tabs.html">Tabs &amp; Collapse</a>
+													</li>
+													<li>
+														<a href="shortcodes_bootstrap.html">Bootstrap Elements</a>
+													</li>
+													<li>
+														<a href="shortcodes_animation.html">Animation</a>
+													</li>
+
+
+												</ul>
+											</li>
+											<!-- eof shortcodes -->
+
+											<li>
+												<a href="shortcodes_widgets_default.html">Widgets</a>
+												<ul>
+													<li>
+														<a href="shortcodes_widgets_default.html">Default Widgets</a>
+													</li>
+													<li>
+														<a href="shortcodes_widgets_shop.html">Shop Widgets</a>
+													</li>
+													<li>
+														<a href="shortcodes_widgets_custom.html">Custom Widgets</a>
+													</li>
+												</ul>
+
+											</li>
+											<li>
+												<a href="services.html">Services</a>
+												<ul>
+													<li>
+														<a href="services.html">Services 1</a>
+													</li>
+													<li>
+														<a href="services2.html">Services 2</a>
+													</li>
+													<li>
+														<a href="service-single.html">Single Service</a>
+													</li>
+												</ul>
+											</li>
+											<!-- gallery -->
+											<li>
+												<a href="gallery-image.html">Gallery</a>
+												<ul>
+													<!-- Gallery image only -->
+													<li>
+														<a href="gallery-image.html">Image Only</a>
+														<ul>
+															<li>
+																<a href="gallery-image-2-cols.html">2 columns</a>
+															</li>
+															<li>
+																<a href="gallery-image.html">3 columns</a>
+															</li>
+															<li>
+																<a href="gallery-image-4-cols-fullwidth.html">4 columns fullwidth</a>
+															</li>
+
+														</ul>
+													</li>
+													<!-- eof Gallery image only -->
+
+													<!-- Gallery with title -->
+													<li>
+														<a href="gallery-title.html">Image With Title</a>
+														<ul>
+															<li>
+																<a href="gallery-title-2-cols.html">2 columns</a>
+															</li>
+															<li>
+																<a href="gallery-title.html">3 column</a>
+															</li>
+															<li>
+																<a href="gallery-title-4-cols-fullwidth.html">4 columns fullwidth</a>
+															</li>
+														</ul>
+													</li>
+													<!-- eof Gallery with title -->
+
+													<!-- Gallery with excerpt -->
+													<li>
+														<a href="gallery-excerpt.html">Image with Excerpt</a>
+														<ul>
+															<li>
+																<a href="gallery-excerpt-2-cols.html">2 columns</a>
+															</li>
+															<li>
+																<a href="gallery-excerpt.html">3 column</a>
+															</li>
+															<li>
+																<a href="gallery-excerpt-4-cols-fullwidth.html">4 columns fullwdith</a>
+															</li>
+														</ul>
+													</li>
+													<!-- eof Gallery with excerpt -->
+
+
+													<!-- Gallery item -->
+													<li>
+														<a href="gallery-single.html">Gallery Item</a>
+														<ul>
+															<li>
+																<a href="gallery-single.html">Style 1</a>
+															</li>
+															<li>
+																<a href="gallery-single2.html">Style 2</a>
+															</li>
+														</ul>
+													</li>
+													<!-- eof Gallery item -->
+												</ul>
+											</li>
+											<!-- eof Gallery -->
+
+
+											<li>
+												<a href="team.html">Team</a>
+												<ul>
+													<li>
+														<a href="team.html">Team List</a>
+													</li>
+													<li>
+														<a href="team-single.html">Team Member</a>
+													</li>
+												</ul>
+											</li>
+
+											<li>
+												<a href="faq.html">FAQ</a>
+												<ul>
+													<li>
+														<a href="faq.html">FAQ</a>
+													</li>
+													<li>
+														<a href="faq2.html">FAQ 2</a>
+													</li>
+												</ul>
+											</li>
+											<li>
+												<a href="404.html">404</a>
+											</li>
+
+										</ul>
+									</li>
+									<!-- eof pages -->
+
+
+									<li>
+										<a href="#">Features</a>
+										<div class="mega-menu">
+											<ul class="mega-menu-row">
+												<li class="mega-menu-col">
+													<a href="#">Headers</a>
+													<ul>
+														<li>
+															<a href="header1.html">Header Type 1</a>
+														</li>
+														<li>
+															<a href="header2.html">Header Type 2</a>
+														</li>
+														<li>
+															<a href="header3.html">Header Type 3</a>
+														</li>
+														<li>
+															<a href="header4.html">Header Type 4</a>
+														</li>
+														<li>
+															<a href="header5.html">Header Type 5</a>
+														</li>
+														<li>
+															<a href="header6.html">Header Type 6</a>
+														</li>
+													</ul>
 												</li>
-												<li>
-													<a href="blog-single-left.html">Left Sidebar</a>
+												<li class="mega-menu-col">
+													<a href="#">Side Menus</a>
+													<ul>
+														<li>
+															<a href="header-side.html">Push Left</a>
+														</li>
+														<li>
+															<a href="header-side-right.html">Push Right</a>
+														</li>
+														<li>
+															<a href="header-side-slide.html">Slide Left</a>
+														</li>
+														<li>
+															<a href="header-side-slide-right.html">Slide Right</a>
+														</li>
+														<li>
+															<a href="header-side-sticked.html">Sticked Left</a>
+														</li>
+														<li>
+															<a href="header-side-sticked-right.html">Sticked Right</a>
+														</li>
+													</ul>
 												</li>
-												<li>
-													<a href="blog-single-full.html">No Sidebar</a>
+												<li class="mega-menu-col">
+													<a href="title1.html">Title Sections</a>
+													<ul>
+														<li>
+															<a href="title1.html">Title section 1</a>
+														</li>
+														<li>
+															<a href="title2.html">Title section 2</a>
+														</li>
+														<li>
+															<a href="title3.html">Title section 3</a>
+														</li>
+														<li>
+															<a href="title4.html">Title section 4</a>
+														</li>
+														<li>
+															<a href="title5.html">Title section 5</a>
+														</li>
+														<li>
+															<a href="title6.html">Title section 6</a>
+														</li>
+													</ul>
 												</li>
+												<li class="mega-menu-col">
+													<a href="footer1.html#footer">Footers</a>
+													<ul>
+														<li>
+															<a href="footer1.html#footer">Footer Type 1</a>
+														</li>
+														<li>
+															<a href="footer2.html#footer">Footer Type 2</a>
+														</li>
+														<li>
+															<a href="footer3.html#footer">Footer Type 3</a>
+														</li>
+														<li>
+															<a href="footer4.html#footer">Footer Type 4</a>
+														</li>
+														<li>
+															<a href="footer5.html#footer">Footer Type 5</a>
+														</li>
+														<li>
+															<a href="footer6.html#footer">Footer Type 6</a>
+														</li>
+													</ul>
+												</li>
+												<li class="mega-menu-col">
+													<a href="copyright1.html#copyright">Copyright</a>
+
+													<ul>
+														<li>
+															<a href="copyright1.html#copyright">Copyright 1</a>
+														</li>
+														<li>
+															<a href="copyright2.html#copyright">Copyright 2</a>
+														</li>
+														<li>
+															<a href="copyright3.html#copyright">Copyright 3</a>
+														</li>
+														<li>
+															<a href="copyright4.html#copyright">Copyright 4</a>
+														</li>
+														<li>
+															<a href="copyright5.html#copyright">Copyright 5</a>
+														</li>
+														<li>
+															<a href="copyright6.html#copyright">Copyright 6</a>
+														</li>
+													</ul>
+												</li>
+
 											</ul>
-										</li>
+										</div> <!-- eof mega menu -->
+									</li>
+									<!-- eof features -->
 
 
-									</ul>
-								</li>
-								<!-- eof blog -->
-								<!-- shop -->
-								<li>
-									<a href="shop-right.html">Shop</a>
-									<ul>
-										<li>
-											<a href="shop-account-dashboard.html">Account</a>
-											<ul>
+									<!-- blog -->
+									<li>
+										<a href="blog-right.html">Blog</a>
+										<ul>
 
-												<li>
-													<a href="shop-account-details.html">Account details</a>
-												</li>
-												<li>
-													<a href="shop-account-addresses.html">Addresses</a>
-												</li>
-												<li>
-													<a href="shop-account-address-edit.html">Edit Address</a>
-												</li>
-												<li>
-													<a href="shop-account-orders.html">Orders</a>
-												</li>
-												<li>
-													<a href="shop-account-order-single.html">Single Order</a>
-												</li>
-												<li>
-													<a href="shop-account-downloads.html">Downloads</a>
-												</li>
-												<li>
-													<a href="shop-account-password-reset.html">Password Reset</a>
-												</li>
-												<li>
-													<a href="shop-account-login.html">Login/Logout</a>
-												</li>
-
-											</ul>
-										</li>
-										<li>
-											<a href="shop-right.html">Right Sidebar</a>
-										</li>
-										<li>
-											<a href="shop-left.html">Left Sidebar</a>
-										</li>
-										<li>
-											<a href="shop-product-right.html">Product Right Sidebar</a>
-										</li>
-										<li>
-											<a href="shop-product-left.html">Product Left Sidebar</a>
-										</li>
-										<li>
-											<a href="shop-cart.html">Cart</a>
-										</li>
-										<li>
-											<a href="shop-checkout.html">Checkout</a>
-										</li>
-										<li>
-											<a href="shop-order-received.html">Order Received</a>
-										</li>
-
-									</ul>
-								</li>
-								<!-- eof shop -->
-								<!-- contacts -->
-								<li>
-									<a href="contact.html">Contact</a>
-									<ul>
-										<li>
-											<a href="contact.html">Contact 1</a>
-										</li>
-										<li>
-											<a href="contact2.html">Contact 2</a>
-										</li>
-										<li>
-											<a href="contact3.html">Contact 3</a>
-										</li>
-										<li>
-											<a href="contact4.html">Contact 4</a>
-										</li>
-									</ul>
-								</li>
-								<!-- eof contacts -->
-							</ul>
+											<li>
+												<a href="blog-right.html">Right Sidebar</a>
+											</li>
+											<li>
+												<a href="blog-left.html">Left Sidebar</a>
+											</li>
+											<li>
+												<a href="blog-full.html">No Sidebar</a>
+											</li>
 
 
-						</nav>
-						<!-- eof main nav -->
+											<li>
+												<a href="blog-single-right.html">Post</a>
+												<ul>
+													<li>
+														<a href="blog-single-right.html">Right Sidebar</a>
+													</li>
+													<li>
+														<a href="blog-single-left.html">Left Sidebar</a>
+													</li>
+													<li>
+														<a href="blog-single-full.html">No Sidebar</a>
+													</li>
+												</ul>
+											</li>
 
-					</div>
-					<div class="col-xl-2 col-lg-3 col-md-4 col-sm-5 col-12 d-none d-sm-flex align-items-center justify-content-md-center justify-content-xl-end">
-						<a href="#" class="btn btn-maincolor">Giriş Yap</a>
+
+										</ul>
+									</li>
+									<!-- eof blog -->
+
+									<!-- shop -->
+									<li>
+										<a href="shop-right.html">Shop</a>
+										<ul>
+											<li>
+												<a href="shop-account-dashboard.html">Account</a>
+												<ul>
+
+													<li>
+														<a href="shop-account-details.html">Account details</a>
+													</li>
+													<li>
+														<a href="shop-account-addresses.html">Addresses</a>
+													</li>
+													<li>
+														<a href="shop-account-address-edit.html">Edit Address</a>
+													</li>
+													<li>
+														<a href="shop-account-orders.html">Orders</a>
+													</li>
+													<li>
+														<a href="shop-account-order-single.html">Single Order</a>
+													</li>
+													<li>
+														<a href="shop-account-downloads.html">Downloads</a>
+													</li>
+													<li>
+														<a href="shop-account-password-reset.html">Password Reset</a>
+													</li>
+													<li>
+														<a href="shop-account-login.html">Login/Logout</a>
+													</li>
+
+												</ul>
+											</li>
+											<li>
+												<a href="shop-right.html">Right Sidebar</a>
+											</li>
+											<li>
+												<a href="shop-left.html">Left Sidebar</a>
+											</li>
+											<li>
+												<a href="shop-product-right.html">Product Right Sidebar</a>
+											</li>
+											<li>
+												<a href="shop-product-left.html">Product Left Sidebar</a>
+											</li>
+											<li>
+												<a href="shop-cart.html">Cart</a>
+											</li>
+											<li>
+												<a href="shop-checkout.html">Checkout</a>
+											</li>
+											<li>
+												<a href="shop-order-received.html">Order Received</a>
+											</li>
+
+										</ul>
+									</li>
+									<!-- eof shop -->
+
+									<!-- contacts -->
+									<li>
+										<a href="contact.html">Contact</a>
+										<ul>
+											<li>
+												<a href="contact.html">Contact 1</a>
+											</li>
+											<li>
+												<a href="contact2.html">Contact 2</a>
+											</li>
+											<li>
+												<a href="contact3.html">Contact 3</a>
+											</li>
+											<li>
+												<a href="contact4.html">Contact 4</a>
+											</li>
+										</ul>
+									</li>
+									<!-- eof contacts -->
+								</ul>
+
+
+							</nav>
+							<!-- eof main nav -->
+						</div>
+
 					</div>
 
 				</div>
-
-			</div>
 				<!-- header toggler -->
 				<span class="toggle_menu"><span></span></span>
 			</header>
@@ -842,7 +866,7 @@
 														Kaliteli Anlayış..
 													</h2>
 													<p class="intro_after_featured_word text-sm-left">
-													Sizi, sevdiklerinizi ve işletmenizi zararlılardan koruyoruz. Profesyonel ekibimizle hızlı ve güvenilir hizmet sunuyoruz.
+														Sizi, sevdiklerinizi ve işletmenizi zararlılardan koruyoruz. Profesyonel ekibimizle hızlı ve güvenilir hizmet sunuyoruz.
 													</p>
 													<a href="#" class="btn btn-maincolor2 medium-btn">İletişime Geç</a>
 
@@ -907,94 +931,92 @@
 				</div> <!-- eof flexslider -->
 			</section>
 
-
-		<section class="ls  s-pt-xl-140 s-pt-lg-120 s-pt-md-80 s-pt-50 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55  text-center text-sm-left">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<h6 class="special-heading sub-title text-center"><span>Kendi Ürünlerimiz</span></h6>
-						<h2 class="special-heading text-center">Popüler Ürünler</h2>
-						<div class="divider-50 hidden-below-md"></div>
-						<div class="divider-30 hidden-above-md"></div>
+			<section class="ls s-pt-xl-140 s-pt-lg-120 s-pt-md-80 s-pt-50 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55  text-center text-sm-left">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<h6 class="special-heading sub-title text-center"><span>Kendi Ürünlerimiz</span></h6>
+							<h2 class="special-heading text-center">Popüler Ürünler</h2>
+							<div class="divider-50 hidden-below-md"></div>
+							<div class="divider-30 hidden-above-md"></div>
+						</div>
 					</div>
+					<div class="row c-mb-50 c-gutter-40">
+						<div class="col-lg-4 col-md-6">
+							<div class="icon-box text-center">
+								<div class="icon-styled fs-60 color-main2">
+									<i class="icon-fonts icon-lotus"></i>
+								</div>
+								<h6 class="text-uppercase">
+									<a href="shop-right.html">Çiçekler</a>
+								</h6>
+								<p>
+									Kenevir ve kanabinoid ilaçlar hastalıkların tedavisinde yaygın olarak kullanılmaktadır.
+								</p>
+							</div>
+						</div>
+
+						<div class="col-lg-4 col-md-6">
+							<div class="icon-box text-center">
+								<div class="icon-styled fs-60 color-main2">
+									<i class="icon-fonts icon-marijuana"></i>
+								</div>
+								<h6 class="text-uppercase"><a href="shop-right.html">Konsantre</a></h6>
+								<p>
+									Yararları ve olumsuzlukları sistematik olarak incelemek.
+								</p>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="icon-box text-center">
+								<div class="icon-styled fs-60 color-main2">
+									<i class="icon-fonts icon-candy"></i>
+								</div>
+								<h6 class="text-uppercase"><a href="shop-right.html">Yenilebilirler</a></h6>
+								<p>
+									Hastaya özgü/hastalığa özgü sonuçlar, günlük yaşam aktiviteleri.
+								</p>
+							</div>
+						</div>
+
+						<div class="col-lg-4 col-md-6">
+							<div class="icon-box text-center">
+								<div class="icon-styled fs-60 color-main2">
+									<i class="icon-fonts icon-cigar"></i>
+								</div>
+								<h6 class="text-uppercase"><a href="shop-right.html">Kartuşlar</a></h6>
+								<p>
+									Tıbbi kenevir, tıbbi tedavi amaçlı kullanıma işaret eder.
+								</p>
+							</div>
+						</div>
+
+						<div class="col-lg-4 col-md-6">
+							<div class="icon-box text-center">
+								<div class="icon-styled fs-60 color-main2">
+									<i class="icon-fonts icon-cigarette"></i>
+								</div>
+								<h6 class="text-uppercase"><a href="shop-right.html">Önceden sarılmışlar</a></h6>
+								<p>
+									Dank ot aslında tıbbın bir gelişidir.
+								</p>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="icon-box text-center">
+								<div class="icon-styled fs-60 color-main2">
+									<i class="icon-fonts icon-conserve"></i>
+								</div>
+								<h6 class="text-uppercase"><a href="shop-right.html">Eczacı</a></h6>
+								<p>
+									Eczacı genellikle çok kuru ve çekirdek dolu olacaktır.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="mt--50"></div>
 				</div>
-				<div class="row c-mb-50 c-gutter-40">
-					<div class="col-lg-4 col-md-6">
-						<div class="icon-box text-center">
-							<div class="icon-styled fs-60 color-main2">
-								<i class="icon-fonts icon-lotus"></i>
-							</div>
-							<h6 class="text-uppercase">
-								<a href="shop-right.html">Çiçekler</a>
-							</h6>
-							<p>
-								Kenevir ve kanabinoid ilaçlar hastalıkların tedavisinde yaygın olarak kullanılmaktadır.
-							</p>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6">
-						<div class="icon-box text-center">
-							<div class="icon-styled fs-60 color-main2">
-								<i class="icon-fonts icon-marijuana"></i>
-							</div>
-							<h6 class="text-uppercase"><a href="shop-right.html">Konsantre</a></h6>
-							<p>
-								Yararları ve olumsuzlukları sistematik olarak incelemek.
-							</p>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6">
-						<div class="icon-box text-center">
-							<div class="icon-styled fs-60 color-main2">
-								<i class="icon-fonts icon-candy"></i>
-							</div>
-							<h6 class="text-uppercase"><a href="shop-right.html">Yenilebilirler</a></h6>
-							<p>
-								Hastaya özgü/hastalığa özgü sonuçlar, günlük yaşam aktiviteleri.
-							</p>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6">
-						<div class="icon-box text-center">
-							<div class="icon-styled fs-60 color-main2">
-								<i class="icon-fonts icon-cigar"></i>
-							</div>
-							<h6 class="text-uppercase"><a href="shop-right.html">Kartuşlar</a></h6>
-							<p>
-								Tıbbi kenevir, tıbbi tedavi amaçlı kullanıma işaret eder.
-							</p>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6">
-						<div class="icon-box text-center">
-							<div class="icon-styled fs-60 color-main2">
-								<i class="icon-fonts icon-cigarette"></i>
-							</div>
-							<h6 class="text-uppercase"><a href="shop-right.html">Önceden sarılmışlar</a></h6>
-							<p>
-								Dank ot aslında tıbbın bir gelişidir.
-							</p>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6">
-						<div class="icon-box text-center">
-							<div class="icon-styled fs-60 color-main2">
-								<i class="icon-fonts icon-conserve"></i>
-							</div>
-							<h6 class="text-uppercase"><a href="shop-right.html">Eczacı</a></h6>
-							<p>
-								Eczacı genellikle çok kuru ve çekirdek dolu olacaktır.
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="mt--50"></div>
-			</div>
-		</section>
-
+			</section>
 
 			<section class="ds s-parallax s-overlay section-features s-pt-xl-140 s-pt-lg-120 s-pt-md-80 s-pt-50 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55 c-mb-30 text-center text-sm-left">
 				<div class="container">
@@ -1006,7 +1028,7 @@
 								</div>
 								<h6 class="text-uppercase">İlaçlama</h6>
 								<p>
-								Hastane, ofis, depo, belediye, market, okul, kreş, cafe, fırın, tarım-hayvancılık ...
+									Hastane, ofis, depo, belediye, market, okul, kreş, cafe, fırın, tarım-hayvancılık ...
 								</p>
 							</div>
 						</div>
@@ -1015,9 +1037,9 @@
 								<div class="icon-styled fs-60 color-main2">
 									<i class="icon-fonts icon-food"></i>
 								</div>
-							<h6 class="text-uppercase">SU DEPOSU TEMİZLİK VE DEZENFEKSİYONU</h6>
+								<h6 class="text-uppercase">SU DEPOSU TEMİZLİK VE DEZENFEKSİYONU</h6>
 								<p>
-								Periyodik temizlik ve dejenfeksiyon işlemi yapılmayan su depoları pas, mantar tabakaları ve çeşitli mikroorganizmaları biriktirerek, kolera,tifo,ishal gibi salgın hastalıklara sebep olabiliyor.
+									Periyodik temizlik ve dejenfeksiyon işlemi yapılmayan su depoları pas, mantar tabakaları ve çeşitli mikroorganizmaları biriktirerek, kolera,tifo,ishal gibi salgın hastalıklara sebep olabiliyor.
 								</p>
 							</div>
 						</div>
@@ -1028,7 +1050,7 @@
 								</div>
 								<h6 class="text-uppercase">Haşere Rehberi</h6>
 								<p>
-								Haşereler ve türleri, özellikleri, kontrol ve önlemler hakkında geniş bilgiler
+									Haşereler ve türleri, özellikleri, kontrol ve önlemler hakkında geniş bilgiler
 								</p>
 							</div>
 						</div>
@@ -1047,135 +1069,135 @@
 					<div class="mt--30"></div>
 				</div>
 			</section>
-		<section class="ls container-px-0 s-py-70">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12 text-center">
-						<div class="owl-carousel widget widget_partners_carousel" data-center="false" data-margin="20" data-loop="true" data-responsive-lg="6" data-responsive-md="4" data-responsive-sm="3" data-responsive-xs="2">
-							<a href="#">
-								<img src="~/canabicom/images/partners/01.png" alt="">
-							</a>
-							<a href="#">
-								<img src="~/canabicom/images/partners/02.png" alt="">
-							</a>
-							<a href="#">
-								<img src="~/canabicom/images/partners/03.png" alt="">
-							</a>
-							<a href="#">
-								<img src="~/canabicom/images/partners/04.png" alt="">
-							</a>
-							<a href="#">
-								<img src="~/canabicom/images/partners/05.png" alt="">
-							</a>
-							<a href="#">
-								<img src="~/canabicom/images/partners/06.png" alt="">
-							</a>
+			<section class="ls container-px-0 s-py-70">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							<div class="owl-carousel widget widget_partners_carousel" data-center="false" data-margin="20" data-loop="true" data-responsive-lg="6" data-responsive-md="4" data-responsive-sm="3" data-responsive-xs="2">
+								<a href="#">
+									<img src="~/canabicom/images/partners/01.png" alt="">
+								</a>
+								<a href="#">
+									<img src="~/canabicom/images/partners/02.png" alt="">
+								</a>
+								<a href="#">
+									<img src="~/canabicom/images/partners/03.png" alt="">
+								</a>
+								<a href="#">
+									<img src="~/canabicom/images/partners/04.png" alt="">
+								</a>
+								<a href="#">
+									<img src="~/canabicom/images/partners/05.png" alt="">
+								</a>
+								<a href="#">
+									<img src="~/canabicom/images/partners/06.png" alt="">
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</section> @* MARKALAR *@
+			</section> @* MARKALAR *@
 
-		<section class="ls ms  s-pt-xl-140 s-pt-lg-120 s-pt-md-80 s-pt-50 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55  text-center text-sm-left">
-			<div class="cover-image s-cover-right">
-				<img src="~/canabicom/images/side-img1.jpg" alt="">
-			</div>
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-lg-6">
-						<div class="content-center">
-							<h6 class="special-heading sub-title"><span>Vizyonumuz</span></h6>
-							<h2 class="special-heading">Vizyonumuz</h2>
-							<div class="divider-45 hidden-below-md"></div>
-							<div class="divider-30 hidden-above-md"></div>
-							<p>
-								Sağlıklı Yaşam Alanları" ilkesiyle hareket ederek insan sağlığını ve konforunu tehdit eden tüm zararlıları yok etmek, yaşanabilir haşere ve kemirgenden arınmış hijyenik bir ortam oluşturmak
-							</p>
-							<p>
-								Akademik bilgi ve tecrübeli uzman kadromuzla insan sağlığına en uygun yöntemleri kullanıp geliştirmek, teknolojik yeniliklere kayıtsız kalmadan müşteri memnuniyetini %100 en üst seviyede tutmak, sağlıklı, güvenilir ve ekonomik hizmet sunmaktır.
-							</p>
-							<div class="divider-50 hidden-below-md"></div>
-							<div class="divider-30 hidden-above-md"></div>
-							<a class="btn btn-maincolor medium-btn" href="#">Daha Fazla..</a>
+			<section class="ls ms s-pt-xl-140 s-pt-lg-120 s-pt-md-80 s-pt-50 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55  text-center text-sm-left">
+				<div class="cover-image s-cover-right">
+					<img src="~/canabicom/images/side-img1.jpg" alt="">
+				</div>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="content-center">
+								<h6 class="special-heading sub-title"><span>Vizyonumuz</span></h6>
+								<h2 class="special-heading">Vizyonumuz</h2>
+								<div class="divider-45 hidden-below-md"></div>
+								<div class="divider-30 hidden-above-md"></div>
+								<p>
+									Sağlıklı Yaşam Alanları" ilkesiyle hareket ederek insan sağlığını ve konforunu tehdit eden tüm zararlıları yok etmek, yaşanabilir haşere ve kemirgenden arınmış hijyenik bir ortam oluşturmak
+								</p>
+								<p>
+									Akademik bilgi ve tecrübeli uzman kadromuzla insan sağlığına en uygun yöntemleri kullanıp geliştirmek, teknolojik yeniliklere kayıtsız kalmadan müşteri memnuniyetini %100 en üst seviyede tutmak, sağlıklı, güvenilir ve ekonomik hizmet sunmaktır.
+								</p>
+								<div class="divider-50 hidden-below-md"></div>
+								<div class="divider-30 hidden-above-md"></div>
+								<a class="btn btn-maincolor medium-btn" href="#">Daha Fazla..</a>
+							</div>
+
+						</div>
+						<div class="col-lg-6"></div>
+					</div>
+				</div>
+			</section>
+
+			<section class="ls ms s-pt-xl-140 s-pt-lg-120 s-pt-md-80 s-pt-50 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55  text-center text-sm-left">
+				<div class="cover-image s-cover-left">
+					<img src="~/canabicom/images/side-img2.jpg" alt="">
+				</div>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-6"></div>
+						<div class="col-lg-6">
+							<div class="content-center">
+								<h6 class="special-heading sub-title"><span>Misyonumuz</span></h6>
+								<h2 class="special-heading">Misyonumuz</h2>
+								<div class="divider-45 hidden-below-md"></div>
+								<div class="divider-30 hidden-above-md"></div>
+								<p>
+									Çevreye duyarlı, toplumsal ve kültürel değerler açısından tam gelişmiş bir anlayış içerisinde sektöründe en iyi hizmeti, en teknolojik cihaz ve kimyasallarla, doğaya zarar vermeden uygulayıp, müşteri memnuniyetini en üst seviyede tutmaktır.
+								</p>
+								<p>
+									Hizmet verdiğimiz kişi, kurum, kuruluşlar ve çalışanlarımız açısından oluşturduğumuz güvenirliği sürdürmek ve verdiğimiz hizmetin arkasında durarak tercih edilen bir firma ve uluslararası standartlara uygun hizmet sunarak Pest Kontrol Alanında Lider olmaktır.
+								</p>
+								<div class="divider-50 hidden-below-md"></div>
+								<div class="divider-30 hidden-above-md"></div>
+								<a class="btn btn-maincolor medium-btn" href="#">Daha Fazla..</a>
+							</div>
+
 						</div>
 
 					</div>
-					<div class="col-lg-6"></div>
 				</div>
-			</div>
-		</section> 
+			</section>
 
-		<section class="ls ms  s-pt-xl-140 s-pt-lg-120 s-pt-md-80 s-pt-50 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55  text-center text-sm-left">
-			<div class="cover-image s-cover-left">
-				<img src="~/canabicom/images/side-img2.jpg" alt="">
-			</div>
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-lg-6"></div>
-					<div class="col-lg-6">
-						<div class="content-center">
-							<h6 class="special-heading sub-title"><span>Misyonumuz</span></h6>
-							<h2 class="special-heading">Misyonumuz</h2>
-							<div class="divider-45 hidden-below-md"></div>
-							<div class="divider-30 hidden-above-md"></div>
-							<p>
-								Çevreye duyarlı, toplumsal ve kültürel değerler açısından tam gelişmiş bir anlayış içerisinde sektöründe en iyi hizmeti, en teknolojik cihaz ve kimyasallarla, doğaya zarar vermeden uygulayıp, müşteri memnuniyetini en üst seviyede tutmaktır.
-							</p>
-							<p>
-								Hizmet verdiğimiz kişi, kurum, kuruluşlar ve çalışanlarımız açısından oluşturduğumuz güvenirliği sürdürmek ve verdiğimiz hizmetin arkasında durarak tercih edilen bir firma ve uluslararası standartlara uygun hizmet sunarak Pest Kontrol Alanında Lider olmaktır.
-							</p>
-							<div class="divider-50 hidden-below-md"></div>
-							<div class="divider-30 hidden-above-md"></div>
-							<a class="btn btn-maincolor medium-btn" href="#">Daha Fazla..</a>
+			<section class="ls ms s-pt-xl-140 s-pt-lg-120 s-pt-md-80 s-pt-50 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55  text-center text-sm-left">
+				<div class="cover-image s-cover-right">
+					<img src="~/canabicom/images/side-img3.jpg" alt="">
+				</div>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="content-center">
+								<h6 class="special-heading sub-title"><span>Kalite Politikamız</span></h6>
+								<h2 class="special-heading">Kalite Politikamız</h2>
+								<div class="divider-45 hidden-below-md"></div>
+								<div class="divider-30 hidden-above-md"></div>
+								<p>
+									Müşterilerimizin mutluluğunu sağlamadan, bizlerinde mutlu olamayacağı ilkesiyle; sürekli müşteri memnuniyetini sağlamak,Hataları oluşmadan önleyerek ve yaptığımız hataların tekrarlanmaması için gerekli tedbirleri alarak Kalite Yönetim Sistemimizi sürekli iyileştirmek
+								</p>
+								<p>
+									Tedarikçilerimizle hep birlikte kazanacağımız istikrarlı ilişkiler kurmak,
+									Sahip olduğumuz kaynaklarımızı en az fire oluşturacak şekilde kullanarak bulunduğumuz çevreyi korumak.
+									İlaçlama faaliyetlerinde insan sağlığına ve çevreye zarar vermemek,
+									Halk sağlığında haşere ilaçları üretimimizde kaliteye önem vermek
+									İş ciddiyeti disiplin ve konusunda uzmanlık.
+									Dürüst güler yüzlü ve güvenilir yaklaşım.
+									İş ahlakını bozmadan hizmet vermek.
+									Ekip ruhu oluşturma profesyonel bakış.
+									Mantıklı ve makul çözümleri zamanında önermek.
+									Güvenilir olmak, kaliteli hizmet vermek.
+									Hedefimiz en iyiyi sunmak ve devamlı kılmaktır.
+									Kaliteli hizmet'te sektörüne örnek olmaktır.
+								</p>
+								<div class="divider-50 hidden-below-md"></div>
+								<div class="divider-30 hidden-above-md"></div>
+								<a class="btn btn-maincolor medium-btn" href="#">Daha Fazla..</a>
+							</div>
+
 						</div>
-
+						<div class="col-lg-6"></div>
 					</div>
-
 				</div>
-			</div>
-		</section>
+			</section>
 
-		<section class="ls ms  s-pt-xl-140 s-pt-lg-120 s-pt-md-80 s-pt-50 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55  text-center text-sm-left">
-			<div class="cover-image s-cover-right">
-				<img src="~/canabicom/images/side-img3.jpg" alt="">
-			</div>
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-lg-6">
-						<div class="content-center">
-							<h6 class="special-heading sub-title"><span>Kalite Politikamız</span></h6>
-							<h2 class="special-heading">Kalite Politikamız</h2>
-							<div class="divider-45 hidden-below-md"></div>
-							<div class="divider-30 hidden-above-md"></div>
-							<p>
-								Müşterilerimizin mutluluğunu sağlamadan, bizlerinde mutlu olamayacağı ilkesiyle; sürekli müşteri memnuniyetini sağlamak,Hataları oluşmadan önleyerek ve yaptığımız hataların tekrarlanmaması için gerekli tedbirleri alarak Kalite Yönetim Sistemimizi sürekli iyileştirmek
-							</p>
-							<p>
-								Tedarikçilerimizle hep birlikte kazanacağımız istikrarlı ilişkiler kurmak, 
-								Sahip olduğumuz kaynaklarımızı en az fire oluşturacak şekilde kullanarak bulunduğumuz çevreyi korumak.
-								İlaçlama faaliyetlerinde insan sağlığına ve çevreye zarar vermemek, 
-								Halk sağlığında haşere ilaçları üretimimizde kaliteye önem vermek
-								İş ciddiyeti disiplin ve konusunda uzmanlık.
-								Dürüst güler yüzlü ve güvenilir yaklaşım.
-								İş ahlakını bozmadan hizmet vermek.
-								Ekip ruhu oluşturma profesyonel bakış.
-								Mantıklı ve makul çözümleri zamanında önermek.
-								Güvenilir olmak, kaliteli hizmet vermek.
-								Hedefimiz en iyiyi sunmak ve devamlı kılmaktır.
-								Kaliteli hizmet'te sektörüne örnek olmaktır.
-							</p>
-							<div class="divider-50 hidden-below-md"></div>
-							<div class="divider-30 hidden-above-md"></div>
-							<a class="btn btn-maincolor medium-btn" href="#">Daha Fazla..</a>
-						</div>
 
-					</div>
-					<div class="col-lg-6"></div>
-				</div>
-			</div>
-		</section>
-
-		
 
 			<section class="ls section-portfolio s-pt-xl-140 s-pt-lg-120 s-pt-md-80 s-pt-50 s-pb-xl-150 s-pb-lg-130 s-pb-md-90 s-pb-60 text-center text-sm-left">
 				<div class="container">
@@ -1252,7 +1274,7 @@
 						<div class="col-12">
 							<h2 class="special-heading text-center">İlaç Kategorileri</h2>
 							<p class="special-heading text-center big">
-							Bitkilerden tıbbi kas kremlerine kadar yüzlerce ürün bulabilirsiniz
+								Bitkilerden tıbbi kas kremlerine kadar yüzlerce ürün bulabilirsiniz
 							</p>
 							<div class="divider-60 hidden-below-md"></div>
 							<div class="divider-40 hidden-above-md"></div>
@@ -1355,7 +1377,7 @@
 						<div class="col-12">
 							<h2 class="special-heading text-center">İlaçlamayla İlgili Bloglar</h2>
 							<p class="special-heading text-center big">
-							Bitkilerden tıbbi kas kremlerine kadar yüzlerce üründe kenevir konsantreleri bulabilirsiniz
+								Bitkilerden tıbbi kas kremlerine kadar yüzlerce üründe kenevir konsantreleri bulabilirsiniz
 							</p>
 							<div class="divider-60 hidden-below-md"></div>
 							<div class="divider-40 hidden-above-md"></div>
@@ -1375,7 +1397,7 @@
 											</div>
 											<h6 class="entry-title">
 												<a href="blog-single-right.html" rel="bookmark">
-												Konsantreler kenevir bitkisinden elde edilen ürünlerdir.
+													Konsantreler kenevir bitkisinden elde edilen ürünlerdir.
 												</a>
 											</h6>
 										</header>
@@ -1410,7 +1432,7 @@
 											</div>
 											<h6 class="entry-title">
 												<a href="blog-single-right.html" rel="bookmark">
-												Konsantreler Kılavuzu: THC Yağları, Balmumu, Paramparça ve Dabs.
+													Konsantreler Kılavuzu: THC Yağları, Balmumu, Paramparça ve Dabs.
 												</a>
 											</h6>
 										</header>
@@ -1471,199 +1493,199 @@
 				</div>
 			</section>
 
-		<section class="ls s-py-0 c-gutter-0 container-px-0 text-center text-sm-left">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-12">
-						<h6 class="special-heading sub-title text-center"><span>legalized medical marijuana</span></h6>
-						<h2 class="special-heading text-center">Medical Marijuana FAQ</h2>
-						<div class="divider-50 hidden-below-md"></div>
-						<div class="divider-30 hidden-above-md"></div>
-					</div>
-				</div>
-				<div class="row ">
-					<div class="col-lg-6 py-xl-150 py-lg-130 py-md-90 py-60 ls ms">
-						<div class="content-center">
-							<div id="accordion01" role="tablist">
-								<h6 class="title-accordion">What is medical marijuana?</h6>
-								<div class="card">
-									<div class="card-header" role="tab" id="collapse01_header">
-										<h5>
-											<a class="collapsed" data-toggle="collapse" href="#collapse01" aria-expanded="true" aria-controls="collapse01">
-												What does Your Company Consulting do?
-											</a>
-										</h5>
-									</div>
-
-									<div id="collapse01" class="collapse" role="tabpanel" aria-labelledby="collapse01_header" data-parent="#accordion01">
-										<div class="card-body">
-											<p>We help entrepreneurs get ready to raise capital. This usually consists of some or all of the following services:</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="card">
-									<div class="card-header" role="tab" id="collapse02_header">
-										<h5>
-											<a class="collapsed" data-toggle="collapse" href="#collapse02" aria-expanded="false" aria-controls="collapse02">
-												What industries do you specialize in?
-											</a>
-										</h5>
-									</div>
-									<div id="collapse02" class="collapse" role="tabpanel" aria-labelledby="collapse02_header" data-parent="#accordion01">
-										<div class="card-body">
-											Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-										</div>
-									</div>
-								</div>
-
-								<div class="card">
-									<div class="card-header" role="tab" id="collapse04_header">
-										<h5>
-											<a class="collapsed" data-toggle="collapse" href="#collapse04" aria-expanded="false" aria-controls="collapse04">
-												Can you guarantee that our plan will raise capital?
-											</a>
-										</h5>
-									</div>
-									<div id="collapse04" class="collapse" role="tabpanel" aria-labelledby="collapse04_header" data-parent="#accordion01">
-										<div class="card-body">
-											Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable sunt aliqua put a bird on it squid single-origin coffee shoreditch et.
-										</div>
-									</div>
-								</div>
-
-								<div class="card">
-									<div class="card-header" role="tab" id="collapse05_header">
-										<h5>
-											<a class="collapsed" data-toggle="collapse" href="#collapse05" aria-expanded="false" aria-controls="collapse05">
-												What industries do you specialize in?
-											</a>
-										</h5>
-									</div>
-									<div id="collapse05" class="collapse" role="tabpanel" aria-labelledby="collapse05_header" data-parent="#accordion01">
-										<div class="card-body">
-											Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-										</div>
-									</div>
-								</div>
-
-							</div>
-
-							<div id="accordion02" role="tablist">
-								<h6 class="title-accordion">What is medical marijuana used for?</h6>
-								<div class="card">
-									<div class="card-header" role="tab" id="collapse10_header">
-										<h5>
-											<a class="collapsed" data-toggle="collapse" href="#collapse10" aria-expanded="true" aria-controls="collapse10">
-												What does Your Company Consulting do?
-											</a>
-										</h5>
-									</div>
-
-									<div id="collapse10" class="collapse" role="tabpanel" aria-labelledby="collapse10_header" data-parent="#accordion02">
-										<div class="card-body">
-
-											<p>We help entrepreneurs get ready to raise capital. This usually consists of some or all of the following services:</p>
-
-
-										</div>
-									</div>
-								</div>
-
-								<div class="card">
-									<div class="card-header" role="tab" id="collapse11_header">
-										<h5>
-											<a class="collapsed" data-toggle="collapse" href="#collapse11" aria-expanded="false" aria-controls="collapse11">
-												What industries do you specialize in?
-											</a>
-										</h5>
-									</div>
-									<div id="collapse11" class="collapse" role="tabpanel" aria-labelledby="collapse11_header" data-parent="#accordion02">
-										<div class="card-body">
-											Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-										</div>
-									</div>
-								</div>
-
-								<div class="card">
-									<div class="card-header" role="tab" id="collapse12_header">
-										<h5>
-											<a class="collapsed" data-toggle="collapse" href="#collapse12" aria-expanded="false" aria-controls="collapse12">
-												Can you guarantee that our plan will raise capital?
-											</a>
-										</h5>
-									</div>
-									<div id="collapse12" class="collapse" role="tabpanel" aria-labelledby="collapse12_header" data-parent="#accordion02">
-										<div class="card-body">
-											Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable sunt aliqua put a bird on it squid single-origin coffee shoreditch et.
-										</div>
-									</div>
-								</div>
-
-								<div class="card">
-									<div class="card-header" role="tab" id="collapse13_header">
-										<h5>
-											<a class="collapsed" data-toggle="collapse" href="#collapse13" aria-expanded="false" aria-controls="collapse13">
-												What industries do you specialize in?
-											</a>
-										</h5>
-									</div>
-									<div id="collapse13" class="collapse" role="tabpanel" aria-labelledby="collapse13_header" data-parent="#accordion02">
-										<div class="card-body">
-											Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-					</div>
-					<div class="ds col-lg-6 py-lg-0 py-md-90 py-60 faq-contact column-overlay d-flex align-items-center">
-						<div class="content-center">
-							<h4 class="special-heading text-center text-capitalize">Contact us</h4>
-							<p class="special-heading text-center">Have You any Questions? Ask Us!</p>
+			<section class="ls s-py-0 c-gutter-0 container-px-0 text-center text-sm-left">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+							<h6 class="special-heading sub-title text-center"><span>legalized medical marijuana</span></h6>
+							<h2 class="special-heading text-center">Medical Marijuana FAQ</h2>
 							<div class="divider-50 hidden-below-md"></div>
-							<div class="divider-35 hidden-above-md"></div>
-							<form class="contact-form c-mb-40 c-gutter-20" method="post" action="https://html.modernwebtemplates.com/">
+							<div class="divider-30 hidden-above-md"></div>
+						</div>
+					</div>
+					<div class="row ">
+						<div class="col-lg-6 py-xl-150 py-lg-130 py-md-90 py-60 ls ms">
+							<div class="content-center">
+								<div id="accordion01" role="tablist">
+									<h6 class="title-accordion">What is medical marijuana?</h6>
+									<div class="card">
+										<div class="card-header" role="tab" id="collapse01_header">
+											<h5>
+												<a class="collapsed" data-toggle="collapse" href="#collapse01" aria-expanded="true" aria-controls="collapse01">
+													What does Your Company Consulting do?
+												</a>
+											</h5>
+										</div>
 
-								<div class="row">
-									<div class="col-sm-12">
-										<div class="form-group has-placeholder">
-											<label for="name66">Full Name <span class="required">*</span></label>
+										<div id="collapse01" class="collapse" role="tabpanel" aria-labelledby="collapse01_header" data-parent="#accordion01">
+											<div class="card-body">
+												<p>We help entrepreneurs get ready to raise capital. This usually consists of some or all of the following services:</p>
+											</div>
+										</div>
+									</div>
 
-											<input type="text" aria-required="true" size="30" value="" name="name" id="name66" class="form-control" placeholder="Name">
+									<div class="card">
+										<div class="card-header" role="tab" id="collapse02_header">
+											<h5>
+												<a class="collapsed" data-toggle="collapse" href="#collapse02" aria-expanded="false" aria-controls="collapse02">
+													What industries do you specialize in?
+												</a>
+											</h5>
+										</div>
+										<div id="collapse02" class="collapse" role="tabpanel" aria-labelledby="collapse02_header" data-parent="#accordion01">
+											<div class="card-body">
+												Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+											</div>
 										</div>
 									</div>
-									<div class="col-sm-12">
-										<div class="form-group has-placeholder">
-											<label for="email66">Email address<span class="required">*</span></label>
 
-											<input type="email" aria-required="true" size="30" value="" name="email66" id="email66" class="form-control" placeholder="Email">
+									<div class="card">
+										<div class="card-header" role="tab" id="collapse04_header">
+											<h5>
+												<a class="collapsed" data-toggle="collapse" href="#collapse04" aria-expanded="false" aria-controls="collapse04">
+													Can you guarantee that our plan will raise capital?
+												</a>
+											</h5>
+										</div>
+										<div id="collapse04" class="collapse" role="tabpanel" aria-labelledby="collapse04_header" data-parent="#accordion01">
+											<div class="card-body">
+												Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable sunt aliqua put a bird on it squid single-origin coffee shoreditch et.
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-12 mb-0">
-										<div class="form-group has-placeholder">
-											<label for="message">Message</label>
-											<textarea aria-required="true" rows="3" cols="45" name="message" id="message" class="form-control" placeholder="Message"></textarea>
+
+									<div class="card">
+										<div class="card-header" role="tab" id="collapse05_header">
+											<h5>
+												<a class="collapsed" data-toggle="collapse" href="#collapse05" aria-expanded="false" aria-controls="collapse05">
+													What industries do you specialize in?
+												</a>
+											</h5>
+										</div>
+										<div id="collapse05" class="collapse" role="tabpanel" aria-labelledby="collapse05_header" data-parent="#accordion01">
+											<div class="card-body">
+												Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+											</div>
 										</div>
 									</div>
+
 								</div>
-								<div class="row">
-									<div class="col-sm-12 text-center">
-										<div class="form-group">
-											<input class="btn btn-maincolor" type="submit" value="Send Message">
+
+								<div id="accordion02" role="tablist">
+									<h6 class="title-accordion">What is medical marijuana used for?</h6>
+									<div class="card">
+										<div class="card-header" role="tab" id="collapse10_header">
+											<h5>
+												<a class="collapsed" data-toggle="collapse" href="#collapse10" aria-expanded="true" aria-controls="collapse10">
+													What does Your Company Consulting do?
+												</a>
+											</h5>
+										</div>
+
+										<div id="collapse10" class="collapse" role="tabpanel" aria-labelledby="collapse10_header" data-parent="#accordion02">
+											<div class="card-body">
+
+												<p>We help entrepreneurs get ready to raise capital. This usually consists of some or all of the following services:</p>
+
+
+											</div>
 										</div>
 									</div>
+
+									<div class="card">
+										<div class="card-header" role="tab" id="collapse11_header">
+											<h5>
+												<a class="collapsed" data-toggle="collapse" href="#collapse11" aria-expanded="false" aria-controls="collapse11">
+													What industries do you specialize in?
+												</a>
+											</h5>
+										</div>
+										<div id="collapse11" class="collapse" role="tabpanel" aria-labelledby="collapse11_header" data-parent="#accordion02">
+											<div class="card-body">
+												Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+											</div>
+										</div>
+									</div>
+
+									<div class="card">
+										<div class="card-header" role="tab" id="collapse12_header">
+											<h5>
+												<a class="collapsed" data-toggle="collapse" href="#collapse12" aria-expanded="false" aria-controls="collapse12">
+													Can you guarantee that our plan will raise capital?
+												</a>
+											</h5>
+										</div>
+										<div id="collapse12" class="collapse" role="tabpanel" aria-labelledby="collapse12_header" data-parent="#accordion02">
+											<div class="card-body">
+												Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable sunt aliqua put a bird on it squid single-origin coffee shoreditch et.
+											</div>
+										</div>
+									</div>
+
+									<div class="card">
+										<div class="card-header" role="tab" id="collapse13_header">
+											<h5>
+												<a class="collapsed" data-toggle="collapse" href="#collapse13" aria-expanded="false" aria-controls="collapse13">
+													What industries do you specialize in?
+												</a>
+											</h5>
+										</div>
+										<div id="collapse13" class="collapse" role="tabpanel" aria-labelledby="collapse13_header" data-parent="#accordion02">
+											<div class="card-body">
+												Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+											</div>
+										</div>
+									</div>
+
 								</div>
-							</form>
+							</div>
+
+						</div>
+						<div class="ds col-lg-6 py-lg-0 py-md-90 py-60 faq-contact column-overlay d-flex align-items-center">
+							<div class="content-center">
+								<h4 class="special-heading text-center text-capitalize">Contact us</h4>
+								<p class="special-heading text-center">Have You any Questions? Ask Us!</p>
+								<div class="divider-50 hidden-below-md"></div>
+								<div class="divider-35 hidden-above-md"></div>
+								<form class="contact-form c-mb-40 c-gutter-20" method="post" action="https://html.modernwebtemplates.com/">
+
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group has-placeholder">
+												<label for="name66">Full Name <span class="required">*</span></label>
+
+												<input type="text" aria-required="true" size="30" value="" name="name" id="name66" class="form-control" placeholder="Name">
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="form-group has-placeholder">
+												<label for="email66">Email address<span class="required">*</span></label>
+
+												<input type="email" aria-required="true" size="30" value="" name="email66" id="email66" class="form-control" placeholder="Email">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12 mb-0">
+											<div class="form-group has-placeholder">
+												<label for="message">Message</label>
+												<textarea aria-required="true" rows="3" cols="45" name="message" id="message" class="form-control" placeholder="Message"></textarea>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12 text-center">
+											<div class="form-group">
+												<input class="btn btn-maincolor" type="submit" value="Send Message">
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
 			<section class="ls testimonials-section s-pt-xl-135 s-pt-lg-115 s-pt-md-75 s-pt-55 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55">
 				<div class="container">
 					<div class="row">
@@ -1816,7 +1838,6 @@
 				</div>
 			</section>
 
-
 			<footer class="page_footer text-center text-sm-left  ds ms s-pt-60 s-pb-60 s-pt-md-85 s-pb-md-90 s-pt-lg-125 s-pb-lg-130 s-pt-xl-150 s-pb-xl-145 c-gutter-30 s-parallax c-mb-50 c-mb-lg-0">
 				<div class="container">
 					<div class="row justify-content-center">
@@ -1904,7 +1925,7 @@
 											<i class="fa fa-envelope"></i>
 										</div>
 										<p>
-											<a href="#"><span class="__cf_email__" data-cfemail="72111d1c13101b111d1f32170a131f021e175c111d1f">[email&#160;protected]</span></a>
+											<a href="#"><span class="__cf_email__" data-cfemail="afccc0c1cecdc6ccc0c2efcad7cec2dfc3ca81ccc0c2">[email&#160;protected]</span></a>
 										</p>
 									</li>
 								</ul>
@@ -1934,16 +1955,14 @@
 
 
 	<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
     <script src="~/canabicom/js/compressed.js"></script>
     <script src="~/canabicom/js/main.js"></script>
     <script src="~/canabicom/js/switcher.js"></script>
 
-	<!-- Google Map Script -->
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0pr5xCHpaTGv12l73IExOHDJisBP2FK4&amp;callback=initGoogleMap"></script>
-
 </body>
 
 
-<!-- Mirrored from html.modernwebtemplates.com/canabicom/index_singlepage.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 Jan 2025 14:45:15 GMT -->
+<!-- Mirrored from html.modernwebtemplates.com/canabicom/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 Jan 2025 14:44:15 GMT -->
 </html>
 @RenderBody()

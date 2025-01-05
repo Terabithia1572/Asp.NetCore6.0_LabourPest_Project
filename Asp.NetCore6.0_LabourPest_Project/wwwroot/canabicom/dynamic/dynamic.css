@@ -1,0 +1,46 @@
+/* Temel animasyonlar */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px); /* Aşağıdan yukarı */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px); /* Sağdan sola */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Genel animasyon sınıfı */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-in-out;
+}
+
+    .scroll-animate.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+
+.scroll-animate-right.visible {
+    animation: fadeInRight 0.8s ease-in-out; /* Sağdan animasyon */
+}
+
+section {
+    opacity: 0; /* Görünmez */
+    transform: translateY(50px); /* Aşağıda başlar */
+}

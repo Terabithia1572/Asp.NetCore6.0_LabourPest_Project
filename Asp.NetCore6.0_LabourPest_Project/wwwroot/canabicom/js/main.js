@@ -1491,24 +1491,7 @@
 
 
         /**YES OR NO**/
-        $(".btn-yes").on('click', function () {
-            document.cookie = "enter=true";
-            $("#years").hide();
-            $("body").removeClass('modal-open');
-        });
-        $(".btn-no").on('click', function () {
-
-
-
-        });
-
-        if ( getCookie('enter') != 'true' )
-        {
-            setTimeout(function(){
-                $("body").addClass('modal-open');
-                $("#years").show();
-            }, 500)
-        }
+      
 
         function getCookie(name) {
             var matches = document.cookie.match(new RegExp(
@@ -1516,12 +1499,6 @@
             ));
             return matches ? decodeURIComponent(matches[1]) : undefined;
         }
-        // localStorage.setItem("bgColor","green");
-
-        // $(".btn-yes").on('click', function(e){
-        //     e.preventDefault();
-        //     $('#years').css('display','none');
-        // });
 
 
         /**DROPDOWNS**/
