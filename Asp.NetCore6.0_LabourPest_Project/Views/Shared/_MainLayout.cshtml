@@ -253,6 +253,7 @@
 			@await Component.InvokeAsync("ProductViewComponentPartial") <!--Burası Popüler Ürünlerin Başladığı Kısım-->
 
 			@await Component.InvokeAsync("ServicesViewComponentPartial") <!--Burası Servislerin Bulunduğu Kısım Ürünlerin Hemen Altında Bulunan Kısım-->
+
 			@await Component.InvokeAsync("BrandsViewComponentPartial") @* MARKALAR *@ <!--Burası Markaların Bulunduğu Kısım-->
 
 			@await Component.InvokeAsync("WhoWeUsViewComponentPartial") <!-- Vizyonumuz Misyonumuz'un bulunduğu Kısımlar-->
@@ -266,73 +267,8 @@
 			@await Component.InvokeAsync("BlogsViewComponentPartial") <!--Blogların Bulunduğu Kısım-->
 
 			@await Component.InvokeAsync("FAQViewComponentPartial") <!--Yorumların ve Sıkça Sorulan Soruların bulunduğu alan-->
-			<section class="ls testimonials-section s-pt-xl-135 s-pt-lg-115 s-pt-md-75 s-pt-55 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55">
-				<div class="container">
-					<div class="row">
-						<div class="col-12">
-							<h2 class="special-heading text-center">What Our Clients Say</h2>
-							<p class="special-heading text-center big">
-								From brownies to medicated muscle creams, you can find cannabis concentrates in hundreds of products
-							</p>
-							<div class="divider-60 hidden-below-md"></div>
-							<div class="divider-40 hidden-above-md"></div>
-							<div class="owl-carousel quote-carousel" data-center="false" data-nav="false" data-margin="60" data-loop="true" data-responsive-lg="3" data-responsive-md="2" data-responsive-sm="1" data-responsive-xs="1">
-								<div class="quote-item">
-									<blockquote>
-										<p>
-											<em>
-												It can also help incRease the potency of your flower. The next time you pack a bowl with cannabis flower.
-											</em>
-										</p>
-									</blockquote>
-									<div class="quote-image">
-										<img src="~/canabicom/images/team/testimonial1.jpg" alt="">
-									</div>
-									<div class="quote-title">
-										<p>
-											Steave Watson
-										</p>
-									</div>
-								</div>
-								<div class="quote-item">
-									<blockquote>
-										<p>
-											<em>
-												It can also help incRease the potency of your flower. The next time you pack a bowl with cannabis flower.
-											</em>
-										</p>
-									</blockquote>
-									<div class="quote-image">
-										<img src="~/canabicom/images/team/testimonial2.jpg" alt="">
-									</div>
-									<div class="quote-title">
-										<p>
-											Steave Watson
-										</p>
-									</div>
-								</div>
-								<div class="quote-item">
-									<blockquote>
-										<p>
-											<em>
-												It can also help incRease the potency of your flower. The next time you pack a bowl with cannabis flower.
-											</em>
-										</p>
-									</blockquote>
-									<div class="quote-image">
-										<img src="~/canabicom/images/team/testimonial3.jpg" alt="">
-									</div>
-									<div class="quote-title">
-										<p>
-											Steave Watson
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+
+			@await Component.InvokeAsync("TestimonialsViewComponentPartial") <!--Yorumların Bulunduğu Kısım Sıkça Sorulanların hemen alt kısmı-->
 
 			<section class="ds delivery-section s-overlay mobile-overlay s-pt-xl-140 s-pt-lg-120 s-pt-md-80 s-pt-50 s-pb-xl-150 s-pb-lg-130 s-pb-md-90 s-pb-60 text-center text-sm-left">
 				<div class="container">

@@ -146,48 +146,7 @@
 				</div>
 
 			</div>
-			<div class="ds col-lg-6 py-lg-0 py-md-90 py-60 faq-contact column-overlay d-flex align-items-center">
-				<div class="content-center">
-					<h4 class="special-heading text-center text-capitalize">Yorum Yap</h4>
-					<p class="special-heading text-center">Lütfen bizimle yorumlarınızı paylaşın !</p>
-					<div class="divider-50 hidden-below-md"></div>
-					<div class="divider-35 hidden-above-md"></div>
-					<form class="contact-form c-mb-40 c-gutter-20" method="post" action="https://html.modernwebtemplates.com/">
-
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="form-group has-placeholder">
-									<label for="name66">Full Name <span class="required">*</span></label>
-
-									<input type="text" aria-required="true" size="30" value="" name="name" id="name66" class="form-control" placeholder="Name">
-								</div>
-							</div>
-							<div class="col-sm-12">
-								<div class="form-group has-placeholder">
-									<label for="email66">Email address<span class="required">*</span></label>
-
-									<input type="email" aria-required="true" size="30" value="" name="email66" id="email66" class="form-control" placeholder="Email">
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-12 mb-0">
-								<div class="form-group has-placeholder">
-									<label for="message">Message</label>
-									<textarea aria-required="true" rows="3" cols="45" name="message" id="message" class="form-control" placeholder="Message"></textarea>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-12 text-center">
-								<div class="form-group">
-									<input class="btn btn-maincolor" type="submit" value="Send Message">
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
+		@await Component.InvokeAsync("CommentViewComponentPartial")
 		</div>
 	</div>
 </section>
