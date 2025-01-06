@@ -25,17 +25,7 @@
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
 
-    <link href="~/canabicom/css/animations.css" rel="stylesheet" />
-    <link href="~/canabicom/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/canabicom/css/font-awesome5.css" rel="stylesheet" />
-    <link href="~/canabicom/css/fontello.css" rel="stylesheet" />
-    <link href="~/canabicom/css/main.css" rel="stylesheet" />
-    <link href="~/canabicom/css/shop.css" rel="stylesheet" />
-    <script src="~/canabicom/js/vendor/modernizr-2.6.2.min.js"></script>
-    <script src="~/canabicom/dynamic/dynamic.js"></script>
-    <link href="~/canabicom/dynamic/dynamic.css" rel="stylesheet" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  @await Component.InvokeAsync("CssComponentViewPartial")
 
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -251,106 +241,8 @@
 
 			<!--topline section visible only on small screens|-->
 
-			<section class="page_topline topline-1 ls s-borderbottom py-9">
-				<div class="container">
-					<div class="row align-items-center">
-						<div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12 text-md-left text-center ">
-							<span class="social-icons">
-								<a href="#" class="fab fab fa-facebook-f " title="facebook"></a>
-								<a href="#" class="fab fa-telegram-plane " title="telegram"></a>
-								<a href="#" class="fab fa-linkedin-in " title="linkedin"></a>
-								<a href="#" class="fab fa-instagram " title="instagram"></a>
-								<a href="#" class="fab fa-youtube " title="youtube"></a>
-							</span>
-						</div>
-
-						<div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12 d-flex justify-content-md-end justify-content-center align-items-center">
-							<div class="login-modal">
-								<a class="login-form-btn" href="#"><i class="fa fa-user"></i></a>
-							</div>
-
-							<!--user action-->
-							<div class="dropdown widget_search">
-								<a class="dropdown-toggle dropdown-toggle-split" href="#" id="headerSearchDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<i class="fa fa-search"></i>
-								</a>
-
-								<div class="dropdown-menu ls ms " aria-labelledby="headerSearchDropdown">
-									<form role="search" method="get" class="search-form" action="https://html.modernwebtemplates.com/">
-										<label for="search-form-top">
-											<span class="screen-reader-text">Search for:</span>
-										</label>
-										<input type="search" id="search-form-top" class="search-field" placeholder="Search keyword" value="" name="search">
-										<button type="submit" class="search-submit">
-											<span class="screen-reader-text">Search</span>
-										</button>
-									</form>
-								</div>
-							</div>
-
-							<div class="dropdown shopping-cart">
-								<a class="dropdown-toggle dropdown-shopping-cart" href="#" role="button" id="dropdown-shopping-cart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<i class="fas fa-shopping-bag"></i>
-									<span class="badge bg-maincolor2">3</span>
-								</a>
-								<div class="dropdown-menu ls" aria-labelledby="dropdown-shopping-cart">
-									<div class="widget woocommerce widget_shopping_cart">
-
-
-										<div class="widget_shopping_cart_content">
-
-											<ul class="woocommerce-mini-cart cart_list product_list_widget ">
-												<li class="woocommerce-mini-cart-item mini_cart_item">
-													<a href="#" class="remove" aria-label="Remove this item" data-product_id="73" data-product_sku="">×</a>
-													<a href="shop-product-right.html">
-														<img src="~/canabicom/images/shop/26.jpg" alt="">Medical marijuana THC
-													</a>
-
-													<span class="quantity">1 ×
-														<span class="woocommerce-Price-amount amount">
-															<span class="woocommerce-Price-currencySymbol">$</span>
-															12.00
-														</span>
-													</span>
-												</li>
-												<li class="woocommerce-mini-cart-item mini_cart_item">
-													<a href="#" class="remove" aria-label="Remove this item" data-product_id="76" data-product_sku="">×</a>
-													<a href="shop-product-right.html">
-														<img src="~/canabicom/images/shop/26.jpg" alt="">Medical marijuana THC
-													</a>
-
-													<span class="quantity">1 ×
-														<span class="woocommerce-Price-amount amount">
-															<span class="woocommerce-Price-currencySymbol">$</span>
-															15.00
-														</span>
-													</span>
-												</li>
-											</ul>
-
-											<p class="woocommerce-mini-cart__total total">
-												<strong>Subtotal:</strong>
-												<span class="woocommerce-Price-amount amount">
-													<span class="woocommerce-Price-currencySymbol">$</span>
-													27.00
-												</span>
-											</p>
-
-											<p class="woocommerce-mini-cart__buttons buttons">
-												<a href="shop-cart.html" class="button wc-forward">View cart</a>
-												<a href="shop-checkout.html" class="button checkout wc-forward">Checkout</a>
-											</p>
-										</div>
-									</div>
-
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</section>
-			<!--eof topline-->
+		@await Component.InvokeAsync("PageTopLineViewComponentPartial")
+			<!--sayfanın üst kısmı sosyal medya alanlarının bulunduğu kısım-->
 
 			<!-- header with two Bootstrap columns - left for logo and right for navigation -->
 			<header class="page_header header-1 ls s-py-20 ">
