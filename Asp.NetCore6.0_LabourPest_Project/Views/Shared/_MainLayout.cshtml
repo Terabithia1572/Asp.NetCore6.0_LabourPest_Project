@@ -12,7 +12,7 @@
 <!--<![endif]-->
 
 
-<!-- Mirrored from html.modernwebtemplates.com/canabicom/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 Jan 2025 14:43:18 GMT -->
+
 <head>
 	<title>Canabicom</title>
 	<meta charset="utf-8">
@@ -236,7 +236,7 @@
 
 	<div id="canvas">
 		<div id="box_wrapper">
-
+			@RenderBody()
 			<!-- template sections -->
 
 			<!--topline section visible only on small screens|-->
@@ -269,202 +269,13 @@
 			@await Component.InvokeAsync("FAQViewComponentPartial") <!--Yorumların ve Sıkça Sorulan Soruların bulunduğu alan-->
 
 			@await Component.InvokeAsync("TestimonialsViewComponentPartial") <!--Yorumların Bulunduğu Kısım Sıkça Sorulanların hemen alt kısmı-->
+			@await Component.InvokeAsync("DeliveryViewComponentPartial") <!--Teslimat Bilgilerinin Bulunduğu Kısım-->
+			@await Component.InvokeAsync("LocationMapViewComponentPartial") <!--Haritanın ve konumun bulunduğu alan-->
 
-			<section class="ds delivery-section s-overlay mobile-overlay s-pt-xl-140 s-pt-lg-120 s-pt-md-80 s-pt-50 s-pb-xl-150 s-pb-lg-130 s-pb-md-90 s-pb-60 text-center text-sm-left">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-6">
-							<h6 class="special-heading sub-title"><span>Who is marijuana factory?</span></h6>
-							<h2 class="special-heading">Delivery Information</h2>
-							<div class="divider-50 hidden-below-md"></div>
-							<div class="divider-30 hidden-above-md"></div>
-							<div class="media">
-								<div class="icon-styled color-main fs-28">
-									<img src="~/canabicom/images/icons/icon13.png" alt="">
-								</div>
-								<div class="media-body">
-									<h6 class="thin">
-										Express delivery service 24/7
-									</h6>
-									<p>
-										Our free shipping offer applies to any <br> order with a Shipping Coun
-									</p>
-								</div>
-							</div>
-							<div class="divider-60 hidden-below-md"></div>
-							<div class="divider-40 hidden-above-md"></div>
-							<div class="media">
-								<div class="icon-styled color-main fs-28">
-									<img src="~/canabicom/images/icons/icon14.png" alt="">
-								</div>
-								<div class="media-body">
-									<h6 class="thin">
-										Just call to your call-center
-									</h6>
-									<p class="bigger">
-										+1 234 56 78
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+			@await Component.InvokeAsync("FooterViewComponentPartial") <!--Footer Alanın Bulunduğu Kısım Aşağıda bulunan iletişim abone olma kısımlarının bulunduğu kısımlar-->
 
-			<section class="ls ms  map-section s-pt-xl-150 s-pt-lg-130 s-pt-md-90 s-pt-60 s-pb-xl-140 s-pb-lg-120 s-pb-md-80 s-pb-50 text-center text-sm-left">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-7">
-							<div id="map-vector"></div>
-						</div>
-						<div class="col-lg-5">
-							<div class="divider-80 hidden-below-md hidden-above-lg"></div>
-							<div class="divider-50 hidden-above-md"></div>
-							<h6 class="special-heading sub-title"><span>Listing in Unated States</span></h6>
-							<h2 class="special-heading">Canabicom Location</h2>
-							<div class="divider-50 hidden-below-md"></div>
-							<div class="divider-30 hidden-above-md"></div>
-							<h6 class="thin">
-								Alabama
-							</h6>
-							<ul>
-								<li class="icon-inline">
-									<div class="icon-styled icon-top color-main fs-14">
-										<i class="fa fa-map-marker"></i>
-									</div>
-									<p>2688 Simpson Avenue Harrisburg, PA 17109</p>
-								</li>
-								<li class="icon-inline">
-									<div class="icon-styled icon-top color-main fs-14">
-										<i class="fa fa-phone"></i>
-									</div>
-									<p>+1 234 56 78</p>
-								</li>
-								<li class="icon-inline">
-									<div class="icon-styled icon-top color-main fs-14">
-										<i class="fa fa-envelope"></i>
-									</div>
-									<p>
-										<a href="#"><span class="__cf_email__" data-cfemail="e98a8887888b808a8684a98c91888499858cc78a8684">[email&#160;protected]</span></a>
-									</p>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<footer class="page_footer text-center text-sm-left  ds ms s-pt-60 s-pb-60 s-pt-md-85 s-pb-md-90 s-pt-lg-125 s-pb-lg-130 s-pt-xl-150 s-pb-xl-145 c-gutter-30 s-parallax c-mb-50 c-mb-lg-0">
-				<div class="container">
-					<div class="row justify-content-center">
-
-						<div class="col-lg-4 col-md-6  animate" data-animation="fadeInUp">
-							<a href="index.html" class="logo">
-								<img src="~/canabicom/images/logo.png" alt="">
-								<span class="d-flex flex-column">
-									<span class="logo-text color-darkgrey">Canabicom</span>
-									<span class="logo-subtext">medical</span>
-								</span>
-							</a>
-							<p>
-								There are many cannabis activists doing great things for the legalization movement in the United States.
-							</p>
-						</div>
-
-						<div class="col-lg-2 col-md-6 animate" data-animation="fadeInUp">
-
-							<div class="widget widget_nav_menu mb-0">
-								<h3 class="widget-title">company</h3>
-								<ul class="list-unstyled">
-									<li>
-										<a href="#">About</a>
-									</li>
-									<li>
-										<a href="#">features</a>
-									</li>
-									<li>
-										<a href="#">Blog</a>
-									</li>
-									<li>
-										<a href="#">Shop</a>
-									</li>
-									<li>
-										<a href="#">Contact Us</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="col-lg-3 col-md-6 animate" data-animation="fadeInUp">
-							<div class="widget widget_mailchimp">
-
-								<h3 class="widget-title">Subscribe</h3>
-
-								<p>
-									Be notified about new location
-								</p>
-
-								<form class="signup" action="https://html.modernwebtemplates.com/">
-									<label for="mailchimp_email">
-										<span class="screen-reader-text">Subscribe:</span>
-									</label>
-
-									<input id="mailchimp_email" name="email" type="email" class="form-control mailchimp_email" placeholder="Email">
-
-									<button type="submit" class="search-submit">
-										<span class="screen-reader-text">Subscribe</span>
-									</button>
-									<div class="response"></div>
-								</form>
-
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6 mb-0 animate" data-animation="fadeInUp">
-
-							<div class="widget widget_icons_list">
-								<h3 class="widget-title">Contact info</h3>
-								<ul>
-									<li class="icon-inline">
-										<div class="icon-styled icon-top color-main fs-14">
-											<i class="fa fa-map-marker"></i>
-										</div>
-										<p>2688 Simpson Avenue <br> Harrisburg, PA 17109 </p>
-									</li>
-									<li class="icon-inline">
-										<div class="icon-styled icon-top color-main fs-14">
-											<i class="fa fa-phone"></i>
-										</div>
-										<p>+1 234 56 78</p>
-									</li>
-									<li class="icon-inline">
-										<div class="icon-styled icon-top color-main fs-14">
-											<i class="fa fa-envelope"></i>
-										</div>
-										<p>
-											<a href="#"><span class="__cf_email__" data-cfemail="afccc0c1cecdc6ccc0c2efcad7cec2dfc3ca81ccc0c2">[email&#160;protected]</span></a>
-										</p>
-									</li>
-								</ul>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</footer>
-
-
-			<section class="page_copyright ds ms s-py-15 s-bordertop">
-				<div class="container">
-					<div class="row align-items-center">
-
-						<div class="col-md-12 text-center">
-							<p>&copy; Copyright <span class="copyright_year">2019</span> All Rights Reserved</p>
-						</div>
-
-					</div>
-				</div>
-			</section>
-
+			@await Component.InvokeAsync("BorderTopViewComponentPartial") <!--Telif Haklarının Bulunduğu Kısım Tüm Hakları Saklıdır..-->
+			
 
 		</div><!-- eof #box_wrapper -->
 	</div><!-- eof #canvas -->
@@ -481,4 +292,3 @@
 
 <!-- Mirrored from html.modernwebtemplates.com/canabicom/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 Jan 2025 14:44:15 GMT -->
 </html>
-@RenderBody()
