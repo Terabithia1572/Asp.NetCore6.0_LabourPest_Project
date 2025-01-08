@@ -1,0 +1,76 @@
+/* Genel dropdown panel */
+.search-panel {
+    position: absolute;
+    top: 100%; /* Dropdown ikonunun altına açılır */
+    right: 0;
+    width: 300px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 5px;
+    display: none; /* Varsayılan olarak gizli */
+    z-index: 1050;
+}
+
+    /* Açıldığında görünür yapar */
+    .search-panel.active {
+        display: block;
+    }
+
+/* Arama alanı */
+.search-field {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Submit butonu */
+.search-submit {
+    width: 100%;
+    font-size: 14px;
+}
+
+/* Search ikonu */
+.search-trigger {
+    cursor: pointer;
+    font-size: 18px;
+}
+/* Search dropdown'un header altında kalmasını engelle */
+.dropdown-menu {
+    position: absolute; /* Bağımsız bir şekilde yerleştirilmesini sağlar */
+    z-index: 1050; /* Yüksek bir z-index ile üstte görünmesini sağlar */
+    top: 100%; /* Dropdown'un butonun altına yerleşmesini sağlar */
+    left: 0;
+    right: auto;
+    display: none; /* Varsayılan olarak görünmesin */
+    background-color: #fff; /* Arka plan rengini düzenleyin */
+    border: 1px solid #ddd; /* Gölgelendirme ve kenarlık */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+/* Dropdown'un görünmesi için hover veya tıklama kontrolü */
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
+    display: block; /* Hover veya tıklama durumunda görünsün */
+}
+
+/* Header overflow sorunu için */
+.page_header {
+    position: relative; /* Bağlamı korur */
+    z-index: 1; /* Dropdown'un altında kalması için düşük z-index */
+}
+.dropdown-menu.search-panel {
+    position: absolute; /* Relative veya absolute pozisyon ayarı */
+    top: 100%; /* Tetikleyicinin hemen altında açılması için */
+    left: 0;
+    transform: translateY(5px); /* Biraz aşağı kaydırma */
+    z-index: 1050; /* Menü önde görünecek şekilde */
+    min-width: 250px; /* Genişlik ihtiyacına göre ayarlanabilir */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Modern bir gölge efekti */
+    border: 1px solid #ddd; /* Hafif bir çerçeve */
+    background-color: #fff; /* Menü arka planı */
+}
+
