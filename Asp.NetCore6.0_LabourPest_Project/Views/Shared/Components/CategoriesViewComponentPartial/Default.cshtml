@@ -1,4 +1,5 @@
-﻿<section class="ls shop-categories-section s-pt-xl-135 s-pt-lg-115 s-pt-md-75 s-pt-55 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55">
+﻿@model List<Category>
+<section class="ls shop-categories-section s-pt-xl-135 s-pt-lg-115 s-pt-md-75 s-pt-55 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -9,108 +10,28 @@
                 <div class="divider-60 hidden-below-md"></div>
                 <div class="divider-40 hidden-above-md"></div>
                 <div class="owl-carousel shop-categories-carousel" id="partners-carousel" data-center="false" data-margin="20" data-loop="true" data-autoplay="true" data-autoplay-timeout="2000" data-responsive-lg="3" data-responsive-md="2" data-responsive-sm="2" data-responsive-xs="1">
-                    <article class="vertical-item text-center">
-                        <div class="item-media post-thumbnail">
-                            <a href="shop-right.html">
-                                <img src="~/canabicom/images/shop/category/category1.jpg" alt="img">
-                            </a>
-                        </div>
-                        <div class="item-content">
-                            <div class="cat-links">
-                                <a href="shop-right.html.html" rel="category tag">
-                                    Konsantreler
+                    @foreach (var item in Model)
+                    {
+                        <article class="vertical-item text-center">
+                            <div class="item-media post-thumbnail">
+                                <a href="shop-right.html">
+                                    <img src="@item.CategoryImages" alt="img">
                                 </a>
                             </div>
-                            <div class="description">
-                                <p>Konsantreler, kenevir bitkisinden işlenmiş ürünlerdir.</p>
+                            <div class="item-content">
+                                <div class="cat-links">
+                                    <a href="shop-right.html.html" rel="category tag">
+                                        @item.CategoryName
+                                    </a>
+                                </div>
+                                <div class="description">
+                                    <p>@item.CategoryDescription</p>
+                                </div>
                             </div>
-                        </div>
-                    </article>
-                    <article class="vertical-item text-center">
-                        <div class="item-media post-thumbnail">
-                            <a href="shop-right.html">
-                                <img src="~/canabicom/images/shop/category/category1.jpg" alt="img">
-                            </a>
-                        </div>
-                        <div class="item-content">
-                            <div class="cat-links">
-                                <a href="shop-right.html.html" rel="category tag">
-                                    Konsantreler
-                                </a>
-                            </div>
-                            <div class="description">
-                                <p>Konsantreler, kenevir bitkisinden işlenmiş ürünlerdir.</p>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="vertical-item text-center">
-                        <div class="item-media post-thumbnail">
-                            <a href="shop-right.html">
-                                <img src="~/canabicom/images/shop/category/category1.jpg" alt="img">
-                            </a>
-                        </div>
-                        <div class="item-content">
-                            <div class="cat-links">
-                                <a href="shop-right.html.html" rel="category tag">
-                                    Konsantreler
-                                </a>
-                            </div>
-                            <div class="description">
-                                <p>Konsantreler, kenevir bitkisinden işlenmiş ürünlerdir.</p>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="vertical-item text-center">
-                        <div class="item-media post-thumbnail">
-                            <a href="shop-right.html">
-                                <img src="~/canabicom/images/shop/category/category1.jpg" alt="img">
-                            </a>
-                        </div>
-                        <div class="item-content">
-                            <div class="cat-links">
-                                <a href="shop-right.html.html" rel="category tag">
-                                    Konsantreler
-                                </a>
-                            </div>
-                            <div class="description">
-                                <p>Konsantreler, kenevir bitkisinden işlenmiş ürünlerdir.</p>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="vertical-item text-center">
-                        <div class="item-media post-thumbnail">
-                            <a href="shop-right.html">
-                                <img src="~/canabicom/images/shop/category/category2.jpg" alt="img">
-                            </a>
-                        </div>
-                        <div class="item-content">
-                            <div class="cat-links">
-                                <a href="shop-right.html.html" rel="category tag">
-                                    Yenilebilirler
-                                </a>
-                            </div>
-                            <div class="description">
-                                <p>Geleneksel yenilebilir yapım süreci, demlemeniz gerektiğinde oldukça zahmetli ve korkutucu olabilir.</p>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="vertical-item text-center">
-                        <div class="item-media post-thumbnail">
-                            <a href="shop-right.html">
-                                <img src="~/canabicom/images/shop/category/category3.jpg" alt="img">
-                            </a>
-                        </div>
-                        <div class="item-content">
-                            <div class="cat-links">
-                                <a href="shop-right.html.html" rel="category tag">
-                                    Çiçekler
-                                </a>
-                            </div>
-                            <div class="description">
-                                <p>Çiçeklenme aşaması, kenevir bitkilerinizin aromatik ve yakında içilebilir hale geldiği dönemdir.</p>
-                            </div>
-                        </div>
-                    </article>
+                        </article>
+                    }
+                   
+                   
                 </div>
             </div>
         </div>
