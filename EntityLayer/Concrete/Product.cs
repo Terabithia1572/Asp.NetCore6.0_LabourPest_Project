@@ -15,5 +15,8 @@ namespace EntityLayer.Concrete
         public string ProductDescription { get; set; }
         public string ProductImageURL { get; set; }
         public bool ProductStatus { get; set; }
+        public int CategoryID { get; set; } //ilişkili tabloda
+        ////////ilişkili tabloda tutulacak ID
+        public Category Category { get; set; }
     }
 }

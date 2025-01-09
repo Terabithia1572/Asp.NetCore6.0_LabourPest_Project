@@ -16,6 +16,7 @@ namespace EntityLayer.Concrete
         public string WhoWeUsDescription1 { get; set; }
         public string WhoWeUsDescription2 { get; set; }
         public string WhoWeUsImageURL { get; set; }
+        public string WhoWeUsClass { get; set; }
         public bool WhoWeUsStatus { get; set; }
     }
 }
