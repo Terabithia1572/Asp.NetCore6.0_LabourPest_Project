@@ -12,6 +12,7 @@ namespace EntityLayer.Concrete
         [Key]
         public int ImageID { get; set; }
         public string ImageUpload { get; set; }
+        public string ImageClass { get; set; }
         public bool ImageStatus { get; set; }
     }
 }
