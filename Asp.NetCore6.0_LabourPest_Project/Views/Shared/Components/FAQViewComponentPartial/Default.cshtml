@@ -2,7 +2,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
-				<h6 class="special-heading sub-title text-center"><span>Farklı Tıbbi Müdahaleler</span></h6>
+				<h6 class="special-heading sub-title text-center"><span>Sıkça Sorulan Sorular 1 ?</span></h6>
 				<h2 class="special-heading text-center">Sıkça Sorulanlar</h2>
 				<div class="divider-50 hidden-below-md"></div>
 				<div class="divider-30 hidden-above-md"></div>
@@ -11,138 +11,52 @@
 		<div class="row ">
 			<div class="col-lg-6 py-xl-150 py-lg-130 py-md-90 py-60 ls ms">
 				<div class="content-center">
-					<div id="accordion01" role="tablist">
-						<h6 class="title-accordion">Farklı Tıp Nedir?</h6>
-						<div class="card">
-							<div class="card-header" role="tab" id="collapse01_header">
-								<h5>
-									<a class="collapsed" data-toggle="collapse" href="#collapse01" aria-expanded="true" aria-controls="collapse01">
-										Firmanızın Danışmanlığı ne iş yapar?
-									</a>
-								</h5>
-							</div>
+                    <div id="accordion01" role="tablist">
+                        <h6 class="title-accordion">Sık Sorulan Sorular ?</h6>
+                        @foreach (var item in ViewBag.Accordion01)
+                        {
+                            string uniqueId = $"accordion01_item_{item.FAQID}";
+                            <!-- Benzersiz ID oluşturma -->
+                            <div class="card">
+                                <div class="card-header" role="tab" id="uniqueId_header">
+                                    <h5>
+                                        <a class="collapsed" data-toggle="collapse" href="#@uniqueId" aria-expanded="false" aria-controls="@uniqueId">
+                                            @item.FAQTitle
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="@uniqueId" class="collapse" role="tabpanel" aria-labelledby="uniqueId_header" data-parent="#accordion01">
+                                    <div class="card-body">
+                                        @item.FAQDescription
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
 
-							<div id="collapse01" class="collapse" role="tabpanel" aria-labelledby="collapse01_header" data-parent="#accordion01">
-								<div class="card-body">
-									<p>We help entrepreneurs get ready to raise capital. This usually consists of some or all of the following services:</p>
-								</div>
-							</div>
-						</div>
+                    <div id="accordion02" role="tablist">
+                        <h6 class="title-accordion">Sık Sorulan Sorular ?</h6>
+                        @foreach (var item in ViewBag.Accordion02)
+                        {
+                            string uniqueId = $"accordion02_item_{item.FAQID}";
+                            <!-- Benzersiz ID oluşturma -->
+                            <div class="card">
+                                <div class="card-header" role="tab" id="uniqueId_header">
+                                    <h5>
+                                        <a class="collapsed" data-toggle="collapse" href="#@uniqueId" aria-expanded="false" aria-controls="@uniqueId">
+                                            @item.FAQTitle
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="@uniqueId" class="collapse" role="tabpanel" aria-labelledby="uniqueId_header" data-parent="#accordion02">
+                                    <div class="card-body">
+                                        @item.FAQDescription
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
 
-						<div class="card">
-							<div class="card-header" role="tab" id="collapse02_header">
-								<h5>
-									<a class="collapsed" data-toggle="collapse" href="#collapse02" aria-expanded="false" aria-controls="collapse02">
-										Hangi sektörlerde uzmanlaşıyorsunuz?
-									</a>
-								</h5>
-							</div>
-							<div id="collapse02" class="collapse" role="tabpanel" aria-labelledby="collapse02_header" data-parent="#accordion01">
-								<div class="card-body">
-									Deneme
-								</div>
-							</div>
-						</div>
-
-						<div class="card">
-							<div class="card-header" role="tab" id="collapse04_header">
-								<h5>
-									<a class="collapsed" data-toggle="collapse" href="#collapse04" aria-expanded="false" aria-controls="collapse04">
-										Planımızın sermaye artıracağını garanti edebilir misiniz?
-									</a>
-								</h5>
-							</div>
-							<div id="collapse04" class="collapse" role="tabpanel" aria-labelledby="collapse04_header" data-parent="#accordion01">
-								<div class="card-body">
-									Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable sunt aliqua put a bird on it squid single-origin coffee shoreditch et.
-								</div>
-							</div>
-						</div>
-
-						<div class="card">
-							<div class="card-header" role="tab" id="collapse05_header">
-								<h5>
-									<a class="collapsed" data-toggle="collapse" href="#collapse05" aria-expanded="false" aria-controls="collapse05">
-										What industries do you specialize in?
-									</a>
-								</h5>
-							</div>
-							<div id="collapse05" class="collapse" role="tabpanel" aria-labelledby="collapse05_header" data-parent="#accordion01">
-								<div class="card-body">
-									Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-								</div>
-							</div>
-						</div>
-
-					</div>
-
-					<div id="accordion02" role="tablist">
-						<h6 class="title-accordion">What is medical marijuana used for?</h6>
-						<div class="card">
-							<div class="card-header" role="tab" id="collapse10_header">
-								<h5>
-									<a class="collapsed" data-toggle="collapse" href="#collapse10" aria-expanded="true" aria-controls="collapse10">
-										What does Your Company Consulting do?
-									</a>
-								</h5>
-							</div>
-
-							<div id="collapse10" class="collapse" role="tabpanel" aria-labelledby="collapse10_header" data-parent="#accordion02">
-								<div class="card-body">
-
-									<p>We help entrepreneurs get ready to raise capital. This usually consists of some or all of the following services:</p>
-
-
-								</div>
-							</div>
-						</div>
-
-						<div class="card">
-							<div class="card-header" role="tab" id="collapse11_header">
-								<h5>
-									<a class="collapsed" data-toggle="collapse" href="#collapse11" aria-expanded="false" aria-controls="collapse11">
-										What industries do you specialize in?
-									</a>
-								</h5>
-							</div>
-							<div id="collapse11" class="collapse" role="tabpanel" aria-labelledby="collapse11_header" data-parent="#accordion02">
-								<div class="card-body">
-									Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-								</div>
-							</div>
-						</div>
-
-						<div class="card">
-							<div class="card-header" role="tab" id="collapse12_header">
-								<h5>
-									<a class="collapsed" data-toggle="collapse" href="#collapse12" aria-expanded="false" aria-controls="collapse12">
-										Can you guarantee that our plan will raise capital?
-									</a>
-								</h5>
-							</div>
-							<div id="collapse12" class="collapse" role="tabpanel" aria-labelledby="collapse12_header" data-parent="#accordion02">
-								<div class="card-body">
-									Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable sunt aliqua put a bird on it squid single-origin coffee shoreditch et.
-								</div>
-							</div>
-						</div>
-
-						<div class="card">
-							<div class="card-header" role="tab" id="collapse13_header">
-								<h5>
-									<a class="collapsed" data-toggle="collapse" href="#collapse13" aria-expanded="false" aria-controls="collapse13">
-										What industries do you specialize in?
-									</a>
-								</h5>
-							</div>
-							<div id="collapse13" class="collapse" role="tabpanel" aria-labelledby="collapse13_header" data-parent="#accordion02">
-								<div class="card-body">
-									Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-								</div>
-							</div>
-						</div>
-
-					</div>
 				</div>
 
 			</div>
