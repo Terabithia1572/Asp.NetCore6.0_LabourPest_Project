@@ -1,67 +1,40 @@
-﻿<section class="ls testimonials-section s-pt-xl-135 s-pt-lg-115 s-pt-md-75 s-pt-55 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55">
-	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="special-heading text-center">What Our Clients Say</h2>
-				<p class="special-heading text-center big">
-					From brownies to medicated muscle creams, you can find cannabis concentrates in hundreds of products
-				</p>
-				<div class="divider-60 hidden-below-md"></div>
-				<div class="divider-40 hidden-above-md"></div>
-				<div class="owl-carousel quote-carousel" data-center="false" data-nav="false" data-margin="60" data-loop="true" data-responsive-lg="3" data-responsive-md="2" data-responsive-sm="1" data-responsive-xs="1">
-					<div class="quote-item">
-						<blockquote>
-							<p>
-								<em>
-									It can also help incRease the potency of your flower. The next time you pack a bowl with cannabis flower.
-								</em>
-							</p>
-						</blockquote>
-						<div class="quote-image">
-							<img src="~/canabicom/images/team/testimonial1.jpg" alt="">
-						</div>
-						<div class="quote-title">
-							<p>
-								Steave Watson
-							</p>
-						</div>
-					</div>
-					<div class="quote-item">
-						<blockquote>
-							<p>
-								<em>
-									It can also help incRease the potency of your flower. The next time you pack a bowl with cannabis flower.
-								</em>
-							</p>
-						</blockquote>
-						<div class="quote-image">
-							<img src="~/canabicom/images/team/testimonial2.jpg" alt="">
-						</div>
-						<div class="quote-title">
-							<p>
-								Steave Watson
-							</p>
-						</div>
-					</div>
-					<div class="quote-item">
-						<blockquote>
-							<p>
-								<em>
-									It can also help incRease the potency of your flower. The next time you pack a bowl with cannabis flower.
-								</em>
-							</p>
-						</blockquote>
-						<div class="quote-image">
-							<img src="~/canabicom/images/team/testimonial3.jpg" alt="">
-						</div>
-						<div class="quote-title">
-							<p>
-								Steave Watson
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+﻿@model List<Comment>
+
+<section class="ls testimonials-section s-pt-xl-135 s-pt-lg-115 s-pt-md-75 s-pt-55 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="special-heading text-center">Bizim Hakkımızda Ne Diyorlar ?</h2>
+                <p class="special-heading text-center big">
+                    Yorumlarınız bizim çok değerli,bizim için bir yorum yapın...
+                </p>
+                <div class="divider-60 hidden-below-md"></div>
+                <div class="divider-40 hidden-above-md"></div>
+                @* <div class="owl-carousel shop-categories-carousel" id="partners-carousel" data-center="false" data-autoplay-timeout="2000" data-margin="60" data-loop="true" data-responsive-lg="3" data-responsive-md="2" data-responsive-sm="1" data-responsive-xs="1"> *@
+                <div class="owl-carousel shop-categories-carousel" id="partners-carousel" data-center="false" data-margin="60" data-loop="true" data-autoplay="true" data-autoplay-timeout="2000" data-responsive-lg="3" data-responsive-md="2" data-responsive-sm="2" data-responsive-xs="1">
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="quote-item">
+                            <blockquote>
+                                <p>
+                                    <em>
+                                        @item.CommentContent
+                                    </em>
+                                </p>
+                            </blockquote>
+                            <div class="quote-image">
+                                <img src="@item.ImageUrl" alt="">
+                            </div>
+                            <div class="quote-title">
+                                <p>
+                                    @item.CommentUserName
+                                </p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
