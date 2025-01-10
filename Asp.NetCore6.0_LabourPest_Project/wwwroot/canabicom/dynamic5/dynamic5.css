@@ -1,0 +1,17 @@
+.carousel-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.carousel-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+}
+
+.carousel-item {
+    flex: 0 0 33.33%; /* 3 yorum gösterilecek */
+    box-sizing: border-box;
+    padding: 10px;
+}
