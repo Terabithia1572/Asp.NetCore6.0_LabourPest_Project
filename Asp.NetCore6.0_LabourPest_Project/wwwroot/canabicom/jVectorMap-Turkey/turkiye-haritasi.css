@@ -1,52 +1,70 @@
 /*! SVG Türkiye Haritası | CSS | MIT Lisans | dnomak.com */
 
 .harita-wrap {
-  max-width: 1140px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 20px 0;
+    max-width: 1140px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px 0;
 }
-.harita-wrap svg {
-  width: 100%;
-  height: auto;
-}
+
+    .harita-wrap svg {
+        width: 100%;
+        height: auto;
+    }
+
 .il-tooltip {
-  position: absolute;
-  z-index: 2;
+    position: absolute;
+    z-index: 2;
 }
-.il-tooltip div {
-  display: inline-block;
-  background: #222;
-  color: #fff;
-  padding: 10px 20px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-}
+
+    .il-tooltip div {
+        display: inline-block;
+        background: #222;
+        color: #fff;
+        padding: 10px 20px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+    }
+
 #izmir path {
     fill: #aade87 !important;
 }
+
 #antalya path {
     fill: #aade87 !important;
 }
+
 #izmir text {
     font-family: Arial, sans-serif;
     font-size: 14px;
-    fill: #2e2b2b; /* Siyah renk */
+    fill: #000000; /* Siyah renk */
     font-weight: bold;
 }
+
 #antalya text {
     font-family: Arial, sans-serif;
     font-size: 14px;
-    fill: #2e2b2b; /* Siyah renk */
+    fill: #000000; /* Siyah renk */
     font-weight: bold;
 }
 
 
 #turkiye-haritasi path {
-  fill: #ccc;
+    fill: #ccc;
 }
-#turkiye-haritasi path:hover {
-  fill: #a1a1a1;
-  cursor: pointer;
+
+    #turkiye-haritasi path:hover {
+        fill: #a1a1a1;
+        cursor: pointer;
+    }
+
+    #izmir path:hover {
+        fill: #a1a1a1 !important;
+        cursor: pointer;
+    }
+#antalya path:hover {
+    fill: #a1a1a1 !important;
+    cursor: pointer;
+  
 }
