@@ -13,5 +13,6 @@ namespace EntityLayer.Concrete
         public int BlogCategoryID { get; set; }
         public string BlogCategories { get; set; }
         public bool BlogCategoryStatus { get; set; }
+        public List<Blog> Blogs { get; set; }
     }
 }
