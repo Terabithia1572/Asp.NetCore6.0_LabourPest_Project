@@ -23,7 +23,20 @@ namespace BusinessLayer.Concrete
             return _blogDal.GetListAll();
         }
 
-        public void TAdd(Blog t)
+        public List<Blog> GetBlogListWithBlogCategory()
+        {
+            return _blogDal.GetListWithBlogCategory();
+        }
+
+		public List<Blog> GetLastBlogs(int count)
+		{
+			return _blogDal.GetListAll()
+				.OrderByDescending(b => b.BlogDate) // Tarihe göre sıralama
+				.Take(count) // Son X blog
+				.ToList();
+		}
+
+		public void TAdd(Blog t)
         {
             _blogDal.Insert(t);
         }
