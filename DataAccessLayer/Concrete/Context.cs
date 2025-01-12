@@ -17,6 +17,8 @@ namespace DataAccessLayer.Concrete
         }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Brands> Brands { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<BlogCategory> BlogCategories { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Contact> Contacts { get; set; }
@@ -31,6 +33,7 @@ namespace DataAccessLayer.Concrete
         public DbSet<Services> Services { get; set; }
         public DbSet<Subscribe> Subscribes { get; set; }
         public DbSet<WhoWeUs> WhoWeUs { get; set; }
+        public DbSet<Writer> Writers { get; set; }
        
         
     }
