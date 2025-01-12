@@ -18,6 +18,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 		}
 		public IActionResult BlogDetails(int id)
 		{
+			ViewBag.id = id;
 			var blog = _blogManager.TGetByID(id); // Blog detayını getiren metot
 			if (blog == null)
 			{
@@ -31,11 +32,6 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             var values = blogManager.GetBlogListWithBlogCategory();
             return View(values);
         }
-        public IActionResult BlogReadAll(int id)
-        {
-            ViewBag.i = id;
-            var values = blogManager.TGetByID(id);
-            return View(values);
-        }
+      
     }
 }

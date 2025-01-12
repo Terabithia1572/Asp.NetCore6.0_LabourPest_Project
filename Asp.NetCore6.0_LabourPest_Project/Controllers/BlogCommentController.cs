@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 {
 	public class BlogCommentController : Controller
 	{
+		BlogCommentManager blogCommentManager = new BlogCommentManager(new EfBlogCommentRepository());
 		public IActionResult Index()
 		{
 			return View();
@@ -12,9 +15,11 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 		{
 			return PartialView();
 		}
-		public PartialViewResult CommentListByBlog()
+		public PartialViewResult CommentListByBlog(int id)
 		{
-			return PartialView();
+			
+			var values=blogCommentManager.GetComments(id);
+			return PartialView(values);
 		}
 	}
 }

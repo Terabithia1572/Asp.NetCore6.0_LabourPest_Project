@@ -96,12 +96,12 @@
 									<span class="divider">|</span>
 
 									<p>Günün Sözü</p>
-
+								
 								</footer>
-
+							
 							</blockquote>
 
-
+							
 						</div>
 						<!-- .entry-content -->
 					</div>
@@ -110,11 +110,12 @@
 
 
 
-
+				
 				<div id="comments" class="comments-area">
-
-
-				@await Html.PartialAsync("~/Views/BlogComment/CommentListByBlog.cshtml")
+						
+					@await Component.InvokeAsync("BlogCommentList",new {id=ViewBag.id})
+					
+				@* @await Html.PartialAsync("~/Views/BlogComment/CommentListByBlog.cshtml") *@
 					<!-- .comment-list -->
 
 

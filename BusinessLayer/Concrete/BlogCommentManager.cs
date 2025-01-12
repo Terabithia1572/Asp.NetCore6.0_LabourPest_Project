@@ -23,7 +23,12 @@ namespace BusinessLayer.Concrete
             return _blogCommentDal.GetListAll(x=>x.BlogID==1);
 		}
 
-        public void TAdd(BlogComment t)
+		public List<BlogComment> GetComments(int id)
+		{
+			return _blogCommentDal.GetListAll(x => x.BlogID == id);
+		}
+
+		public void TAdd(BlogComment t)
         {
             _blogCommentDal.Insert(t);
         }

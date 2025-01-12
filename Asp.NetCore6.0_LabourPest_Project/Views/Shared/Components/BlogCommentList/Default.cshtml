@@ -1,0 +1,54 @@
+﻿@model List<BlogComment>
+
+<ol class="comment-list">
+	@foreach (var item in Model)
+	{
+		<li class="comment">
+			<article class="comment-body">
+				<header class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="@item.BlogImageUrl">
+						<b class="fn">
+							<a href="#" rel="nofollow" class="url">@item.BlogCommentUserName</a>
+						</b>
+
+					</div>
+					<!-- .comment-author -->
+					<!-- .comment-metadata -->
+				</header>
+				<!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>@item.BlogCommentContent</p>
+				</div>
+				<footer class="comment-footer">
+					<span class="edit-link">
+						<i class="far fa-edit"></i>
+						<a class="comment-edit-link" href="#">Düzenle</a>
+					</span>
+					<span class="entry-meta-divider">|</span>
+					<div class="reply">
+						<i class="far fa-share-square"></i>
+						<a rel="nofollow" class="comment-reply-link" href="#" aria-label="Reply to John Doe">Yanıtla</a>
+					</div>
+					<span class="entry-meta-divider">|</span>
+					<div class="comment-metadata">
+						<i class="far fa-clock"></i>
+						<a href="#">
+							<time datetime="2018-03-14T07:57:01+00:00">
+								@item.BlogCommentDate.ToShortTimeString()
+							</time>
+						</a>
+					</div>
+				</footer>
+				<!-- .comment-content -->
+
+
+			</article>
+			<!-- .comment-body -->
+			<!-- .children -->
+		</li>
+	}
+	
+
+</ol>
