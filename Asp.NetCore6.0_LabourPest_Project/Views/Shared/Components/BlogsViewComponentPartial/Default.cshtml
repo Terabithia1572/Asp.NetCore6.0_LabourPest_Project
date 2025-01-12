@@ -1,4 +1,6 @@
-﻿<section id="blog" class="ls blog-section s-pt-xl-135 s-pt-lg-115 s-pt-md-75 s-pt-55 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55">
+﻿@model List<Blog>
+
+<section id="blog" class="ls blog-section s-pt-xl-135 s-pt-lg-115 s-pt-md-75 s-pt-55 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
@@ -9,111 +11,46 @@
 				<div class="divider-60 hidden-below-md"></div>
 				<div class="divider-40 hidden-above-md"></div>
 				<div class="owl-carousel blog-carousel" data-center="false" data-nav="false" data-margin="60" data-loop="true" data-responsive-lg="3" data-responsive-md="2" data-responsive-sm="1" data-responsive-xs="1">
-					<article class="vertical-item text-center">
-						<div class="item-media post-thumbnail">
-							<a href="blog-single-right.html">
-								<img src="~/canabicom/images/blog/slide1.jpg" alt="img">
-							</a>
-						</div><!-- .post-thumbnail -->
-						<div class="item-content">
-							<header class="entry-header">
-								<div class="cat-links">
-									<a href="blog-right.html" rel="category tag">
-										Tıbbi
-									</a>
-								</div>
-								<h6 class="entry-title">
-									<a href="blog-single-right.html" rel="bookmark">
-										Konsantreler kenevir bitkisinden elde edilen ürünlerdir.
-									</a>
-								</h6>
-							</header>
-							<footer class="entry-footer">
-								<div class="byline">
-									<a href="blog-single-right.html" rel="bookmark">
-										<time class="entry-date published updated" datetime="2018-03-18T15:15:12+00:00">
-											<i class="far fa-clock"></i>
-											02 Ocak 19
-										</time>
-									</a>
-									<div class="author vcard">
-										<i class="far fa-user"></i>
-										<a class="url color-main2 fn n" href="blog-right.html">Ömer Seyhan</a>
+					@foreach (var item in Model)
+					{
+						<article class="vertical-item text-center">
+							<div class="item-media post-thumbnail">
+								<a href="@Url.Action("BlogDetails", "Blog", new { id = item.BlogID })">
+									<img src="@item.BlogImage" alt="img">
+								</a>
+							</div><!-- .post-thumbnail -->
+							<div class="item-content">
+								<header class="entry-header">
+									<div class="cat-links">
+										<a href="@Url.Action("BlogDetails", "Blog", new { id = item.BlogID }) rel="category tag">
+											@item.BlogCategory.BlogCategories
+										</a>
 									</div>
-								</div>
-							</footer>
-						</div>
-					</article>
-					<article class="vertical-item text-center">
-						<div class="item-media post-thumbnail">
-							<a href="blog-single-right.html">
-								<img src="~/canabicom/images/blog/slide2.jpg" alt="img">
-							</a>
-						</div><!-- .post-thumbnail -->
-						<div class="item-content">
-							<header class="entry-header">
-								<div class="cat-links">
-									<a href="blog-right.html" rel="category tag">
-										Sağlık
-									</a>
-								</div>
-								<h6 class="entry-title">
-									<a href="blog-single-right.html" rel="bookmark">
-										Konsantreler Kılavuzu: THC Yağları, Balmumu, Paramparça ve Dabs.
-									</a>
-								</h6>
-							</header>
-							<footer class="entry-footer">
-								<div class="byline">
-									<a href="blog-single-right.html" rel="bookmark">
-										<time class="entry-date published updated" datetime="2018-03-18T15:15:12+00:00">
-											<i class="far fa-clock"></i>
-											02 Ocak 19
-										</time>
-									</a>
-									<div class="author vcard">
-										<i class="far fa-user"></i>
-										<a class="url color-main2 fn n" href="blog-right.html">Steave Watson</a>
+									<h6 class="entry-title">
+										<a href="@Url.Action("BlogDetails", "Blog", new { id = item.BlogID })" rel="bookmark">
+											@item.BlogTitle
+										</a>
+									</h6>
+								</header>
+								<footer class="entry-footer">
+									<div class="byline">
+										<a href="@Url.Action("BlogDetails", "Blog", new { id = item.BlogID })" rel="bookmark">
+											<time class="entry-date published updated" datetime="2018-03-18T15:15:12+00:00">
+												<i class="far fa-clock"></i>
+												@item.BlogDate.ToShortDateString()
+											</time>
+										</a>
+										<div class="author vcard">
+											<i class="far fa-user"></i>
+											<a class="url color-main2 fn n" href="blog-right.html">Ömer Seyhan</a>
+										</div>
 									</div>
-								</div>
-							</footer>
-						</div>
-					</article>
-					<article class="vertical-item text-center">
-						<div class="item-media post-thumbnail">
-							<a href="blog-single-right.html">
-								<img src="~/canabicom/images/blog/slide3.jpg" alt="img">
-							</a>
-						</div><!-- .post-thumbnail -->
-						<div class="item-content">
-							<header class="entry-header">
-								<div class="cat-links">
-									<a href="blog-right.html" rel="category tag">
-										Bilim
-									</a>
-								</div>
-								<h6 class="entry-title">
-									<a href="blog-single-right.html" rel="bookmark">
-										Yasakların Hukuk Sistemine Etkisi.
-									</a>
-								</h6>
-							</header>
-							<footer class="entry-footer">
-								<div class="byline">
-									<a href="blog-single-right.html" rel="bookmark">
-										<time class="entry-date published updated" datetime="2018-03-18T15:15:12+00:00">
-											<i class="far fa-clock"></i>
-											02 Ocak 19
-										</time>
-									</a>
-									<div class="author vcard">
-										<i class="far fa-user"></i>
-										<a class="url color-main2 fn n" href="blog-right.html">Steave Watson</a>
-									</div>
-								</div>
-							</footer>
-						</div>
-					</article>
+								</footer>
+							</div>
+						</article>
+					}
+					
+					
 				</div>
 			</div>
 		</div>
