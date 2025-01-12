@@ -11,7 +11,7 @@
 
 
 			<div class="col-md-12 text-center text-sm-left">
-				<h1>@Model.BlogContent</h1>
+				<h1>@Model.BlogTitle</h1>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item">
 						<a href="index.html">Ana Sayfa</a>
@@ -20,7 +20,7 @@
 						<a href="#">Bloglar</a>
 					</li>
 					<li class="breadcrumb-item active">
-						@Model.BlogContent
+						@Model.BlogTitle
 					</li>
 				</ol>
 			</div>
@@ -52,7 +52,7 @@
 										<i class="far fa-clock"></i>
 										<a href="blog-single-left.html" rel="bookmark">
 											<time class="entry-date published updated" datetime="2018-03-18T15:15:12+00:00">
-												@Model.BlogDate
+												@Model.BlogDate.ToShortDateString()
 											</time>
 										</a>
 									</div>
@@ -78,8 +78,7 @@
 
 						<div class="entry-content">
 							<p>
-								Types of Weed: Determining Marijuana Quality The world of weed is rich with different types and new strains options. To the beginner, it can be a little bit tricky to figure out what’s dank and what’s schwag.
-								Plants can be put outside 3-4 weeks after germination. Temperatures outside may not fall lower than 0 deg
+							@Model.BlogContent
 							</p>
 
 
@@ -87,17 +86,16 @@
 
 								<p>
 									<em class="big">
-										Sem justo facilisi, pulvinar feugiat sed cursus donec vestibulum, rutrum mauris montes felis, quam metus sed in.
-										In curabitur, ut in auctor ut, egestas nunc elit lectus sed sed.
+										@Model.BlogContent
 									</em>
 								</p>
 								<footer>
 
-									<p>January 23, 2019 </p>
+									<p>@DateTime.Now.ToShortDateString() </p>
 
 									<span class="divider">|</span>
 
-									<p>Web hosting</p>
+									<p>Günün Sözü</p>
 
 								</footer>
 
@@ -116,250 +114,7 @@
 				<div id="comments" class="comments-area">
 
 
-					<ol class="comment-list">
-						<li class="comment">
-							<article class="comment-body">
-								<header class="comment-meta">
-									<div class="comment-author vcard">
-										<img alt="" src="images/team/03.jpg">
-										<b class="fn">
-											<a href="#" rel="nofollow" class="url">Eric B. Lawton</a>
-										</b>
-
-									</div>
-									<!-- .comment-author -->
-									<!-- .comment-metadata -->
-								</header>
-								<!-- .comment-meta -->
-
-								<div class="comment-content">
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. </p>
-								</div>
-								<footer class="comment-footer">
-									<span class="edit-link">
-										<i class="far fa-edit"></i>
-										<a class="comment-edit-link" href="#">Edit</a>
-									</span>
-									<span class="entry-meta-divider">|</span>
-									<div class="reply">
-										<i class="far fa-share-square"></i>
-										<a rel="nofollow" class="comment-reply-link" href="#" aria-label="Reply to John Doe">Reply</a>
-									</div>
-									<span class="entry-meta-divider">|</span>
-									<div class="comment-metadata">
-										<i class="far fa-clock"></i>
-										<a href="#">
-											<time datetime="2018-03-14T07:57:01+00:00">
-												2 days ago
-											</time>
-										</a>
-									</div>
-								</footer>
-								<!-- .comment-content -->
-
-
-							</article>
-							<!-- .comment-body -->
-							<!-- .children -->
-						</li>
-						<li class="comment">
-							<article class="comment-body">
-								<header class="comment-meta">
-									<div class="comment-author vcard">
-										<img alt="" src="images/team/03.jpg">
-										<b class="fn">
-											<a href="#" rel="nofollow" class="url">Mary D. Santos</a>
-										</b>
-
-									</div>
-									<!-- .comment-author -->
-									<!-- .comment-metadata -->
-								</header>
-								<!-- .comment-meta -->
-
-								<div class="comment-content">
-									<p>
-										Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-										Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
-										pellentesque eu, pretium quis, sem.
-										Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate
-									</p>
-								</div>
-								<footer class="comment-footer">
-									<span class="edit-link">
-										<i class="far fa-edit"></i>
-										<a class="comment-edit-link" href="#">Edit</a>
-									</span>
-									<span class="entry-meta-divider">|</span>
-									<div class="reply">
-										<i class="far fa-share-square"></i>
-										<a rel="nofollow" class="comment-reply-link" href="#" aria-label="Reply to John Doe">Reply</a>
-									</div>
-									<span class="entry-meta-divider">|</span>
-									<div class="comment-metadata">
-										<i class="far fa-clock"></i>
-										<a href="#">
-											<time datetime="2018-03-14T07:57:01+00:00">
-												2 days ago
-											</time>
-										</a>
-									</div>
-								</footer> <!-- Yorumların alt kısmında bulunan reply kısmı-->
-								<!-- .comment-content -->
-							</article>
-							<!-- .comment-body -->
-							<!-- .children -->
-						</li>
-						<!-- #comment-## -->
-
-						<li class="comment">
-							<article class="comment-body">
-								<header class="comment-meta">
-									<div class="comment-author vcard">
-										<img alt="" src="images/team/03.jpg">
-										<b class="fn">
-											<a href="#" rel="nofollow" class="url">Eric B. Lawton</a>
-										</b>
-
-									</div>
-									<!-- .comment-author -->
-									<!-- .comment-metadata -->
-								</header>
-								<!-- .comment-meta -->
-
-								<div class="comment-content">
-									<p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim </p>
-								</div>
-								<footer class="comment-footer">
-									<span class="edit-link">
-										<i class="far fa-edit"></i>
-										<a class="comment-edit-link" href="#">Edit</a>
-									</span>
-									<span class="entry-meta-divider">|</span>
-									<div class="reply">
-										<i class="far fa-share-square"></i>
-										<a rel="nofollow" class="comment-reply-link" href="#" aria-label="Reply to John Doe">Reply</a>
-									</div>
-									<span class="entry-meta-divider">|</span>
-									<div class="comment-metadata">
-										<i class="far fa-clock"></i>
-										<a href="#">
-											<time datetime="2018-03-14T07:57:01+00:00">
-												2 days ago
-											</time>
-										</a>
-									</div>
-								</footer>
-								<!-- .comment-content -->
-
-
-							</article>
-							<!-- .comment-body -->
-							<ol class="children">
-								<li class="comment">
-									<article class="comment-body">
-										<header class="comment-meta">
-											<div class="comment-author vcard">
-												<img alt="" src="images/team/03.jpg">
-												<b class="fn">
-													<a href="#" rel="nofollow" class="url">Timothy C. Dawson</a>
-												</b>
-
-											</div>
-											<!-- .comment-author -->
-											<!-- .comment-metadata -->
-										</header>
-										<!-- .comment-meta -->
-
-										<div class="comment-content">
-											<p>
-												Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-												Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-												pretium quis, sem. Nulla consequat massa quis enim.
-											</p>
-										</div>
-										<footer class="comment-footer">
-											<span class="edit-link">
-												<i class="far fa-edit"></i>
-												<a class="comment-edit-link" href="#">Edit</a>
-											</span>
-											<span class="entry-meta-divider">|</span>
-											<div class="reply">
-												<i class="far fa-share-square"></i>
-												<a rel="nofollow" class="comment-reply-link" href="#" aria-label="Reply to John Doe">Reply</a>
-											</div>
-											<span class="entry-meta-divider">|</span>
-											<div class="comment-metadata">
-												<i class="far fa-clock"></i>
-												<a href="#">
-													<time datetime="2018-03-14T07:57:01+00:00">
-														2 days ago
-													</time>
-												</a>
-											</div>
-										</footer>
-										<!-- .comment-content -->
-
-
-									</article>
-									<!-- .comment-body -->
-									<!-- .children -->
-								</li>
-								<!-- #comment-## -->
-								<li class="comment">
-									<article class="comment-body">
-										<header class="comment-meta">
-											<div class="comment-author vcard">
-												<img alt="" src="images/team/03.jpg">
-												<b class="fn">
-													<a href="#" rel="nofollow" class="url">Mary D. Santos</a>
-												</b>
-
-											</div>
-											<!-- .comment-author -->
-											<!-- .comment-metadata -->
-										</header>
-										<!-- .comment-meta -->
-
-										<div class="comment-content">
-											<p>
-												Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
-												pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
-											</p>
-										</div>
-										<footer class="comment-footer">
-											<span class="edit-link">
-												<i class="far fa-edit"></i>
-												<a class="comment-edit-link" href="#">Edit</a>
-											</span>
-											<span class="entry-meta-divider">|</span>
-											<div class="reply">
-												<i class="far fa-share-square"></i>
-												<a rel="nofollow" class="comment-reply-link" href="#" aria-label="Reply to John Doe">Reply</a>
-											</div>
-											<span class="entry-meta-divider">|</span>
-											<div class="comment-metadata">
-												<i class="far fa-clock"></i>
-												<a href="#">
-													<time datetime="2018-03-14T07:57:01+00:00">
-														2 days ago
-													</time>
-												</a>
-											</div>
-										</footer>
-										<!-- .comment-content -->
-
-
-									</article>
-									<!-- .comment-body -->
-									<!-- .children -->
-								</li>
-							</ol>
-							<!-- .children -->
-						</li>
-						<!-- #comment-## -->
-						<!-- #comment-## -->
-					</ol>
+				@await Html.PartialAsync("~/Views/BlogComment/CommentListByBlog.cshtml")
 					<!-- .comment-list -->
 
 

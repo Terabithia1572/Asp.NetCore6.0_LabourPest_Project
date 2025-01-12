@@ -20,8 +20,8 @@ namespace BusinessLayer.Concrete
 
         public List<BlogComment> GetAll()
         {
-            return _blogCommentDal.GetListAll();
-        }
+            return _blogCommentDal.GetListAll(x=>x.BlogID==1);
+		}
 
         public void TAdd(BlogComment t)
         {

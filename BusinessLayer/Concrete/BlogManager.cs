@@ -46,12 +46,16 @@ namespace BusinessLayer.Concrete
             _blogDal.Delete(t);
         }
 
-        public Blog TGetByID(int id)
-        {
+        public Blog TGetByID(int id) // Blog detayını getiren metot bunu güncellemede kullanacağım
+		{
             return _blogDal.GetByID(id);
         }
+        public List<Blog> GetBlogByID(int id)
+		{
+			return _blogDal.GetListAll(x => x.BlogID == id);
+		}
 
-        public void TUpdate(Blog t)
+		public void TUpdate(Blog t)
         {
             _blogDal.Update(t);
         }
