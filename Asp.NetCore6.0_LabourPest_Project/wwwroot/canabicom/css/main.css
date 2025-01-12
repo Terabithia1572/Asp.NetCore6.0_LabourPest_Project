@@ -10164,6 +10164,13 @@ body.boxed {
 .btn:focus {
 	box-shadow: none;
 }
+.btn-maincolor4 {
+	width: 150px; /* Sabit genişlik */
+	text-align: center; /* Yazıyı ortala */
+	white-space: normal; /* Metnin birden fazla satıra yayılmasına izin ver */
+	padding: 10px; /* Buton içindeki boşluk */
+	font-size: 14px; /* Varsayılan boyuttan küçük */
+}
 
 .btn-secondary {
 	border-color: #e4ebe8;
@@ -10174,6 +10181,7 @@ body.boxed {
 .btn-maincolor,
 .btn-maincolor2,
 .btn-maincolor3,
+.btn-maincolor4,
 .btn-darkgrey {
 	color: #fff;
 }
@@ -10188,6 +10196,9 @@ body.boxed {
 
 .btn-maincolor3 {
 	background-color: #073220;
+}
+.btn-maincolor4 {
+	background-color: #07a763;
 }
 
 .btn-darkgrey {
@@ -10433,6 +10444,10 @@ body.boxed {
 	background-color: #07a763;
 	color: #fff;
 }
+	.ls .btn-maincolor4:hover {
+		background-color: #ebc912;
+		color: #fff;
+	}
 
 .ls .btn-darkgrey:hover {
 	background-color: #07a763;
@@ -10831,30 +10846,33 @@ body.boxed {
 	background-color: #07a763;
 }
 
-.ds .btn-maincolor,
-.ds .btn-maincolor2,
-.ds .btn-maincolor3,
-.ds .btn-outline-maincolor,
-.ds .btn-outline-maincolor2,
-.ds .btn-outline-maincolor3,
-.ds .btn-outline-darkgrey {
-	color: #fff;
-}
+	.ds .btn-maincolor,
+	.ds .btn-maincolor2,
+	.ds .btn-maincolor3,
+	.ds .btn-maincolor4,
+	.ds .btn-outline-maincolor,
+	.ds .btn-outline-maincolor2,
+	.ds .btn-outline-maincolor3,
+	.ds .btn-outline-maincolor4,
+	.ds .btn-outline-darkgrey {
+		color: #fff;
+	}
 
 .ds .btn-maincolor3 {
 	background-color: #7a998c;
 }
 
-.ds .btn-maincolor:hover,
-.ds .btn-maincolor2:hover,
-.ds .btn-maincolor3:hover,
-.ds .btn-darkgrey:hover,
-.ds .btn-outline-maincolor:hover,
-.ds .btn-outline-maincolor2:hover,
-.ds .btn-outline-maincolor3:hover,
-.ds .btn-outline-darkgrey:hover {
-	color: #fff;
-}
+	.ds .btn-maincolor:hover,
+	.ds .btn-maincolor2:hover,
+	.ds .btn-maincolor3:hover,
+	.ds .btn-maincolor4:hover,
+	.ds .btn-darkgrey:hover,
+	.ds .btn-outline-maincolor:hover,
+	.ds .btn-outline-maincolor2:hover,
+	.ds .btn-outline-maincolor3:hover,
+	.ds .btn-outline-darkgrey:hover {
+		color: #fff;
+	}
 
 .ds .btn-maincolor:hover {
 	background-color: #ebc912;
@@ -10867,6 +10885,9 @@ body.boxed {
 .ds .btn-maincolor3:hover {
 	background-color: #07a763;
 }
+	.ds .btn-maincolor4:hover {
+		background-color: #ebc912;
+	}
 
 .ds .btn-outline-maincolor3 {
 	border-color: #7a998c;
@@ -11424,6 +11445,9 @@ body.boxed {
 	background-color: #fff;
 	color: #073220;
 }
+	.cs .btn-maincolor4:hover {
+		background-color: #ebc912;
+	}
 
 .cs .btn-darkgrey:hover {
 	background-color: #073220;
