@@ -1,0 +1,407 @@
+﻿@model Blog
+@{
+    ViewData["Title"] = "BlogDetails";
+    Layout = "~/Views/Shared/_BlogLayout.cshtml";
+}
+
+<section class="page_title ds s-parallax s-overlay s-py-65">
+	<div class="s-blur"></div>
+	<div class="container">
+		<div class="row">
+
+
+			<div class="col-md-12 text-center text-sm-left">
+				<h1>@Model.BlogContent</h1>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a href="index.html">Ana Sayfa</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="#">Bloglar</a>
+					</li>
+					<li class="breadcrumb-item active">
+						@Model.BlogContent
+					</li>
+				</ol>
+			</div>
+
+
+		</div>
+	</div>
+</section>
+
+<section class="ls no-sidebar s-py-xl-150 s-py-lg-130 s-py-md-90 s-py-60 c-gutter-60">
+	<div class="container">
+		<div class="row">
+
+			<main class="offset-lg-2 col-lg-8">
+
+				<article class="vertical-item single-post post type-post status-publish format-standard has-post-thumbnail">
+
+					<!-- .post-thumbnail -->
+					<div class="item-media post-thumbnail">
+						<img src="@Model.BlogImage" alt="">
+					</div>
+
+
+					<div class="item-content">
+						<header class="entry-header">
+							<div class="entry-meta">
+								<div class="byline">
+									<div class="date">
+										<i class="far fa-clock"></i>
+										<a href="blog-single-left.html" rel="bookmark">
+											<time class="entry-date published updated" datetime="2018-03-18T15:15:12+00:00">
+												@Model.BlogDate
+											</time>
+										</a>
+									</div>
+
+									<span class="entry-meta-divider">|</span>
+									<div class="author vcard">
+										<i class="far fa-user"></i>
+										<a class="url color-main2 fn n" href="blog-left.html">Yunus İNAN</a>
+									</div>
+									<span class="entry-meta-divider">|</span>
+									<div class="views-count">
+										<i class="far fa-eye"></i>
+										<span>5 235</span>
+									</div>
+								</div>
+							</div>
+
+							<!-- .entry-meta -->
+
+
+						</header>
+						<!-- .entry-header -->
+
+						<div class="entry-content">
+							<p>
+								Types of Weed: Determining Marijuana Quality The world of weed is rich with different types and new strains options. To the beginner, it can be a little bit tricky to figure out what’s dank and what’s schwag.
+								Plants can be put outside 3-4 weeks after germination. Temperatures outside may not fall lower than 0 deg
+							</p>
+
+
+							<blockquote>
+
+								<p>
+									<em class="big">
+										Sem justo facilisi, pulvinar feugiat sed cursus donec vestibulum, rutrum mauris montes felis, quam metus sed in.
+										In curabitur, ut in auctor ut, egestas nunc elit lectus sed sed.
+									</em>
+								</p>
+								<footer>
+
+									<p>January 23, 2019 </p>
+
+									<span class="divider">|</span>
+
+									<p>Web hosting</p>
+
+								</footer>
+
+							</blockquote>
+
+
+						</div>
+						<!-- .entry-content -->
+					</div>
+					<!-- .item-content -->
+				</article>
+
+
+
+
+				<div id="comments" class="comments-area">
+
+
+					<ol class="comment-list">
+						<li class="comment">
+							<article class="comment-body">
+								<header class="comment-meta">
+									<div class="comment-author vcard">
+										<img alt="" src="images/team/03.jpg">
+										<b class="fn">
+											<a href="#" rel="nofollow" class="url">Eric B. Lawton</a>
+										</b>
+
+									</div>
+									<!-- .comment-author -->
+									<!-- .comment-metadata -->
+								</header>
+								<!-- .comment-meta -->
+
+								<div class="comment-content">
+									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. </p>
+								</div>
+								<footer class="comment-footer">
+									<span class="edit-link">
+										<i class="far fa-edit"></i>
+										<a class="comment-edit-link" href="#">Edit</a>
+									</span>
+									<span class="entry-meta-divider">|</span>
+									<div class="reply">
+										<i class="far fa-share-square"></i>
+										<a rel="nofollow" class="comment-reply-link" href="#" aria-label="Reply to John Doe">Reply</a>
+									</div>
+									<span class="entry-meta-divider">|</span>
+									<div class="comment-metadata">
+										<i class="far fa-clock"></i>
+										<a href="#">
+											<time datetime="2018-03-14T07:57:01+00:00">
+												2 days ago
+											</time>
+										</a>
+									</div>
+								</footer>
+								<!-- .comment-content -->
+
+
+							</article>
+							<!-- .comment-body -->
+							<!-- .children -->
+						</li>
+						<li class="comment">
+							<article class="comment-body">
+								<header class="comment-meta">
+									<div class="comment-author vcard">
+										<img alt="" src="images/team/03.jpg">
+										<b class="fn">
+											<a href="#" rel="nofollow" class="url">Mary D. Santos</a>
+										</b>
+
+									</div>
+									<!-- .comment-author -->
+									<!-- .comment-metadata -->
+								</header>
+								<!-- .comment-meta -->
+
+								<div class="comment-content">
+									<p>
+										Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+										Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
+										pellentesque eu, pretium quis, sem.
+										Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate
+									</p>
+								</div>
+								<footer class="comment-footer">
+									<span class="edit-link">
+										<i class="far fa-edit"></i>
+										<a class="comment-edit-link" href="#">Edit</a>
+									</span>
+									<span class="entry-meta-divider">|</span>
+									<div class="reply">
+										<i class="far fa-share-square"></i>
+										<a rel="nofollow" class="comment-reply-link" href="#" aria-label="Reply to John Doe">Reply</a>
+									</div>
+									<span class="entry-meta-divider">|</span>
+									<div class="comment-metadata">
+										<i class="far fa-clock"></i>
+										<a href="#">
+											<time datetime="2018-03-14T07:57:01+00:00">
+												2 days ago
+											</time>
+										</a>
+									</div>
+								</footer> <!-- Yorumların alt kısmında bulunan reply kısmı-->
+								<!-- .comment-content -->
+							</article>
+							<!-- .comment-body -->
+							<!-- .children -->
+						</li>
+						<!-- #comment-## -->
+
+						<li class="comment">
+							<article class="comment-body">
+								<header class="comment-meta">
+									<div class="comment-author vcard">
+										<img alt="" src="images/team/03.jpg">
+										<b class="fn">
+											<a href="#" rel="nofollow" class="url">Eric B. Lawton</a>
+										</b>
+
+									</div>
+									<!-- .comment-author -->
+									<!-- .comment-metadata -->
+								</header>
+								<!-- .comment-meta -->
+
+								<div class="comment-content">
+									<p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim </p>
+								</div>
+								<footer class="comment-footer">
+									<span class="edit-link">
+										<i class="far fa-edit"></i>
+										<a class="comment-edit-link" href="#">Edit</a>
+									</span>
+									<span class="entry-meta-divider">|</span>
+									<div class="reply">
+										<i class="far fa-share-square"></i>
+										<a rel="nofollow" class="comment-reply-link" href="#" aria-label="Reply to John Doe">Reply</a>
+									</div>
+									<span class="entry-meta-divider">|</span>
+									<div class="comment-metadata">
+										<i class="far fa-clock"></i>
+										<a href="#">
+											<time datetime="2018-03-14T07:57:01+00:00">
+												2 days ago
+											</time>
+										</a>
+									</div>
+								</footer>
+								<!-- .comment-content -->
+
+
+							</article>
+							<!-- .comment-body -->
+							<ol class="children">
+								<li class="comment">
+									<article class="comment-body">
+										<header class="comment-meta">
+											<div class="comment-author vcard">
+												<img alt="" src="images/team/03.jpg">
+												<b class="fn">
+													<a href="#" rel="nofollow" class="url">Timothy C. Dawson</a>
+												</b>
+
+											</div>
+											<!-- .comment-author -->
+											<!-- .comment-metadata -->
+										</header>
+										<!-- .comment-meta -->
+
+										<div class="comment-content">
+											<p>
+												Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+												Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+												pretium quis, sem. Nulla consequat massa quis enim.
+											</p>
+										</div>
+										<footer class="comment-footer">
+											<span class="edit-link">
+												<i class="far fa-edit"></i>
+												<a class="comment-edit-link" href="#">Edit</a>
+											</span>
+											<span class="entry-meta-divider">|</span>
+											<div class="reply">
+												<i class="far fa-share-square"></i>
+												<a rel="nofollow" class="comment-reply-link" href="#" aria-label="Reply to John Doe">Reply</a>
+											</div>
+											<span class="entry-meta-divider">|</span>
+											<div class="comment-metadata">
+												<i class="far fa-clock"></i>
+												<a href="#">
+													<time datetime="2018-03-14T07:57:01+00:00">
+														2 days ago
+													</time>
+												</a>
+											</div>
+										</footer>
+										<!-- .comment-content -->
+
+
+									</article>
+									<!-- .comment-body -->
+									<!-- .children -->
+								</li>
+								<!-- #comment-## -->
+								<li class="comment">
+									<article class="comment-body">
+										<header class="comment-meta">
+											<div class="comment-author vcard">
+												<img alt="" src="images/team/03.jpg">
+												<b class="fn">
+													<a href="#" rel="nofollow" class="url">Mary D. Santos</a>
+												</b>
+
+											</div>
+											<!-- .comment-author -->
+											<!-- .comment-metadata -->
+										</header>
+										<!-- .comment-meta -->
+
+										<div class="comment-content">
+											<p>
+												Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
+												pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+											</p>
+										</div>
+										<footer class="comment-footer">
+											<span class="edit-link">
+												<i class="far fa-edit"></i>
+												<a class="comment-edit-link" href="#">Edit</a>
+											</span>
+											<span class="entry-meta-divider">|</span>
+											<div class="reply">
+												<i class="far fa-share-square"></i>
+												<a rel="nofollow" class="comment-reply-link" href="#" aria-label="Reply to John Doe">Reply</a>
+											</div>
+											<span class="entry-meta-divider">|</span>
+											<div class="comment-metadata">
+												<i class="far fa-clock"></i>
+												<a href="#">
+													<time datetime="2018-03-14T07:57:01+00:00">
+														2 days ago
+													</time>
+												</a>
+											</div>
+										</footer>
+										<!-- .comment-content -->
+
+
+									</article>
+									<!-- .comment-body -->
+									<!-- .children -->
+								</li>
+							</ol>
+							<!-- .children -->
+						</li>
+						<!-- #comment-## -->
+						<!-- #comment-## -->
+					</ol>
+					<!-- .comment-list -->
+
+
+					<div id="respond" class="comment-respond ls">
+
+						<form action="https://html.modernwebtemplates.com/" method="post" id="commentform" class="comment-form" novalidate="">
+							<p class="comment-form-author form-group has-placeholder">
+								<label for="author1213">
+									Name
+									<span class="required">*</span>
+								</label>
+
+								<input class="form-control" id="author1213" placeholder="Name" name="author" type="text" value="" size="30" maxlength="245" aria-required="true" required="required">
+							</p>
+							<p class="comment-form-email form-group has-placeholder">
+								<label for="email234">
+									Email <span class="required">*</span>
+								</label>
+
+								<input class="form-control" id="email234" name="email" placeholder="Email" type="email" value="" size="30" maxlength="100" aria-required="true" required="required">
+							</p>
+							<p class="comment-form-comment form-group has-placeholder">
+								<label for="comment234">Comment</label>
+
+								<textarea id="comment234" name="comment" class="form-control" placeholder="Message" cols="45" rows="4" maxlength="65525" aria-required="true" required="required"></textarea>
+							</p>
+							<p class="form-submit form-group mt-10">
+								<input name="submit" type="submit" class="submit btn btn-outline-maincolor" value="Submit">
+							</p>
+						</form>
+					</div>
+					<!-- #respond -->
+
+
+				</div> <!--Yorumlar alanının tümü-->
+
+
+			</main>
+
+		</div>
+
+	</div>
+</section>
+
+
