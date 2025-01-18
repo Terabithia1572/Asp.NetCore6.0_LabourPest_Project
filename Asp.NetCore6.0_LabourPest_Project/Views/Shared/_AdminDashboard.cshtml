@@ -1,0 +1,63 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-navigation-type="default" data-navbar-horizontal-shape="default">
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>LabourPest Admin Paneli</title>
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    @await Component.InvokeAsync("_AdminCssViewComponentPartial") <!--CSS Kodlarının bulunduğu kısım-->
+    @await Component.InvokeAsync("_AdminScriptTopViewComponentPartial") <!--Script ve CSS Kodlarının bulunduğu kısım-->
+</head>
+
+<body>
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+
+        @await Component.InvokeAsync("_AdminNavbarVerticalViewComponentPartial") <!--Burası Bizim Sol Tarafta Bulunan Kodlarımız Ana Sayfa örneğin-->
+        @await Component.InvokeAsync("_AdminTopLogoViewComponentPartial") <!--Burası Yukardıdaki Logonun Bulunduğu alan -->
+        @await Component.InvokeAsync("_AdminScriptBottomViewComponentPartial") <!--Burası Logonun Altında Çalışan Script Kodlarının Bulunduğu alan-->
+        <div class="content">
+            @RenderBody()
+            <footer class="footer position-absolute">
+                <div class="row g-0 justify-content-between align-items-center h-100">
+                    <div class="col-12 col-sm-auto text-center">
+                        <p class="mb-0 mt-2 mt-sm-0 text-body">Thank you for creating with Phoenix<span class="d-none d-sm-inline-block"></span><span class="d-none d-sm-inline-block mx-1">|</span><br class="d-sm-none" />2024 &copy;<a class="mx-1" href="https://themewagon.com/">Themewagon</a></p>
+                    </div>
+                    <div class="col-12 col-sm-auto text-center">
+                        <p class="mb-0 text-body-tertiary text-opacity-85">v1.20.1</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+    </main><!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+    @await Component.InvokeAsync("_AdminThemeViewComponentPartial") <!--Burası Sağ Tarafta Bulunan Özelleştirme Butonunun bulunduğu kodlar-->
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    @await Component.InvokeAsync("_AdminJavaScriptViewComponentPartial") <!--JavaScript Kodlarının bulunduğu kısım-->
+</body>
+
+
+
+</html>
