@@ -12,5 +12,9 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         {
             return View();
         }
+        public IActionResult ProfileSettings()
+        {
+            return View();
+        }
     }
 }
