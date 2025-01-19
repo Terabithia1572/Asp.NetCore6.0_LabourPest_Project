@@ -7,6 +7,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 	public class BlogCommentController : Controller
 	{
 		BlogCommentManager blogCommentManager = new BlogCommentManager(new EfBlogCommentRepository());
+		
 		public IActionResult Index()
 		{
 			return View();
@@ -20,6 +21,11 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 			
 			var values=blogCommentManager.GetComments(id);
 			return PartialView(values);
+		}
+		public IActionResult BlogCommentList()
+		{
+			var values=blogCommentManager.GetCommentListWithBlog();
+            return View(values);
 		}
 	}
 }
