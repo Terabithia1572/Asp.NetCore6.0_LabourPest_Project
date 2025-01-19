@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "AddCustomer";
+    Layout = "~/Views/Shared/_AdminDashboard.cshtml";
+}
+
+<div class="border-bottom border-translucent mb-7 mx-n3 px-2 mx-lg-n6 px-lg-6">
+    <div class="row">
+        <div class="col-xl-9">
+            <div class="d-sm-flex justify-content-between">
+                <h2 class="mb-4">Create a new lead</h2>
+                <div class="d-flex mb-3"><button class="btn btn-phoenix-primary me-2 px-6">İptal Et</button><a class="btn btn-primary" href="/RegisterCustomer/CustomerList">Müşteri Listesi</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-9">
+        <div class="d-flex align-items-end position-relative mb-7">
+            <input class="d-none" id="upload-avatar" type="file" />
+            <div class="hoverbox" style="width: 150px; height: 150px">
+                <div class="hoverbox-content rounded-circle d-flex flex-center z-1" style="--phoenix-bg-opacity: .56;"><span class="fa-solid fa-camera fs-1 text-body-quaternary"></span></div>
+                <div class="position-relative bg-body-quaternary rounded-circle cursor-pointer d-flex flex-center mb-xxl-7">
+                    <div class="avatar avatar-5xl"><img class="rounded-circle" src="~/labourpestcustomer/assets/img/team/150x150/58.webp" alt="" /></div><label class="w-100 h-100 position-absolute z-1" for="upload-avatar"></label>
+                </div>
+            </div>
+        </div>
+        <h4 class="mb-3">Lead Information </h4>
+        <form class="row g-3 mb-9" method="post">
+           
+            <div class="col-sm-6 col-md-4">
+                <div class="form-floating"><input class="form-control" id="floatingInputFirstname" name="WriterName" type="text" placeholder="First name" /><label for="floatingInputFirstname">AD</label></div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="form-floating"><input class="form-control" id="floatingInputLastname" type="text" name="WriterSurname" placeholder="Last name" /><label for="floatingInputLastname">SOYAD</label></div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="form-floating"><input class="form-control" id="floatingInputCompany" type="text" placeholder="Company" name="WriterAbout" /><label for="floatingInputCompany">HAKKINDA</label></div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="form-floating"><input class="form-control" id="floatingInputTitle" type="text" placeholder="title" name="WriterImage" /><label for="floatingInputTitle">RESİM</label></div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="form-floating"><input class="form-control" id="floatingInputEmail" type="text" placeholder="email" name="WriterMail" /><label for="floatingInputEmail">E-MAİL</label></div>
+            </div>
+          
+            <div class="col-sm-6 col-md-4">
+                <div class="form-floating"><input class="form-control" id="floatingInputPhone" type="text" placeholder="phone" name="WriterPassword"  /><label for="floatingInputPhone">ŞİFRE</label></div>
+            </div>
+         
+            <div class="col-12 d-flex justify-content-end mt-6"><button class="btn btn-primary" type="submit">Müşteri Ekle</button></div>
+        </form>
+    </div>
+</div>
