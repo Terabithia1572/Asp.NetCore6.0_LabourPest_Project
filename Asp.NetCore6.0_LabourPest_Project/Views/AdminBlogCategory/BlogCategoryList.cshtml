@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewData["Title"] = "BlogCategoryList";
+    Layout = "~/Views/Shared/_AdminDashboard.cshtml";
+}
+
+@model List<BlogCategory>
+<div class="pb-9">
+   
+    <div class="border-bottom border-translucent mb-7 mx-n3 px-2 mx-lg-n6 px-lg-6">
+        <div class="row">
+            <div class="col-xl-9">
+                <div class="d-sm-flex justify-content-between">
+                    <h2 class="mb-4">Blog Kategori Listesi</h2>
+                    <div class="d-flex mb-3"><button class="btn btn-phoenix-primary me-2 px-6">İptal</button><a class="btn btn-primary" href="/AdminBlogCategory/AddBlogCategory">Blog Kategorisi Ekle</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row gy-5">
+        <div class="col-xl-7 col-xxl-8">
+            <div class="border-top border-translucent">
+                <div id="purchasersSellersTable" data-list='{"valueNames":["deals_name","deal_owner","account_name","stage","amount"],"page":10,"pagination":true}'>
+                    <div class="table-responsive scrollbar mx-n1 px-1">
+                        <table class="table table-sm fs-9 leads-table">
+                            <thead>
+                                <tr>
+                                    <th class="white-space-nowrap fs-9 align-middle ps-0" style="max-width:20px; width:18px;">
+                                        <div class="form-check mb-0 fs-8"><input class="form-check-input" type="checkbox" data-bulk-select='{"body":"purchasers-sellers-body"}' /></div>
+                                    </th>
+                                    <th class="sort align-middle ps-0 pe-5 text-uppercase text-nowrap" scope="col" data-sort="deals_name" style="min-width:120px;">Kategori Adı</th>
+                                  
+                                   
+                                    <th class="sort align-middle pe-5 text-uppercase text-nowrap" scope="col" data-sort="stage" style="min-width:160px;">Durum</th>
+                                   
+                                    <th class="sort text-end align-middle pe-0 ps-4" scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="list" id="purchasers-sellers-body">
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+                                        <td class="fs-9 align-middle py-0">
+                                            <div class="form-check mb-0 fs-8"><input class="form-check-input" type="checkbox" data-bulk-select-row='{"dealsName":"Jo_Td01","dealOwner":{"avatar":"team/avatar.webp","name":"Ally Aagaard","placeholder":true},"accountName":"Themewagon","stage":{"label":"Aktif","color":"##25B003","data":20},"amount":{"totalAmount":"$140","icon":"trending-down","color":"text-danger"}}' /></div>
+                                        </td>
+                                        <td class="deals_name align-middle white-space-nowrap fw-semibold text-body-highlight ps-0 py-0"><a class="fw-bold text-primary" href="#!">@item.BlogCategories</a></td>
+
+                                        @if(item.BlogCategoryStatus==true)
+                                        {
+                                            <td class="stage align-middle white-space-nowrap fw-bold text-body py-2">
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <div style="--phoenix-circle-progress-bar:100">
+                                                        <svg class="circle-progress-svg" width="38" height="38" viewBox="0 0 125 125">
+                                                            <circle class="progress-bar-rail" cx="65" cy="45" r="54" fill="none" stroke-linecap="round" stroke-width="15"></circle>
+                                                            <circle class="progress-bar-top" cx="65" cy="45" r="54" fill="none" stroke-linecap="round" stroke="#25B003" stroke-width="12"></circle>
+                                                        </svg>
+                                                    </div>
+                                                    <h6 class="mb-0 text-body">Aktif</h6>
+                                                </div>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td class="stage align-middle white-space-nowrap fw-bold text-body py-2">
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <div style="--phoenix-circle-progress-bar:100">
+                                                        <svg class="circle-progress-svg" width="38" height="38" viewBox="0 0 125 125">
+                                                            <circle class="progress-bar-rail" cx="65" cy="45" r="54" fill="none" stroke-linecap="round" stroke-width="15"></circle>
+                                                            <circle class="progress-bar-top" cx="65" cy="45" r="54" fill="none" stroke-linecap="round" stroke="#E5780B" stroke-width="12"></circle>
+                                                        </svg>
+                                                    </div>
+                                                    <h6 class="mb-0 text-body">Pasif</h6>
+                                                </div>
+                                            </td>
+                                        }
+
+                                        <td class="align-middle white-space-nowrap text-end pe-0 ps-4">
+                                            <div class="btn-reveal-trigger position-static">
+                                                <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs-10"></span></button>
+                                                <div class="dropdown-menu dropdown-menu-end py-2">
+                                                    <a class="dropdown-item text-success" href="/AdminBlogCategory/AddBlogCategory">Ekle</a><a class="dropdown-item text-primary" href="/AdminBlogCategory/UpdateBlogCategory/@item.BlogCategoryID">Güncelle</a>
+                                                    <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="/AdminBlogCategory/DeleteBlogCategory/@item.BlogCategoryID">Sil</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                             
+                              
+                            </tbody>
+                        </table>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
