@@ -11,7 +11,7 @@
         <div class="row g-3 justify-content-between mb-4">
             <div class="col-auto">
                 <div class="d-md-flex justify-content-between">
-                    <div><button class="btn btn-primary me-4"><span class="fas fa-plus me-2"></span>Müşteri Ekle</button><button class="btn btn-link text-body px-0"><span class="fa-solid fa-file-export fs-9 me-2"></span>Dışa Aktar</button></div>
+                    <div><a class="btn btn-primary me-4" href="/RegisterCustomer/AddCustomer"><span class="fas fa-plus me-2"></span>Müşteri Ekle</a><button class="btn btn-link text-body px-0"><span class="fa-solid fa-file-export fs-9 me-2"></span>Dışa Aktar</button></div>
                 </div>
             </div>
             <div class="col-auto">
@@ -120,8 +120,8 @@
                                 <div class="btn-reveal-trigger position-static">
                                     <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs-10"></span></button>
                                     <div class="dropdown-menu dropdown-menu-end py-2">
-                                        <a class="dropdown-item" href="#!">Görüntüle</a><a class="dropdown-item" href="#!">Dışar Çıkar</a>
-                                        <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Sil</a>
+                                        <a class="dropdown-item" href="/RegisterCustomer/UpdateCustomer/@item.WriterID">Güncelle</a><a class="dropdown-item" href="#!">Dışar Çıkar</a>
+                                        <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="/RegisterCustomer/DeleteCustomer/@item.WriterID">Sil</a>
                                     </div>
                                 </div>
                             </td>
