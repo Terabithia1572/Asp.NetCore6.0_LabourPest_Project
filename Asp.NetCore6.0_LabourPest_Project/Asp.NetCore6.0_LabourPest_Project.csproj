@@ -27,4 +27,9 @@
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\labourpestcustomer\customerImage\" />
+    <Folder Include="wwwroot\labourpestcustomer\AddcustomerImage\" />
+  </ItemGroup>
+
 </Project>
