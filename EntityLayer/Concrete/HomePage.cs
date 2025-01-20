@@ -14,7 +14,7 @@ namespace EntityLayer.Concrete
         public string HomePageDescription1 { get; set; }
         public string HomePageDescription2 { get; set; }
         public string HomePageSubDescription { get; set; }
-        public string HomePageClass { get; set; }
+        public string HomePageImage { get; set; }
         public bool HomePageStatus { get; set; }
     }
 }
