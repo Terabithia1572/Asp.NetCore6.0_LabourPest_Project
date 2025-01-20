@@ -16,7 +16,8 @@
 			@foreach (var item in Model)
 			{
 				<li class="ds cover-image s-overlay text-left">
-					<img src="~/canabicom/images/slide01.jpg" alt="img">
+					<img src="@item.HomePageImage" alt="img" loading="lazy">
+
 					<div class="container">
 						<div class="row">
 							<div class="col-md-12">
@@ -27,6 +28,7 @@
 											<h2 class="text-capitalize intro_featured_word">
 												<span class="color-main">@item.HomePageDescription1</span> @item.HomePageDescription2
 											</h2>
+
 											<p class="intro_after_featured_word text-sm-left">
 												@item.HomePageSubDescription
 											</p>
@@ -44,3 +46,35 @@
 		</ul>
 	</div> <!-- eof flexslider -->
 </section>
+
+<style>
+	.intro_featured_word {
+		font-size: 36px; /* Genel yazı boyutu */
+		line-height: 1.5; /* Satır aralığı */
+	}
+
+	.color-main {
+		font-size: inherit; /* H2 boyutuna eşitler */
+		font-weight: bold; /* Yazının kalınlığını artırır (isteğe bağlı) */
+		color: #ff6600; /* Yazı rengi */
+	}
+
+
+	.slides img {
+		width: 100%; /* Resmi slider genişliğine göre ölçeklendirir */
+		height: auto; /* Yüksekliği orantılı olarak ayarlar */
+		object-fit: cover; /* Resmi alanı kaplayacak şekilde kırpar */
+		max-height: 500px; /* Maksimum yükseklik belirler (ihtiyaca göre ayarlayın) */
+		overflow: hidden; /* Taşan içeriği gizler */
+	}
+
+	.slides img {
+		width: 100%; /* Resmi slider genişliğine göre ölçeklendirir */
+		height: auto; /* Yüksekliği orantılı olarak ayarlar */
+		object-fit: cover; /* Resmi alanı kaplayacak şekilde kırpar */
+		max-height: 500px; /* Maksimum yükseklik belirler (ihtiyaca göre ayarlayın) */
+		overflow: hidden; /* Taşan içeriği gizler */
+	}
+
+
+</style>
