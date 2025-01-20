@@ -31,6 +31,7 @@
     <Folder Include="wwwroot\labourpestcustomer\customerImage\" />
     <Folder Include="wwwroot\labourpestcustomer\AddcustomerImage\" />
     <Folder Include="wwwroot\labourpestcustomer\blogImage\" />
+    <Folder Include="wwwroot\labourpestcustomer\homePageImage\" />
   </ItemGroup>
 
 </Project>
