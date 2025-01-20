@@ -16,7 +16,16 @@
 				<div class="col-lg-4 col-md-6">
 					<div class="icon-box text-center">
 						<div class="icon-styled fs-60 color-main2">
-							<i class="icon-fonts @item.ProductImageURL"></i>
+							@if (!string.IsNullOrEmpty(item.ProductImageURL) && item.ProductImageURL.Contains("."))
+							{
+								<!-- Resim URL'si mevcutsa -->
+								<img src="@item.ProductImageURL" alt="@item.ProductName" style="max-width: 60px; max-height: 60px; object-fit: cover;">
+							}
+							else
+							{
+								<!-- İkon sınıfı varsa -->
+								<i class="icon-fonts @item.ProductImageURL"></i>
+							}
 						</div>
 						<h6 class="text-uppercase">
 							<a href="shop-right.html">@item.ProductName</a>
@@ -33,3 +42,14 @@
 		<div class="mt--50"></div>
 	</div>
 </section>
+
+<style>
+	.icon-styled img {
+		display: inline-block;
+		width: 60px;
+		height: 60px;
+		object-fit: cover; /* Resmi orantılı kırpar ve boyuta sığdırır */
+		border-radius: 50%; /* Yuvarlak yapmak isterseniz */
+	}
+
+</style>
