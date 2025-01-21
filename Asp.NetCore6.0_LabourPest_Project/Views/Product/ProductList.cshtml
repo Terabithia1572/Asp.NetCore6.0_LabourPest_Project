@@ -1,0 +1,97 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "ProductList";
+    Layout = "~/Views/Shared/_AdminDashboard.cshtml";
+}
+
+<div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-body-emphasis pt-7 mt-3 border-y">
+    <div data-list='{"valueNames":["product","customer","rating","review","time"],"page":6}'>
+        <div class="row align-items-end justify-content-between pb-5 g-3">
+            <div class="col-auto">
+                <h3>Ürün Listesi</h3>
+                <p class="text-body-tertiary lh-sm mb-0">Popüler Ürün Listesi..</p>
+            </div>
+
+        </div>
+        <div class="table-responsive mx-n1 px-1 scrollbar">
+            <table class="table fs-9 mb-0 border-top border-translucent">
+                <thead>
+                    <tr>
+                        <th class="white-space-nowrap fs-9 ps-0 align-middle">
+                            <div class="form-check mb-0 fs-8"><input class="form-check-input" id="checkbox-bulk-reviews-select" type="checkbox" data-bulk-select='{"body":"table-latest-review-body"}' /></div>
+                        </th>
+                        <th class="sort white-space-nowrap align-middle" scope="col"></th>
+                        <th class="sort white-space-nowrap align-middle" scope="col" style="min-width:360px;" data-sort="product">Ürün Adı</th>
+                        <th class="sort align-middle" scope="col" style="max-width:350px;" data-sort="review">Ürün Açıklaması</th>
+                        <th class="sort align-middle" scope="col" style="max-width:350px;" data-sort="revie1">Ürün Kategorisi</th>
+                        <th class="sort text-start ps-5 align-middle" scope="col" data-sort="status">DURUM</th>
+
+                        <th class="sort text-end pe-0 align-middle" scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody class="list" id="table-latest-review-body">
+                    @foreach (var item in Model)
+                    {
+                        <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+                            <td class="fs-9 align-middle ps-0">
+                                <div class="form-check mb-0 fs-8"><input class="form-check-input" type="checkbox" data-bulk-select-row='{"product":"Fitbit Sense Advanced Smartwatch with Tools for Heart Health, Stress Management & Skin Temperature Trends, Carbon/Graphite, One Size (S & L Bands)","productImage":"/products/60x60/1.png","customer":{"name":"Richard Dawkins","avatar":""},"rating":5,"review":"This Fitbit is fantastic! I was trying to be in better shape and needed some motivation, so I decided to treat myself to a new Fitbit.","status":{"title":"Approved","badge":"success","icon":"check"},"time":"Just now"}' /></div>
+                            </td>
+                            <td class="align-middle product white-space-nowrap py-0">
+                                <a class="d-block custom-image-wrapper" href="@item.ProductImageURL">
+                                    <img src="@item.ProductImageURL" alt="" />
+                                </a>
+                            </td>
+
+                            <td class="align-middle product white-space-nowrap"><a class="fw-semibold" href="apps/e-commerce/landing/product-details.html">@item.ProductName</a></td>
+                            <td class="align-middle review" style="min-width:350px;">
+                                <p class="fs-9 fw-semibold text-body-highlight mb-0">@item.ProductDescription</p>
+                            </td>
+                            <td class="align-middle review1" style="min-width:350px;">
+                                <p class="fs-9 fw-semibold text-body-highlight mb-0">@item.Category.CategoryName</p>
+                            </td>
+                            @if (item.ProductStatus == true)
+                            {
+                                <td class="align-middle text-start ps-5 status"><span class="badge badge-phoenix fs-10 badge-phoenix-success"><span class="badge-label">Aktif</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td>
+
+                            }
+                            else
+                            {
+                                <td class="align-middle text-start ps-5 status"><span class="badge badge-phoenix fs-10 badge-phoenix-danger"><span class="badge-label">Pasif</span><span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span></span></td>
+
+                            }
+
+                            <td class="align-middle white-space-nowrap text-end pe-0">
+                                <div class="position-relative">
+                                    <div class="hover-actions"><a href="/Product/UpdateProduct/@item.ProductID" class="btn btn-sm btn-phoenix-secondary me-1 fs-10"><span class="fas fa-check"></span></a><a href="/Product/DeleteProduct/@item.ProductID" class="btn btn-sm btn-phoenix-secondary fs-10"><span class="fas fa-trash"></span></a></div>
+                                </div>
+                                <div class="btn-reveal-trigger position-static">
+                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs-10"></span></button>
+                                    <div class="dropdown-menu dropdown-menu-end py-2">
+                                        <a class="dropdown-item" href="/Product/UpdateProduct/@item.ProductID">Güncelle</a><a class="dropdown-item" href="/Product/AddProduct">Ekle</a>
+                                        <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="/Product/DeleteProduct/@item.ProductID">Sil</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .custom-image-wrapper img {
+        width: 70px; /* Resim genişliği */
+        height: 70px; /* Resim yüksekliği */
+        border-radius: 50%; /* Oval yapı (tam yuvarlak) */
+        object-fit: cover; /* Resmin düzgün şekilde sığması */
+        border: 1px solid rgba(0, 0, 0, 0.2); /* Hafif bir kenarlık */
+        display: block; /* Taşmaları önlemek için */
+        margin: 0 auto; /* Ortalaması */
+    }
+</style>
+
