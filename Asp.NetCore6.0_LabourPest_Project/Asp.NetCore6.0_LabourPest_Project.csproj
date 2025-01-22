@@ -32,6 +32,8 @@
     <Folder Include="wwwroot\labourpestcustomer\AddcustomerImage\" />
     <Folder Include="wwwroot\labourpestcustomer\blogImage\" />
     <Folder Include="wwwroot\labourpestcustomer\homePageImage\" />
+    <Folder Include="wwwroot\labourpestcustomer\brandsImage\" />
+    <Folder Include="wwwroot\labourpestcustomer\categoryImage\" />
     <Folder Include="wwwroot\labourpestcustomer\productImage\" />
   </ItemGroup>
 
