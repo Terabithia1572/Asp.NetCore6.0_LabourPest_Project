@@ -207,15 +207,18 @@
 			</div>
 		</div>
 	</div> <!--Burası Register Kısmı-->
+	@{
+		bool showComponents = ViewData["ShowComponents"] == null || (bool)ViewData["ShowComponents"];
+	}
 
-	
 	
 
 	<div id="canvas">
 		<div id="box_wrapper">
 			@RenderBody()
 			<!-- template sections -->
-
+			 @if (showComponents)
+        {
 			<!--topline section visible only on small screens|-->
 			@await Component.InvokeAsync("PageTopLineViewComponentPartial") <!--sayfanın üst kısmı sosyal medya alanlarının bulunduğu kısım-->
 			
@@ -253,7 +256,7 @@
 
 			@await Component.InvokeAsync("BorderTopViewComponentPartial") <!--Telif Haklarının Bulunduğu Kısım Tüm Hakları Saklıdır..-->
 			
-
+		}
 		</div><!-- eof #box_wrapper -->
 	</div><!-- eof #canvas -->
 

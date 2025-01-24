@@ -28,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Shared\Components\ContactPageViewComponent\" />
     <Folder Include="wwwroot\labourpestcustomer\customerImage\" />
     <Folder Include="wwwroot\labourpestcustomer\AddcustomerImage\" />
     <Folder Include="wwwroot\labourpestcustomer\blogImage\" />
@@ -35,6 +36,10 @@
     <Folder Include="wwwroot\labourpestcustomer\brandsImage\" />
     <Folder Include="wwwroot\labourpestcustomer\categoryImage\" />
     <Folder Include="wwwroot\labourpestcustomer\productImage\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\Yunuss\source\repos\Asp.NetCore6.0_LabourPest_Project\Asp.NetCore6.0_LabourPest_Project\ViewComponents\MainLayout\.editorconfig" />
   </ItemGroup>
 
 </Project>

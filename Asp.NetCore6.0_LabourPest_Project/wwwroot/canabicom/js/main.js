@@ -795,10 +795,10 @@
         /////////////////////////////////////////////////
 
         //contact form processing
-        $('form.contact-form').on('submit', function (e) {
+        $('').on('submit', function (e) {
             e.preventDefault();
             var $form = $(this);
-            $($form).find('.contact-form-respond').remove();
+            $($form).find('').remove();
 
             //checking on empty values
             $($form).find('[aria-required="true"], [required]').each(function (index) {
@@ -819,9 +819,9 @@
 
             //sending form data to PHP server if fields are not empty
             var request = $form.serialize();
-            var ajax = jQuery.post("contact-form.php", request)
+            var ajax = jQuery.post("", request)
                 .done(function (data) {
-                    $($form).find('[type="submit"]').attr('disabled', false).parent().append('<div class="contact-form-respond color-main mt-20">' + data + '</div>');
+                    $($form).find('[type="submit"]').attr('disabled', false).parent().append('<div class="-respond color-main mt-20">' + data + '</div>');
                     //cleaning form
                     var $formErrors = $form.find('.form-errors');
                     if (!$formErrors.length) {
@@ -829,7 +829,7 @@
                     }
                 })
                 .fail(function (data) {
-                    $($form).find('[type="submit"]').attr('disabled', false).blur().parent().append('<div class="contact-form-respond color-main mt-20">Mail cannot be sent. You need PHP server to send mail.</div>');
+                    $($form).find('[type="submit"]').attr('disabled', false).blur().parent().append('<div class="-respond color-main mt-20">Mail cannot be sent. You need PHP server to send mail.</div>');
                 })
         });
 
