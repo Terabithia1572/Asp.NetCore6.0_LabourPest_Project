@@ -1,0 +1,35 @@
+/* Genel Resim Ayarları */
+.responsive-image {
+    width: 100%; /* Konteynıra uyum sağlar */
+    height: 100%; /* Belirtilen boyutlara uyum sağlar */
+    object-fit: cover; /* Resmi düzgün bir şekilde kırpar */
+    border-radius: 8px; /* Köşeleri yuvarlatır (isteğe bağlı) */
+}
+
+/* col-md-6 corporate için özel boyut */
+.col-md-6.corporate .item-media {
+    width: 580px;
+    height: 560px;
+}
+
+/* col-md-6 entertainment innovations için özel boyut */
+.col-md-6.entertainment.innovations .item-media {
+    width: 580px;
+    height: 270px;
+}
+
+/* col-md-3 için özel boyut */
+.col-md-3 .item-media {
+    width: 285px;
+    height: 280px;
+}
+
+/* Responsive Ayarlar */
+@media (max-width: 768px) {
+    .col-md-6.corporate .item-media,
+    .col-md-6.entertainment.innovations .item-media,
+    .col-md-3 .item-media {
+        width: 100%; /* Küçük ekranlarda tam genişlik */
+        height: auto; /* Yüksekliği otomatik ayarlar */
+    }
+}
