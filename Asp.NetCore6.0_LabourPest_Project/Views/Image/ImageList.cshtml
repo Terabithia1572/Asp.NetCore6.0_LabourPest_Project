@@ -1,40 +1,36 @@
-﻿
+﻿@model List<Image>
 @{
     ViewData["Title"] = "ImageList";
     Layout = "~/Views/Shared/_AdminDashboard.cshtml";
 }
 
-<section class="pt-6 pb-9">
-    <div class="container-medium">
-      
-        <h2 class="mb-5">Galeri</h2>
-        <div class="row g-2 g-sm-3">
-            <div class="col-3">
-                <a href="~/labourpestcustomer/assets/img/hotels/85.jpg" data-gallery="default-gallery">
-                    <img class="img-fluid rounded-2" src="~/labourpestcustomer/assets/img/hotels/75.png" alt="">
-                </a>
-            </div>
-            <div class="col-3">
-                <a href="~/labourpestcustomer/assets/img/hotels/85.jpg" data-gallery="default-gallery">
-                    <img class="img-fluid rounded-2" src="~/labourpestcustomer/assets/img/hotels/75.png" alt="">
-                </a>
-            </div>
-            <div class="col-3">
-                <a href="~/labourpestcustomer/assets/img/hotels/85.jpg" data-gallery="default-gallery">
-                    <img class="img-fluid rounded-2" src="~/labourpestcustomer/assets/img/hotels/75.png" alt="">
-                </a>
-            </div>
-            <div class="col-3">
-                <a href="~/labourpestcustomer/assets/img/hotels/85.jpg" data-gallery="default-gallery">
-                    <img class="img-fluid rounded-2" src="~/labourpestcustomer/assets/img/hotels/75.png" alt="">
-                </a>
-            </div>
-            <div class="col-3">
-                <a href="~/labourpestcustomer/assets/img/hotels/85.jpg" data-gallery="default-gallery">
-                    <img class="img-fluid rounded-2" src="~/labourpestcustomer/assets/img/hotels/75.png" alt="">
-                </a>
-            </div>
-        </div>
+<div class="mb-9">
+    <h2 class="mb-5">Galeri</h2>
+    <div class="d-flex flex-wrap gap-3 justify-content-between">
+        <div><a class="btn btn-primary me-4" href="/Image/AddImage"><svg class="svg-inline--fa fa-plus me-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"></path></svg><!-- <span class="fas fa-plus me-2"></span> Font Awesome fontawesome.com -->Yeni Resim Ekle</a></div>
 
-    </div><!-- end of .container-->
-</section>
+    </div>
+    <br />
+
+    <div class="row g-3" id="image_gallery" data-sl-isotope="{&quot;layoutMode&quot;:&quot;packery&quot;}" style="position: relative; height: 1511.75px;">
+        @foreach (var item in Model)
+        {
+            <a class="ecommerce col-sm-6 col-md-4 col-xl-3 isotope-item text-center text-decoration-none" href="/Image/DeleteImage/@item.ImageID" data-gallery="gallery-grid-title" style="visibility: visible; position: absolute; left: 0px; top: 0px;">
+                <div class="hoverbox rounded-2">
+                    <img class="img-fluid" src="@item.ImageUpload" alt="">
+                    <div class="hoverbox-content flex-center">
+                        <div class="rounded-pill bg-white d-flex flex-center" style="width: 38px; height: 38px; cursor: pointer;">
+                            <svg class="svg-inline--fa fa-window-close text-danger" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="window-close" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                <path fill="currentColor" d="M325.5 256L504.3 77.25c25-25 25-65.5 0-90.5s-65.5-25-90.5 0L256 165.5 77.25 45.75c-25-25-65.5-25-90.5 0s-25 65.5 0 90.5L165.5 256 45.75 434.8c-25 25-25 65.5 0 90.5s65.5 25 90.5 0L256 346.5 434.8 466.3c25 25 65.5 25 90.5 0s25-65.5 0-90.5L346.5 256z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+              
+            </a>
+
+        }
+       
+    </div>
+</div>
+
