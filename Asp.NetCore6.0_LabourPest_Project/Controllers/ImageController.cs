@@ -15,6 +15,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         public IActionResult ImageList()
         {
             var values = imageManager.GetAll();
+           
             return View(values);
         }
         [HttpGet]
@@ -25,8 +26,41 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         [HttpPost]
         public IActionResult AddImage(Image image)
         {
+            //string[] imageClasses = { "col-md-6 corporate", "col-md-6 entertainment innovations", "col-md-3" };
+            //var images = imageManager.GetAll();
+            //int imageCount = images.Count;
+            //image.ImageClass = imageClasses[imageCount % imageClasses.Length];
+
+            //// Resim durumunu ayarla ve kaydet
+            //image.ImageStatus = true;
+            //imageManager.TAdd(image);
+
+            //return RedirectToAction("ImageList", "Image");
+            var allImages = imageManager.GetAll().OrderByDescending(x => x.ImageID).ToList();
+
+            // Son eklenen kaydın ImageClass değerine bak
+            if (allImages.Any())
+            {
+                var lastImageClass = allImages.First().ImageClass;
+
+                // ImageClass değerine göre yeni resim için sınıf ata
+                image.ImageClass = lastImageClass switch
+                {
+                    "col-md-6 corporate" => "col-md-6 entertainment innovations",
+                    "col-md-6 entertainment innovations" => "col-md-3",
+                    _ => "col-md-6 corporate"
+                };
+            }
+            else
+            {
+                // İlk resim ekleniyorsa varsayılan değer
+                image.ImageClass = "col-md-6 corporate";
+            }
+
+            // Resim durumunu aktif olarak işaretle ve kaydet
             image.ImageStatus = true;
             imageManager.TAdd(image);
+
             return RedirectToAction("ImageList", "Image");
         }
         public IActionResult DeleteImage(int id)
@@ -54,7 +88,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             if (file != null && file.Length > 0)
             {
                 // Klasör yolunu tanımla
-                string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "labourpestcustomer", "Image");
+                string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "labourpestcustomer", "Image2");
                 if (!Directory.Exists(folderPath))
                 {
                     Directory.CreateDirectory(folderPath);
@@ -73,7 +107,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
                 }
 
                 // Dosya yolunu döndür
-                string relativePath = $"/labourpestcustomer/Image/{fileName}";
+                string relativePath = $"/labourpestcustomer/Image2/{fileName}";
                 return Json(new { filePath = relativePath });
             }
 
