@@ -4,7 +4,7 @@
 
 			<div class="col-lg-4 col-md-6  animate" data-animation="fadeInUp">
 				<a href="index.html" class="logo">
-					<img src="~/canabicom/images/logo.png" alt="">
+					<img src="~/canabicom/images/labourpesticon2.png" alt="">
 					<span class="d-flex flex-column">
 						<span class="logo-text color-darkgrey">Labour</span>
 						<span class="logo-subtext">Pest</span>
@@ -48,12 +48,12 @@
 						Bizden Haberdar Olun..
 					</p>
 
-					<form class="signup" action="https://html.modernwebtemplates.com/">
+					<form class="signup" method="post" asp-action="AddSubscribes" asp-controller="Subscribe">
 						<label for="mailchimp_email">
 							<span class="screen-reader-text">Abone Ol:</span>
 						</label>
 
-						<input id="mailchimp_email" name="email" type="email" class="form-control mailchimp_email" placeholder="Mail Adresiniz..">
+						<input id="mailchimp_email" name="SubscribeMail" type="email" class="form-control mailchimp_email" placeholder="Mail Adresiniz..">
 
 						<button type="submit" class="search-submit">
 							<span class="screen-reader-text">Abone Ol</span>
@@ -72,20 +72,24 @@
 							<div class="icon-styled icon-top color-main fs-14">
 								<i class="fa fa-map-marker"></i>
 							</div>
-							<p>İzmir <br> Antalya konumları gelecek </p>
+							<p>
+								Elmalı Mahallesi 7.Sokak<br>
+								Zamanlar İş Merkezi No:18/406<br>
+								Muratpaşa/ANTALYA
+							</p>
 						</li>
 						<li class="icon-inline">
 							<div class="icon-styled icon-top color-main fs-14">
 								<i class="fa fa-phone"></i>
 							</div>
-							<p>+541 111 11 11</p>
+							<p>+533 699 22 75</p>
 						</li>
 						<li class="icon-inline">
 							<div class="icon-styled icon-top color-main fs-14">
 								<i class="fa fa-envelope"></i>
 							</div>
 							<p>
-								<a href="#"><span class="__cf_email__" data-cfemail="afccc0c1cecdc6ccc0c2efcad7cec2dfc3ca81ccc0c2">[email&#160;adresi buraya yazılacak]</span></a>
+								<a href="#"><span class="__cf_email__" data-cfemail="afccc0c1cecdc6ccc0c2efcad7cec2dfc3ca81ccc0c2">murat.koc@labourpest.com</span></a>
 							</p>
 						</li>
 					</ul>
