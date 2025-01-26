@@ -877,7 +877,7 @@
         });
 
         //MailChimp subscribe form processing
-        $('.signup').on('submit', function (e) {
+        $('.').on('', function (e) {
             e.preventDefault();
             var $form = $(this);
             // update user interface
@@ -885,7 +885,7 @@
             // Prepare query string and send AJAX request
             jQuery.ajax({
                 url: 'mailchimp/store-address.php',
-                data: 'ajax=true&email=' + escape($form.find('.mailchimp_email').val()),
+                data: 'ajax=true&email=' + escape($form.find('.').val()),
                 success: function (msg) {
                     $form.find('.response').html(msg);
                 }

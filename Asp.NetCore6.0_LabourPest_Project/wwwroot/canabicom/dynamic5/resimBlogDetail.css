@@ -1,0 +1,21 @@
+.item-media {
+    display: flex; /* Resmi hizalamak için */
+    justify-content: center; /* Ortalamak için */
+    align-items: center;
+    overflow: hidden; /* Taşmaları önler */
+}
+
+    .item-media img {
+        display: inline-block;
+        max-width: none; /* Resmi sınırlamadan kendi boyutunda gösterir */
+        height: auto; /* Oranları korur */
+        width: auto; /* Resmin doğal boyutunu korur */
+    }
+
+
+@media (max-width: 768px) {
+    .item-media {
+        max-width: 100%;
+        padding: 0 15px; /* Kenar boşluğu için */
+    }
+}
