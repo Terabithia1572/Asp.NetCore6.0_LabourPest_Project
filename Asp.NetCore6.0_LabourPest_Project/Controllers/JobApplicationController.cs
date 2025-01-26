@@ -17,5 +17,6 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             var values = jobApplicationManager.GetAll();
             return View(values);
         }
+     
     }
 }
