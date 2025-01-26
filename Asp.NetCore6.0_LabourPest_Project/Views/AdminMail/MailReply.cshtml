@@ -1,0 +1,56 @@
+﻿@model Mail
+
+@{
+    ViewData["Title"] = "Yanıtla";
+    Layout = "~/Views/Shared/_AdminDashboard.cshtml";
+}
+
+<h3>Yanıtla: @Model.MailTitle</h3>
+
+<form asp-action="SendReply" method="post">
+    <div class="mb-3">
+        <label for="to" class="form-label">Kime</label>
+        <select class="form-select" id="to" name="ReceiverMail" required>
+            <option value="">Seçiniz...</option>
+            @foreach (var writer in ViewBag.Writers)
+            {
+                <option value="@writer.WriterMail"
+                        data-writer-name="@writer.WriterName"
+                        data-writer-surname="@writer.WriterSurname">
+                    @writer.WriterName @writer.WriterSurname
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="name" class="form-label">Adınız</label>
+        <input type="text" class="form-control" id="name" name="MailName" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="surname" class="form-label">Soyadınız</label>
+        <input type="text" class="form-control" id="surname" name="MailSurname" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="subject" class="form-label">Konu</label>
+        <input type="text" class="form-control" id="subject" name="MailTitle" value="@Model.MailTitle" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="message" class="form-label">Mesaj</label>
+        <textarea class="form-control" id="message" name="MailContent" rows="5" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Gönder</button>
+</form>
+
+<script>
+    // "Kime" alanından Writer bilgilerini otomatik doldurma
+    document.getElementById('to').addEventListener('change', function () {
+        var selectedOption = this.options[this.selectedIndex];
+        document.getElementById('name').value = selectedOption.getAttribute('data-writer-name');
+        document.getElementById('surname').value = selectedOption.getAttribute('data-writer-surname');
+    });
+</script>
