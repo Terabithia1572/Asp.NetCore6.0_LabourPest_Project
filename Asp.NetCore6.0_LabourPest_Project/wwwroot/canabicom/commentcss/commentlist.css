@@ -1,0 +1,43 @@
+   /* Yorum kutusunun sabit boyutta olması */
+
+
+       /* Yorum içeriği için sabit yükseklik */
+       .quote-item blockquote {
+           width: 100%;
+           max-width: 400px;
+           height: 330px; /* Sabit yükseklik */
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           text-align: center;
+           overflow: hidden;
+           white-space: normal;
+           border-radius:3%;
+       }
+
+           /* Yorum yazısının düzgün hizalanması */
+           .quote-item blockquote p {
+               font-size: 16px;
+               font-style: italic;
+               color: #333;
+               line-height: 1.5;
+               margin: 0;
+           }
+
+   /* Kullanıcı adı ve resim düzenlemesi */
+   .quote-title p {
+       font-weight: bold;
+       font-size: 18px;
+       margin-top: 10px;
+       color: #222;
+   }
+
+   /* Resimlerin çerçeve içinde sabit boyutlarda görünmesi */
+   .quote-image img {
+       width: 80px;
+       height: 80px;
+       object-fit: cover;
+       border-radius: 50%;
+       display: block;
+       margin: 10px auto;
+   }
