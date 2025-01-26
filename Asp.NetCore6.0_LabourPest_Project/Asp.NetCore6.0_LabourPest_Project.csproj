@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <Folder Include="Views\Shared\Components\ContactPageViewComponent\" />
+    <Folder Include="wwwroot\canabicom\profilePhoto\" />
     <Folder Include="wwwroot\labourpestcustomer\customerImage\" />
     <Folder Include="wwwroot\labourpestcustomer\AddcustomerImage\" />
     <Folder Include="wwwroot\labourpestcustomer\blogImage\" />
