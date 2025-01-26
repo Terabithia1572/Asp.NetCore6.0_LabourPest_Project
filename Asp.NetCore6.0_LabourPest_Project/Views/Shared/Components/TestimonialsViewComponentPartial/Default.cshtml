@@ -6,13 +6,11 @@
             <div class="col-12">
                 <h2 class="special-heading text-center">Bizim Hakkımızda Ne Diyorlar ?</h2>
                 <p class="special-heading text-center big">
-                    Yorumlarınız bizim çok değerli,bizim için bir yorum yapın...
+                    Yorumlarınız bizim çok değerli, bizim için bir yorum yapın...
                 </p>
                 <div class="divider-60 hidden-below-md"></div>
                 <div class="divider-40 hidden-above-md"></div>
-                @* <div class="owl-carousel shop-categories-carousel" id="partners-carousel" data-center="false" data-autoplay-timeout="2000" data-margin="60" data-loop="true" data-responsive-lg="3" data-responsive-md="2" data-responsive-sm="1" data-responsive-xs="1"> *@
                 <div class="owl-carousel shop-categories-carousel" id="partners-carousel" data-center="false" data-margin="60" data-loop="true" data-autoplay="true" data-autoplay-timeout="2000" data-responsive-lg="3" data-responsive-md="2" data-responsive-sm="2" data-responsive-xs="1">
-
                     @foreach (var item in Model)
                     {
                         <div class="quote-item">
@@ -24,9 +22,8 @@
                                 </p>
                             </blockquote>
                             <div class="quote-image">
-                                <img src="@item.ImageUrl" alt="">
+                                <img src="@item.ImageUrl" alt="Yorum Sahibi">
                             </div>
-                           
                             <div class="quote-title">
                                 <p>
                                     @item.CommentUserName
@@ -39,3 +36,5 @@
         </div>
     </div>
 </section>
+
+<link href="~/canabicom/commentcss/commentlist.css" rel="stylesheet" />
