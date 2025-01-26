@@ -11,8 +11,8 @@
 		<div class="row align-items-center">
 			<div class="col-12">
 				<div class="widget section-mailchimp widget_mailchimp">
-					<form class="signup" action="https://html.modernwebtemplates.com/">
-						<input name="email" type="email" class="form-control mailchimp_email" placeholder="Email">
+					<form class="signup" method="post" asp-action="AddSubscribes" asp-controller="Subscribe">
+						<input name="SubscribeMail" type="email" class="form-control mailchimp_email" placeholder="Email">
 						<button type="submit" class="search-submit">
 							<span class="screen-reader-text">Abone Ol</span>
 						</button>
