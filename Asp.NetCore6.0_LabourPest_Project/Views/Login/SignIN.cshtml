@@ -17,13 +17,14 @@
             <hr class="bg-body-secondary mt-5 mb-4" />
             <div class="divider-content-center">ya da bir mail kullan</div>
         </div>
+        <form method="post">
         <div class="mb-3 text-start">
             <label class="form-label" for="email">Email Adresi</label>
-            <div class="form-icon-container"><input class="form-control form-icon-input" id="email" type="email" placeholder="kullanıcıadı@example.com" /><span class="fas fa-user text-body fs-9 form-icon"></span></div>
+            <div class="form-icon-container"><input class="form-control form-icon-input" name="WriterMail" id="email" type="email" placeholder="mailadresiniz@labourpest.com" /><span class="fas fa-user text-body fs-9 form-icon"></span></div>
         </div>
         <div class="mb-3 text-start">
             <label class="form-label" for="password">Şifre</label>
-            <div class="form-icon-container" data-password="data-password"><input class="form-control form-icon-input pe-6" id="password" type="password" placeholder="Şifre" data-password-input="data-password-input" /><span class="fas fa-key text-body fs-9 form-icon"></span><button class="btn px-3 py-0 h-100 position-absolute top-0 end-0 fs-7 text-body-tertiary" data-password-toggle="data-password-toggle"><span class="uil uil-eye show"></span><span class="uil uil-eye-slash hide"></span></button></div>
+            <div class="form-icon-container" data-password="data-password"><input class="form-control form-icon-input pe-6" name="WriterPassword" id="password" type="password" placeholder="Şifre" data-password-input="data-password-input" /><span class="fas fa-key text-body fs-9 form-icon"></span><button class="btn px-3 py-0 h-100 position-absolute top-0 end-0 fs-7 text-body-tertiary" data-password-toggle="data-password-toggle"><span class="uil uil-eye show"></span><span class="uil uil-eye-slash hide"></span></button></div>
         </div>
         <div class="row flex-between-center mb-7">
             <div class="col-auto">
@@ -31,6 +32,7 @@
             </div>
             <div class="col-auto"><a class="fs-9 fw-semibold" href="forgot-password.html">Şifreni Mi Unuttun ?</a></div>
         </div><button class="btn btn-primary w-100 mb-3">Giriş Yap</button>
-        <div class="text-center"><a class="fs-9 fw-bold" href="sign-up.html">Hesap Oluştur</a></div>
+        <div class="text-center"><a class="fs-9 fw-bold" href="/Login/SignUP">Hesap Oluştur</a></div>
+        </form>
     </div>
 </div>

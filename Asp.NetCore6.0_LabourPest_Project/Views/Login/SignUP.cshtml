@@ -46,13 +46,13 @@
                     <!-- Dosya seçmek için buton -->
                     <button type="button" class="btn btn-phoenix-secondary btn-sm" onclick="document.getElementById('writerprofile').click()">Fotoğraf Seç</button>
                     <!-- Yüklenen dosya yolunun görüntüleneceği input (form gönderiminde Writer tablonuzdaki WriterImage alanına gönderilecek) -->
-                    <input type="text" id="writerProfilePath" name="WriterImage" class="form-control mt-2" placeholder="Seçilen dosya yolu" readonly>
+                    <input type="hidden" id="writerProfilePath" name="WriterImage" class="form-control mt-2" placeholder="Seçilen dosya yolu" readonly>
                 </div>
             </div>
 
             <div class="mb-3 text-start">
                 <label class="form-label" for="email">Email Adresi</label>
-                <input class="form-control" id="email" type="email" name="WriterMail" placeholder="mailadresiniz@example.com" />
+                <input class="form-control" id="email" type="email" name="WriterMail" placeholder="mailadresiniz@labourpest.com" />
             </div>
             <div class="row g-3 mb-3">
                 <div class="col-sm-6">
