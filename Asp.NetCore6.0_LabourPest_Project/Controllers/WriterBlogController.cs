@@ -68,7 +68,8 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             int writerId = Convert.ToInt32(userId);
-            ViewBag.writerId = writerId;
+            var blogCounts = blogManager.GetListWithCategoryByWriter(writerId).Count;
+            ViewBag.blogSayisi = blogCounts;
             var values = blogManager.GetListWithCategoryByWriter(writerId);
             return View(values);
 
