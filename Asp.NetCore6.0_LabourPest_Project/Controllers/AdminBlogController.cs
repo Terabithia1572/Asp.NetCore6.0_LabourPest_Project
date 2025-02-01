@@ -4,6 +4,7 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Claims;
 
 namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 {
@@ -37,9 +38,11 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         [HttpPost]
         public IActionResult AddBlog(Blog blog)
         {
-            
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int writerId = Convert.ToInt32(userId);
             blog.BlogStatus = true;
             blog.BlogDate = DateTime.Now;
+            blog.WriterID = writerId;
             blogManager.TAdd(blog);
             
             return RedirectToAction("BlogList", "AdminBlog");
