@@ -1,0 +1,45 @@
+﻿@model List<Blog>
+@{
+    ViewData["Title"] = "BlogList";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<div class="row gx-6 gy-3 mb-4 align-items-center">
+    <div class="col-auto">
+        <h2 class="mb-0">Bloglar<span class="fw-normal text-body-tertiary ms-3">(@ViewBag.blogSayisi)</span></h2>
+    </div>
+    <div class="col-auto">
+        <a class="btn btn-primary px-5" href="/AdminBlog/AddBlog">
+            <span class="fa-solid fa-plus me-2"></span>Yeni Blog Ekle
+        </a>
+    </div>
+</div>
+<div class="row g-3 mb-9">
+    @foreach (var item in Model)
+    {
+        <div class="col-12 col-sm-6 col-md-4 col-xxl-3">
+            <div class="btn-reveal-trigger position-relative rounded-2 overflow-hidden p-4" style="height: 236px;">
+                <div class="bg-holder" style="background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 39.41%, rgba(0, 0, 0, 0.4) 100%), url(@item.BlogImage);"></div>
+                <div class="position-relative h-100 d-flex flex-column justify-content-between">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="badge badge-phoenix fs-10 badge-phoenix-primary" data-bs-theme="light">@item.BlogCategory.BlogCategories</span>
+                        <div class="z-2">
+                            <button class="btn btn-icon btn-reveal dropdown-toggle dropdown-caret-none transition-none" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                <span class="fas fa-ellipsis-v"></span>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end py-2">
+                                <a class="dropdown-item" href="/Blog/BlogDetails/@item.BlogID">Görüntüle</a>
+                                <a class="dropdown-item" href="/AdminBlog/UpdateBlog/@item.BlogID">Güncelle</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="/AdminBlog/DeleteBlog/@item.BlogID">Sil</a>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-white fw-bold line-clamp-2">@item.BlogContent</h3>
+                </div>
+                <a class="stretched-link" href="/Blog/BlogDetails/@item.BlogID"></a>
+            </div>
+        </div>
+    }
+
+</div>
