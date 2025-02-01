@@ -3,11 +3,15 @@
 @{
     ViewData["Title"] = "Yanıtla";
     Layout = "~/Views/Shared/_AdminDashboard.cshtml";
+
+    // Mail modelinde SenderMail property'si varsa, değerini alıyoruz.
+    var senderMail = Model?.GetType().GetProperty("SenderMail")?.GetValue(Model) as string;
 }
 
 <h3>Yanıtla: @Model.MailTitle</h3>
 
 <form asp-action="SendReply" method="post">
+    <!-- Kime alanı: Gelen mailin gönderici adresine göre otomatik seçilsin -->
     <div class="mb-3">
         <label for="to" class="form-label">Kime</label>
         <select class="form-select" id="to" name="ReceiverMail" required>
@@ -16,28 +20,36 @@
             {
                 <option value="@writer.WriterMail"
                         data-writer-name="@writer.WriterName"
-                        data-writer-surname="@writer.WriterSurname">
-                    @writer.WriterName @writer.WriterSurname
+                        data-writer-surname="@writer.WriterSurname"
+                        selected="@(writer.WriterMail == senderMail ? "selected" : null)">
+                    @writer.WriterMail
                 </option>
             }
         </select>
     </div>
 
+    <!-- Adınız: Giriş yapanın adı otomatik dolsun -->
     <div class="mb-3">
         <label for="name" class="form-label">Adınız</label>
-        <input type="text" class="form-control" id="name" name="MailName" required />
+        <input type="text" class="form-control" id="name" name="MailName"
+               value="@ViewBag.CurrentWriterName" required />
     </div>
 
+    <!-- Soyadınız: Giriş yapanın soyadı otomatik dolsun -->
     <div class="mb-3">
         <label for="surname" class="form-label">Soyadınız</label>
-        <input type="text" class="form-control" id="surname" name="MailSurname" required />
+        <input type="text" class="form-control" id="surname" name="MailSurname"
+               value="@ViewBag.CurrentWriterSurname" required />
     </div>
 
+    <!-- Konu alanı; gelen mailin konusu önceden dolu gelsin -->
     <div class="mb-3">
         <label for="subject" class="form-label">Konu</label>
-        <input type="text" class="form-control" id="subject" name="MailTitle" value="@Model.MailTitle" required />
+        <input type="text" class="form-control" id="subject" name="MailTitle"
+               value="@Model.MailTitle" required />
     </div>
 
+    <!-- Mesaj alanı: Kullanıcı kendi mesajını ekleyecek -->
     <div class="mb-3">
         <label for="message" class="form-label">Mesaj</label>
         <textarea class="form-control" id="message" name="MailContent" rows="5" required></textarea>
@@ -47,7 +59,7 @@
 </form>
 
 <script>
-    // "Kime" alanından Writer bilgilerini otomatik doldurma
+    // Eğer drop-down üzerinden değişiklik yapılırsa, yine Adınız ve Soyadınız alanlarını güncellemek için
     document.getElementById('to').addEventListener('change', function () {
         var selectedOption = this.options[this.selectedIndex];
         document.getElementById('name').value = selectedOption.getAttribute('data-writer-name');
