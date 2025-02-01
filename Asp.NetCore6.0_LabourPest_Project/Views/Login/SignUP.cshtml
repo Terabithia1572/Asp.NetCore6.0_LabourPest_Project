@@ -1,0 +1,149 @@
+﻿@{
+    ViewData["Title"] = "SignUP";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<div class="row flex-center min-vh-100 py-5">
+    <div class="col-sm-10 col-md-8 col-lg-5 col-xl-5 col-xxl-3">
+        <a class="d-flex flex-center text-decoration-none mb-4" href="~/labourpestcustomer/index.html">
+            <div class="d-flex align-items-center fw-bolder fs-3 d-inline-block">
+                <img src="~/canabicom/images/labourpesticon2.png" alt="phoenix" width="58" />
+            </div>
+        </a>
+        <div class="text-center mb-7">
+            <h3 class="text-body-highlight">Kayıt Ol</h3>
+            <p class="text-body-tertiary">Bugün bir hesap oluşturun</p>
+        </div>
+        <button class="btn btn-phoenix-secondary w-100 mb-3">
+            <span class="fab fa-google text-danger me-2 fs-9"></span>Google ile kayıt ol
+        </button>
+        <button class="btn btn-phoenix-secondary w-100">
+            <span class="fab fa-facebook text-primary me-2 fs-9"></span>Facebook ile Kaydol
+        </button>
+        <div class="position-relative mt-4">
+            <hr class="bg-body-secondary" />
+            <div class="divider-content-center">ya da bir mail kullan</div>
+        </div>
+        <form method="post" id="registerForm" asp-action="RegisterCustomer" asp-controller="Login">
+            <div class="mb-3 text-start">
+                <label class="form-label" for="name">Adınız</label>
+                <input class="form-control" id="name" name="WriterName" type="text" placeholder="Adınız" />
+            </div>
+            <div class="mb-3 text-start">
+                <label class="form-label" for="name1">Soyadınız</label>
+                <input class="form-control" id="name1" name="WriterSurname" type="text" placeholder="Soyadınız" />
+            </div>
+            <div class="mb-3 text-start">
+                <!-- Profil Fotoğrafı alanın olduğu yer -->
+                <label class="form-label" for="writerprofile">Profil Fotoğrafı</label>
+                <div class="profile-image-upload d-flex flex-column align-items-center">
+                    <!-- Fotoğraf Önizleme Alanı -->
+                    <div id="profilePreview" class="profile-image-preview mb-2" style="width: 100px; height: 100px; border-radius: 50%; background: #f0f0f0; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                        <i class="fas fa-user fa-2x text-muted"></i>
+                    </div>
+                    <!-- Gizli dosya inputu, onchange olayında uploadProfileImage fonksiyonu çağrılır -->
+                    <input type="file" id="writerprofile" name="WriterImageFile" accept="image/*" class="d-none" onchange="uploadProfileImage(event)">
+                    <!-- Dosya seçmek için buton -->
+                    <button type="button" class="btn btn-phoenix-secondary btn-sm" onclick="document.getElementById('writerprofile').click()">Fotoğraf Seç</button>
+                    <!-- Yüklenen dosya yolunun görüntüleneceği input (form gönderiminde Writer tablonuzdaki WriterImage alanına gönderilecek) -->
+                    <input type="text" id="writerProfilePath" name="WriterImage" class="form-control mt-2" placeholder="Seçilen dosya yolu" readonly>
+                </div>
+            </div>
+
+            <div class="mb-3 text-start">
+                <label class="form-label" for="email">Email Adresi</label>
+                <input class="form-control" id="email" type="email" name="WriterMail" placeholder="mailadresiniz@example.com" />
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                    <label class="form-label" for="password">Şifre</label>
+                    <div class="position-relative" data-password="data-password">
+                        <input class="form-control form-icon-input pe-6" name="WriterPassword" id="password" type="password" placeholder="Şifre" data-password-input="data-password-input" />
+                        <button class="btn px-3 py-0 h-100 position-absolute top-0 end-0 fs-7 text-body-tertiary" type="button" data-password-toggle="data-password-toggle">
+                            <span class="uil uil-eye show"></span>
+                            <span class="uil uil-eye-slash hide"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label class="form-label" for="confirmPassword">Şifre Onay</label>
+                    <div class="position-relative" data-password="data-password">
+                        <input class="form-control form-icon-input pe-6" id="confirmPassword" type="password" placeholder="Şifre Onay" data-password-input="data-password-input" />
+                        <button class="btn px-3 py-0 h-100 position-absolute top-0 end-0 fs-7 text-body-tertiary" type="button" data-password-toggle="data-password-toggle">
+                            <span class="uil uil-eye show"></span>
+                            <span class="uil uil-eye-slash hide"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Şifre uyuşmazlığı için hata mesajı (tasarıma uygun şekilde) -->
+            <div id="passwordError" class="text-danger fs-9 mb-3" style="display: none;">
+                Şifreler uyuşmuyor!
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" id="termsService" type="checkbox" />
+                <label class="form-label fs-9 text-transform-none" for="termsService">
+                    Kullanım <a href="#!">şartlarını </a>ve <a href="#!">gizlilik politikalarını kabul ediyorum</a>
+                </label>
+            </div>
+            <button class="btn btn-primary w-100 mb-3" type="submit">Kayıt Ol</button>
+            <div class="text-center">
+                <a class="fs-9 fw-bold" href="sign-in.html">Mevcut Hesabınızla Oturum Açın</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Profil Resmi Yükleme Scripti -->
+<script>
+    async function uploadProfileImage(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const response = await fetch('/Login/UploadImage', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    // Önizleme alanını güncelle (yol ile arka plan resmi olarak göster)
+                    const preview = document.getElementById('profilePreview');
+                    preview.style.backgroundImage = 'url(' + result.filePath + ')';
+                    preview.innerHTML = ''; // Varsayılan ikonu kaldır
+
+                    // Dosya yolunu input alanına aktar (form gönderiminde veritabanına kaydedilecek)
+                    document.getElementById('writerProfilePath').value = result.filePath;
+                } else {
+                    alert('Resim yüklenirken bir hata oluştu!');
+                }
+            } catch (error) {
+                console.error('Upload error:', error);
+                alert('Resim yüklenirken bir hata oluştu!');
+            }
+        }
+    }
+</script>
+
+<!-- Şifre Uyuşmazlığı Kontrol Scripti -->
+<script>
+    document.getElementById("registerForm").addEventListener("submit", function (e) {
+        // Şifreleri al
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+        // Hata mesajı için doğru element ID'sini kullanıyoruz: "passwordError"
+        const errorMessageDiv = document.getElementById("passwordError");
+
+        // Şifreler uyuşmuyorsa
+        if (password !== confirmPassword) {
+            e.preventDefault(); // Formun gönderimini engelle
+            errorMessageDiv.style.display = "block"; // Hata mesajını göster
+        } else {
+            errorMessageDiv.style.display = "none"; // Hata mesajını gizle
+        }
+    });
+</script>
