@@ -1,6 +1,9 @@
 using BusinessLayer.Concrete;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.EntityFramework;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,8 +11,24 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IBlogDal, EfBlogRepository>(); // IBlogRepository için EfBlogRepository kullanýmý
 builder.Services.AddScoped<BlogManager>(); // BlogManager'ý ekleyin
+builder.Services.AddControllersWithViews(options =>
+{
+    // Tüm isteklerde kullanýcý doðrulamasý gerektiren global yetkilendirme filtresi ekliyoruz.
+    var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+    options.Filters.Add(new AuthorizeFilter(policy));
+});
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Login/SignIN";
+    });
 
+builder.Services.AddSession();
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -19,12 +38,17 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+// Controllers ve MVC yapýlandýrmasýný ekliyoruz. 
+
+
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseSession();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
