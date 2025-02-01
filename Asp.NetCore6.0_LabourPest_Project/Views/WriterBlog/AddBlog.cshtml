@@ -67,7 +67,7 @@
             formData.append('file', file);
 
             // Gönderim
-            const response = await fetch('/AdminBlog/UploadImage', {
+            const response = await fetch('/WriterBlog/UploadImage', {
                 method: 'POST',
                 body: formData
             });
@@ -111,7 +111,7 @@
                 formData.append('file', file);
 
                 try {
-                    const response = await fetch('/AdminBlog/UploadImage', {
+                    const response = await fetch('/WriterBlog/UploadImage', {
                         method: 'POST',
                         body: formData,
                     });
