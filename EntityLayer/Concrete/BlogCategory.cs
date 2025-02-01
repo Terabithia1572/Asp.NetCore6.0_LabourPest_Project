@@ -11,8 +11,11 @@ namespace EntityLayer.Concrete
     {
         [Key]
         public int BlogCategoryID { get; set; }
+
         public string BlogCategories { get; set; }
         public bool BlogCategoryStatus { get; set; }
+
+        // Bu kategoriye ait bloglar (1-n ilişki)
         public List<Blog> Blogs { get; set; }
     }
 }
