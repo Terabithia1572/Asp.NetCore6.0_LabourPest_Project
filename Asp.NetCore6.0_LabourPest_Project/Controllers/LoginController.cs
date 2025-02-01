@@ -32,12 +32,13 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             var datavalue = context.Writers.FirstOrDefault(x => x.WriterMail == writer.WriterMail && x.WriterPassword == writer.WriterPassword);
             if (datavalue != null)
             {
-                // Kullanıcıya ait rol bilgisini de claim olarak ekliyoruz.
+                // Doğru writer ID'sini kullanmak için 'datavalue.WriterID' alınmalı:
                 var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, writer.WriterMail),
-                    new Claim(ClaimTypes.Role, datavalue.WriterAbout) // Rol bilgisini ekleme
-                };
+    {
+        new Claim(ClaimTypes.NameIdentifier, datavalue.WriterID.ToString()),
+        new Claim(ClaimTypes.Name, datavalue.WriterMail),
+        new Claim(ClaimTypes.Role, datavalue.WriterAbout)
+    };
                 var userIdentity = new ClaimsIdentity(claims, "login");
                 ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
                 await HttpContext.SignInAsync(principal);
