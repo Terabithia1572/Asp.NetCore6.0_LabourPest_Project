@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminDashboardController : Controller
     {
         public IActionResult Index()

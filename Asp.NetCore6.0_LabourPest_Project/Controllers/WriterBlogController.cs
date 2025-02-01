@@ -1,16 +1,14 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    public class AdminBlogController : Controller
+    public class WriterBlogController : Controller
     {
-        BlogManager blogManager= new BlogManager(new EfBlogRepository());
+        BlogManager blogManager = new BlogManager(new EfBlogRepository());
         BlogCategoryManager blogCategoryManager = new BlogCategoryManager(new EfBlogCategoryRepository());
         public IActionResult Index()
         {
@@ -37,23 +35,24 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         [HttpPost]
         public IActionResult AddBlog(Blog blog)
         {
-            
+
             blog.BlogStatus = true;
             blog.BlogDate = DateTime.Now;
             blogManager.TAdd(blog);
-            
-            return RedirectToAction("BlogList", "AdminBlog");
+
+            return RedirectToAction("BlogList", "WriterBlog");
         }
 
         public IActionResult DeleteBlog(int id)
         {
             var values = blogManager.TGetByID(id);
             blogManager.TDelete(values);
-            return RedirectToAction("BlogList", "AdminBlog");
+            return RedirectToAction("BlogList", "WriterBlog");
         }
+        public IActionResult BlogListByWriter()
+        {
 
-
-
+        }
 
         [HttpPost]
         public async Task<IActionResult> UploadImage(IFormFile file)
@@ -89,3 +88,4 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 
     }
 }
+

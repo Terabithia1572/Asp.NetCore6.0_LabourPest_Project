@@ -1,12 +1,14 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 {
-	public class ProductController : Controller
+    [Authorize(Roles = "Admin")]
+    public class ProductController : Controller
 	{
 		ProductManager productManager = new ProductManager(new EfProductRepository());
         CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());

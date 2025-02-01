@@ -1,10 +1,12 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminHomePageController : Controller
     {
         HomePageManager homePageManager = new HomePageManager(new EfHomePageRepository());

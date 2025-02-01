@@ -32,6 +32,9 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             var values = blogManager.GetBlogListWithBlogCategory();
             return View(values);
         }
-      
+
+		
+
+
     }
 }
