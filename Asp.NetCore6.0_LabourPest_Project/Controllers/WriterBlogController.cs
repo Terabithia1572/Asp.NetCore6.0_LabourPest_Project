@@ -1,8 +1,10 @@
-﻿using BusinessLayer.Concrete;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Claims;
 
 namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 {
@@ -10,9 +12,19 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
     {
         BlogManager blogManager = new BlogManager(new EfBlogRepository());
         BlogCategoryManager blogCategoryManager = new BlogCategoryManager(new EfBlogCategoryRepository());
+        WriterManager writerManager = new WriterManager(new EfWriterRepository());
         public IActionResult Index()
         {
             return View();
+        }
+        public IActionResult MyRecentBlogs()
+        {
+            // blogManager.GetRecentBlogsByWriter(writerId, count) şeklinde bir metot düşünelim.
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int writerId = Convert.ToInt32(userId);
+            // Son 3 blog gönderisini getiriyoruz
+            var blogs = blogManager.GetRecentBlogsByWriter(writerId, 3);
+            return View(blogs);
         }
         public IActionResult BlogList()
         {
@@ -35,22 +47,30 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         [HttpPost]
         public IActionResult AddBlog(Blog blog)
         {
-
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int writerId = Convert.ToInt32(userId);
             blog.BlogStatus = true;
             blog.BlogDate = DateTime.Now;
+            blog.WriterID = writerId;
             blogManager.TAdd(blog);
 
-            return RedirectToAction("BlogList", "WriterBlog");
+            return RedirectToAction("BlogListByWriter", "WriterBlog");
         }
 
         public IActionResult DeleteBlog(int id)
         {
             var values = blogManager.TGetByID(id);
             blogManager.TDelete(values);
-            return RedirectToAction("BlogList", "WriterBlog");
+            return RedirectToAction("BlogListByWriter", "WriterBlog");
         }
-        public IActionResult BlogListByWriter()
+
+        public  IActionResult BlogListByWriter()
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int writerId = Convert.ToInt32(userId);
+            ViewBag.writerId = writerId;
+            var values = blogManager.GetListWithCategoryByWriter(writerId);
+            return View(values);
 
         }
 
