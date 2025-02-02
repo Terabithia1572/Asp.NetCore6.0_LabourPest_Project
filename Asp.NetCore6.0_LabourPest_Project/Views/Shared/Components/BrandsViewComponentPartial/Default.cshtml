@@ -17,8 +17,10 @@
                      data-responsive-xs="2">
                     @foreach (var item in Model)
                     {
-                        <a href="#">
-                            <img src="@item.BrandsImage" alt="">
+                        <a href="@item.BrandsImage">
+                            <div class="brand-img-wrapper yunus">
+                                <img src="@item.BrandsImage" alt="">
+                            </div>
                         </a>
                     }
                 </div>
@@ -26,5 +28,24 @@
         </div>
     </div>
 </section>
+<style>
+    /* Sabit yükseklik belirleyin. Örneğin: */
+    .yunus {
+        height: 100px; /* İstediğiniz sabit yüksekliği verin */
+        width: auto; /* Genişlik isteğe bağlı */
+        overflow: hidden; /* Taşan kısımların gizlenmesi */
+        display: flex;
+        align-items: center; /* Resmi dikeyde ortalamak için */
+        justify-content: center; /* Resmi yatayda ortalamak için */
+    }
 
+        .yunus img {
+            /* Resmin wrapper alanına uyum sağlaması için */
+            width: auto;
+            height: 100%;
+            object-fit: contain; /* Resmin oranını bozmadan sığdırır */
+            /* Eğer tamamen doldurmasını istiyorsanız, 'cover' kullanabilirsiniz */
+        }
+
+</style>
 
