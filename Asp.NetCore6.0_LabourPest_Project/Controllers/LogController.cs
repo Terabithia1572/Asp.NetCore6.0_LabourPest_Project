@@ -23,5 +23,11 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 
             return View(values);
         }
+        public IActionResult DeleteLog(int id)
+        {
+            var values = logManager.TGetByID(id);
+            logManager.TDelete(values);
+           return RedirectToAction("LogList","Log");
+        }
     }
 }
