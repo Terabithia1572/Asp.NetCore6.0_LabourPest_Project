@@ -9,7 +9,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.ViewComponents.MainLayout
 		BlogManager blogManager = new BlogManager(new EfBlogRepository());
 		public IViewComponentResult Invoke()
 		{
-			var values = blogManager.GetBlogListWithBlogCategory();
+			var values = blogManager.GetBlogListWithBlogCategoryAndWriter();
 			return View(values);
 		}
 	}
