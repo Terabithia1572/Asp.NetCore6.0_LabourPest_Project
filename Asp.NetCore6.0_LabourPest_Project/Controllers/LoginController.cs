@@ -30,20 +30,34 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         public async Task<IActionResult> SignIN(Writer writer)
         {
             var datavalue = context.Writers.FirstOrDefault(x => x.WriterMail == writer.WriterMail && x.WriterPassword == writer.WriterPassword);
+            string ipAddress = GetClientIpAddress(HttpContext);
+
             if (datavalue != null)
             {
-                // Doğru writer ID'sini kullanmak için 'datavalue.WriterID' alınmalı:
                 var claims = new List<Claim>
-    {
-        new Claim(ClaimTypes.NameIdentifier, datavalue.WriterID.ToString()),
-        new Claim(ClaimTypes.Name, datavalue.WriterMail),
-        new Claim(ClaimTypes.Role, datavalue.WriterAbout)
-    };
+        {
+            new Claim(ClaimTypes.NameIdentifier, datavalue.WriterID.ToString()),
+            new Claim(ClaimTypes.Name, datavalue.WriterMail),
+            new Claim(ClaimTypes.Role, datavalue.WriterAbout)
+        };
                 var userIdentity = new ClaimsIdentity(claims, "login");
                 ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
                 await HttpContext.SignInAsync(principal);
 
-                // Kullanıcının rolüne göre yönlendirme yapıyoruz.
+                // Başarılı giriş log kaydı
+                Log logEntry = new Log
+                {
+                    UserName = datavalue.WriterMail,
+                    Date = DateTime.Now,
+                    Action = "Giriş Denemesi",
+                    Success = true,
+                    IPAddress = ipAddress
+                };
+
+                context.Logs.Add(logEntry);
+                await context.SaveChangesAsync();
+
+                // Kullanıcının rolüne göre yönlendirme
                 if (datavalue.WriterAbout == "Admin")
                 {
                     return RedirectToAction("Profile", "AdminDashboard");
@@ -54,15 +68,70 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
                 }
                 else
                 {
-                    // Diğer durumları burada ele alabilirsiniz.
                     return RedirectToAction("Index", "Home");
                 }
             }
             else
             {
+                // Başarısız giriş log kaydı
+                Log logEntry = new Log
+                {
+                    UserName = writer.WriterMail,
+                    Date = DateTime.Now,
+                    Action = "Giriş Denemesi", // İsteğe bağlı: "Başarısız Giriş Denemesi"
+                    Success = false,
+                    IPAddress = ipAddress
+                };
+                context.Logs.Add(logEntry);
+                await context.SaveChangesAsync();
+
                 return View();
             }
         }
+
+        public async Task<IActionResult> LogOut()
+        {
+            string ipAddress = GetClientIpAddress(HttpContext);
+            string userName = User.Identity.Name;
+
+            // Çıkış log kaydı
+            Log logEntry = new Log
+            {
+                UserName = userName,
+                Date = DateTime.Now,
+                Action = "Çıkış Yaptı",
+                Success = true,
+                IPAddress = ipAddress
+            };
+
+            context.Logs.Add(logEntry);
+            await context.SaveChangesAsync();
+
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Deneme", "Home");
+        }
+
+        private string GetClientIpAddress(HttpContext context)
+        {
+            // İlk olarak Forwarded Headers üzerinden gelen değeri deniyoruz:
+            string ipAddress = context.Request.Headers["X-Forwarded-For"].FirstOrDefault();
+
+            // Eğer Forwarded Header boşsa, doğrudan connection bilgisinden alıyoruz:
+            if (string.IsNullOrEmpty(ipAddress))
+            {
+                ipAddress = context.Connection.RemoteIpAddress?.ToString();
+            }
+
+            // Yerel geliştirme ortamında IPv6 loopback adresi ::1 ise, IPv4 karşılığı olan 127.0.0.1'e dönüştürüyoruz:
+            if (ipAddress == "::1")
+            {
+                ipAddress = "127.0.0.1";
+            }
+
+            return ipAddress;
+        }
+
+
 
         public IActionResult SignUP()
         {
