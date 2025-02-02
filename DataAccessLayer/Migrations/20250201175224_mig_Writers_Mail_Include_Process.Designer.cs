@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20250201175224_mig_Writers_Mail_Include_Process")]
+    partial class mig_Writers_Mail_Include_Process
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -485,27 +487,21 @@ namespace DataAccessLayer.Migrations
                     b.Property<DateTime>("MailDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("MailName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MailSurname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("MailTitle")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ReceiverMail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ReceiverID")
+                        .HasColumnType("int");
 
-                    b.Property<string>("SenderMail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("SenderID")
+                        .HasColumnType("int");
 
                     b.HasKey("MailID");
+
+                    b.HasIndex("ReceiverID");
+
+                    b.HasIndex("SenderID");
 
                     b.ToTable("Mails");
                 });
@@ -701,6 +697,25 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("Blog");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.Mail", b =>
+                {
+                    b.HasOne("EntityLayer.Concrete.Writer", "Receiver")
+                        .WithMany("ReceivedMails")
+                        .HasForeignKey("ReceiverID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EntityLayer.Concrete.Writer", "Sender")
+                        .WithMany("SentMails")
+                        .HasForeignKey("SenderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Receiver");
+
+                    b.Navigation("Sender");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.Product", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.Category", "Category")
@@ -730,6 +745,10 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("EntityLayer.Concrete.Writer", b =>
                 {
                     b.Navigation("Blogs");
+
+                    b.Navigation("ReceivedMails");
+
+                    b.Navigation("SentMails");
                 });
 #pragma warning restore 612, 618
         }
