@@ -43,5 +43,15 @@ namespace DataAccessLayer.EntityFramework
                               .ToList();
             }
         }
+        public List<Blog> GetBlogListWithBlogCategoryAndWriter()
+        {
+            using (var context = new Context())
+            {
+                return context.Blogs
+                   .Include(b => b.BlogCategory)
+                   .Include(b => b.Writer) // Writer bilgisini de dahil ediyoruz.
+                   .ToList();
+            }
+        }
     }
 }
