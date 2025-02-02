@@ -1,0 +1,63 @@
+﻿@model BlogComment
+@{
+    ViewData["Title"] = "CommentListByBlog1";
+    Layout = "~/Views/Shared/_AdminDashboard.cshtml";
+}
+
+
+<div class="blog-detail">
+    <h2>@Model.Blog.BlogTitle</h2>
+    <img src="@Model.Blog.BlogImage" alt="@Model.Blog.BlogTitle" />
+    <p>@Model.Blog.BlogContent</p>
+    <p><strong>Tarih:</strong> @Model.Blog.BlogDate.ToString("dd/MM/yyyy")</p>
+</div>
+
+<hr />
+
+<div class="comments">
+    <h3>Yorumlar</h3>
+    @if (ViewBag.Comments != null)
+    {
+        foreach (var comment in ViewBag.Comments)
+        {
+            <div class="comment-item">
+                <strong>@comment.BlogCommentUserName</strong> - <span>@comment.BlogCommentDate.ToString("dd/MM/yyyy HH:mm")</span>
+                <h4>@comment.BlogCommentTitle</h4>
+                <p>@comment.BlogCommentContent</p>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Henüz yorum yapılmamış.</p>
+    }
+</div>
+
+<hr />
+
+<div class="add-comment">
+    <h3>Yorum Ekle</h3>
+    <form asp-action="AddComment" method="post">
+        <!-- Yorum yapılacak blogun ID'sini gizli alanda gönderiyoruz -->
+        <input type="hidden" name="BlogID" value="@Model.BlogID" />
+
+        <div class="form-group">
+            <label>Adınız Soyadınız:</label>
+            <!-- Giriş yapan kullanıcının adı soyadı readonly gösteriliyor -->
+            <input type="text" class="form-control" value="@($"{ViewBag.CurrentWriterName} {ViewBag.CurrentWriterSurname}")" readonly />
+        </div>
+
+        <div class="form-group">
+            <label>Yorum Başlığı:</label>
+            <input type="text" class="form-control" name="BlogCommentTitle" required />
+        </div>
+
+        <div class="form-group">
+            <label>Yorum:</label>
+            <textarea class="form-control" name="BlogCommentContent" rows="5" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Yorum Gönder</button>
+    </form>
+</div>
+
