@@ -1,155 +1,198 @@
-﻿
+﻿@model EntityLayer.Concrete.Writer
+
 @{
     ViewData["Title"] = "ProfileSettings";
     Layout = "~/Views/Shared/_AdminDashboard.cshtml";
 }
 
-<div class="mb-9">
-    <div class="row g-6">
-        <div class="col-12 col-xl-4">
-            <div class="card mb-5">
-                <div class="card-header hover-actions-trigger position-relative mb-6" style="min-height: 130px; ">
-                    <div class="bg-holder rounded-top" style="background-image: linear-gradient(0deg, #000000 -3%, rgba(0, 0, 0, 0) 83%), url('/labourpestcustomer/assets/img/generic/59.png')">
-                        <input class="d-none" id="upload-settings-cover-image" type="file" /><label class="cover-image-file-input" for="upload-settings-cover-image"></label>
-                        <div class="hover-actions end-0 bottom-0 pe-1 pb-2 text-white dark__text-gray-1100"><span class="fa-solid fa-camera me-2"></span></div>
-                    </div><input class="d-none" id="upload-settings-porfile-picture" type="file" /><label class="avatar avatar-4xl status-online feed-avatar-profile cursor-pointer" for="upload-settings-porfile-picture"><img class="rounded-circle img-thumbnail shadow-sm border-0" src="~/labourpestcustomer/assets/img/team/20.webp" width="200" alt="" /></label>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="d-flex flex-wrap mb-2 align-items-center">
-                                <h3 class="me-2">Ansolo Lazinatov</h3><span class="fw-normal fs-8">u/Kullanıcı Adı</span>
+<!-- Form açıyoruz. Post metoduyla ProfileSettings aksiyonuna gönderilecek. -->
+<form asp-action="ProfileSettings" method="post" enctype="multipart/form-data">
+    <div class="mb-9">
+        <div class="row g-6">
+            <!-- Sol Bölüm: Profil Kartı ve Ayarlar -->
+            <div class="col-12 col-xl-4">
+                <div class="card mb-5">
+                    <div class="card-header hover-actions-trigger position-relative mb-6" style="min-height: 130px;">
+                        <div class="bg-holder rounded-top" style="background-image: linear-gradient(0deg, #000000 -3%, rgba(0, 0, 0, 0) 83%), url('/labourpestcustomer/assets/img/generic/59.png')">
+                            <input class="d-none" id="upload-settings-cover-image" type="file" name="coverImage" />
+                            <label class="cover-image-file-input" for="upload-settings-cover-image"></label>
+                            <div class="hover-actions end-0 bottom-0 pe-1 pb-2 text-white dark__text-gray-1100">
+                                <span class="fa-solid fa-camera me-2"></span>
                             </div>
-                            <div class="d-flex d-xl-block d-xxl-flex align-items-center">
-                                <div class="d-flex mb-xl-2 mb-xxl-0">
-                                    <span class="fa-solid fa-user-group fs-10 me-2 me-lg-1 me-xl-2"></span>
-                                    <h6 class="d-inline-block mb-0">1297<span class="fw-semibold ms-1 me-4">Takipçi</span></h6>
+                        </div>
+                        <input class="d-none" id="upload-settings-porfile-picture" type="file" name="profileImage" />
+                        <label class="avatar avatar-4xl status-online feed-avatar-profile cursor-pointer" for="upload-settings-porfile-picture">
+                            <img class="rounded-circle img-thumbnail shadow-sm border-0"
+                                 src="@(string.IsNullOrEmpty(Model.WriterImage) ? Url.Content("~/labourpestcustomer/assets/img/team/20.webp") : Model.WriterImage)"
+                                 width="200" alt="" />
+                        </label>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- Giriş yapan kullanıcının Ad Soyad ve E-posta (kullanıcı adı olarak mail gösteriliyor) -->
+                                <div class="d-flex flex-wrap mb-2 align-items-center">
+                                    <h3 class="me-2">@Model.WriterName @Model.WriterSurname</h3>
+                                    <span class="fw-normal fs-8">u/@Model.WriterMail</span>
                                 </div>
-                                <div class="d-flex">
-                                    <span class="fa-solid fa-user-check fs-10 me-2 me-lg-1 me-xl-2"></span>
-                                    <h6 class="d-block d-xl-inline-block mb-0">3971<span class="fw-semibold ms-1">Takip Edilen</span></h6>
+                                <div class="d-flex d-xl-block d-xxl-flex align-items-center">
+                                    <div class="d-flex mb-xl-2 mb-xxl-0">
+                                        <span class="fa-solid fa-user-group fs-10 me-2 me-lg-1 me-xl-2"></span>
+                                        <h6 class="d-inline-block mb-0">1297<span class="fw-semibold ms-1 me-4">Takipçi</span></h6>
+                                    </div>
+                                    <div class="d-flex">
+                                        <span class="fa-solid fa-user-check fs-10 me-2 me-lg-1 me-xl-2"></span>
+                                        <h6 class="d-block d-xl-inline-block mb-0">3971<span class="fw-semibold ms-1">Takip Edilen</span></h6>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- Diğer sol menü ayarları (görünürlük, etiketleme vs.) -->
+                <div class="border-bottom border-translucent border-dashed pb-3 mb-4">
+                    <h5 class="text-body mb-3">Profilimi Kimler Görebilir ?</h5>
+                    <div class="form-check">
+                        <input class="form-check-input" id="onlyMe" type="radio" checked="checked" name="profiileVisibility" />
+                        <label class="form-check-label fs-8" for="onlyMe">Sadece Ben</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" id="myFollowers" type="radio" name="profiileVisibility" />
+                        <label class="form-check-label fs-8" for="myFollowers">Takipçilerim</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" id="everyone" type="radio" name="profiileVisibility" />
+                        <label class="form-check-label fs-8" for="everyone">Herkes</label>
+                    </div>
+                </div>
+                <div class="border-bottom border-translucent border-dashed pb-3 mb-4">
+                    <h5 class="text-body mb-3">Seni kim etiketleyebilir ?</h5>
+                    <div class="form-check">
+                        <input class="form-check-input" id="tagGroupMembers" type="radio" checked="checked" name="tagPermission" />
+                        <label class="form-check-label fs-8" for="tagGroupMembers">Grup Üyeleri</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" id="tagEveryone" type="radio" name="tagPermission" />
+                        <label class="form-check-label fs-8" for="tagEveryone">Herkes</label>
+                    </div>
+                </div>
+                <div class="border-bottom border-translucent border-dashed pb-3 mb-4">
+                    <div class="form-check">
+                        <input class="form-check-input" id="showEmail" type="checkbox" name="showEmail" />
+                        <label class="form-check-label fs-8" for="showEmail">Kullanıcıların e-postanızı göstermesine izin verin</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" id="showExperiences" type="checkbox" name="showExperiences" />
+                        <label class="form-check-label fs-8" for="showExperiences">Kullanıcıların deneyimlerinizi göstermesine izin verin</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" id="showFollowers" type="checkbox" checked="checked" name="showFollowers" />
+                        <label class="form-check-label fs-8" for="showFollowers">Kullanıcıların takipçilerinizi göstermesine izin verin</label>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" />
+                        <label class="form-check-label fs-8" for="showPhone">Telefon numaranızı gösterin</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" id="permitFollow" type="checkbox" checked="checked" name="permitFollow" />
+                        <label class="form-check-label fs-8" for="permitFollow">Kullanıcıların sizi takip etmesine izin verin.</label>
+                    </div>
+                </div>
             </div>
-            <div class="border-bottom border-translucent border-dashed pb-3 mb-4">
-                <h5 class="text-body mb-3">Profilimi Kimler Görebilir ?</h5>
-                <div class="form-check"><input class="form-check-input" id="onlyMe" type="radio" checked="checked" name="profiileVisibility" /><label class="form-check-label fs-8" for="onlyMe">Sadece Ben</label></div>
-                <div class="form-check"><input class="form-check-input" id="myFollowers" type="radio" name="profiileVisibility" /><label class="form-check-label fs-8" for="myFollowers">Takipçilerim</label></div>
-                <div class="form-check"><input class="form-check-input" id="everyone" type="radio" name="profiileVisibility" /><label class="form-check-label fs-8" for="everyone">Herkes</label></div>
-            </div>
-            <div class="border-bottom border-translucent border-dashed pb-3 mb-4">
-                <h5 class="text-body mb-3">Seni kim etiketleyebilir ?</h5>
-                <div class="form-check"><input class="form-check-input" id="tagGroupMembers" type="radio" checked="checked" name="tagPermission" /><label class="form-check-label fs-8" for="tagGroupMembers">Grup Üyeleri</label></div>
-                <div class="form-check"><input class="form-check-input" id="tagEveryone" type="radio" name="tagPermission" /><label class="form-check-label fs-8" for="tagEveryone">Herkes</label></div>
-            </div>
-            <div class="border-bottom border-translucent border-dashed pb-3 mb-4">
-                <div class="form-check"><input class="form-check-input" id="showEmail" type="checkbox" name="showEmail" /><label class="form-check-label fs-8" for="showEmail">Kullanıcıların e-postanızı göstermesine izin verin</label></div>
-                <div class="form-check"><input class="form-check-input" id="showExperiences" type="checkbox" name="showExperiences" /><label class="form-check-label fs-8" for="showExperiences">Kullanıcıların deneyimlerinizi göstermesine izin verin</label></div>
-                <div class="form-check"><input class="form-check-input" id="showFollowers" type="checkbox" checked="checked" name="showFollowers" /><label class="form-check-label fs-8" for="showFollowers">Kullanıcıların takipçilerinizi göstermesine izin verin</label></div>
-            </div>
-            <div class="mb-4">
-                <div class="form-check form-switch"><input class="form-check-input" id="showPhone" type="checkbox" checked="checked" name="showPhone" /><label class="form-check-label fs-8" for="showPhone">Telefon numaranızı gösterin</label></div>
-                <div class="form-check form-switch"><input class="form-check-input" id="permitFollow" type="checkbox" checked="checked" name="permitFollow" /><label class="form-check-label fs-8" for="permitFollow">Kullanıcıların sizi takip etmesine izin verin.</label></div>
-            </div>
-        </div>
-        <div class="col-12 col-xl-8">
-            <div class="border-bottom mb-4">
-                <div class="mb-6">
-                    <h4 class="mb-4">Personel Bilgileri</h4>
-                    <div class="row g-3">
-                        <div class="col-12 col-sm-6">
-                            <div class="form-icon-container">
-                                <div class="form-floating"><input class="form-control form-icon-input" id="firstName" type="text" placeholder="ADINIZ" /><label class="text-body-tertiary form-icon-label" for="firstName">ADINIZ</label></div><span class="fa-solid fa-user text-body fs-9 form-icon"></span>
+            <!-- Sağ Bölüm: Personel Bilgileri ve Şifre Güncelleme -->
+            <div class="col-12 col-xl-8">
+                <div class="border-bottom mb-4">
+                    <div class="mb-6">
+                        <h4 class="mb-4">Personel Bilgileri</h4>
+                        <div class="row g-3">
+                            <!-- Ad -->
+                            <div class="col-12 col-sm-6">
+                                <div class="form-icon-container">
+                                    <div class="form-floating">
+                                        <input class="form-control form-icon-input" id="firstName" type="text" name="WriterName" placeholder="ADINIZ" value="@Model.WriterName" />
+                                        <label class="text-body-tertiary form-icon-label" for="firstName">ADINIZ</label>
+                                    </div>
+                                    <span class="fa-solid fa-user text-body fs-9 form-icon"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="form-icon-container">
-                                <div class="form-floating"><input class="form-control form-icon-input" id="lastName" type="text" placeholder="SOYADINIZ" /><label class="text-body-tertiary form-icon-label" for="lastName">SOYADINIZ</label></div><span class="fa-solid fa-user text-body fs-9 form-icon"></span>
+                            <!-- Soyad -->
+                            <div class="col-12 col-sm-6">
+                                <div class="form-icon-container">
+                                    <div class="form-floating">
+                                        <input class="form-control form-icon-input" id="lastName" type="text" name="WriterSurname" placeholder="SOYADINIZ" value="@Model.WriterSurname" />
+                                        <label class="text-body-tertiary form-icon-label" for="lastName">SOYADINIZ</label>
+                                    </div>
+                                    <span class="fa-solid fa-user text-body fs-9 form-icon"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="form-icon-container">
-                                <div class="form-floating"><input class="form-control form-icon-input" id="emailSocial" type="email" placeholder="E-POSTA ADRESİNİZ" /><label class="text-body-tertiary form-icon-label" for="emailSocial">E-POSTA ADRESİNİZ</label></div><span class="fa-solid fa-envelope text-body fs-9 form-icon"></span>
+                            <!-- E-Posta -->
+                            <div class="col-12 col-sm-6">
+                                <div class="form-icon-container">
+                                    <div class="form-floating">
+                                        <input class="form-control form-icon-input" id="emailSocial" type="email" name="WriterMail" placeholder="E-POSTA ADRESİNİZ" value="@Model.WriterMail" />
+                                        <label class="text-body-tertiary form-icon-label" for="emailSocial">E-POSTA ADRESİNİZ</label>
+                                    </div>
+                                    <span class="fa-solid fa-envelope text-body fs-9 form-icon"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="form-icon-container">
-                                <div class="form-floating"><input class="form-control form-icon-input" id="phone" type="tel" placeholder="TELEFON NUMARANIZ" /><label class="text-body-tertiary form-icon-label" for="phone">TELEFON NUMARANIZ</label></div><span class="fa-solid fa-phone text-body fs-9 form-icon"></span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="form-icon-container">
-                                <div class="form-floating"><textarea class="form-control form-icon-input" id="info" style="height: 115px;" placeholder="BİLGİ"></textarea><label class="text-body-tertiary form-icon-label" for="info">BİLGİ</label></div><span class="fa-solid fa-circle-info text-body fs-9 form-icon"></span>
+                            <!-- Bilgi (WriterAbout) -->
+                            <div class="col-12 col-sm-6">
+                                <div class="form-icon-container">
+                                    <div class="form-floating">
+                                        <textarea class="form-control form-icon-input" id="info" name="WriterAbout" style="height: 115px;" placeholder="BİLGİ">@Model.WriterAbout</textarea>
+                                        <label class="text-body-tertiary form-icon-label" for="info">BİLGİ</label>
+                                    </div>
+                                    <span class="fa-solid fa-circle-info text-body fs-9 form-icon"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row gx-3 mb-6 gy-6 gy-sm-3">
-                    <div class="col-12 col-sm-6">
-                        <h4 class="mb-4">ŞİRKET BİLGİLERİ</h4>
-                        <div class="form-icon-container mb-3">
-                            <div class="form-floating"><input class="form-control form-icon-input" id="companyName" type="text" placeholder="ŞİRKET ADI" /><label class="text-body-tertiary form-icon-label" for="companyName">ŞİRKET ADI</label></div><span class="fa-solid fa-building text-body fs-9 form-icon"></span>
-                        </div>
-                        <div class="form-icon-container">
-                            <div class="form-floating"><input class="form-control form-icon-input" id="website" type="text" placeholder="WEB SİTESİ" /><label class="text-body-tertiary form-icon-label" for="website">WEB SİTESİ</label></div><span class="fa-solid fa-globe text-body fs-9 form-icon"></span>
+                    <!-- Şifre Güncelleme -->
+                    <div class="row gx-3 mb-6 gy-6 gy-sm-3">
+                        <div class="col-12 col-sm-6">
+                            <h4 class="mb-4">Şifreyi Değiştir</h4>
+                            <div class="form-icon-container mb-3">
+                                <div class="form-floating">
+                                    <!-- "Yeni Şifre" alanına WriterPassword değerini dolduruyoruz -->
+                                    <input class="form-control form-icon-input" id="oldPassword" type="password" name="WriterPassword" placeholder="Yeni ŞİFRE" value="@Model.WriterPassword" />
+                                    <label class="text-body-tertiary form-icon-label" for="oldPassword">YENİ ŞİFRE</label>
+                                </div>
+                                <span class="fa-solid fa-lock text-body fs-9 form-icon"></span>
+                            </div>
+                            <div class="form-icon-container mb-3">
+                                <div class="form-floating">
+                                    <!-- "ŞİFRE TEKRAR" alanına da aynı değeri dolduruyoruz -->
+                                    <input class="form-control form-icon-input" id="newPassword" type="password" name="WriterPasswordConfirm" placeholder="ŞİFRE TEKRAR" value="@Model.WriterPassword" />
+                                    <label class="text-body-tertiary form-icon-label" for="newPassword">ŞİFRE TEKRAR</label>
+                                </div>
+                                <span class="fa-solid fa-key text-body fs-9 form-icon"></span>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6">
-                        <h4 class="mb-4">Şifreyi Değiştir</h4>
-                        <div class="form-icon-container mb-3">
-                            <div class="form-floating"><input class="form-control form-icon-input" id="oldPassword" type="password" placeholder="Old password" /><label class="text-body-tertiary form-icon-label" for="oldPassword">YENİ ŞİFRE</label></div><span class="fa-solid fa-lock text-body fs-9 form-icon"></span>
+                    <!-- Butonlar -->
+                    <div class="text-end mb-6">
+                        <div>
+                            <button type="button" class="btn btn-phoenix-secondary me-2">Değişiklikleri İptal Et</button>
+                            <button type="submit" class="btn btn-phoenix-primary">Bilgileri Kaydet</button>
                         </div>
-                        <div class="form-icon-container mb-3">
-                            <div class="form-floating"><input class="form-control form-icon-input" id="newPassword" type="password" placeholder="New password" /><label class="text-body-tertiary form-icon-label" for="newPassword">ŞİFRE TEKRAR</label></div><span class="fa-solid fa-key text-body fs-9 form-icon"></span>
-                        </div>
-                      
                     </div>
                 </div>
-                <div class="mb-6">
-                    <h4 class="mb-4">SOSYAL</h4>
-                    <div class="row g-3">
-                        <div class="col-12 col-sm-6">
-                            <div class="form-icon-container">
-                                <div class="form-floating"><input class="form-control form-icon-input" id="facebook" type="text" placeholder="Facebook" /><label class="text-body-tertiary form-icon-label" for="facebook">Facebook</label></div><span class="fa-brands fa-facebook text-body fs-9 form-icon"></span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="form-icon-container">
-                                <div class="form-floating"><input class="form-control form-icon-input" id="twitter" type="text" placeholder="Twitter" /><label class="text-body-tertiary form-icon-label" for="twitter">Twitter</label></div><span class="fa-brands fa-twitter text-body fs-9 form-icon"></span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="form-icon-container">
-                                <div class="form-floating"><input class="form-control form-icon-input" id="linkedin" type="text" placeholder="Linkedin" /><label class="text-body-tertiary form-icon-label" for="linkedin">linkedin</label></div><span class="fa-brands fa-linkedin-in text-body fs-9 form-icon"></span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="form-icon-container">
-                                <div class="form-floating"><input class="form-control form-icon-input" id="youtube" type="text" placeholder="youtube" /><label class="text-body-tertiary form-icon-label" for="youtube">youtube</label></div><span class="fa-brands fa-youtube text-body fs-9 form-icon"></span>
-                            </div>
-                        </div>
-                      
-                       
+                <!-- Hesap Devretme ve Silme Bölümü -->
+                <div class="row gy-5">
+                    <div class="col-12 col-md-6">
+                        <h4 class="text-body-emphasis">Hesabı Devret</h4>
+                        <p class="text-body-tertiary">Bu hesabı başka bir kişiye veya şirket veri tabanına aktarın.</p>
+                        <button class="btn btn-phoenix-warning" type="button">Hesabı Devret</button>
                     </div>
-                </div>
-                <div class="text-end mb-6">
-                    <div><button class="btn btn-phoenix-secondary me-2">Değişiklikleri İptal Et</button><button class="btn btn-phoenix-primary">Bilgileri Kaydet</button></div>
-                </div>
-            </div>
-            <div class="row gy-5">
-                <div class="col-12 col-md-6">
-                    <h4 class="text-body-emphasis">Hesabı Devret</h4>
-                    <p class="text-body-tertiary">Bu hesabı başka bir kişiye veya şirket veri tabanına aktarın.</p><button class="btn btn-phoenix-warning">Hesabı Devret</button>
-                </div>
-                <div class="col-12 col-md-6">
-                    <h4 class="text-body-emphasis">Hesap Silme</h4>
-                    <p class="text-body-tertiary">Bu hesabı başka bir kişiye veya şirket veri tabanına aktarın.</p><button class="btn btn-phoenix-danger">Hesabı Sil</button>
+                    <div class="col-12 col-md-6">
+                        <h4 class="text-body-emphasis">Hesap Silme</h4>
+                        <p class="text-body-tertiary">Bu hesabı başka bir kişiye veya şirket veri tabanına aktarın.</p>
+                        <button class="btn btn-phoenix-danger" type="button">Hesabı Sil</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
+</form>
