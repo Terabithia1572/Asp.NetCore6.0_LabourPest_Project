@@ -1,0 +1,85 @@
+﻿@model List<Contact>
+@{
+    ViewData["Title"] = "ContactList";
+    Layout = "~/Views/Shared/_AdminDashboard.cshtml";
+}
+
+<div class="pb-6">
+    <h2 class="mb-4">İletişim Listesi</h2>
+    <div id="lealsTable" data-list='{"valueNames":["name","email","phone","contact","company","date"],"page":10,"pagination":true}'>
+
+        <div class="table-responsive scrollbar mx-n1 px-1">
+            <table class="table fs-9 mb-0 leads-table border-top border-translucent">
+                <thead>
+                    <tr>
+                        <th class="white-space-nowrap fs-9 align-middle ps-0" style="max-width:20px; width:18px;">
+                            <div class="form-check mb-0 fs-8"><input class="form-check-input" type="checkbox" data-bulk-select='{"body":"leal-tables-body"}' /></div>
+                        </th>
+                        <th class="sort white-space-nowrap align-middle text-uppercase ps-0" scope="col" data-sort="name" style="width:25%;">KULLANICI ADI</th>
+                        <th class="sort align-middle ps-4 pe-5 text-uppercase border-end border-translucent" scope="col" data-sort="email" style="width:15%;">
+                            <div class="d-inline-flex flex-center">
+                                <div class="d-flex align-items-center px-1 py-1 bg-success-subtle rounded me-2"><span class="text-success-dark" data-feather="mail"></span></div><span>E-MAİL</span>
+                            </div>
+                        </th>
+                        <th class="sort align-middle ps-4 pe-5 text-uppercase border-end border-translucent" scope="col" data-sort="phone" style="width:15%; min-width: 180px;">
+                            <div class="d-inline-flex flex-center">
+                                <div class="d-flex align-items-center px-1 py-1 bg-primary-subtle rounded me-2"><span class="text-primary-dark" data-feather="phone"></span></div><span>KONU </span>
+                            </div>
+                        </th>
+                        <th class="sort align-middle ps-4 pe-5 text-uppercase border-end border-translucent" scope="col" data-sort="contact" style="width:15%;">
+                            <div class="d-inline-flex flex-center">
+                                <div class="d-flex align-items-center px-1 py-1 bg-info-subtle rounded me-2"><span class="text-info-dark" data-feather="user"></span></div><span>MESAJ</span>
+                            </div>
+                        </th>
+                        <th class="sort align-middle ps-4 pe-5 text-uppercase border-end border-translucent" scope="col" data-sort="company" style="width:15%;">
+                            <div class="d-inline-flex flex-center">
+                                <div class="d-flex align-items-center px-1 py-1 bg-warning-subtle rounded me-2"><span class="text-warning-dark" data-feather="grid"></span></div><span>TARİH</span>
+                            </div>
+                        </th>
+                        <th class="sort align-middle ps-4 pe-5 text-uppercase" scope="col" data-sort="date" style="width:15%;">ID</th>
+                        <th class="sort text-end align-middle pe-0 ps-4" scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody class="list" id="leal-tables-body">
+                    @foreach (var item in Model)
+                    {
+                        <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+                            <td class="fs-9 align-middle">
+                                <div class="form-check mb-0 fs-8"><input class="form-check-input" type="checkbox" data-bulk-select-row='{"customer":{"avatar":"/team/32.webp","name":"Anthoney Michael","designation":"VP Accounting","status":{"label":"new lead","type":"badge-phoenix-primary"}},"email":"anth125@gmail.com","phone":"+1-202-555-0126","contact":"Ally Aagaard","company":"Google.inc","date":"Jan 01, 12:56 PM"}' /></div>
+                            </td>
+                            <td class="name align-middle white-space-nowrap ps-0">
+                                <div class="d-flex align-items-center">
+
+                                    <div>
+                                        <a class="fs-8 fw-bold" href="#!">@item.ContactUserName</a>
+                                        <div class="d-flex align-items-center">
+                                            <p class="mb-0 text-body-highlight fw-semibold fs-9 me-2"></p><span class="badge badge-phoenix badge-phoenix-info">İletişim</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="email align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"><a class="text-body-highlight" href="mailto:anth125@gmail.com">@item.ContactMail</a></td>
+                            <td class="phone align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"><a class="text-body-highlight" href="tel:+1-202-555-0126">@item.ContactSubject</a></td>
+                            <td class="contact align-middle white-space-nowrap ps-4 border-end border-translucent fw-semibold text-body-highlight">@item.ContactMessage</td>
+                            <td class="company align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 border-end border-translucent fw-semibold text-body-highlight">@item.ContactDate</td>
+                            <td class="date align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 text-body-tertiary">@item.ContactID</td>
+                            <td class="align-middle white-space-nowrap text-end pe-0 ps-4">
+                                <div class="btn-reveal-trigger position-static">
+                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs-10"></span></button>
+                                    <div class="dropdown-menu dropdown-menu-end py-2">
+
+                                        <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="/Contact/DeleteContact/@item.ContactID">Sil</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
