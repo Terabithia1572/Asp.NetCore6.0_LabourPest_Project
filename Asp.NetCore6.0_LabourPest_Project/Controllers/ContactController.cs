@@ -29,5 +29,16 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             contactManager.TAdd(contact);
             return RedirectToAction("Deneme","Home");
         }
+        public IActionResult ContactList()
+        {
+            var values = contactManager.GetAll();
+            return View(values);
+        }
+        public IActionResult DeleteContact(int id)
+        {
+            var contactValue = contactManager.TGetByID(id);
+            contactManager.TDelete(contactValue);
+            return RedirectToAction("ContactList","Contact");
+        }
     }
 }
