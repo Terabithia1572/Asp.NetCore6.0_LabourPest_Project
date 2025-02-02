@@ -28,5 +28,16 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             // Hata durumunda, aynı sayfayı tekrar göster
             return View();
         }
+        public IActionResult SubscribeList() // Abone listesi
+        {
+            var values = subscribeManager.GetAll();
+            return View(values);
+        }
+        public IActionResult DeleteSubscribe(int id) // Abone silme
+        {
+            var values = subscribeManager.TGetByID(id);
+            subscribeManager.TDelete(values);
+            return RedirectToAction("SubscribeList", "Subscribe");
+        }
     }
 }
