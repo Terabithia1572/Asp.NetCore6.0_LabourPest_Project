@@ -1,6 +1,8 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
+using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,10 +48,16 @@ namespace BusinessLayer.Concrete
             _blogDal.Delete(t);
         }
 
-        public Blog TGetByID(int id) // Blog detayını getiren metot bunu güncellemede kullanacağım
-		{
-            return _blogDal.GetByID(id);
+        public Blog TGetByID(int id)
+        {
+            using (var context = new Context())
+            {
+                return context.Blogs
+                              .Include(b => b.Writer)
+                              .FirstOrDefault(b => b.BlogID == id);
+            }
         }
+
         public List<Blog> GetBlogByID(int id)
 		{
 			return _blogDal.GetListAll(x => x.BlogID == id);
@@ -68,6 +76,11 @@ namespace BusinessLayer.Concrete
         public List<Blog> GetRecentBlogsByWriter(int writerId, int count)
         {
            return _blogDal.GetRecentBlogsByWriter(writerId, count);
+        }
+
+        public List<Blog> GetBlogListWithBlogCategoryAndWriter()
+        {
+           return _blogDal.GetBlogListWithBlogCategoryAndWriter();
         }
     }
 }
