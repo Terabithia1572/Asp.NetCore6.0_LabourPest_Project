@@ -3,10 +3,17 @@ using DataAccessLayer.Abstract;
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
 
+    // Güvenlik için proxy IP adreslerini burada tanýmlayýn. Örneðin:
+    // options.KnownProxies.Add(IPAddress.Parse("PROXY_IP_ADDRESS"));
+});
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IBlogDal, EfBlogRepository>(); // IBlogRepository için EfBlogRepository kullanýmý
@@ -24,6 +31,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.LoginPath = "/Login/SignIN";
     });
+
 
 builder.Services.AddSession();
 var app = builder.Build();
@@ -45,7 +53,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseForwardedHeaders();
 app.UseRouting();
 app.UseSession();
 app.UseAuthentication();
