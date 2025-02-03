@@ -38,6 +38,12 @@
     <Folder Include="wwwroot\labourpestcustomer\brandsImage\" />
     <Folder Include="wwwroot\labourpestcustomer\categoryImage\" />
     <Folder Include="wwwroot\labourpestcustomer\Image2\" />
+    <Folder Include="wwwroot\labourpestcustomer\adminDosyalar\" />
+    <Folder Include="wwwroot\labourpestcustomer\musteriDosyalar\" />
+    <Folder Include="wwwroot\labourpestcustomer\YuklenenDosyalar\" />
+    <Folder Include="wwwroot\labourpestcustomer\whoweusImage\" />
+    <Folder Include="wwwroot\labourpestcustomer\servicesImage\" />
+    <Folder Include="wwwroot\labourpestcustomer\profileImage\" />
     <Folder Include="wwwroot\labourpestcustomer\registerCustomer\" />
     <Folder Include="wwwroot\labourpestcustomer\productImage\" />
   </ItemGroup>
