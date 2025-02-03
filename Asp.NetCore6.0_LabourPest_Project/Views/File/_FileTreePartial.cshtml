@@ -1,0 +1,21 @@
+﻿@model Asp.NetCore6._0_LabourPest_Project.Models.FileItemViewModel
+
+<ul class="treeview">
+    <li>
+        @if (Model.IsDirectory)
+        {
+            <strong>@Model.Name</strong>
+        }
+        else
+        {
+            @Model.Name
+        }
+        @if (Model.Children.Any())
+        {
+            foreach (var child in Model.Children)
+            {
+                @Html.Partial("_FileTreePartial", child)
+            }
+        }
+    </li>
+</ul>

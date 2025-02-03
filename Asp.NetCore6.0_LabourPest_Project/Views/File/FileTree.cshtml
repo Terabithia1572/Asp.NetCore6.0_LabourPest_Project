@@ -1,0 +1,10 @@
+﻿@model Asp.NetCore6._0_LabourPest_Project.Models.FileItemViewModel
+@{
+    ViewData["Title"] = "Dosya Ağacı";
+    Layout = "~/Views/Shared/_AdminDashboard.cshtml";
+}
+
+<div class="file-tree-container">
+    <h2>Dosya Yöneticisi</h2>
+    @Html.Partial("_FileTreePartial", Model)
+</div>
