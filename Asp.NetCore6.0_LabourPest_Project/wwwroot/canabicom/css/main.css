@@ -10182,6 +10182,7 @@ body.boxed {
 .btn-maincolor2,
 .btn-maincolor3,
 .btn-maincolor4,
+.btn-yunus,
 .btn-darkgrey {
 	color: #fff;
 }
@@ -10198,6 +10199,8 @@ body.boxed {
 	background-color: #073220;
 }
 .btn-maincolor4 {
+	background-color: #55c2bb;
+}.btn-yunus {
 	background-color: #55c2bb;
 }
 
@@ -10445,6 +10448,9 @@ body.boxed {
 	color: #fff;
 }
 	.ls .btn-maincolor4:hover {
+		background-color: #ebc912;
+		color: #fff;
+	}	.ls .btn-yunus:hover {
 		background-color: #ebc912;
 		color: #fff;
 	}
@@ -10850,10 +10856,12 @@ body.boxed {
 	.ds .btn-maincolor2,
 	.ds .btn-maincolor3,
 	.ds .btn-maincolor4,
+	.ds .btn-yunus,
 	.ds .btn-outline-maincolor,
 	.ds .btn-outline-maincolor2,
 	.ds .btn-outline-maincolor3,
 	.ds .btn-outline-maincolor4,
+	.ds .btn-outline-yunus,
 	.ds .btn-outline-darkgrey {
 		color: #fff;
 	}
@@ -10866,6 +10874,7 @@ body.boxed {
 	.ds .btn-maincolor2:hover,
 	.ds .btn-maincolor3:hover,
 	.ds .btn-maincolor4:hover,
+	.ds .btn-yunus:hover,
 	.ds .btn-darkgrey:hover,
 	.ds .btn-outline-maincolor:hover,
 	.ds .btn-outline-maincolor2:hover,
@@ -10886,6 +10895,9 @@ body.boxed {
 	background-color: #55c2bb;
 }
 	.ds .btn-maincolor4:hover {
+		background-color: #ebc912;
+	}
+	.ds .btn-yunus:hover {
 		background-color: #ebc912;
 	}
 
@@ -11446,6 +11458,9 @@ body.boxed {
 	color: #073220;
 }
 	.cs .btn-maincolor4:hover {
+		background-color: #ebc912;
+	}
+	.cs .btn-yunus:hover {
 		background-color: #ebc912;
 	}
 

@@ -1,0 +1,24 @@
+ .yunus {
+     display: inline-block;
+     width: 60px;
+     height: 60px;
+     object-fit: cover; /* Resmi orantılı kırpar ve boyuta sığdırır */
+     border-radius: 50%; /* Yuvarlak yapmak isterseniz */
+ }
+
+ #services {
+     position: relative; /* Overlay'in altında kalmaması için pozisyonlandırma */
+     z-index: 2;
+     color: #ffffff; /* Metin rengini beyaz yapıyoruz */
+ }
+
+     #services.s-overlay::before {
+         content: "";
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         background-color: rgba(85, 194, 187, 1) !important;
+         z-index: -1;
+     }
