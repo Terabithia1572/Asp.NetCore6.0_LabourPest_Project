@@ -2,8 +2,16 @@
 @{
     ViewData["Title"] = "Dosya Listesi";
     Layout = "~/Views/Shared/_AdminDashboard.cshtml";
-}
 
+    // Eğer müşteri ise tüm dosya işlemleri sadece MusteriFiles üzerinden yapılır.
+    // Not: MusteriFiles listesinin en son eklenen dosyaları ilk sırada olduğunu varsayıyoruz.
+    var recentFiles = User.IsInRole("Müşteri")
+                        ? Model.MusteriFiles.Take(8).ToList()
+                        : Model.RecentFiles;
+    var allFiles = User.IsInRole("Müşteri")
+                        ? Model.MusteriFiles
+                        : Model.AllFiles;
+}
 <div class="mb-9" data-collapse-filemanager-sidebar="data-collapse-filemanager-sidebar">
     <h2 class="mb-4">Dosya Yöneticisi</h2>
     <div class="row gx-4">
@@ -24,56 +32,60 @@
                             </p>
                         </a>
                         <ul class="collapse treeview-list" id="treeviewExample-1-1" data-show="true">
-                            <!-- Tüm Dosyalar -->
-                            <li class="treeview-list-item">
-                                <a data-bs-toggle="collapse" href="#treeviewExample-2-1" role="button" aria-expanded="false">
-                                    <p class="treeview-text text-nowrap">
-                                        <span class="fa-solid fa-folder treeview-icon"></span>
-                                        Tüm Dosyalar
-                                        <span class="treeview-badge">@Model.AllFiles.Count</span>
-                                        <span class="treeview-dot bg-danger"></span>
-                                    </p>
-                                </a>
-                                <ul class="collapse treeview-list" id="treeviewExample-2-1" data-show="false">
-                                    @foreach (var file in Model.AllFiles)
-                                    {
-                                        <li class="treeview-list-item">
-                                            <div class="treeview-item">
-                                                <a class="flex-1 ps-2 ms-2" href="@file.FilePath">
-                                                    <p class="treeview-text text-nowrap">
-                                                        <span class="treeview-icon fa-solid fa-file-lines"></span>
-                                                        @file.FileName
-                                                    </p>
-                                                </a>
-                                            </div>
-                                        </li>
-                                    }
-                                </ul>
-                            </li>
-                            <!-- Admin Dosyaları -->
-                            <li class="treeview-list-item">
-                                <a data-bs-toggle="collapse" href="#treeviewExample-2-2" role="button" aria-expanded="false">
-                                    <p class="treeview-text text-nowrap">
-                                        <span class="fa-solid fa-folder treeview-icon"></span>Admin Dosyaları
-                                    </p>
-                                </a>
-                                <ul class="collapse treeview-list" id="treeviewExample-2-2" data-show="false">
-                                    @foreach (var file in Model.AdminFiles)
-                                    {
-                                        <li class="treeview-list-item">
-                                            <div class="treeview-item">
-                                                <a class="flex-1 ps-2 ms-2" href="@file.FilePath">
-                                                    <p class="treeview-text text-nowrap">
-                                                        <span class="treeview-icon fa-solid fa-file-zipper"></span>
-                                                        @file.FileName
-                                                    </p>
-                                                </a>
-                                            </div>
-                                        </li>
-                                    }
-                                </ul>
-                            </li>
-                            <!-- Müşteri Dosyaları -->
+                            @* Yalnızca müşteri değilse diğer dosya kategorilerini göster *@
+                            @if (!User.IsInRole("Müşteri"))
+                            {
+                                <!-- Tüm Dosyalar -->
+                                <li class="treeview-list-item">
+                                    <a data-bs-toggle="collapse" href="#treeviewExample-2-1" role="button" aria-expanded="false">
+                                        <p class="treeview-text text-nowrap">
+                                            <span class="fa-solid fa-folder treeview-icon"></span>
+                                            Tüm Dosyalar
+                                            <span class="treeview-badge">@Model.AllFiles.Count</span>
+                                            <span class="treeview-dot bg-danger"></span>
+                                        </p>
+                                    </a>
+                                    <ul class="collapse treeview-list" id="treeviewExample-2-1" data-show="false">
+                                        @foreach (var file in Model.AllFiles)
+                                        {
+                                            <li class="treeview-list-item">
+                                                <div class="treeview-item">
+                                                    <a class="flex-1 ps-2 ms-2" href="@file.FilePath">
+                                                        <p class="treeview-text text-nowrap">
+                                                            <span class="treeview-icon fa-solid fa-file-lines"></span>
+                                                            @file.FileName
+                                                        </p>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                                <!-- Admin Dosyaları -->
+                                <li class="treeview-list-item">
+                                    <a data-bs-toggle="collapse" href="#treeviewExample-2-2" role="button" aria-expanded="false">
+                                        <p class="treeview-text text-nowrap">
+                                            <span class="fa-solid fa-folder treeview-icon"></span>Admin Dosyaları
+                                        </p>
+                                    </a>
+                                    <ul class="collapse treeview-list" id="treeviewExample-2-2" data-show="false">
+                                        @foreach (var file in Model.AdminFiles)
+                                        {
+                                            <li class="treeview-list-item">
+                                                <div class="treeview-item">
+                                                    <a class="flex-1 ps-2 ms-2" href="@file.FilePath">
+                                                        <p class="treeview-text text-nowrap">
+                                                            <span class="treeview-icon fa-solid fa-file-zipper"></span>
+                                                            @file.FileName
+                                                        </p>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                            <!-- Müşteri Dosyaları her durumda görünsün -->
                             <li class="treeview-list-item">
                                 <a data-bs-toggle="collapse" href="#treeviewExample-2-3" role="button" aria-expanded="false">
                                     <p class="treeview-text text-nowrap">
@@ -99,6 +111,7 @@
                         </ul>
                     </li>
                 </ul>
+
             </div>
             <div class="phoenix-offcanvas-backdrop d-lg-none" data-phoenix-backdrop="data-phoenix-backdrop"></div>
         </div>
@@ -107,145 +120,73 @@
         <div class="col my-files">
             <div class="row g-3 flex-between-center">
                 <div class="col-auto d-flex gap-2">
+                    <!-- Mobil ve tablet için kenar çubuğu açma butonları -->
                     <button class="btn btn-phoenix-secondary btn-square d-lg-none" data-phoenix-toggle="offcanvas" data-phoenix-target="#fileManagerSideBar">
                         <span class="fa-solid fa-bars"></span>
                     </button>
                     <button class="btn btn-phoenix-secondary btn-square d-none d-lg-block d-xl-none" data-toggle-sidebar="data-toggle-sidebar">
                         <span class="fa-solid fa-bars"></span>
                     </button>
-                    <!-- Yükle butonuna tıklayınca modal açılıyor -->
-                    <button type="button" class="btn btn-primary px-sm-6" data-bs-toggle="modal" data-bs-target="#uploadModal">
-                        <span class="fa-solid fa-cloud-arrow-up me-2"></span>Yükle
-                    </button>
-                    <button class="btn btn-link text-body-secondary px-2" type="button" data-bs-toggle="modal" data-bs-target="#addFolderModal" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
-                        <span class="fa-solid fa-add me-2"></span>Yeni Klasör Ekle
-                    </button>
-                </div>
-               @*  <div class="col-auto d-flex gap-2">
-                    <div class="search-box">
-                        <form class="position-relative">
-                            <input class="form-control search-input search" type="search" placeholder="Dosyalarda Ara.." aria-label="Search" />
-                            <span class="fas fa-search search-box-icon"></span>
-                        </form>
-                    </div>
-                    <button class="btn btn-phoenix-primary btn-square" type="button" data-bs-toggle="modal" data-bs-target="#fileFilterModal" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
-                        <span class="fa-solid fa-filter"></span>
-                    </button>
-                </div> *@
-            </div>
 
-            <!-- "Son Eklenen 8 Dosya" Kartı -->
-            <div class="card mt-4">
-                <div class="card-body pb-5">
-                    <h4 class="mb-3">Son Eklenen 8 Dosya</h4>
-
-                    <!-- İlk 4 dosya her zaman görünsün -->
-                    <div class="row g-3">
-                        @for (int i = 0; i < Model.RecentFiles.Count && i < 4; i++)
-                        {
-                            var file = Model.RecentFiles[i];
-                            <div class="col-sm-6 col-xl-6 col-xxl-3">
-                                <div class="file-card text-center">
-                                    <div class="position-relative">
-                                        <div class="img-zoom-hover mask-image-none overflow-hidden border rounded-3">
-                                            <div class="position-relative">
-                                                <div class="mask-image-recent-file overflow-hidden">
-                                                    <div class="ratio ratio-16x9">
-                                                        <img class="w-100 h-100 object-fit-cover" src="@file.PreviewUrl" alt="@file.FileName">
-                                                    </div>
-                                                    <span class="badge badge-phoenix fs-10 position-absolute top-0 start-0 mt-3 ms-3 badge-phoenix-warning">
-                                                        @file.LastModifiedAgo
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="bg-body p-3 pe-2 d-flex justify-content-between align-items-start rounded-bottom-3">
-                                                <div class="w-75 text-start">
-                                                    <a class="file-name text-body-highlight fw-bold mb-2 stretched-link d-block text-truncate"
-                                                       href="@file.FilePath" data-gallery="recent-file" data-width="90%" data-height="90vh">
-                                                        @file.FileName
-                                                    </a>
-                                                    <h6 class="mb-0 fw-semibold text-body-tertiary">
-                                                        @file.FileSize
-                                                    </h6>
-                                                </div>
-                                                <div class="dropdown position-static z-5">
-                                                    <button class="btn btn-square-sm position-relative mt-n1" type="button"
-                                                            data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true"
-                                                            aria-expanded="false" data-bs-reference="parent">
-                                                        <span class="fas fa-ellipsis-v" data-fa-transform="shrink-2"></span>
-                                                    </button>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item fw-semibold text-decoration-none"
-                                                           href="@Url.Action("Download", "File", new { filePath = file.FilePath })">
-                                                            İndir
-                                                        </a>
-                                                        <a class="dropdown-item fw-semibold text-decoration-none" href="#"
-                                                           data-bs-toggle="modal" data-bs-target="#renameModal"
-                                                           data-file-path="@file.FilePath" data-file-name="@file.FileName">
-                                                            Yeniden Adlandır
-                                                        </a>
-                                                        <hr class="dropdown-divider" />
-                                                        <form asp-controller="File" asp-action="Delete" method="post" class="d-inline"
-                                                              onsubmit="return confirm('Dosyayı silmek istediğinize emin misiniz?');">
-                                                            <input type="hidden" name="filePath" value="@file.FilePath" />
-                                                            <button type="submit" class="dropdown-item fw-semibold text-decoration-none text-danger">
-                                                                Sil
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-
-                    <!-- Eğer dosya sayısı 4'ten fazlaysa, geri kalan dosyaları collapse içine alalım -->
-                    @if (Model.RecentFiles.Count > 4)
+                    @* Eğer kullanıcı müşteri değilse butonları göster *@
+                    @if (!User.IsInRole("Müşteri"))
                     {
-                        <div class="collapse mt-3" id="collapseRecentFiles">
-                            <div class="row g-3">
-                                @for (int i = 4; i < Model.RecentFiles.Count; i++)
-                                {
-                                    var file = Model.RecentFiles[i];
-                                    <div class="col-sm-6 col-xl-6 col-xxl-3">
-                                        <div class="file-card text-center">
-                                            <div class="position-relative">
-                                                <div class="img-zoom-hover mask-image-none overflow-hidden border rounded-3">
-                                                    <div class="position-relative">
-                                                        <div class="mask-image-recent-file overflow-hidden">
-                                                            <div class="ratio ratio-16x9">
-                                                                <img class="w-100 h-100 object-fit-cover" src="@file.PreviewUrl" alt="@file.FileName">
-                                                            </div>
-                                                            <span class="badge badge-phoenix fs-10 position-absolute top-0 start-0 mt-3 ms-3 badge-phoenix-warning">
-                                                                @file.LastModifiedAgo
-                                                            </span>
+                        <button type="button" class="btn btn-primary px-sm-6" data-bs-toggle="modal" data-bs-target="#uploadModal">
+                            <span class="fa-solid fa-cloud-arrow-up me-2"></span>Yükle
+                        </button>
+                        <button class="btn btn-link text-body-secondary px-2" type="button" data-bs-toggle="modal" data-bs-target="#addFolderModal" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                            <span class="fa-solid fa-add me-2"></span>Yeni Klasör Ekle
+                        </button>
+                    }
+                </div>
+
+                <!-- "Son Eklenen 8 Dosya" Kartı -->
+                <div class="card mt-4">
+                    <div class="card-body pb-5">
+                        <h4 class="mb-3">Son Eklenen 8 Dosya</h4>
+
+                        <!-- İlk 4 dosya her zaman görünsün (collapse öncesi) -->
+                        <div class="row g-3">
+                            @for (int i = 0; i < recentFiles.Count() && i < 4; i++)
+                            {
+                                var file = recentFiles.ElementAt(i);
+                                <div class="col-sm-6 col-xl-6 col-xxl-3">
+                                    <div class="file-card text-center">
+                                        <div class="position-relative">
+                                            <div class="img-zoom-hover mask-image-none overflow-hidden border rounded-3">
+                                                <div class="position-relative">
+                                                    <div class="mask-image-recent-file overflow-hidden">
+                                                        <div class="ratio ratio-16x9">
+                                                            <img class="w-100 h-100 object-fit-cover" src="@file.PreviewUrl" alt="@file.FileName">
                                                         </div>
+                                                        <span class="badge badge-phoenix fs-10 position-absolute top-0 start-0 mt-3 ms-3 badge-phoenix-warning">
+                                                            @file.LastModifiedAgo
+                                                        </span>
                                                     </div>
-                                                    <div class="bg-body p-3 pe-2 d-flex justify-content-between align-items-start rounded-bottom-3">
-                                                        <div class="w-75">
-                                                            <a class="file-name text-body-highlight fw-bold mb-2 stretched-link d-block text-truncate"
-                                                               href="@file.FilePath" data-gallery="recent-file" data-width="90%" data-height="90vh">
-                                                                @file.FileName
+                                                </div>
+                                                <div class="bg-body p-3 pe-2 d-flex justify-content-between align-items-start rounded-bottom-3">
+                                                    <div class="w-75 text-start">
+                                                        <a class="file-name text-body-highlight fw-bold mb-2 stretched-link d-block text-truncate"
+                                                           href="@file.FilePath" data-gallery="recent-file" data-width="90%" data-height="90vh">
+                                                            @file.FileName
+                                                        </a>
+                                                        <h6 class="mb-0 fw-semibold text-body-tertiary">
+                                                            @file.FileSize
+                                                        </h6>
+                                                    </div>
+                                                    <div class="dropdown position-static z-5">
+                                                        <button class="btn btn-square-sm position-relative mt-n1" type="button"
+                                                                data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true"
+                                                                aria-expanded="false" data-bs-reference="parent">
+                                                            <span class="fas fa-ellipsis-v" data-fa-transform="shrink-2"></span>
+                                                        </button>
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item fw-semibold text-decoration-none"
+                                                               href="@Url.Action("Download", "File", new { filePath = file.FilePath })">
+                                                                İndir
                                                             </a>
-                                                            <h6 class="mb-0 fw-semibold text-body-tertiary">
-                                                                @file.FileSize
-                                                            </h6>
-                                                        </div>
-                                                        <div class="dropdown position-static z-5">
-                                                            <button class="btn btn-square-sm position-relative mt-n1" type="button"
-                                                                    data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true"
-                                                                    aria-expanded="false" data-bs-reference="parent">
-                                                                <span class="fas fa-ellipsis-v" data-fa-transform="shrink-2"></span>
-                                                            </button>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item fw-semibold text-decoration-none"
-                                                                   href="@Url.Action("Download", "File", new { filePath = file.FilePath })">
-                                                                    İndir
-                                                                </a>
+                                                            @if (!User.IsInRole("Müşteri"))
+                                                            {
                                                                 <a class="dropdown-item fw-semibold text-decoration-none" href="#"
                                                                    data-bs-toggle="modal" data-bs-target="#renameModal"
                                                                    data-file-path="@file.FilePath" data-file-name="@file.FileName">
@@ -259,94 +200,169 @@
                                                                         Sil
                                                                     </button>
                                                                 </form>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Eğer dosya sayısı 4'ten fazlaysa, geri kalan dosyaları collapse içine alalım -->
+                        @if (recentFiles.Count() > 4)
+                        {
+                            <div class="collapse mt-3" id="collapseRecentFiles">
+                                <div class="row g-3">
+                                    @for (int i = 4; i < recentFiles.Count(); i++)
+                                    {
+                                        var file = recentFiles.ElementAt(i);
+                                        <div class="col-sm-6 col-xl-6 col-xxl-3">
+                                            <div class="file-card text-center">
+                                                <div class="position-relative">
+                                                    <div class="img-zoom-hover mask-image-none overflow-hidden border rounded-3">
+                                                        <div class="position-relative">
+                                                            <div class="mask-image-recent-file overflow-hidden">
+                                                                <div class="ratio ratio-16x9">
+                                                                    <img class="w-100 h-100 object-fit-cover" src="@file.PreviewUrl" alt="@file.FileName">
+                                                                </div>
+                                                                <span class="badge badge-phoenix fs-10 position-absolute top-0 start-0 mt-3 ms-3 badge-phoenix-warning">
+                                                                    @file.LastModifiedAgo
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="bg-body p-3 pe-2 d-flex justify-content-between align-items-start rounded-bottom-3">
+                                                            <div class="w-75">
+                                                                <a class="file-name text-body-highlight fw-bold mb-2 stretched-link d-block text-truncate"
+                                                                   href="@file.FilePath" data-gallery="recent-file" data-width="90%" data-height="90vh">
+                                                                    @file.FileName
+                                                                </a>
+                                                                <h6 class="mb-0 fw-semibold text-body-tertiary">
+                                                                    @file.FileSize
+                                                                </h6>
+                                                            </div>
+                                                            <div class="dropdown position-static z-5">
+                                                                <button class="btn btn-square-sm position-relative mt-n1" type="button"
+                                                                        data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true"
+                                                                        aria-expanded="false" data-bs-reference="parent">
+                                                                    <span class="fas fa-ellipsis-v" data-fa-transform="shrink-2"></span>
+                                                                </button>
+                                                                <div class="dropdown-menu dropdown-menu-end">
+                                                                    <a class="dropdown-item fw-semibold text-decoration-none"
+                                                                       href="@Url.Action("Download", "File", new { filePath = file.FilePath })">
+                                                                        İndir
+                                                                    </a>
+                                                                    @if (!User.IsInRole("Müşteri"))
+                                                                    {
+                                                                        <a class="dropdown-item fw-semibold text-decoration-none" href="#"
+                                                                           data-bs-toggle="modal" data-bs-target="#renameModal"
+                                                                           data-file-path="@file.FilePath" data-file-name="@file.FileName">
+                                                                            Yeniden Adlandır
+                                                                        </a>
+                                                                        <hr class="dropdown-divider" />
+                                                                        <form asp-controller="File" asp-action="Delete" method="post" class="d-inline"
+                                                                              onsubmit="return confirm('Dosyayı silmek istediğinize emin misiniz?');">
+                                                                            <input type="hidden" name="filePath" value="@file.FilePath" />
+                                                                            <button type="submit" class="dropdown-item fw-semibold text-decoration-none text-danger">
+                                                                                Sil
+                                                                            </button>
+                                                                        </form>
+                                                                    }
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                }
+                                    }
+                                </div>
+                            </div>
+
+                            <!-- VIEW MORE / VIEW LESS Butonu -->
+                            <a class="btn collapse-indicator bg-body-emphasis fs-10 py-1 border rounded-1 px-3 position-absolute start-50 translate-middle-x"
+                               style="bottom: -11px" data-bs-toggle="collapse" href="#collapseRecentFiles" role="button"
+                               aria-expanded="false" aria-controls="collapseRecentFiles">
+                                <span class="collapse-show">Daha Fazla Görüntüle</span>
+                                <span class="collapse-hide">Daha Az Görüntüle</span>
+                                <span class="fa-solid fa-chevron-down toggle-icon fs-10 ms-2"></span>
+                            </a>
+                        }
+                    </div>
+                </div>
+
+                <!-- "Dosyalarım" Kartı: Dosya Grid listesi (Önizleme dahil) -->
+                <div class="card mt-5">
+                    <div class="card-header py-3 px-4">
+                        <div class="row g-3 flex-between-center">
+                            <div class="col-auto">
+                                <h5 class="mb-0">Dosyalarım</h5>
                             </div>
                         </div>
-
-                        <!-- VIEW MORE / VIEW LESS Butonu -->
-                        <a class="btn collapse-indicator bg-body-emphasis fs-10 py-1 border rounded-1 px-3 position-absolute start-50 translate-middle-x"
-                           style="bottom: -11px" data-bs-toggle="collapse" href="#collapseRecentFiles" role="button"
-                           aria-expanded="false" aria-controls="collapseRecentFiles">
-                            <span class="collapse-show">Daha Fazla Görüntüle</span>
-                            <span class="collapse-hide">Daha Az Görüntüle</span>
-                            <span class="fa-solid fa-chevron-down toggle-icon fs-10 ms-2"></span>
-                        </a>
-                    }
-                </div>
-            </div>
-
-            <!-- "Dosyalarım" Kartı: Dosya Grid listesi (Önizleme dahil) -->
-            <div class="card mt-5">
-                <div class="card-header py-3 px-4">
-                    <div class="row g-3 flex-between-center">
-                        <div class="col-auto">
-                            <h5 class="mb-0">Dosyalarım</h5>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="myfiles-action-bar mx-n4 mb-4">
+                            <h6 class="mb-0 text-body-tertiary" id="file-manager-replace-element">
+                                Toplam @allFiles.Count Dosya
+                            </h6>
                         </div>
-                    </div>
-                </div>
-                <div class="card-body pt-0">
-                    <div class="myfiles-action-bar mx-n4 mb-4">
-                        <h6 class="mb-0 text-body-tertiary" id="file-manager-replace-element">
-                            Toplam @Model.AllFiles.Count Dosya
-                        </h6>
-                    </div>
-                    <div class="row gx-xxl-9" id="bulk-select-body">
-                        <div class="col">
-                            <div class="files-container" data-files-container="data-files-container">
-                                @foreach (var file in Model.AllFiles)
-                                {
-                                    <div class="file-card text-center">
-                                        <div class="file-box-wrapper img-zoom-hover">
-                                            <div class="position-relative h-100">
-                                                <div class="file-box overflow-hidden">
-                                                    <img class="w-100 h-100 object-fit-cover" src="@file.PreviewUrl" alt="@file.FileName">
+                        <div class="row gx-xxl-9" id="bulk-select-body">
+                            <div class="col">
+                                <div class="files-container" data-files-container="data-files-container">
+                                    @foreach (var file in allFiles)
+                                    {
+                                        <div class="file-card text-center">
+                                            <div class="file-box-wrapper img-zoom-hover">
+                                                <div class="position-relative h-100">
+                                                    <div class="file-box overflow-hidden">
+                                                        <img class="w-100 h-100 object-fit-cover" src="@file.PreviewUrl" alt="@file.FileName">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="dropdown lh-1 position-absolute top-0 end-0 mt-2 me-2">
-                                                <button class="btn btn-square-sm text-secondary position-relative z-1" type="button"
-                                                        data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true"
-                                                        aria-expanded="false" data-bs-reference="parent">
-                                                    <span class="fas fa-ellipsis-v" data-fa-transform="shrink-2"></span>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item fw-semibold text-decoration-none"
-                                                       href="@Url.Action("Download", "File", new { filePath = file.FilePath })">
-                                                        İndir
-                                                    </a>
-                                                    <a class="dropdown-item fw-semibold text-decoration-none" href="#"
-                                                       data-bs-toggle="modal" data-bs-target="#renameModal"
-                                                       data-file-path="@file.FilePath" data-file-name="@file.FileName">
-                                                        Yeniden Adlandır
-                                                    </a>
-                                                    <hr class="dropdown-divider" />
-                                                    <form asp-controller="File" asp-action="Delete" method="post" class="d-inline"
-                                                          onsubmit="return confirm('Dosyayı silmek istediğinize emin misiniz?');">
-                                                        <input type="hidden" name="filePath" value="@file.FilePath" />
-                                                        <button type="submit" class="dropdown-item fw-semibold text-decoration-none text-danger">
-                                                            Sil
-                                                        </button>
-                                                    </form>
+                                                <div class="dropdown lh-1 position-absolute top-0 end-0 mt-2 me-2">
+                                                    <button class="btn btn-square-sm text-secondary position-relative z-1" type="button"
+                                                            data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true"
+                                                            aria-expanded="false" data-bs-reference="parent">
+                                                        <span class="fas fa-ellipsis-v" data-fa-transform="shrink-2"></span>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item fw-semibold text-decoration-none"
+                                                           href="@Url.Action("Download", "File", new { filePath = file.FilePath })">
+                                                            İndir
+                                                        </a>
+                                                        @if (!User.IsInRole("Müşteri"))
+                                                        {
+                                                            <a class="dropdown-item fw-semibold text-decoration-none" href="#"
+                                                               data-bs-toggle="modal" data-bs-target="#renameModal"
+                                                               data-file-path="@file.FilePath" data-file-name="@file.FileName">
+                                                                Yeniden Adlandır
+                                                            </a>
+                                                            <hr class="dropdown-divider" />
+                                                            <form asp-controller="File" asp-action="Delete" method="post" class="d-inline"
+                                                                  onsubmit="return confirm('Dosyayı silmek istediğinize emin misiniz?');">
+                                                                <input type="hidden" name="filePath" value="@file.FilePath" />
+                                                                <button type="submit" class="dropdown-item fw-semibold text-decoration-none text-danger">
+                                                                    Sil
+                                                                </button>
+                                                            </form>
+                                                        }
+                                                    </div>
                                                 </div>
+                                                <a class="file-name d-block fw-bold text-body-highlight mt-2 text-nowrap text-truncate fs-9 fs-sm-8" href="@file.FilePath">
+                                                    @file.FileName
+                                                </a>
+                                                <h6 class="mb-0 fw-semibold text-body-tertiary fs-10 fs-sm-9">
+                                                    @file.FileSize
+                                                </h6>
                                             </div>
-                                            <a class="file-name d-block fw-bold text-body-highlight mt-2 text-nowrap text-truncate fs-9 fs-sm-8" href="@file.FilePath">
-                                                @file.FileName
-                                            </a>
-                                            <h6 class="mb-0 fw-semibold text-body-tertiary fs-10 fs-sm-9">
-                                                @file.FileSize
-                                            </h6>
                                         </div>
-                                    </div>
-                                }
+                                    }
+                                </div>
                             </div>
+                            <!-- Dosya detaylarının gösterileceği aside bölümü -->
                         </div>
-                        <!-- Dosya detaylarının gösterileceği aside bölümü -->
                     </div>
                 </div>
             </div>
