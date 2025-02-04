@@ -1,666 +1,633 @@
-﻿<nav class="navbar navbar-vertical navbar-expand-lg" style="display:none;">
+﻿@{
+    // Kullanıcının rolünü belirleyen değişken
+    var userRole = User.IsInRole("Müşteri") ? "Müşteri" : "Admin";
+}
+<nav class="navbar navbar-vertical navbar-expand-lg">
     <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
-        <!-- scrollbar removed-->
         <div class="navbar-vertical-content">
             <ul class="navbar-nav flex-column" id="navbarVerticalNav">
+                <!-- Herkes için ortak: Ana Sayfa -->
                 <li class="nav-item">
-                    <!-- parent pages-->
                     <div class="nav-item-wrapper">
-                        <a class="nav-link label-1" href="/AdminDashboard/Profile" role="button" data-bs-toggle="" aria-expanded="false">
-                            <div class="d-flex align-items-center"><span class="nav-link-icon"><span data-feather="home"></span></span><span class="nav-link-text-wrapper"><span class="nav-link-text">Ana Sayfa</span></span></div>
+                        <a class="nav-link label-1" href="/AdminDashboard/Profile" role="button">
+                            <div class="d-flex align-items-center">
+                                <span class="nav-link-icon"><span data-feather="home"></span></span>
+                                <span class="nav-link-text-wrapper">
+                                    <span class="nav-link-text">Ana Sayfa</span>
+                                </span>
+                            </div>
                         </a>
-                    </div><!-- parent pages-->
-
+                    </div>
                 </li>
+
+                <!-- MENÜ 1: Sadece Admin (Müşteri değil) için gösterilecek -->
+                
+                    <li class="nav-item">
+                        <p class="navbar-vertical-label">MENÜ 1</p>
+                        <hr class="navbar-vertical-line" />
+                        <!-- Ana Sayfa İşlemleri -->
+                         @if (userRole != "Müşteri")
+                                {
+                        <div class="nav-item-wrapper">
+                            <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce6" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce6">
+                                <div class="d-flex align-items-center">
+                                    <div class="dropdown-indicator-icon-wrapper">
+                                        <span class="fas fa-caret-right dropdown-indicator-icon"></span>
+                                    </div>
+                                    <span class="nav-link-icon"><span data-feather="home"></span></span>
+                                    <span class="nav-link-text">Ana Sayfa İşlemleri</span>
+                                </div>
+                            </a>
+                            <div class="parent-wrapper label-1">
+                                <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce6">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/AdminHomePage/AdminHomePageList">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Ana Sayfa Bilgi Listesi</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/AdminHomePage/AddHomePage">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Ana Sayfa Bilgisi Ekle</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                                }
+                        <!-- Blog İşlemleri -->
+                        <div class="nav-item-wrapper">
+                            <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce">
+                                <div class="d-flex align-items-center">
+                                    <div class="dropdown-indicator-icon-wrapper">
+                                        <span class="fas fa-caret-right dropdown-indicator-icon"></span>
+                                    </div>
+                                    <span class="nav-link-icon"><span data-feather="share-2"></span></span>
+                                    <span class="nav-link-text">Blog İşlemleri</span>
+                                </div>
+                            </a>
+                            <div class="parent-wrapper label-1">
+                                <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce">
+                                    <!-- Blog İşlemleri (Liste/Ekle) -->
+                                     @if (userRole != "Müşteri")
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/AdminBlog/BlogList">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Blog Listesi</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                }
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/AdminBlog/AddBlog">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Blog Ekle</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- Blog Kategori İşlemleri -->
+                                     @if (userRole != "Müşteri")
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/AdminBlogCategory/BlogCategoryList">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Blog Kategori Listesi</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/AdminBlogCategory/AddBlogCategory">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Blog Kategorisi Ekle</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- Blog Yorum İşlemleri -->
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/BlogComment/BlogCommentList">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Blog Yorum Listesi</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Home/Deneme">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Bloga Yorum Ekle</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                }
+                                </ul>
+                            </div>
+                        </div>
+                         @if (userRole != "Müşteri")
+                                {
+                        <!-- Ürün İşlemleri -->
+                        <div class="nav-item-wrapper">
+                            <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce11" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce11">
+                                <div class="d-flex align-items-center">
+                                    <div class="dropdown-indicator-icon-wrapper">
+                                        <span class="fas fa-caret-right dropdown-indicator-icon"></span>
+                                    </div>
+                                    <span class="nav-link-icon"><span data-feather="shopping-cart"></span></span>
+                                    <span class="nav-link-text">Ürün İşlemleri</span>
+                                </div>
+                            </a>
+                            <div class="parent-wrapper label-1">
+                                <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce11">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Product/ProductList">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Ürün Listesi</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Product/AddProduct">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Ürün Ekle</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                                }
+                                 @if (userRole != "Müşteri")
+                                {
+                        <!-- Müşteri İşlemleri -->
+                        <div class="nav-item-wrapper">
+                            <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce15" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce15">
+                                <div class="d-flex align-items-center">
+                                    <div class="dropdown-indicator-icon-wrapper">
+                                        <span class="fas fa-caret-right dropdown-indicator-icon"></span>
+                                    </div>
+                                    <span class="nav-link-icon"><span data-feather="user"></span></span>
+                                    <span class="nav-link-text">Müşteri İşlemleri</span>
+                                </div>
+                            </a>
+                            <div class="parent-wrapper label-1">
+                                <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce15">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/RegisterCustomer/CustomerList">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Müşteri Listesi</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/RegisterCustomer/AddCustomer">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Müşteri Ekle</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                                }
+                                 @if (userRole != "Müşteri")
+                                {
+                        <!-- Marka İşlemleri -->
+                        <div class="nav-item-wrapper">
+                            <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce1" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce1">
+                                <div class="d-flex align-items-center">
+                                    <div class="dropdown-indicator-icon-wrapper">
+                                        <span class="fas fa-caret-right dropdown-indicator-icon"></span>
+                                    </div>
+                                    <span class="nav-link-icon"><span data-feather="shopping-bag"></span></span>
+                                    <span class="nav-link-text">Marka İşlemleri</span>
+                                </div>
+                            </a>
+                            <div class="parent-wrapper label-1">
+                                <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce1">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/AdminBrands/BrandsList">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Marka Listesi</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/AdminBrands/AddBrand">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Marka Ekle</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                                }
+                                 @if (userRole != "Müşteri")
+                                {
+                        <!-- Kategori İşlemleri -->
+                        <div class="nav-item-wrapper">
+                            <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce2" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce2">
+                                <div class="d-flex align-items-center">
+                                    <div class="dropdown-indicator-icon-wrapper">
+                                        <span class="fas fa-caret-right dropdown-indicator-icon"></span>
+                                    </div>
+                                    <span class="nav-link-icon"><span data-feather="trello"></span></span>
+                                    <span class="nav-link-text">Kategori İşlemleri</span>
+                                </div>
+                            </a>
+                            <div class="parent-wrapper label-1">
+                                <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce2">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Category/CategoryList">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Kategori Listesi</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Category/AddCategory">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Kategori Ekle</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                                }
+                                 
+                        <!-- Yorum İşlemleri -->
+                        <div class="nav-item-wrapper">
+                            <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce3" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce3">
+                                <div class="d-flex align-items-center">
+                                    <div class="dropdown-indicator-icon-wrapper">
+                                        <span class="fas fa-caret-right dropdown-indicator-icon"></span>
+                                    </div>
+                                    <span class="nav-link-icon"><span data-feather="eye"></span></span>
+                                    <span class="nav-link-text">Yorum İşlemleri</span>
+                                </div>
+                            </a>
+                            <div class="parent-wrapper label-1">
+                                <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce3">
+                                     @if (userRole != "Müşteri")
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Comment/CommentList">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Yorum Listesi</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                }
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Comment/AddComment">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Yorum Ekle</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                 <!-- End of MENÜ 1 for Admin -->
+                <!-- MENÜ 2 -->
                 <li class="nav-item">
-                    <!-- label-->
-                    <p class="navbar-vertical-label">MENÜ 1</p>
-                    <hr class="navbar-vertical-line" /><!-- parent pages-->
-                    <div class="nav-item-wrapper">
-                        <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce6" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce6">
-                            <div class="d-flex align-items-center">
-                                <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-icon"><span data-feather="home"></span></span><span class="nav-link-text">Ana Sayfa İşlemleri</span>
-                            </div>
-                        </a>
-                        <div class="parent-wrapper label-1">
-                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce6">
-                                <li class="collapsed-nav-item-title d-none">Markalar</li>
-                                <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator" href="#nv-admin" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-admin">
-                                        <div class="d-flex align-items-center">
-                                            <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Ana Sayfa İşlemleri</span>
-                                        </div>
-                                    </a><!-- more inner pages-->
-                                    <div class="parent-wrapper">
-                                        <ul class="nav collapse parent show" data-bs-parent="#e-commerce" id="nv-admin">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/AdminHomePage/AdminHomePageList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Ana Sayfa Bilgi Listesi</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/AdminHomePage/AddHomePage">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Ana Sayfa Bilgisi Ekle</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div> <!-- Ana Sayfa İşlemleri-->
-
-                    <div class="nav-item-wrapper">
-                        <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce">
-                            <div class="d-flex align-items-center">
-                                <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-icon"><span data-feather="share-2"></span></span><span class="nav-link-text">Blog İşlemleri</span>
-                            </div>
-                        </a>
-                        <div class="parent-wrapper label-1">
-                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce">
-                                <li class="collapsed-nav-item-title d-none">Bloglar</li>
-                                <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator" href="#nv-admin" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-admin">
-                                        <div class="d-flex align-items-center">
-                                            <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Blog İşlemleri</span>
-                                        </div>
-                                    </a><!-- more inner pages-->
-                                    <div class="parent-wrapper">
-                                        <ul class="nav collapse parent show" data-bs-parent="#e-commerce" id="nv-admin">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/AdminBlog/BlogList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Blog Listesi</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/AdminBlog/AddBlog">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Blog Ekle</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-                                         
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator" href="#nv-customer" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-customer">
-                                        <div class="d-flex align-items-center">
-                                            <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Blog Kategori İşlemleri</span>
-                                        </div>
-                                    </a><!-- more inner pages-->
-                                    <div class="parent-wrapper">
-                                        <ul class="nav collapse parent show" data-bs-parent="#e-commerce" id="nv-customer">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/AdminBlogCategory/BlogCategoryList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Blog Kategori Listesi</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/AdminBlogCategory/AddBlogCategory">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Blog Kategorisi Ekle</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-                                          
-                                        </ul>
-                                    </div>
-
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator" href="#nv-customer1" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-customer1">
-                                        <div class="d-flex align-items-center">
-                                            <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Blog Yorum İşlemleri</span>
-                                        </div>
-                                    </a><!-- more inner pages-->
-                                    <div class="parent-wrapper">
-                                        <ul class="nav collapse parent show" data-bs-parent="#e-commerce" id="nv-customer1">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/BlogComment/BlogCommentList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Blog Yorum Listesi</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/Home/Deneme">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Bloga Yorum Ekle</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-
-                                        </ul>
-                                    </div>
-
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- Blog İşlemleri-->
-                    <div class="nav-item-wrapper">
-                        <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce11" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce11">
-                            <div class="d-flex align-items-center">
-                                <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-icon"><span data-feather="shopping-cart"></span></span><span class="nav-link-text">Ürün İşlemleri</span>
-                            </div>
-                        </a>
-                        <div class="parent-wrapper label-1">
-                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce11">
-                                <li class="collapsed-nav-item-title d-none">Markalar</li>
-                                <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator" href="#nv-admin" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-admin">
-                                        <div class="d-flex align-items-center">
-                                            <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Ürün İşlemleri</span>
-                                        </div>
-                                    </a><!-- more inner pages-->
-                                    <div class="parent-wrapper">
-                                        <ul class="nav collapse parent show" data-bs-parent="#e-commerce" id="nv-admin">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/Product/ProductList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Ürün Listesi</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/Product/AddProduct">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Ürün Ekle</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div> <!--Ürün İşlemleri-->
-                    <div class="nav-item-wrapper">
-                        <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce15" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce15">
-                            <div class="d-flex align-items-center">
-                                <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-icon"><span data-feather="user"></span></span><span class="nav-link-text">Müşteri İşlemleri</span>
-                            </div>
-                        </a>
-                        <div class="parent-wrapper label-1">
-                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce15">
-                                <li class="collapsed-nav-item-title d-none">Markalar</li>
-                                <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator" href="#nv-admin" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-admin">
-                                        <div class="d-flex align-items-center">
-                                            <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Müşteri İşlemleri</span>
-                                        </div>
-                                    </a><!-- more inner pages-->
-                                    <div class="parent-wrapper">
-                                        <ul class="nav collapse parent show" data-bs-parent="#e-commerce" id="nv-admin">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/RegisterCustomer/CustomerList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Müşteri Listesi</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/RegisterCustomer/AddCustomer">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Müşteri Ekle</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div> <!--Müşteri İşlemleri-->
-                    <div class="nav-item-wrapper">
-                        <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce1" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce1">
-                            <div class="d-flex align-items-center">
-                                <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-icon"><span data-feather="shopping-bag"></span></span><span class="nav-link-text">Marka İşlemleri</span>
-                            </div>
-                        </a>
-                        <div class="parent-wrapper label-1">
-                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce1">
-                                <li class="collapsed-nav-item-title d-none">Markalar</li>
-                                <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator" href="#nv-admin" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-admin">
-                                        <div class="d-flex align-items-center">
-                                            <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Marka İşlemleri</span>
-                                        </div>
-                                    </a><!-- more inner pages-->
-                                    <div class="parent-wrapper">
-                                        <ul class="nav collapse parent show" data-bs-parent="#e-commerce" id="nv-admin">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/AdminBrands/BrandsList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Marka Listesi</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/AdminBrands/AddBrand">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Marka Ekle</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div> <!--Marka İşlemleri-->
-                    <div class="nav-item-wrapper">
-                        <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce2" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce2">
-                            <div class="d-flex align-items-center">
-                                <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-icon"><span data-feather="trello"></span></span><span class="nav-link-text">Kategori İşlemleri</span>
-                            </div>
-                        </a>
-                        <div class="parent-wrapper label-1">
-                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce2">
-                                <li class="collapsed-nav-item-title d-none">Markalar</li>
-                                <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator" href="#nv-admin" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-admin">
-                                        <div class="d-flex align-items-center">
-                                            <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Kategori İşlemleri</span>
-                                        </div>
-                                    </a><!-- more inner pages-->
-                                    <div class="parent-wrapper">
-                                        <ul class="nav collapse parent show" data-bs-parent="#e-commerce" id="nv-admin">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/Category/CategoryList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Kategori Listesi</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/Category/AddCategory">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Kategori Ekle</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div> <!--Kategori İşlemleri-->
-                    <div class="nav-item-wrapper">
-                        <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce3" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce3">
-                            <div class="d-flex align-items-center">
-                                <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-icon"><span data-feather="eye"></span></span><span class="nav-link-text">Yorum İşlemleri</span>
-                            </div>
-                        </a>
-                        <div class="parent-wrapper label-1">
-                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce3">
-                                <li class="collapsed-nav-item-title d-none">Markalar</li>
-                                <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator" href="#nv-admin" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-admin">
-                                        <div class="d-flex align-items-center">
-                                            <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Yorum İşlemleri</span>
-                                        </div>
-                                    </a><!-- more inner pages-->
-                                    <div class="parent-wrapper">
-                                        <ul class="nav collapse parent show" data-bs-parent="#e-commerce" id="nv-admin">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/Comment/CommentList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Yorum Listesi</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/Comment/AddComment">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Yorum Ekle</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div> <!--Yorum İşlemleri-->
-                    
-                  
-                </li>
-                <li class="nav-item">
-                    <!-- label-->
                     <p class="navbar-vertical-label">MENÜ 2</p>
-                    <hr class="navbar-vertical-line" /><!-- parent pages-->
+                    <hr class="navbar-vertical-line" />
+                    <!-- Dosya İşlemleri: Dosya Listesi her iki rol için, Dosya Ekle sadece Admin için -->
                     <div class="nav-item-wrapper">
                         <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce25" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce25">
                             <div class="d-flex align-items-center">
-                                <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-icon"><span data-feather="folder"></span></span><span class="nav-link-text">Dosya İşlemleri</span>
+                                <div class="dropdown-indicator-icon-wrapper">
+                                    <span class="fas fa-caret-right dropdown-indicator-icon"></span>
+                                </div>
+                                <span class="nav-link-icon"><span data-feather="folder"></span></span>
+                                <span class="nav-link-text">Dosya İşlemleri</span>
                                 <span class="badge ms-2 badge badge-phoenix badge-phoenix-warning nav-link-badge">Yeni</span>
                             </div>
                         </a>
                         <div class="parent-wrapper label-1">
                             <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce25">
-                                <li class="collapsed-nav-item-title d-none">Markalar</li>
                                 <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator" href="#nv-admin" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-admin">
+                                    <a class="nav-link" href="/File/FileList">
                                         <div class="d-flex align-items-center">
-                                            <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Dosya İşlemleri</span>
+                                            <span class="nav-link-text">Dosya Listesi</span>
                                         </div>
-                                    </a><!-- more inner pages-->
-                                    <div class="parent-wrapper">
-                                        <ul class="nav collapse parent show" data-bs-parent="#e-commerce" id="nv-admin">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/File/FileList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Dosya Listesi</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/File/AddFile">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Dosya Ekle</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-
-                                        </ul>
-                                    </div>
+                                    </a>
                                 </li>
-
+                                @* Dosya Ekle kısmı yalnızca Admin'e gösterilsin *@
+                                @if (userRole != "Müşteri")
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/File/FileList">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Dosya Ekle</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                }
                             </ul>
                         </div>
-                    </div> <!--Görsel İşlemleri-->
-                    <div class="nav-item-wrapper">
-                        <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce7" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce7">
-                            <div class="d-flex align-items-center">
-                                <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-icon"><span data-feather="image"></span></span><span class="nav-link-text">Görsel İşlemleri</span>
+                    </div>
+
+                    <!-- Görsel İşlemleri (sadece Admin için) -->
+                    @if (userRole != "Müşteri")
+                    {
+                        <div class="nav-item-wrapper">
+                            <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce7" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce7">
+                                <div class="d-flex align-items-center">
+                                    <div class="dropdown-indicator-icon-wrapper">
+                                        <span class="fas fa-caret-right dropdown-indicator-icon"></span>
+                                    </div>
+                                    <span class="nav-link-icon"><span data-feather="image"></span></span>
+                                    <span class="nav-link-text">Görsel İşlemleri</span>
+                                </div>
+                            </a>
+                            <div class="parent-wrapper label-1">
+                                <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce7">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Image/ImageList">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Görsel Listesi</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Image/AddImage">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Görsel Ekle</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
-                        </a>
-                        <div class="parent-wrapper label-1">
-                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce7">
-                                <li class="collapsed-nav-item-title d-none">Markalar</li>
-                                <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator" href="#nv-admin" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-admin">
-                                        <div class="d-flex align-items-center">
-                                            <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Görsel İşlemleri</span>
-                                        </div>
-                                    </a><!-- more inner pages-->
-                                    <div class="parent-wrapper">
-                                        <ul class="nav collapse parent show" data-bs-parent="#e-commerce" id="nv-admin">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/Image/ImageList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Görsel Listesi</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/Image/AddImage">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Görsel Ekle</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </li>
-
-                            </ul>
                         </div>
-                    </div> <!--Görsel İşlemleri-->
-                    <div class="nav-item-wrapper">
-                        <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce8" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce8">
-                            <div class="d-flex align-items-center">
-                                <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-icon"><span data-feather="briefcase"></span></span><span class="nav-link-text">İş Başvuru İşlemleri</span>
+
+                        <!-- İş Başvuru İşlemleri -->
+                        <div class="nav-item-wrapper">
+                            <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce8" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce8">
+                                <div class="d-flex align-items-center">
+                                    <div class="dropdown-indicator-icon-wrapper">
+                                        <span class="fas fa-caret-right dropdown-indicator-icon"></span>
+                                    </div>
+                                    <span class="nav-link-icon"><span data-feather="briefcase"></span></span>
+                                    <span class="nav-link-text">İş Başvuru İşlemleri</span>
+                                </div>
+                            </a>
+                            <div class="parent-wrapper label-1">
+                                <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce8">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/JobApplication/JobApplicationList">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">İş Başvuru Listesi</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
-                        </a>
-                        <div class="parent-wrapper label-1">
-                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce8">
-                                <li class="collapsed-nav-item-title d-none">Markalar</li>
-                                <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator" href="#nv-admin" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-admin">
-                                        <div class="d-flex align-items-center">
-                                            <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">İş Başvuru İşlemleri</span>
-                                        </div>
-                                    </a><!-- more inner pages-->
-                                    <div class="parent-wrapper">
-                                        <ul class="nav collapse parent show" data-bs-parent="#e-commerce" id="nv-admin">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/JobApplication/JobApplicationList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">İş Başvuru Listesi</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-
-                            </ul>
                         </div>
-                    </div> <!--İş Başvuru İşlemleri-->
-                    <div class="nav-item-wrapper">
-                        <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce9" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce9">
-                            <div class="d-flex align-items-center">
-                                <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-icon"><span data-feather="alert-triangle"></span></span><span class="nav-link-text">Log İşlemleri</span>
+
+                        <!-- Log İşlemleri -->
+                        <div class="nav-item-wrapper">
+                            <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce9" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce9">
+                                <div class="d-flex align-items-center">
+                                    <div class="dropdown-indicator-icon-wrapper">
+                                        <span class="fas fa-caret-right dropdown-indicator-icon"></span>
+                                    </div>
+                                    <span class="nav-link-icon"><span data-feather="alert-triangle"></span></span>
+                                    <span class="nav-link-text">Log İşlemleri</span>
+                                </div>
+                            </a>
+                            <div class="parent-wrapper label-1">
+                                <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce9">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Log/LogList">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Log Listesi</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Log/LogListAll">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Tüm Loglar</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
-                        </a>
-                        <div class="parent-wrapper label-1">
-                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce9">
-                                <li class="collapsed-nav-item-title d-none">Markalar</li>
-                                <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator" href="#nv-admin" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-admin">
-                                        <div class="d-flex align-items-center">
-                                            <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Log İşlemleri</span>
-                                        </div>
-                                    </a><!-- more inner pages-->
-                                    <div class="parent-wrapper">
-                                        <ul class="nav collapse parent show" data-bs-parent="#e-commerce" id="nv-admin">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/Log/LogList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Log Listesi</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/Log/LogListAll">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Tüm Loglar</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </li>
-
-                            </ul>
                         </div>
-                    </div> <!--Log İşlemleri-->
+                    } <!-- End Görsel, İş Başvuru ve Log İşlemleri (Admin) -->
+                    <!-- Mail İşlemleri (her iki rol için gösterilebilir) -->
                     <div class="nav-item-wrapper">
                         <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce10" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce10">
                             <div class="d-flex align-items-center">
-                                <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-icon"><span data-feather="mail"></span></span><span class="nav-link-text">Mail İşlemleri</span>
+                                <div class="dropdown-indicator-icon-wrapper">
+                                    <span class="fas fa-caret-right dropdown-indicator-icon"></span>
+                                </div>
+                                <span class="nav-link-icon"><span data-feather="mail"></span></span>
+                                <span class="nav-link-text">Mail İşlemleri</span>
                             </div>
                         </a>
                         <div class="parent-wrapper label-1">
                             <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce10">
-                                <li class="collapsed-nav-item-title d-none">Markalar</li>
                                 <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator" href="#nv-admin" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-admin">
+                                    <a class="nav-link" href="/AdminMail/MailList">
                                         <div class="d-flex align-items-center">
-                                            <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Mail İşlemleri</span>
+                                            <span class="nav-link-text">Mail Listesi</span>
                                         </div>
-                                    </a><!-- more inner pages-->
-                                    <div class="parent-wrapper">
-                                        <ul class="nav collapse parent show" data-bs-parent="#e-commerce" id="nv-admin">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/AdminMail/MailList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Mail Listesi</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>  <li class="nav-item">
-                                                <a class="nav-link" href="/AdminMail/MailList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Gelen Mailler</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>  <li class="nav-item">
-                                                <a class="nav-link" href="/AdminMail/SentMailList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Gönderilen Mailler</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/AdminMail/MailList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Mail Gönder</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-
-                                        </ul>
-                                    </div>
+                                    </a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/AdminMail/MailList">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">Gelen Mailler</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/AdminMail/SentMailList">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">Gönderilen Mailler</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/AdminMail/MailList">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">Mail Gönder</span>
+                                        </div>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
-                    </div> <!--Mail İşlemleri-->
+                    </div>
+                    @if (userRole != "Müşteri")
+                                {
+                    <!-- İletişim İşlemleri (her iki rol için) -->
                     <div class="nav-item-wrapper">
                         <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce4" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce4">
                             <div class="d-flex align-items-center">
-                                <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-icon"><span data-feather="phone"></span></span><span class="nav-link-text">İletişim İşlemleri</span>
+                                <div class="dropdown-indicator-icon-wrapper">
+                                    <span class="fas fa-caret-right dropdown-indicator-icon"></span>
+                                </div>
+                                <span class="nav-link-icon"><span data-feather="phone"></span></span>
+                                <span class="nav-link-text">İletişim İşlemleri</span>
                             </div>
                         </a>
                         <div class="parent-wrapper label-1">
                             <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce4">
-                                <li class="collapsed-nav-item-title d-none">Markalar</li>
                                 <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator" href="#nv-admin" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-admin">
+                                    <a class="nav-link" href="/Contact/ContactList">
                                         <div class="d-flex align-items-center">
-                                            <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">İletişim İşlemleri</span>
+                                            <span class="nav-link-text">İletişim Listesi</span>
                                         </div>
-                                    </a><!-- more inner pages-->
-                                    <div class="parent-wrapper">
-                                        <ul class="nav collapse parent show" data-bs-parent="#e-commerce" id="nv-admin">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/Contact/ContactList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">İletişim Listesi</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/Contact/AddContact">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">İletişim Bilgileri Ekle</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-
-                                        </ul>
-                                    </div>
+                                    </a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Contact/AddContact">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">İletişim Bilgileri Ekle</span>
+                                        </div>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
-                    </div> <!--İletişim İşlemleri-->
-                  
+                    </div>
+                                }
                 </li>
-                <li class="nav-item">
-                    <!-- label-->
-                    <p class="navbar-vertical-label">MENÜ 3</p>
-                    <hr class="navbar-vertical-line" /><!-- parent pages-->
 
+                <!-- MENÜ 3: Genel (Profil, Servis, Abonelik, Biz Kimiz) -->
+                <li class="nav-item">
+                    <p class="navbar-vertical-label">MENÜ 3</p>
+                    <hr class="navbar-vertical-line" />
+                    <!-- Profil Ayarları -->
                     <div class="nav-item-wrapper">
                         <a class="nav-link dropdown-indicator label-1" href="#nv-social" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-social">
                             <div class="d-flex align-items-center">
-                                <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-icon"><span data-feather="share-2"></span></span><span class="nav-link-text">Profil Ayarları</span>
+                                <div class="dropdown-indicator-icon-wrapper">
+                                    <span class="fas fa-caret-right dropdown-indicator-icon"></span>
+                                </div>
+                                <span class="nav-link-icon"><span data-feather="share-2"></span></span>
+                                <span class="nav-link-text">Profil Ayarları</span>
                             </div>
                         </a>
                         <div class="parent-wrapper label-1">
                             <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-social">
-                                <li class="collapsed-nav-item-title d-none">Social</li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="/AdminDashboard/Profile">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text">Profilim</span></div>
-                                    </a><!-- more inner pages-->
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">Profilim</span>
+                                        </div>
+                                    </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="/AdminDashboard/ProfileSettings">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text">Profil Ayarları</span></div>
-                                    </a><!-- more inner pages-->
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">Profil Ayarları</span>
+                                        </div>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
-                    </div><!-- parent pages-->
-                   
+                    </div>
+
+                    @if (userRole != "Müşteri")
+                                {
+                    <!-- Servis İşlemleri -->
                     <div class="nav-item-wrapper">
                         <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce12" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce12">
                             <div class="d-flex align-items-center">
-                                <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-icon"><span data-feather="clock"></span></span><span class="nav-link-text">Servis İşlemleri</span>
+                                <div class="dropdown-indicator-icon-wrapper">
+                                    <span class="fas fa-caret-right dropdown-indicator-icon"></span>
+                                </div>
+                                <span class="nav-link-icon"><span data-feather="clock"></span></span>
+                                <span class="nav-link-text">Servis İşlemleri</span>
                             </div>
                         </a>
                         <div class="parent-wrapper label-1">
                             <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce12">
-                                <li class="collapsed-nav-item-title d-none">Markalar</li>
                                 <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator" href="#nv-admin" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-admin">
+                                    <a class="nav-link" href="/Services/ServicesList">
                                         <div class="d-flex align-items-center">
-                                            <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Servis İşlemleri</span>
+                                            <span class="nav-link-text">Servis Listesi</span>
                                         </div>
-                                    </a><!-- more inner pages-->
-                                    <div class="parent-wrapper">
-                                        <ul class="nav collapse parent show" data-bs-parent="#e-commerce" id="nv-admin">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/Services/ServicesList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Servis Listesi</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/Services/AddService">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Servis Ekle</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-
-                                        </ul>
-                                    </div>
+                                    </a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Services/AddService">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">Servis Ekle</span>
+                                        </div>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
-                    </div> <!--Servis İşlemleri-->
+                    </div>
+                                }
+                    <!-- Abonelik İşlemleri -->
+                    @if (userRole != "Müşteri")
+                                {
                     <div class="nav-item-wrapper">
                         <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce13" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce13">
                             <div class="d-flex align-items-center">
-                                <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-icon"><span data-feather="users"></span></span><span class="nav-link-text">Abonelik İşlemleri</span>
+                                <div class="dropdown-indicator-icon-wrapper">
+                                    <span class="fas fa-caret-right dropdown-indicator-icon"></span>
+                                </div>
+                                <span class="nav-link-icon"><span data-feather="users"></span></span>
+                                <span class="nav-link-text">Abonelik İşlemleri</span>
                             </div>
                         </a>
                         <div class="parent-wrapper label-1">
                             <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce13">
-                                <li class="collapsed-nav-item-title d-none">Markalar</li>
                                 <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator" href="#nv-admin" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-admin">
+                                    <a class="nav-link" href="/Subscribe/SubscribeList">
                                         <div class="d-flex align-items-center">
-                                            <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Abonelik İşlemleri</span>
+                                            <span class="nav-link-text">Abone Listesi</span>
                                         </div>
-                                    </a><!-- more inner pages-->
-                                    <div class="parent-wrapper">
-                                        <ul class="nav collapse parent show" data-bs-parent="#e-commerce" id="nv-admin">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/Subscribe/SubscribeList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Abone Listesi</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-
-                                        </ul>
-                                    </div>
+                                    </a>
                                 </li>
-
                             </ul>
                         </div>
-                    </div> <!--Abonelik İşlemleri-->
+                    </div>
+                                }
+                                @if (userRole != "Müşteri")
+                                {
+                    <!-- Biz Kimiz İşlemleri -->
                     <div class="nav-item-wrapper">
                         <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce14" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce14">
                             <div class="d-flex align-items-center">
-                                <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-icon"><span data-feather="command"></span></span><span class="nav-link-text">Biz Kimiz İşlemleri</span>
+                                <div class="dropdown-indicator-icon-wrapper">
+                                    <span class="fas fa-caret-right dropdown-indicator-icon"></span>
+                                </div>
+                                <span class="nav-link-icon"><span data-feather="command"></span></span>
+                                <span class="nav-link-text">Biz Kimiz İşlemleri</span>
                             </div>
                         </a>
                         <div class="parent-wrapper label-1">
                             <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce14">
-                                <li class="collapsed-nav-item-title d-none">Markalar</li>
                                 <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator" href="#nv-admin" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-admin">
+                                    <a class="nav-link" href="/WhoWeUs/WhoWeUsList">
                                         <div class="d-flex align-items-center">
-                                            <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Biz Kimiz İşlemleri</span>
+                                            <span class="nav-link-text">Biz Kimiz Listesi</span>
                                         </div>
-                                    </a><!-- more inner pages-->
-                                    <div class="parent-wrapper">
-                                        <ul class="nav collapse parent show" data-bs-parent="#e-commerce" id="nv-admin">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/WhoWeUs/WhoWeUsList">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Biz Kimiz Listesi</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/WhoWeUs/AddWhoWeUs">
-                                                    <div class="d-flex align-items-center"><span class="nav-link-text">Biz Kimiz Bilgisi Ekle</span></div>
-                                                </a><!-- more inner pages-->
-                                            </li>
-
-                                        </ul>
-                                    </div>
+                                    </a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/WhoWeUs/AddWhoWeUs">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">Biz Kimiz Bilgisi Ekle</span>
+                                        </div>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
-                    </div> <!--Biz Kimiz İşlemleri-->
-                  
+                    </div>
+                                }
                 </li>
-            
-           
             </ul>
         </div>
     </div>
