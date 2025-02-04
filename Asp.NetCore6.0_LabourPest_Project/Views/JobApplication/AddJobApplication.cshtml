@@ -1,0 +1,168 @@
+﻿@model JobApplication
+@{
+    ViewData["Title"] = "AddJobApplication";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<section class="ls ms s-py-xl-150 s-py-lg-130 s-py-md-90 s-py-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 animate" data-animation="scaleAppear">
+                <h4 class="special-heading text-center text-capitalize">Bizimle Çalışmak ister misiniz ?</h4>
+                <p class="special-heading text-center">Şimdi başvuru Yapın!</p>
+                <div class="divider-50 hidden-below-md"></div>
+                <div class="divider-20 hidden-above-md"></div>
+
+                <!-- Form -->
+                <form class="contact-form content-center c-mb-40 c-gutter-20" method="post" asp-action="AddJobApplication" asp-controller="JobApplication" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group has-placeholder">
+                                <label for="JobApplicationName">ADINIZ <span class="required">*</span></label>
+                                <input type="text" name="JobApplicationName" id="JobApplicationName" class="form-control" placeholder="ADINIZ" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group has-placeholder">
+                                <label for="JobApplicationSurName">SOYADINIZ <span class="required">*</span></label>
+                                <input type="text" name="JobApplicationSurName" id="JobApplicationSurName" class="form-control" placeholder="SOYADINIZ" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group has-placeholder">
+                                <label for="JobApplicationNumber">TELEFON NUMARANIZ <span class="required">*</span></label>
+                                <input type="tel" name="JobApplicationNumber" id="JobApplicationNumber" class="form-control" placeholder="TELEFON" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group has-placeholder">
+                                <label for="JobApplicationMail">MAİL <span class="required">*</span></label>
+                                <input type="email" name="JobApplicationMail" id="JobApplicationMail" class="form-control" placeholder="MAİL" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 mb-0">
+                                <div class="form-group has-placeholder">
+                                    <label for="JobApplicationAboutYou">HAKKINDA</label>
+                                    <textarea name="JobApplicationAboutYou" id="JobApplicationAboutYou" rows="5" class="form-control" placeholder="HAKKINDA" style="min-height:150px; width:100%;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <!-- CV Yükleme Alanı -->
+                        <div class="col-sm-12">
+                            <div class="form-group has-placeholder">
+                                <label for="JobApplicationCV">CV <span class="required">*</span></label>
+                                <!-- Görünür CV Yükle Butonu ve Dosya Adı Gösterimi -->
+                                <div class="cv-upload-wrapper">
+                                    <button type="button" id="cv-upload-button" class="btn btn-maincolor6">CV Yükle</button>
+                                    <span id="cv-file-name" class="cv-file-name">Henüz dosya seçilmedi</span>
+                                </div>
+                                <!-- Gerçek dosya input alanı gizli -->
+                                <input type="file" name="JobApplicationCV" id="JobApplicationCV" accept=".pdf,.doc,.docx" required style="display:none;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <div class="form-group">
+                                <button class="btn btn-maincolor6" type="submit">Ekle</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- Form End -->
+            </div>
+
+            <div class="col-lg-4 animate" data-animation="scaleAppear">
+                <div class="p-xl-60 p-lg-40 p-30">
+                    <h4 class="special-heading">İletişim Bilgileri</h4>
+                    <div class="divider-50 hidden-below-md"></div>
+                    <div class="divider-20 hidden-above-md"></div>
+                    <div class="media text-center text-sm-left mb-30">
+                        <div class="icon-styled color-main fs-28">
+                            <img src="~/canabicom/images/icons/icon1.png" alt="">
+                        </div>
+                        <div class="media-body">
+                            <h5>Adres</h5>
+                            <p>
+                                Elmalı Mahallesi 7.Sokak<br>
+                                Zamanlar İş Merkezi No:18/406<br>
+                                Muratpaşa/ANTALYA
+                            </p>
+                        </div>
+                    </div>
+                    <div class="media text-center text-sm-left mb-30">
+                        <div class="icon-styled color-main fs-28">
+                            <img src="~/canabicom/images/icons/icon2.png" alt="">
+                        </div>
+                        <div class="media-body">
+                            <h5>Çalışma Saatleri</h5>
+                            <p>Pzt-Cuma: 09:00 - 17:00</p>
+                        </div>
+                    </div>
+                    <div class="media text-center text-sm-left">
+                        <div class="icon-styled color-main fs-28">
+                            <img src="~/canabicom/images/icons/icon3.png" alt="">
+                        </div>
+                        <div class="media-body">
+                            <h5>Mail Adresi</h5>
+                            <p>
+                                <a href="mailto:muratkoc@labourpest.com">muratkoc@labourpest.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stil ve Script Kısımları -->
+<style>
+    /* Normal durumdaki buton */
+    .btn-maincolor6 {
+        background-color: #55c2bb;
+        color: white;
+        border: none;
+        transition: background-color 0.3s, color 0.3s;
+        padding: 0.5rem 1rem;
+    }
+
+        .btn-maincolor6:hover {
+            background-color: #ebc912;
+            color: white;
+        }
+    /* CV Yükleme alanı wrapper'ı */
+    .cv-upload-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 0.5rem;
+    }
+
+    .cv-file-name {
+        font-size: 0.9rem;
+        color: #495057;
+    }
+</style>
+
+<!-- CV Yükle Butonunun İşlevselliği -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var cvUploadButton = document.getElementById('cv-upload-button');
+        var cvFileName = document.getElementById('cv-file-name');
+        var fileInput = document.getElementById('JobApplicationCV');
+
+        cvUploadButton.addEventListener('click', function () {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', function () {
+            var fileName = fileInput.files.length > 0 ? fileInput.files[0].name : "Henüz dosya seçilmedi";
+            cvFileName.textContent = fileName;
+        });
+    });
+</script>
