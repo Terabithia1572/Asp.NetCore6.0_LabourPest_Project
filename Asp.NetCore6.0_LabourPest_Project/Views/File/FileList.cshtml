@@ -3,14 +3,13 @@
     ViewData["Title"] = "Dosya Listesi";
     Layout = "~/Views/Shared/_AdminDashboard.cshtml";
 
-    // Eğer müşteri ise tüm dosya işlemleri sadece MusteriFiles üzerinden yapılır.
-    // Not: MusteriFiles listesinin en son eklenen dosyaları ilk sırada olduğunu varsayıyoruz.
-    var recentFiles = User.IsInRole("Müşteri")
-                        ? Model.MusteriFiles.Take(8).ToList()
-                        : Model.RecentFiles;
-    var allFiles = User.IsInRole("Müşteri")
-                        ? Model.MusteriFiles
-                        : Model.AllFiles;
+    // Kullanıcının rolüne göre listeler belirleyin:
+    var recentFiles = (User.IsInRole("Admin"))
+                        ? Model.RecentFiles
+                        : Model.MusteriFiles.Concat(Model.WriterFiles).OrderByDescending(f => f.LastModifiedAgo).Take(8).ToList();
+    var allFiles = (User.IsInRole("Admin"))
+                        ? Model.AllFiles
+                        : Model.MusteriFiles.Concat(Model.WriterFiles).ToList();
 }
 <div class="mb-9" data-collapse-filemanager-sidebar="data-collapse-filemanager-sidebar">
     <h2 class="mb-4">Dosya Yöneticisi</h2>
@@ -32,8 +31,7 @@
                             </p>
                         </a>
                         <ul class="collapse treeview-list" id="treeviewExample-1-1" data-show="true">
-                            @* Yalnızca müşteri değilse diğer dosya kategorilerini göster *@
-                            @if (!User.IsInRole("Müşteri"))
+                            @if (User.IsInRole("Admin"))
                             {
                                 <!-- Tüm Dosyalar -->
                                 <li class="treeview-list-item">
@@ -85,7 +83,8 @@
                                     </ul>
                                 </li>
                             }
-                            <!-- Müşteri Dosyaları her durumda görünsün -->
+
+                            <!-- Müşteri Dosyaları (ortak olarak hem admin hem de müşteri görüyor) -->
                             <li class="treeview-list-item">
                                 <a data-bs-toggle="collapse" href="#treeviewExample-2-3" role="button" aria-expanded="false">
                                     <p class="treeview-text text-nowrap">
@@ -108,9 +107,69 @@
                                     }
                                 </ul>
                             </li>
+
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <!-- Writer Klasörleri: Admin, tüm writer klasörlerini ve altlarındaki dosyaları görsün -->
+                                @foreach (var folder in Model.WriterFolders)
+                                {
+                                    var collapseId = "writerFolder-" + folder.Replace("@", "_").Replace(".", "_");
+                                    <li class="treeview-list-item">
+                                        <a data-bs-toggle="collapse" href="#@collapseId" role="button" aria-expanded="false">
+                                            <p class="treeview-text text-nowrap">
+                                                <span class="fa-solid fa-folder treeview-icon"></span>@folder
+                                            </p>
+                                        </a>
+                                        <ul class="collapse treeview-list" id="@collapseId" data-show="false">
+                                            @foreach (var file in Model.WriterFiles.Where(f => f.Category == folder))
+                                            {
+                                                <li class="treeview-list-item">
+                                                    <div class="treeview-item">
+                                                        <a class="flex-1 ps-2 ms-2" href="@file.FilePath">
+                                                            <p class="treeview-text text-nowrap">
+                                                                <span class="treeview-icon fa-solid fa-file-lines"></span>
+                                                                @file.FileName
+                                                            </p>
+                                                        </a>
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                            }
+                            else
+                            {
+                                <!-- Müşteri (writer) için: kendi klasörünü göster -->
+                                <li class="treeview-list-item">
+                                    <a data-bs-toggle="collapse" href="#writerFolder-@User.Identity.Name.Replace("@", "_").Replace(".", "_")" role="button" aria-expanded="false">
+                                        <p class="treeview-text text-nowrap">
+                                            <span class="fa-solid fa-folder treeview-icon"></span>@User.Identity.Name
+                                        </p>
+                                    </a>
+                                    <ul class="collapse treeview-list" id="writerFolder-@User.Identity.Name.Replace("@", "_").Replace(".", "_")" data-show="false">
+                                        @foreach (var file in Model.WriterFiles.Where(f => f.Category == User.Identity.Name))
+                                        {
+                                            <li class="treeview-list-item">
+                                                <div class="treeview-item">
+                                                    <a class="flex-1 ps-2 ms-2" href="@file.FilePath">
+                                                        <p class="treeview-text text-nowrap">
+                                                            <span class="treeview-icon fa-solid fa-file-lines"></span>
+                                                            @file.FileName
+                                                        </p>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
                         </ul>
                     </li>
                 </ul>
+
+
+
 
             </div>
             <div class="phoenix-offcanvas-backdrop d-lg-none" data-phoenix-backdrop="data-phoenix-backdrop"></div>
@@ -387,8 +446,22 @@
                     <div class="mb-3">
                         <label for="kategoriSelect" class="form-label">Kategori Seçin</label>
                         <select class="form-select" id="kategoriSelect" name="kategori" required>
-                            <option value="Admin">Admin Dosyaları</option>
-                            <option value="Müşteri">Müşteri Dosyaları</option>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <option value="Admin">Admin Dosyaları</option>
+                                <option value="Müşteri">Müşteri Dosyaları</option>
+                                <option value="Benim Dosyalarım">Benim Dosyalarım</option>
+                                @* Ek olarak, dinamik writer klasörlerini ekleyelim *@
+                                @foreach (var folder in Model.WriterFolders)
+                                {
+                                    <option value="@folder">@folder</option>
+                                }
+                            }
+                            else
+                            {
+                                <option value="Müşteri">Müşteri Dosyaları</option>
+                                <option value="Benim Dosyalarım">Benim Dosyalarım</option>
+                            }
                         </select>
                     </div>
                 </div>
@@ -402,6 +475,8 @@
         </div>
     </div>
 </div>
+
+
 
 <!-- Yeniden Adlandır Modal'ı -->
 <div class="modal fade" id="renameModal" tabindex="-1" aria-labelledby="renameModalLabel" aria-hidden="true">
