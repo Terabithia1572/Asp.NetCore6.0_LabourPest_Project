@@ -3,10 +3,12 @@
 @{
     ViewData["Title"] = "ProfileSettings";
     Layout = "~/Views/Shared/_AdminDashboard.cshtml";
-}
 
+    // Eğer oturum açan kullanıcı Müşteri rolündeyse ve WriterAbout "Müşteri" ise
+    bool isCustomerWithFixedAbout = User.IsInRole("Müşteri") && Model.WriterAbout == "Müşteri";
+}
 <!-- Form açıyoruz. Post metoduyla ProfileSettings aksiyonuna gönderilecek. -->
-<form asp-action="ProfileSettings" method="post" enctype="multipart/form-data">
+<form asp-action="ProfileSettings" method="post" enctype="multipart/form-data" id="profileSettingsForm">
     <div class="mb-9">
         <div class="row g-6">
             <!-- Sol Bölüm: Profil Kartı ve Ayarlar -->
@@ -30,7 +32,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                                <!-- Giriş yapan kullanıcının Ad Soyad ve E-posta (kullanıcı adı olarak mail gösteriliyor) -->
+                                <!-- Giriş yapan kullanıcının Ad Soyad ve E-posta -->
                                 <div class="d-flex flex-wrap mb-2 align-items-center">
                                     <h3 class="me-2">@Model.WriterName @Model.WriterSurname</h3>
                                     <span class="fw-normal fs-8">u/@Model.WriterMail</span>
@@ -49,7 +51,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Diğer sol menü ayarları (görünürlük, etiketleme vs.) -->
+                <!-- Diğer sol menü ayarları -->
                 <div class="border-bottom border-translucent border-dashed pb-3 mb-4">
                     <h5 class="text-body mb-3">Profilimi Kimler Görebilir ?</h5>
                     <div class="form-check">
@@ -141,7 +143,8 @@
                             <div class="col-12 col-sm-6">
                                 <div class="form-icon-container">
                                     <div class="form-floating">
-                                        <textarea class="form-control form-icon-input" id="info" name="WriterAbout" style="height: 115px;" placeholder="BİLGİ">@Model.WriterAbout</textarea>
+                                        @* Eğer kullanıcı Müşteri rolündeyse ve WriterAbout "Müşteri" ise, textarea'yı düzenlenemez hale getiriyoruz *@
+                                        <textarea class="form-control form-icon-input" id="info" name="WriterAbout" style="height: 115px;" placeholder="BİLGİ" @(isCustomerWithFixedAbout ? "readonly" : "")>@(isCustomerWithFixedAbout ? "Müşteri" : Model.WriterAbout)</textarea>
                                         <label class="text-body-tertiary form-icon-label" for="info">BİLGİ</label>
                                     </div>
                                     <span class="fa-solid fa-circle-info text-body fs-9 form-icon"></span>
@@ -196,3 +199,14 @@
         </div>
     </div>
 </form>
+
+<script>
+    // Eğer kullanıcı Müşteri ise form gönderilmeden önce WriterAbout alanını zorunlu "Müşteri" olarak ayarla.
+    document.getElementById("profileSettingsForm").addEventListener("submit", function(e) {
+        var isCustomer = @User.IsInRole("Müşteri").ToString().ToLower(); // true/false
+        if(isCustomer){
+            var writerAbout = document.getElementById("info");
+            writerAbout.value = "Müşteri";
+        }
+    });
+</script>
