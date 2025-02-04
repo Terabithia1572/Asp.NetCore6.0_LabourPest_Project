@@ -64,7 +64,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
                 }
                 else if (datavalue.WriterAbout == "Müşteri")
                 {
-                    return RedirectToAction("Test", "Writer");
+                    return RedirectToAction("Profile", "AdminDashboard");
                 }
                 else
                 {
