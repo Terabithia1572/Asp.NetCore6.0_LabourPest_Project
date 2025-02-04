@@ -8,7 +8,7 @@ using System.Security.Claims;
 
 namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,Müşteri")]
     public class AdminDashboardController : Controller
     {
         // Var olan manager nesneleri
@@ -16,13 +16,9 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         BlogManager blogManager = new BlogManager(new EfBlogRepository());
         ImageManager imageManager = new ImageManager(new EfImagesRepository());
 
-        // Yeni: Yorum, Kategori ve Kullanıcı (eğer farklısa) verilerini çekmek için manager örnekleri.
-        // Örneğin: 
+        // Yeni: Yorum, Kategori ve Kullanıcı (eğer farklıysa) verilerini çekmek için manager örnekleri.
         CommentManager commentManager = new CommentManager(new EfCommentRepository());
         CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
-        // Eğer kullanıcı sayısını yazarlardan (Writer) çekiyorsanız, writerManager kullanabilirsiniz.
-
-
 
         public IActionResult Profile()
         {
@@ -37,7 +33,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
                                         .Take(6)
                                         .ToList();
 
-            // Dashboard verileri (manager’larınızın GetAll() metotları üzerinden örnek çekim yapılmıştır)
+            // Dashboard verileri
             int blogCount = blogManager.GetAll().Count();
             int commentCount = commentManager.GetAll().Count();
             int imageCount = imageManager.GetAll().Count();
@@ -80,7 +76,17 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             currentWriter.WriterName = writer.WriterName;
             currentWriter.WriterSurname = writer.WriterSurname;
             currentWriter.WriterMail = writer.WriterMail;
-            currentWriter.WriterAbout = writer.WriterAbout;
+
+            // Eğer giriş yapan kullanıcı Müşteri ise WriterAbout alanını zorunlu "Müşteri" olarak güncelle
+            if (User.IsInRole("Müşteri"))
+            {
+                currentWriter.WriterAbout = "Müşteri";
+            }
+            else
+            {
+                currentWriter.WriterAbout = writer.WriterAbout;
+            }
+
             currentWriter.WriterPassword = writer.WriterPassword;
 
             // Profil resmi yüklenmişse, dosyayı kaydedip WriterImage alanını güncelleyelim.
@@ -106,17 +112,14 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
                     profileImage.CopyTo(stream);
                 }
 
-                // WriterImage alanına wwwroot sonrası yol atayabilirsiniz.
-                // Örneğin, "/labourpestcustomer/profileImage/yenidosya.jpg" şeklinde.
+                // WriterImage alanına wwwroot sonrası yol atıyoruz.
                 currentWriter.WriterImage = "/labourpestcustomer/profileImage/" + newFileName;
             }
 
             // Güncellemeyi kaydediyoruz.
             writerManager.TUpdate(currentWriter);
 
-            return RedirectToAction("ProfileSettings","AdminDashboard");
+            return RedirectToAction("ProfileSettings", "AdminDashboard");
         }
-    
+    }
 }
-}
-
