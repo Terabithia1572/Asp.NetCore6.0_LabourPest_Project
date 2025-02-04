@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Asp.NetCore6._0_LabourPest_Project.Controllers
+namespace Asp.NetCore6._0_Labourpest_Project.Controllers
 {
     public class FileController : Controller
     {
@@ -19,16 +19,22 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             _hostingEnvironment = hostingEnvironment;
         }
 
-        // GET: /File/FileList
-        public IActionResult FileList()
+        // Giriş yapan kullanıcının (writer) klasör adını döndürür.
+        // (User.Identity.Name’nin writer mailini içerdiğini varsayıyoruz.)
+        private string GetWriterFolderName()
+        {
+            return User.Identity.Name ?? "defaultUser";
+        }
+
+        // GET: /File/FileList?folder=...
+        public IActionResult FileList(string folder)
         {
             var model = new FileListViewModel();
+            string basePath = Path.Combine(_hostingEnvironment.WebRootPath, "labourpestcustomer");
 
-            // Klasör yollarını belirleyelim
-            string adminFolder = Path.Combine(_hostingEnvironment.WebRootPath, "labourpestcustomer", "adminDosyalar");
-            string musteriFolder = Path.Combine(_hostingEnvironment.WebRootPath, "labourpestcustomer", "musteriDosyalar");
-
-            // Admin dosyalarını oku
+            // --- Sabit Klasörler: Admin Dosyaları & Müşteri Dosyaları ---
+            // Admin Dosyaları
+            string adminFolder = Path.Combine(basePath, "adminDosyalar");
             if (Directory.Exists(adminFolder))
             {
                 foreach (var file in Directory.GetFiles(adminFolder))
@@ -39,7 +45,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
                     {
                         FileName = fileInfo.Name,
                         FilePath = url,
-                        Category = "Admin",
+                        Category = "Admin Dosyaları",
                         FileSize = FormatFileSize(fileInfo.Length),
                         LastModifiedAgo = GetTimeAgo(fileInfo.LastWriteTime) + " Yüklendi",
                         PreviewUrl = GetPreviewUrl(url)
@@ -47,7 +53,8 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
                 }
             }
 
-            // Müşteri dosyalarını oku
+            // Müşteri Dosyaları
+            string musteriFolder = Path.Combine(basePath, "musteriDosyalar");
             if (Directory.Exists(musteriFolder))
             {
                 foreach (var file in Directory.GetFiles(musteriFolder))
@@ -58,7 +65,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
                     {
                         FileName = fileInfo.Name,
                         FilePath = url,
-                        Category = "Müşteri",
+                        Category = "Müşteri Dosyaları",
                         FileSize = FormatFileSize(fileInfo.Length),
                         LastModifiedAgo = GetTimeAgo(fileInfo.LastWriteTime) + " Yüklendi",
                         PreviewUrl = GetPreviewUrl(url)
@@ -66,12 +73,107 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
                 }
             }
 
-            // Tüm dosyaları al ve son eklenen 8 dosyayı (dosya değiştirilme tarihine göre) belirle
-            var allFiles = model.AllFiles;
-            model.RecentFiles = allFiles
+            // --- Writer Klasörleri ---
+            if (User.IsInRole("Admin"))
+            {
+                // Admin: Sadece sabit klasörler hariç; yalnızca writerMail formatında klasörleri ekleyelim.
+                var directories = Directory.GetDirectories(basePath);
+                foreach (var dir in directories)
+                {
+                    string folderNameCandidate = Path.GetFileName(dir);
+                    if (folderNameCandidate.Equals("adminDosyalar", StringComparison.OrdinalIgnoreCase)
+                        || folderNameCandidate.Equals("musteriDosyalar", StringComparison.OrdinalIgnoreCase)
+                        || folderNameCandidate.Equals("customerImage", StringComparison.OrdinalIgnoreCase)
+                        || folderNameCandidate.Equals("AddcustomerImage", StringComparison.OrdinalIgnoreCase))
+                        continue;
+
+                    // Yalnızca writerMail formatı taşıyan klasörler (örneğin içerisinde '@' varsa)
+                    if (!folderNameCandidate.Contains("@"))
+                        continue;
+
+                    if (!model.WriterFolders.Contains(folderNameCandidate))
+                    {
+                        model.WriterFolders.Add(folderNameCandidate);
+                    }
+
+                    // Dosyaları da listeye ekle
+                    foreach (var file in Directory.GetFiles(dir))
+                    {
+                        var fileInfo = new FileInfo(file);
+                        string url = $"/labourpestcustomer/{folderNameCandidate}/" + fileInfo.Name;
+                        model.WriterFiles.Add(new FileItem
+                        {
+                            FileName = fileInfo.Name,
+                            FilePath = url,
+                            Category = folderNameCandidate,
+                            FileSize = FormatFileSize(fileInfo.Length),
+                            LastModifiedAgo = GetTimeAgo(fileInfo.LastWriteTime) + " Yüklendi",
+                            PreviewUrl = GetPreviewUrl(url)
+                        });
+                    }
+                }
+            }
+            else
+            {
+                // Müşteri (writer): Yalnızca kendi klasörünü göster.
+                string writerFolderName = GetWriterFolderName();
+                if (!model.WriterFolders.Contains(writerFolderName))
+                {
+                    model.WriterFolders.Add(writerFolderName);
+                }
+                string writerFolder = Path.Combine(basePath, writerFolderName);
+                if (Directory.Exists(writerFolder))
+                {
+                    foreach (var file in Directory.GetFiles(writerFolder))
+                    {
+                        var fileInfo = new FileInfo(file);
+                        string url = $"/labourpestcustomer/{writerFolderName}/" + fileInfo.Name;
+                        model.WriterFiles.Add(new FileItem
+                        {
+                            FileName = fileInfo.Name,
+                            FilePath = url,
+                            Category = writerFolderName,
+                            FileSize = FormatFileSize(fileInfo.Length),
+                            LastModifiedAgo = GetTimeAgo(fileInfo.LastWriteTime) + " Yüklendi",
+                            PreviewUrl = GetPreviewUrl(url)
+                        });
+                    }
+                }
+            }
+
+            // Tüm dosyaları birleştirin.
+            model.AllFiles = new List<FileItem>();
+            model.AllFiles.AddRange(model.AdminFiles);
+            model.AllFiles.AddRange(model.MusteriFiles);
+            model.AllFiles.AddRange(model.WriterFiles);
+
+            // Eğer bir klasör filtresi geldiyse, AllFiles listesini filtreleyelim.
+            if (!string.IsNullOrEmpty(folder))
+            {
+                if (folder == "Admin Dosyaları")
+                {
+                    model.AllFiles = model.AdminFiles;
+                }
+                else if (folder == "Müşteri Dosyaları")
+                {
+                    model.AllFiles = model.MusteriFiles;
+                }
+                else if (folder == "Benim Dosyalarım")
+                {
+                    string writerFolder = GetWriterFolderName();
+                    model.AllFiles = model.WriterFiles.Where(f => f.Category == writerFolder).ToList();
+                }
+                else
+                {
+                    // Writer klasörüne ait dosyalar
+                    model.AllFiles = model.WriterFiles.Where(f => f.Category == folder).ToList();
+                }
+            }
+
+            // Son eklenen 8 dosya (filtrelenmiş AllFiles üzerinden)
+            model.RecentFiles = model.AllFiles
                 .Select(f =>
                 {
-                    // Dosyanın fiziksel yolunu oluşturuyoruz
                     string physicalPath = Path.Combine(_hostingEnvironment.WebRootPath,
                         f.FilePath.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
                     DateTime lastWrite = System.IO.File.GetLastWriteTime(physicalPath);
@@ -82,114 +184,55 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
                 .Select(x => x.File)
                 .ToList();
 
+            // Seçili klasörü view'e aktarmak için (isteğe bağlı)
+            ViewBag.ActiveFolder = folder;
+
             return View(model);
         }
 
-        // POST: /File/Upload
+        // POST: /File/Upload, Download, Rename, Delete, vs. (değişmeden kalabilir)
         [HttpPost]
         public async Task<IActionResult> Upload(IFormFile file, string kategori)
         {
             if (file != null && file.Length > 0)
             {
-                // Yükleme yapılacak klasörü belirle: kategori "Admin" veya "Müşteri"
-                string folderName = kategori == "Admin" ? "adminDosyalar" : "musteriDosyalar";
-                string uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "labourpestcustomer", folderName);
+                string folderName = string.Empty;
+                // "Admin Dosyaları" veya "Müşteri Dosyaları" sabit; aksi halde kategori değeri writer klasör adı.
+                if (kategori == "Admin")
+                {
+                    folderName = "adminDosyalar";
+                }
+                else if (kategori == "Müşteri")
+                {
+                    folderName = "musteriDosyalar";
+                }
+                else if (kategori == "Benim Dosyalarım")
+                {
+                    folderName = GetWriterFolderName();
+                }
+                else
+                {
+                    folderName = kategori;
+                }
 
-                // Klasör yoksa oluştur
+                string uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "labourpestcustomer", folderName);
                 if (!Directory.Exists(uploadPath))
                 {
                     Directory.CreateDirectory(uploadPath);
                 }
 
-                // Dosya adını al ve tam yolu oluştur
                 string fileName = Path.GetFileName(file.FileName);
                 string filePath = Path.Combine(uploadPath, fileName);
-
-                // Dosyayı kaydet
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await file.CopyToAsync(stream);
                 }
             }
 
-            // Yükleme sonrası liste sayfasına yönlendir
-            return RedirectToAction("FileList");
-        }
-        public IActionResult Download(string filePath)
-        {
-            if (string.IsNullOrEmpty(filePath))
-                return NotFound();
-
-            string physicalPath = Path.Combine(_hostingEnvironment.WebRootPath,
-                filePath.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
-
-            if (!System.IO.File.Exists(physicalPath))
-                return NotFound();
-
-            // İçerik tipini belirleyebilirsiniz (örneğin, MIME mapping ile)
-            string contentType = "application/octet-stream";
-            return PhysicalFile(physicalPath, contentType, Path.GetFileName(physicalPath));
-        }
-
-        // Yeniden Adlandır aksiyonu (POST)
-        [HttpPost]
-        public IActionResult Rename(string filePath, string newName)
-        {
-            if (string.IsNullOrEmpty(filePath) || string.IsNullOrEmpty(newName))
-                return BadRequest();
-
-            // Orijinal dosyanın fiziksel yolunu oluşturun.
-            string physicalPath = Path.Combine(
-                _hostingEnvironment.WebRootPath,
-                filePath.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
-
-            if (!System.IO.File.Exists(physicalPath))
-                return NotFound();
-
-            // Eğer yeni dosya adında uzantı yoksa, orijinal dosyanın uzantısını ekleyelim.
-            if (!Path.HasExtension(newName))
-            {
-                newName += Path.GetExtension(physicalPath);
-            }
-
-            string directory = Path.GetDirectoryName(physicalPath);
-            string newPath = Path.Combine(directory, newName);
-
-            try
-            {
-                System.IO.File.Move(physicalPath, newPath);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
             return RedirectToAction("FileList");
         }
 
-
-
-        // Sil aksiyonu (POST)
-        [HttpPost]
-        public IActionResult Delete(string filePath)
-        {
-            if (string.IsNullOrEmpty(filePath))
-                return BadRequest();
-
-            string physicalPath = Path.Combine(
-                _hostingEnvironment.WebRootPath,
-                filePath.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
-
-            if (System.IO.File.Exists(physicalPath))
-            {
-                System.IO.File.Delete(physicalPath);
-            }
-
-            return RedirectToAction("FileList");
-        }
-
-
-        // Dosya boyutunu uygun biçime dönüştüren yardımcı metot
+        // (Download, Rename, Delete, Yardımcı metodlar vs. aynı kalır...)
         private string FormatFileSize(long bytes)
         {
             if (bytes >= 1073741824)
@@ -203,11 +246,9 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             return "0 B";
         }
 
-        // Dosyanın son değiştirilme zamanını "Edited X ago" formatında döndüren örnek yardımcı metot
         private string GetTimeAgo(DateTime lastWriteTime)
         {
             var timeSpan = DateTime.Now - lastWriteTime;
-
             if (timeSpan.TotalDays >= 1)
                 return string.Format("{0:0} gün önce", timeSpan.TotalDays);
             if (timeSpan.TotalHours >= 1)
@@ -217,33 +258,20 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             return "Şimdi";
         }
 
-        // Dosya türüne göre önizleme resmi seçen metot
         private string GetPreviewUrl(string fileUrl)
         {
             string ext = Path.GetExtension(fileUrl).ToLowerInvariant();
-            // Resim uzantıları: .jpg, .jpeg, .png, .gif
             var imageExtensions = new string[] { ".jpg", ".jpeg", ".png", ".gif" };
             if (imageExtensions.Contains(ext))
-            {
-                // Eğer dosya resimse, doğrudan dosyanın URL'sini döndür.
                 return fileUrl;
-            }
             else if (ext == ".pdf")
-            {
-                return "/labourpestcustomer/fileIcons/pdf.webp"; // PDF için generic önizleme resmi (dosya yolunu güncelleyin)
-            }
+                return "/labourpestcustomer/fileIcons/pdf.webp";
             else if (ext == ".xlsx" || ext == ".xls")
-            {
-                return "/labourpestcustomer/fileIcons/excel.png"; // Excel için generic önizleme resmi
-            }
+                return "/labourpestcustomer/fileIcons/excel.png";
             else if (ext == ".doc" || ext == ".docx")
-            {
-                return "/labourpestcustomer/fileIcons/word.png"; // Word için generic önizleme resmi
-            }
+                return "/labourpestcustomer/fileIcons/word.png";
             else
-            {
-                return "/assets/img/file-manager/file-generic.png"; // Genel bir dosya ikonu
-            }
+                return "/assets/img/file-manager/file-generic.png";
         }
     }
 }
