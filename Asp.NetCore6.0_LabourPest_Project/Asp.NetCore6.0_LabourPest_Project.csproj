@@ -40,6 +40,7 @@
     <Folder Include="wwwroot\labourpestcustomer\Image2\" />
     <Folder Include="wwwroot\labourpestcustomer\adminDosyalar\" />
     <Folder Include="wwwroot\labourpestcustomer\musteriDosyalar\" />
+    <Folder Include="wwwroot\labourpestcustomer\jobApplicationCV\" />
     <Folder Include="wwwroot\labourpestcustomer\YuklenenDosyalar\" />
     <Folder Include="wwwroot\labourpestcustomer\whoweusImage\" />
     <Folder Include="wwwroot\labourpestcustomer\servicesImage\" />
