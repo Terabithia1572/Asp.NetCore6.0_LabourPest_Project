@@ -232,7 +232,71 @@ namespace Asp.NetCore6._0_Labourpest_Project.Controllers
             return RedirectToAction("FileList");
         }
 
-        // (Download, Rename, Delete, Yardımcı metodlar vs. aynı kalır...)
+        public IActionResult Download(string filePath)
+        {
+            if (string.IsNullOrEmpty(filePath))
+                return NotFound();
+
+            string physicalPath = Path.Combine(_hostingEnvironment.WebRootPath,
+                filePath.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
+
+            if (!System.IO.File.Exists(physicalPath))
+                return NotFound();
+
+            string contentType = "application/octet-stream";
+            return PhysicalFile(physicalPath, contentType, Path.GetFileName(physicalPath));
+        }
+
+        [HttpPost]
+        public IActionResult Rename(string filePath, string newName)
+        {
+            if (string.IsNullOrEmpty(filePath) || string.IsNullOrEmpty(newName))
+                return BadRequest();
+
+            string physicalPath = Path.Combine(
+                _hostingEnvironment.WebRootPath,
+                filePath.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
+
+            if (!System.IO.File.Exists(physicalPath))
+                return NotFound();
+
+            if (!Path.HasExtension(newName))
+            {
+                newName += Path.GetExtension(physicalPath);
+            }
+
+            string directory = Path.GetDirectoryName(physicalPath);
+            string newPath = Path.Combine(directory, newName);
+
+            try
+            {
+                System.IO.File.Move(physicalPath, newPath);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return RedirectToAction("FileList");
+        }
+
+        [HttpPost]
+        public IActionResult Delete(string filePath)
+        {
+            if (string.IsNullOrEmpty(filePath))
+                return BadRequest();
+
+            string physicalPath = Path.Combine(
+                _hostingEnvironment.WebRootPath,
+                filePath.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
+
+            if (System.IO.File.Exists(physicalPath))
+            {
+                System.IO.File.Delete(physicalPath);
+            }
+
+            return RedirectToAction("FileList");
+        }
         private string FormatFileSize(long bytes)
         {
             if (bytes >= 1073741824)
