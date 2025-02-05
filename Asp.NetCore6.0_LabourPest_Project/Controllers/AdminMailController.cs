@@ -3,6 +3,7 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 {
@@ -17,12 +18,21 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         }
         public IActionResult MailList()
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int writerId = Convert.ToInt32(userId);
+
+            Writer writer = writerManager.TGetByID(writerId);
+
             string userEmail = User.Identity.Name;
 
             // Tüm maillerden sadece giriş yapan kullanıcıya gönderilmiş olanları filtreleyin.
             var values = mailManager.GetAll()
                                     .Where(m => m.ReceiverMail.Equals(userEmail, StringComparison.OrdinalIgnoreCase))
+                                    .OrderByDescending(x=>x.MailDate)
                                     .ToList();
+            ViewBag.ProfileImage = string.IsNullOrEmpty(writer.WriterImage)
+                            ? "/labourpestcustomer/profileImage/default.png" // varsayılan resim
+                            : writer.WriterImage;
 
             return View(values);
         }
@@ -75,11 +85,19 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 
         public IActionResult GetMailDetail(int id)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int writerId = Convert.ToInt32(userId);
+
+            Writer writer = writerManager.TGetByID(writerId);
+
             var mail = mailManager.TGetByID(id);
             if (mail == null)
             {
                 return NotFound();
             }
+            ViewBag.ProfileImage = string.IsNullOrEmpty(writer.WriterImage)
+                        ? "/labourpestcustomer/profileImage/default.png" // varsayılan resim
+                        : writer.WriterImage;
 
             return PartialView("_MailDetailPartial", mail);
         }
@@ -115,14 +133,21 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         }
         public IActionResult SentMailList()
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int writerId = Convert.ToInt32(userId);
+
+            Writer writer = writerManager.TGetByID(writerId);
             // Giriş yapan kullanıcının mail adresini alıyoruz.
             string userEmail = User.Identity.Name;
 
             // Tüm maillerden, gönderici adresi oturum açan kullanıcıyla eşleşenleri çekiyoruz.
             var values = mailManager.GetAll()
                                     .Where(m => m.SenderMail.Equals(userEmail, StringComparison.OrdinalIgnoreCase))
+                                    .OrderByDescending(x => x.MailDate)
                                     .ToList();
-
+            ViewBag.ProfileImage = string.IsNullOrEmpty(writer.WriterImage)
+                           ? "/labourpestcustomer/profileImage/default.png" // varsayılan resim
+                           : writer.WriterImage;
             // MailList.cshtml görünümünü kullanıyoruz (tasarım aynı olacak).
             return View("MailList", values);
         }
