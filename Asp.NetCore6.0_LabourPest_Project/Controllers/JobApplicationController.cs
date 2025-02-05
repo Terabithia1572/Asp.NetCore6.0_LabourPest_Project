@@ -26,14 +26,15 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 			return View(values);
 		}
 
+		[AllowAnonymous]
 		[HttpGet]
 		public IActionResult AddJobApplication()
 		{
 			ViewData["ShowComponents"] = false;
 			return View();
 		}
-
-		[HttpPost]
+        [AllowAnonymous]
+        [HttpPost]
 		public async Task<IActionResult> AddJobApplication(JobApplication jobApplication, IFormFile JobApplicationCV)
 		{
 			// Dosya kontrolü: Dosya gönderilmiş mi ve içeriği dolu mu?
