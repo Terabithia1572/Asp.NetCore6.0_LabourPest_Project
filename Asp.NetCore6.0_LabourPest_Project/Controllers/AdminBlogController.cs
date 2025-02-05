@@ -23,6 +23,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             ViewBag.blogSayisi = blogManager.GetBlogListWithBlogCategory().Count();
             return View(values);
         }
+        [Authorize(Roles = "Admin,Müşteri")]
         [HttpGet]
         public IActionResult AddBlog()
         {
@@ -35,6 +36,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             ViewBag.cv = categoryValues;
             return View();
         }
+        [Authorize(Roles = "Admin,Müşteri")]
         [HttpPost]
         public IActionResult AddBlog(Blog blog)
         {
