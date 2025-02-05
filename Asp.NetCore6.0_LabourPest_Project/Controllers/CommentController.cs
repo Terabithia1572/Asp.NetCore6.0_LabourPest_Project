@@ -19,12 +19,12 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             var values = commentManager.GetAll();
             return View(values);
         }
-
         [HttpGet]
         public IActionResult AddComment()
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult AddComment(Comment comment)
         {
