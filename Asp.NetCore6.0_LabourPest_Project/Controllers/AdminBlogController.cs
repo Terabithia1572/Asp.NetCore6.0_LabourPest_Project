@@ -8,7 +8,7 @@ using System.Security.Claims;
 
 namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
     public class AdminBlogController : Controller
     {
         BlogManager blogManager= new BlogManager(new EfBlogRepository());
@@ -17,6 +17,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         {
             return View();
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult BlogList()
         {
             var values = blogManager.GetBlogListWithBlogCategory();
@@ -46,10 +47,17 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             blog.BlogDate = DateTime.Now;
             blog.WriterID = writerId;
             blogManager.TAdd(blog);
-            
-            return RedirectToAction("BlogList", "AdminBlog");
-        }
 
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("BlogList", "AdminBlog");
+            }
+            else
+            {
+                return RedirectToAction("Deneme", "Home");
+            }
+        }
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteBlog(int id)
         {
             var values = blogManager.TGetByID(id);
@@ -59,7 +67,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 
 
 
-
+        [Authorize(Roles = "Admin,Müşteri")]
         [HttpPost]
         public async Task<IActionResult> UploadImage(IFormFile file)
         {
