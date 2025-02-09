@@ -14,12 +14,14 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult AddContact()
         {
 			ViewData["ShowComponents"] = false; // Bileşenlerin görüntülenmesini kapatır
 			return View();
         }
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult AddContact(Contact contact)
         {
