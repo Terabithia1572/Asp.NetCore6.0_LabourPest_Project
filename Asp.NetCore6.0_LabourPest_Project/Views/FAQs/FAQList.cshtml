@@ -1,0 +1,143 @@
+﻿@model List<FAQ>
+@{
+    ViewData["Title"] = "FAQList";
+    Layout = "~/Views/Shared/_AdminDashboard.cshtml";
+}
+<!-- Stil ayarları -->
+<style>
+    /* Başlık ve içerik hücrelerinde ekstra boşluk */
+    .custom-table-spacing thead th {
+        padding-bottom: 15px;
+    }
+
+    .custom-table-spacing tbody td {
+        padding-top: 15px;
+        /* Uzun metinlerin sınırlarını aşmaması için satır sonlarında kırma */
+        white-space: normal !important;
+        overflow-wrap: break-word;
+    }
+    /* ID sütunu için (isteğe bağlı) metin ortalama */
+    .id-column {
+        text-align: center;
+    }
+</style>
+
+<div class="pb-6">
+    <h2 class="mb-4">Sık Sorulan Sorular Listesi</h2>
+    <div id="lealsTable" data-list='{"valueNames":["name","email","phone","contact","company","date"],"page":10,"pagination":true}'>
+        <div class="table-responsive scrollbar mx-n1 px-1">
+            <!-- Genişlikleri ayarlamak için table-layout: fixed kullanıyoruz -->
+            <table class="table fs-9 mb-0 leads-table border-top border-translucent custom-table-spacing" style="table-layout: fixed; width: 100%;">
+                <thead>
+                    <tr>
+                        <!-- Checkbox sütunu -->
+                        <th class="white-space-nowrap fs-9 align-middle ps-0" style="max-width:20px; width:18px;">
+                            <div class="form-check mb-0 fs-8">
+                                <input class="form-check-input" type="checkbox" data-bulk-select='{"body":"leal-tables-body"}' />
+                            </div>
+                        </th>
+                        <!-- SSS Başlık: Checkbox'tan sağa boşluk için ps-3 ekledik -->
+                        <th class="sort white-space-nowrap align-middle text-uppercase ps-3" scope="col" data-sort="name" style="width:25%;">SSS Başlık</th>
+                        <!-- SSS Açıklaması: Genişlik %30, içerik metni wrap olacak; sağda hafif boşluk (pe-2) -->
+                        <th class="sort align-middle ps-4 pe-2 text-uppercase border-end border-translucent" scope="col" data-sort="email" style="width:30%;">
+                            <div class="d-inline-flex flex-center">
+                                <div class="d-flex align-items-center px-1 py-1 bg-success-subtle rounded me-2">
+                                    <span class="text-success-dark" data-feather="mail"></span>
+                                </div>
+                                <span>SSS Açıklaması</span>
+                            </div>
+                        </th>
+                        <!-- SSS LİSTESİ: Genişlik %30, sol ve sağda daha fazla boşluk (ps-6, pe-6) -->
+                        <th class="sort align-middle ps-6 pe-6 text-uppercase border-end border-translucent" scope="col" data-sort="company" style="width:30%;">
+                            <div class="d-inline-flex flex-center">
+                                <div class="d-flex align-items-center px-1 py-1 bg-warning-subtle rounded me-2">
+                                    <span class="text-warning-dark" data-feather="grid"></span>
+                                </div>
+                                <span>SSS LİSTESİ</span>
+                            </div>
+                        </th>
+                        <!-- ID: Genişliği azaltıp (%10) metin wrap ve ortalama uyguladık -->
+                        <th class="sort align-middle ps-4 pe-5 text-uppercase id-column" scope="col" data-sort="date" style="width:10%;">ID</th>
+                        <!-- İşlem butonları sütunu -->
+                        <th class="sort text-end align-middle pe-0 ps-4" scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody class="list" id="leal-tables-body">
+                    @foreach (var item in Model)
+                    {
+                        <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+                            <!-- Checkbox sütunu -->
+                            <td class="fs-9 align-middle">
+                                <div class="form-check mb-0 fs-8">
+                                    <input class="form-check-input" type="checkbox" data-bulk-select-row='{"customer":{"avatar":"/team/32.webp","name":"Anthoney Michael","designation":"VP Accounting","status":{"label":"new lead","type":"badge-phoenix-primary"}},"email":"anth125@gmail.com","phone":"+1-202-555-0126","contact":"Ally Aagaard","company":"Google.inc","date":"Jan 01, 12:56 PM"}' />
+                                </div>
+                            </td>
+                            <!-- SSS Başlık hücresi: ps-3 ile hizalama -->
+                            <td class="name align-middle ps-3">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <a class="fs-8 fw-bold" href="#!">@item.FAQTitle</a>
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge badge-phoenix badge-phoenix-primary">SSS</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- SSS Açıklaması hücresi -->
+                            <td class="contact align-middle ps-4 pe-2 border-end border-translucent fw-semibold text-body-highlight">
+                                @item.FAQDescription
+                            </td>
+                            <!-- SSS LİSTESİ hücresi -->
+                            @if (item.FAQStatus == true)
+                            {
+                                <td class="align-middle text-start ps-6 pe-6 border-end border-translucent status">
+                                    <span class="badge badge-phoenix fs-10 badge-phoenix-info">
+                                        <span class="badge-label">SSS 1.ALAN</span>
+                                        <span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span>
+                                    </span>
+                                </td>
+                            }
+                            else
+                            {
+                                <td class="align-middle text-start ps-6 pe-6 border-end border-translucent status">
+                                    <span class="badge badge-phoenix fs-10 badge-phoenix-success">
+                                        <span class="badge-label">SSS 2.ALAN</span>
+                                        <span class="ms-1" data-feather="check" style="height:12.8px;width:12.8px;"></span>
+                                    </span>
+                                </td>
+                            }
+                            <!-- ID hücresi: Daha dar sütun, wrap ve ortalama -->
+                            <td class="date align-middle ps-4 pe-5 text-body-tertiary text-opacity-85 id-column">
+                                @item.FAQID
+                            </td>
+                            <!-- İşlem butonları hücresi -->
+                            <td class="align-middle text-end pe-0 ps-4">
+                                <div class="position-relative">
+                                    <div class="hover-actions">
+                                        <a href="/FAQs/UpdateFAQ/@item.FAQID" class="btn btn-sm btn-phoenix-secondary me-1 fs-10">
+                                            <span class="fas fa-check"></span>
+                                        </a>
+                                        <a href="/FAQs/DeleteFAQ/@item.FAQID" class="btn btn-sm btn-phoenix-secondary fs-10">
+                                            <span class="fas fa-trash"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="btn-reveal-trigger position-static">
+                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                        <span class="fas fa-ellipsis-h fs-10"></span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end py-2">
+                                        <a class="dropdown-item" href="/FAQs/UpdateFAQ/@item.FAQID">Güncelle</a>
+                                        <a class="dropdown-item" href="/FAQs/AddFAQ">Ekle</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item text-danger" href="/FAQs/DeleteFAQ/@item.FAQID">Sil</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
