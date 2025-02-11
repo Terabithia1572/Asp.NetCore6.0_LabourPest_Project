@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "AddFAQ";
+    Layout = "~/Views/Shared/_AdminDashboard.cshtml";
+}
+
+<form class="mb-9" method="post">
+    <div class="row g-3 flex-between-end mb-5">
+        <div class="col-auto">
+            <h2 class="mb-2">Sık Sorulan Sorular Ekleme Sayfası</h2>
+            <h5 class="text-body-tertiary fw-semibold">Sitenize Sık Sorulan Soruları Ekleyin..</h5>
+        </div>
+        <div class="col-auto"><button class="btn btn-phoenix-secondary me-2 mb-2 mb-sm-0" type="button">İptal Et</button><a class="btn btn-phoenix-primary me-2 mb-2 mb-sm-0" href="/FAQ/FAQList">Sık Sorulan Sorular Listesi</a><button class="btn btn-primary mb-2 mb-sm-0" type="submit">Sık Sorulan Sorular Ekle</button></div>
+    </div>
+    <div class="row g-5">
+        <div class="col-12 col-xl-8">
+           
+            <h4 class="mb-3">Başlık</h4><input class="form-control mb-5" type="text" name="FAQTitle" placeholder="BAŞLIK" />
+
+            <div class="col-12 gy-6">
+                <div class="form-floating"><textarea class="form-control" id="floatingProjectOverview" name="FAQDescription" placeholder="AÇIKLAMA" style="height: 100px"></textarea><label for="floatingProjectOverview">Açıklama</label></div>
+            </div>
+           
+            <br />
+            <div class="col-12 col-sm-6 col-xl-12">
+                <div class="d-flex flex-wrap mb-2">
+                    <h5 class="text-body-highlight me-2">Sık Sorulan Sorular</h5>
+                    <a class="fw-bold fs-9" href="#!">SSS Düzeni Seç</a>
+                </div>
+                <select name="FAQStatus" class="form-select mb-3">
+                    <option value="1">1.Sıradaki Sık Kullanılan Sorulara Ekle</option>
+                    <option value="0">2.Sıradaki Sık Kullanılan Sorulara Ekle</option>
+                </select>
+
+            </div>
+        </div>
+    </div>
+</form>
+
