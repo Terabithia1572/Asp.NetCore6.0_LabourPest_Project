@@ -1,4 +1,4 @@
-﻿@model WhoWeUs 
+﻿@model WhoWeUs
 @{
     ViewData["Title"] = "UpdateWhoWeUs";
     Layout = "~/Views/Shared/_AdminDashboard.cshtml";
@@ -11,19 +11,32 @@
             <h2 class="mb-2">Biz Kimiz Ekleme Sayfası</h2>
             <h5 class="text-body-tertiary fw-semibold">Sitenize Bir Biz Kimiz Ekleyerek Diğer Kullanıcıları Bilgilendirin..</h5>
         </div>
-        <div class="col-auto"><button class="btn btn-phoenix-secondary me-2 mb-2 mb-sm-0" type="button">İptal Et</button><a class="btn btn-phoenix-primary me-2 mb-2 mb-sm-0" href="/AdminBiz Kimiz/Biz KimizList">Biz Kimiz Listesi</a><button class="btn btn-primary mb-2 mb-sm-0" type="submit">Biz Kimiz Ekle</button></div>
+        <div class="col-auto">
+            <button class="btn btn-phoenix-secondary me-2 mb-2 mb-sm-0" type="button">İptal Et</button>
+            <a class="btn btn-phoenix-primary me-2 mb-2 mb-sm-0" href="/AdminBiz Kimiz/Biz KimizList">Biz Kimiz Listesi</a>
+            <button class="btn btn-primary mb-2 mb-sm-0" type="submit">Biz Kimiz Ekle</button>
+        </div>
     </div>
     <div class="row g-5">
         <div class="col-12 col-xl-8">
-            <h4 class="mb-3">Biz Kimiz 1.Başlığı</h4><input class="form-control mb-5" type="text" name="WhoWeUsTitle1" placeholder="Biz Kimiz 1.Başlığı..." />
-            <h4 class="mb-3">Biz Kimiz 2.Başlığı</h4><input class="form-control mb-5" type="text" name="WhoWeUsTitle2" placeholder="Biz Kimiz 2.Başlığı..." />
+            <h4 class="mb-3">Biz Kimiz 1.Başlığı</h4>
+            @Html.TextBoxFor(x => x.WhoWeUsTitle1, new { @class = "form-control mb-5", placeholder = "Biz Kimiz 1.Başlığı..." })
+
+            <h4 class="mb-3">Biz Kimiz 2.Başlığı</h4>
+            @Html.TextBoxFor(x => x.WhoWeUsTitle2, new { @class = "form-control mb-5", placeholder = "Biz Kimiz 2.Başlığı..." })
 
             <div class="col-12 gy-6">
-                <div class="form-floating"><textarea class="form-control" id="floatingProjectOverview" name="WhoWeUsDescription1" placeholder="Biz Kimiz 1.İçeriği" style="height: 100px"></textarea><label for="floatingProjectOverview">Biz Kimiz 1.İçeriği</label></div>
+                <div class="form-floating">
+                    @Html.TextAreaFor(x => x.WhoWeUsDescription1, new { @class = "form-control", id = "floatingProjectOverview1", placeholder = "Biz Kimiz 1.İçeriği", style = "height: 100px" })
+                    <label for="floatingProjectOverview1">Biz Kimiz 1.İçeriği</label>
+                </div>
             </div>
             <br />
             <div class="col-12 gy-6">
-                <div class="form-floating"><textarea class="form-control" id="floatingProjectOverview" name="WhoWeUsDescription2" placeholder="Biz Kimiz 2.İçeriği" style="height: 100px"></textarea><label for="floatingProjectOverview">Biz Kimiz 2.İçeriği</label></div>
+                <div class="form-floating">
+                    @Html.TextAreaFor(x => x.WhoWeUsDescription2, new { @class = "form-control", id = "floatingProjectOverview2", placeholder = "Biz Kimiz 2.İçeriği", style = "height: 100px" })
+                    <label for="floatingProjectOverview2">Biz Kimiz 2.İçeriği</label>
+                </div>
             </div>
             <br />
             <div class="col-12 col-sm-6 col-xl-12">
@@ -31,11 +44,11 @@
                     <h5 class="text-body-highlight me-2">Biz Kimiz Resim Düzeni</h5>
                     <a class="fw-bold fs-9" href="#!">Biz Kimiz Düzeni Seç</a>
                 </div>
-                <select name="WhoWeUsClass" class="form-select mb-3">
-                    <!-- Burada value kısmı veritabanına kaydedilecek değeri içeriyor -->
-                    <option value="s-cover-right">Resim Sağda</option>
-                    <option value="s-cover-left">Resim Solda</option>
-                </select>
+                @Html.DropDownListFor(x => x.WhoWeUsClass, new List<SelectListItem>
+                {
+                new SelectListItem { Text = "Resim Sağda", Value = "s-cover-right" },
+                new SelectListItem { Text = "Resim Solda", Value = "s-cover-left" }
+                }, new { @class = "form-select mb-3" })
             </div>
             <br />
             <h4 class="mb-3">Biz Kimiz Resmi</h4>
@@ -61,7 +74,10 @@
             </div>
             <br />
             <div class="col-sm-6 col-md-4">
-                <div class="form-floating"><input class="form-control" id="floatingInputTitle" type="text" placeholder="title" name="WhoWeUsImageURL" /><label for="floatingInputTitle">RESİM</label></div>
+                <div class="form-floating">
+                    @Html.TextBoxFor(x => x.WhoWeUsImageURL, new { @class = "form-control", placeholder = "title", id = "floatingInputTitle" })
+                    <label for="floatingInputTitle">RESİM</label>
+                </div>
             </div>
         </div>
     </div>
@@ -127,7 +143,6 @@
                     if (response.ok) {
                         const result = await response.json();
                         document.getElementById('floatingInputTitle').value = result.filePath;
-
                     } else {
                         alert('Resim yüklenirken bir hata oluştu!');
                     }
@@ -139,4 +154,3 @@
         });
     });
 </script>
-
