@@ -11,14 +11,22 @@
             <h2 class="mb-2">Kategori Güncelleme Sayfası</h2>
             <h5 class="text-body-tertiary fw-semibold">Sitenizdeki Kategorileri Güncelleyin..</h5>
         </div>
-        <div class="col-auto"><button class="btn btn-phoenix-secondary me-2 mb-2 mb-sm-0" type="button">İptal Et</button><a class="btn btn-phoenix-primary me-2 mb-2 mb-sm-0" href="/Category/CategoryList">Kategori Listesi</a><button class="btn btn-primary mb-2 mb-sm-0" type="submit">Kategori Güncelle</button></div>
+        <div class="col-auto">
+            <button class="btn btn-phoenix-secondary me-2 mb-2 mb-sm-0" type="button">İptal Et</button>
+            <a class="btn btn-phoenix-primary me-2 mb-2 mb-sm-0" href="/Category/CategoryList">Kategori Listesi</a>
+            <button class="btn btn-primary mb-2 mb-sm-0" type="submit">Kategori Güncelle</button>
+        </div>
     </div>
     <div class="row g-5">
         <div class="col-12 col-xl-8">
-            <h4 class="mb-3">Kategori Adı</h4><input class="form-control mb-5" type="text" name="CategoryName" placeholder="Kategori Adı..." />
+            <h4 class="mb-3">Kategori Adı</h4>
+            @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control mb-5", placeholder = "Kategori Adı..." })
 
             <div class="col-12 gy-6">
-                <div class="form-floating"><textarea class="form-control" id="floatingProjectOverview" name="CategoryDescription" placeholder="Kategori Açıklaması" style="height: 100px"></textarea><label for="floatingProjectOverview">Kategori Açıklaması</label></div>
+                <div class="form-floating">
+                    @Html.TextAreaFor(x => x.CategoryDescription, new { @class = "form-control", id = "floatingProjectOverview", placeholder = "Kategori Açıklaması", style = "height: 100px" })
+                    <label for="floatingProjectOverview">Kategori Açıklaması</label>
+                </div>
             </div>
             <br />
             <h4 class="mb-3">Kategori Resmi</h4>
@@ -44,7 +52,10 @@
             </div>
             <br />
             <div class="col-sm-6 col-md-4">
-                <div class="form-floating"><input class="form-control" id="floatingInputTitle" type="text" placeholder="title" name="CategoryImages" /><label for="floatingInputTitle">RESİM</label></div>
+                <div class="form-floating">
+                    @Html.TextBoxFor(x => x.CategoryImages, new { @class = "form-control", placeholder = "title", id = "floatingInputTitle" })
+                    <label for="floatingInputTitle">RESİM</label>
+                </div>
             </div>
         </div>
     </div>
@@ -110,7 +121,6 @@
                     if (response.ok) {
                         const result = await response.json();
                         document.getElementById('floatingInputTitle').value = result.filePath;
-
                     } else {
                         alert('Resim yüklenirken bir hata oluştu!');
                     }
@@ -122,4 +132,3 @@
         });
     });
 </script>
-
