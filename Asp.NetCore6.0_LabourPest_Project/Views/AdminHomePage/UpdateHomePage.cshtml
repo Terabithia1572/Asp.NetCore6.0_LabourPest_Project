@@ -11,15 +11,25 @@
             <h2 class="mb-2">Ana Sayfa Güncelleme Sayfası</h2>
             <h5 class="text-body-tertiary fw-semibold">Sitenize Birden fazla Ana Sayfa Bilgisi Ekleyin...</h5>
         </div>
-        <div class="col-auto"><button class="btn btn-phoenix-secondary me-2 mb-2 mb-sm-0" type="button">İptal Et</button><a class="btn btn-phoenix-primary me-2 mb-2 mb-sm-0" href="/AdminHomePage/AdminHomePageList">Ana Sayfa Listesi</a><button class="btn btn-primary mb-2 mb-sm-0" type="submit">Ana Sayfayı Güncelle</button></div>
+        <div class="col-auto">
+            <button class="btn btn-phoenix-secondary me-2 mb-2 mb-sm-0" type="button">İptal Et</button>
+            <a class="btn btn-phoenix-primary me-2 mb-2 mb-sm-0" href="/AdminHomePage/AdminHomePageList">Ana Sayfa Listesi</a>
+            <button class="btn btn-primary mb-2 mb-sm-0" type="submit">Ana Sayfayı Güncelle</button>
+        </div>
     </div>
     <div class="row g-5">
         <div class="col-12 col-xl-8">
-            <h4 class="mb-3">1.Başlık</h4><input class="form-control mb-5" type="text" name="HomePageDescription1" placeholder="1.Başlık..." />
+            <h4 class="mb-3">1.Başlık</h4>
+            @Html.TextBoxFor(x => x.HomePageDescription1, new { @class = "form-control mb-5", placeholder = "1.Başlık..." })
 
-            <h4 class="mb-3">2.Başlık</h4><input class="form-control mb-5" type="text" name="HomePageDescription2" placeholder="2.Başlık..." />
+            <h4 class="mb-3">2.Başlık</h4>
+            @Html.TextBoxFor(x => x.HomePageDescription2, new { @class = "form-control mb-5", placeholder = "2.Başlık..." })
+
             <div class="col-12 gy-6">
-                <div class="form-floating"><textarea class="form-control" id="floatingProjectOverview" name="HomePageSubDescription" placeholder="Anasayfa Alt İçeriği" style="height: 100px"></textarea><label for="floatingProjectOverview">Ana Sayfa Alt İçeriği</label></div>
+                <div class="form-floating">
+                    @Html.TextAreaFor(x => x.HomePageSubDescription, new { @class = "form-control", placeholder = "Anasayfa Alt İçeriği", style = "height: 100px" })
+                    <label for="floatingProjectOverview">Ana Sayfa Alt İçeriği</label>
+                </div>
             </div>
             <br />
             <h4 class="mb-3">Ana Sayfa Arka Plan Resmi</h4>
@@ -45,7 +55,10 @@
             </div>
             <br />
             <div class="col-sm-6 col-md-4">
-                <div class="form-floating"><input class="form-control" id="floatingInputTitle" type="text" placeholder="title" name="HomePageImage" /><label for="floatingInputTitle">RESİM</label></div>
+                <div class="form-floating">
+                    @Html.TextBoxFor(x => x.HomePageImage, new { @class = "form-control", placeholder = "title", id = "floatingInputTitle" })
+                    <label for="floatingInputTitle">RESİM</label>
+                </div>
             </div>
         </div>
     </div>
@@ -111,7 +124,6 @@
                     if (response.ok) {
                         const result = await response.json();
                         document.getElementById('floatingInputTitle').value = result.filePath;
-
                     } else {
                         alert('Resim yüklenirken bir hata oluştu!');
                     }
@@ -123,5 +135,3 @@
         });
     });
 </script>
-
-
