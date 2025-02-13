@@ -42,7 +42,9 @@
                             <div class="d-flex align-items-center"><span class="fa-solid fa-location-dot fs-9 text-body-tertiary me-2 me-lg-1 me-xl-2"></span><a class="text-body-emphasis" href="#!"><span class="fs-7 fw-semibold text-body-tertiary text-opacity-85 text-body-emphasis-hover">Türkiye</span></a></div>
                         </div>
                     </div>
-                    <p class="fs-6 text-body-secondary">“Kendinizi çoğunluğun yanında bulduğunuzda, durup düşünmenin zamanı gelmiştir.”</p>
+                    <p class="fs-6 text-body-secondary">
+                        “@ViewBag.DailyQuote”
+                    </p>
                 </div>
                 <div class="col-auto">
                     <div class="row g-2">
@@ -65,10 +67,10 @@
                 <div class="row g-0">
                     <div class="col-6 border-1 border-bottom border-translucent border-end py-2"> <a class="btn btn-link ps-2 fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="#!"><span class="fa-solid fa-user-group me-2 mb-2 mb-xxl-0"></span>Takipçiler</a></div>
                     <div class="col-6 border-1 border-bottom border-translucent py-2"><a class="btn btn-link fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="#!"><span class="fa-solid fa-users me-2 mb-2 mb-xxl-0"></span>Topluluklar</a></div>
-                    <div class="col-6 border-1 border-bottom border-translucent border-end py-2"><a class="btn btn-link ps-2 fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="#!"><span class="fa-solid fa-photo-film me-2 mb-2 mb-xxl-0"></span>Dosyalar</a></div>
+                    <div class="col-6 border-1 border-bottom border-translucent border-end py-2"><a class="btn btn-link ps-2 fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="/File/FileList"><span class="fa-solid fa-photo-film me-2 mb-2 mb-xxl-0"></span>Dosyalar</a></div>
                     <div class="col-6 border-1 border-bottom border-translucent py-2"><a class="btn btn-link fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="#!"><span class="fa-solid fa-calendar-days me-2 mb-2 mb-xxl-0"></span>Etkinlikler</a></div>
                     <div class="col-6 border-1 border-end border-translucent py-2"><a class="btn btn-link ps-2 fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="#!"><span class="fa-solid fa-dice me-2 mb-2 mb-xxl-0"></span>Oyunlar</a></div>
-                    <div class="col-6 border-1 py-2"><a class="btn btn-link fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="#!"><span class="fa-solid fa-user-gear me-2 mb-2 mb-xxl-0"></span>Ayarlar </a></div>
+                    <div class="col-6 border-1 py-2"><a class="btn btn-link fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="/AdminDashboard/ProfileSettings"><span class="fa-solid fa-user-gear me-2 mb-2 mb-xxl-0"></span>Ayarlar </a></div>
                 </div>
             </div>
             <div class="mb-8">
