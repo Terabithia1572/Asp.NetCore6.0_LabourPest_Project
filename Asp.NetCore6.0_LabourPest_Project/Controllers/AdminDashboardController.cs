@@ -52,8 +52,48 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
                 UserCount = userCount
             };
 
+            // Günün sözleri listesi
+            var quotes = new List<string>
+            {
+                "Başarı, sabır ve azimle gelir.",
+                "Hayallerine inan, çünk onlar seni geleceğine taşır.",
+                "Bugün yaptığın şey yarının temelini oluşturur.",
+                "Başarı, asla pes etmeyenlerindir.",
+                "Her düşüş bir ders, her kalkış bir zaferdir.",
+                "Kendi hikayenin kahramanı ol.",
+                "Başarı, hazırlık ve fırsatın kesistiği yerdedir.",
+                "Büyük başarılar, küçük ama tutarlı adımlarla gelir.",
+                "Yol uzun olabilir, ama her adım seni zirveye taşır.",
+                "Düşüncelerine dikkat et, çünk onlar senin geleceğine taşır.",
+                "Küçük bir adım bile büyük değişiklikler yaratabilir.",
+                "Hata yapmaktan korkma, çünk onlar başarının anahtarlıdır.",
+                "Düşüncelerini değiştir, hayatın değişsin.",
+                "Her sabah yeni bir başlangıçtır.",
+                "En karanlık anların arkasında ışık vardır.",
+                "Bir fikrin varsa, ona inan ve peşinden git.",
+                "Hayallerini gerçekleştirmek için bugün bir adım at.",
+                "Korkuların seni durdurmasına izin verme.",
+                "Zorluklar, başarının habercisidir.",
+                "Hayatta ne kadar ileri gideceğin, cesaretine bağlıdır.",
+                "Pozitif bir zihin, pozitif bir hayat yaratır.",
+                "Hayatta en önemli şey, kendi şansını yaratmaktır.",
+                "Her yeni gün, yeni bir fırsat getirir.",
+                "Gülümsemek, en güzel enerjidir.",
+                "Hayat, sen ne düşünüyorsan onu sana geri verir.",
+                "Kendine inan; bu, başarının yarısıdır.",
+                "Zorluklar seni daha güçlü yapar.",
+                "Her düşüş, kalkmak için bir fırsattır.",
+                "Küçük mutluluklar, büyük mutlulukları getirir."
+            };
+
+            // Günün sözünü hesaplamak için: 
+            // DateTime.Now.DayOfYear yılın kaçıncı günü olduğunu verir.
+            int index = DateTime.Now.DayOfYear % quotes.Count;
+            ViewBag.DailyQuote = quotes[index];
+
             return View(viewModel);
         }
+
 
         [HttpGet]
         public IActionResult ProfileSettings()
