@@ -16,6 +16,13 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 		{
 			return View();
 		}
+        [AllowAnonymous]
+        public IActionResult ProductDetail(int id)
+        {
+            ViewData["ShowComponents"] = false;
+            var values = productManager.TGetByID(id);
+            return View(values);
+        }
 		public IActionResult ProductList()
 		{
 			var values=productManager.GetListWithProductCategory();
