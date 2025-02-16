@@ -15,6 +15,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         WriterManager writerManager = new WriterManager(new EfWriterRepository());
         BlogManager blogManager = new BlogManager(new EfBlogRepository());
         ImageManager imageManager = new ImageManager(new EfImagesRepository());
+        SubscribeManager subscribeManager = new SubscribeManager(new EfSubscribeRepository());
 
         // Yeni: Yorum, Kategori ve Kullanıcı (eğer farklıysa) verilerini çekmek için manager örnekleri.
         CommentManager commentManager = new CommentManager(new EfCommentRepository());
@@ -22,6 +23,11 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 
         public IActionResult Profile()
         {
+            var subscribeCount=subscribeManager.GetAll().Count();
+            ViewBag.SubscribeCount = subscribeCount;
+            var customerCount = writerManager.GetAll().Count();
+            ViewBag.CustomerCount = customerCount;
+
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             int writerId = Convert.ToInt32(userId);
 
