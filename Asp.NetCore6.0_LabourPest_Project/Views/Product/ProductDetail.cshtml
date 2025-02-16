@@ -1,0 +1,62 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "ProductDetail";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<section class="page_title ds s-parallax s-overlay s-py-65">
+    <div class="s-blur"></div>
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-md-12 text-center text-sm-left">
+                <h1>Ürün Detayları</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="/Home/Deneme">Ana Sayfa</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="/Home/Deneme/#product">Ürünler</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        @Model.ProductName
+                    </li>
+                </ol>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+<section class="ls s-py-xl-150 s-py-lg-130 s-py-md-90 s-py-60 c-gutter-60">
+    <div class="container">
+        <div class="row">
+            <main class="col-lg-7 col-xl-8">
+                <div class="vertical-item content-padding bordered text-left">
+                    <div class="item-media">
+                        <img src="@Model.ProductImageURL" alt="@Model.ProductImageURL">
+                    </div>
+                    <div class="item-content">
+                        <h4>
+                            @Model.ProductName
+                        </h4>
+                        <p class="excerpt">
+                            @Model.ProductDescription
+                        </p>
+
+
+
+                    </div>
+                </div>
+            </main>
+
+
+
+
+        </div>
+
+    </div>
+</section>
+
+<link href="~/canabicom/dynamic5/resimblogdetail.css" rel="stylesheet" />
