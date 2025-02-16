@@ -35,6 +35,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddSession();
 var app = builder.Build();
+app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
 
 
