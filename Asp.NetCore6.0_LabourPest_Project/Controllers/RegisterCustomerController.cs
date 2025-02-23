@@ -63,7 +63,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         {
             var values = writerManager.TGetByID(id);
             writerManager.TDelete(values);
-            return View();
+            return RedirectToAction("CustomerList","RegisterCustomer");
         }
 
         [HttpGet]
