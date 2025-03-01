@@ -4,6 +4,7 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -18,6 +19,14 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         public RegisterCustomerController(IWebHostEnvironment hostingEnvironment)
         {
             _hostingEnvironment = hostingEnvironment;
+        }
+        private void PopulateCoverOptions2()
+        {
+            ViewBag.CoverOptions2 = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "Admin", Text = "Admin" },
+                new SelectListItem { Value = "Müşteri", Text = "Müşteri" }
+            };
         }
 
         public IActionResult Index()
@@ -34,12 +43,21 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         [HttpGet]
         public IActionResult AddCustomer()
         {
+            PopulateCoverOptions2();
             return View();
         }
 
         [HttpPost]
         public IActionResult AddCustomer(Writer writer)
         {
+            if (writer.WriterAbout == "Admin")
+            {
+                writer.WriterAbout = "Admin";
+            }
+            else if (writer.WriterAbout == "Müşteri")
+            {
+                writer.WriterAbout = "Müşteri";
+            }
             writer.WriterStatus = true;
             writerManager.TAdd(writer);
 
@@ -63,7 +81,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         {
             var values = writerManager.TGetByID(id);
             writerManager.TDelete(values);
-            return View();
+            return RedirectToAction("CustomerList","RegisterCustomer");
         }
 
         [HttpGet]
