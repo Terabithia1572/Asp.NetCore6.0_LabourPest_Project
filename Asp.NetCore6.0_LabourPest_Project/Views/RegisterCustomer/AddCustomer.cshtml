@@ -41,7 +41,13 @@
                 <div class="form-floating"><input class="form-control" id="floatingInputLastname" type="text" name="WriterSurname" placeholder="Last name" /><label for="floatingInputLastname">SOYAD</label></div>
             </div>
             <div class="col-sm-6 col-md-4">
-                <div class="form-floating"><input class="form-control" id="floatingInputCompany" type="text" placeholder="Company" name="WriterAbout" /><label for="floatingInputCompany">HAKKINDA</label></div>
+                <div class="form-floating">
+                <select name="WriterAbout" class="form-select">
+                    <!-- Burada value kısmı veritabanına kaydedilecek değeri içeriyor -->
+                    <option value="Admin">Admin</option>
+                    <option value="Müşteri">Müşteri</option>
+                </select>
+                </div>
             </div>
             <div class="col-sm-6 col-md-4">
                 <div class="form-floating"><input class="form-control" id="floatingInputTitle" type="text" placeholder="title" name="WriterImage" /><label for="floatingInputTitle">RESİM</label></div>
