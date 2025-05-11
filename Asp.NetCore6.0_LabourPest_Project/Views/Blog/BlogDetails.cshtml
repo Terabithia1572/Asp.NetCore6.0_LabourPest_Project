@@ -5,7 +5,7 @@
 }
 
 <section class="page_title ds s-parallax s-overlay s-py-65">
-   
+
     <div class="s-blur"></div>
     <div class="container">
         <div class="row">
@@ -14,7 +14,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="/Home/Deneme">Ana Sayfa</a>
-                     
+
                     </li>
                     <li class="breadcrumb-item">
                         <a href="/Home/Deneme/#blog">Bloglar</a>
@@ -92,9 +92,20 @@
                                     <p>@DateTime.Now.ToShortDateString() </p>
                                     <span class="divider">|</span>
                                     <p>Günün Sözü</p>
-                          
+
                                 </footer>
                             </blockquote>
+                            <!-- ✨ Etiketleri göster -->
+                            @if (Model.BlogTags != null && Model.BlogTags.Any())
+                            {
+                                <div class="mt-4">
+                                    <strong><i class="fas fa-tags"></i> Etiketler:</strong>
+                                    @foreach (var tag in Model.BlogTags)
+                                    {
+                                        <a href="/Tag/Blogs/@tag.Tag.TagName" class="badge bg-secondary mx-1">@tag.Tag.TagName</a>
+                                    }
+                                </div>
+                            }
                         </div>
                         <!-- .entry-content -->
                     </div>

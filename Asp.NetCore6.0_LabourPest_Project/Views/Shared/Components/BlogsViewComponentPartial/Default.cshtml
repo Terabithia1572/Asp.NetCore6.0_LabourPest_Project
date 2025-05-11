@@ -31,6 +31,19 @@
 											@item.BlogTitle
 										</a>
 									</h6>
+
+									<!-- ⭐ Etiketler burada -->
+									@if (item.BlogTags != null && item.BlogTags.Any())
+									{
+										<div class="mt-2">
+											@foreach (var tag in item.BlogTags)
+											{
+												<a href="/Tag/Blogs/@tag.Tag.TagName" class="badge bg-secondary text-white mx-1" style="font-size: 12px;">
+													@tag.Tag.TagName
+												</a>
+											}
+										</div>
+									}
 								</header>
 								<footer class="entry-footer">
 									<div class="byline">
@@ -49,8 +62,6 @@
 							</div>
 						</article>
 					}
-					
-					
 				</div>
 			</div>
 		</div>

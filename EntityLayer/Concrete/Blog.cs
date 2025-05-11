@@ -32,5 +32,7 @@ namespace EntityLayer.Concrete
         public int WriterID { get; set; }
         [ForeignKey("WriterID")]
         public Writer Writer { get; set; }
+        public List<BlogTag> BlogTags { get; set; }
+
     }
 }

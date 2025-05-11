@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
@@ -14,6 +15,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
     {
         BlogManager blogManager= new BlogManager(new EfBlogRepository());
         BlogCategoryManager blogCategoryManager = new BlogCategoryManager(new EfBlogCategoryRepository());
+        Context _context = new Context();
         public IActionResult Index()
         {
             return View();
@@ -42,6 +44,28 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         [HttpPost]
         public IActionResult AddBlog(Blog blog)
         {
+            string[] tagArray = Request.Form["Tags"].ToString().Split(',', StringSplitOptions.RemoveEmptyEntries);
+            foreach (var tagText in tagArray)
+            {
+                string trimmed = tagText.Trim().ToLower();
+
+                // Etiket zaten var mı?
+                var existingTag = _context.Tags.FirstOrDefault(t => t.TagName == trimmed);
+                if (existingTag == null)
+                {
+                    existingTag = new Tag { TagName = trimmed };
+                    _context.Tags.Add(existingTag);
+                    _context.SaveChanges();
+                }
+
+                _context.BlogTags.Add(new BlogTag
+                {
+                    BlogID = blog.BlogID,
+                    TagID = existingTag.TagID
+                });
+            }
+            _context.SaveChanges();
+
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             int writerId = Convert.ToInt32(userId);
             blog.BlogStatus = true;

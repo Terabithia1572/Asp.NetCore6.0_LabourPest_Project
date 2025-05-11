@@ -35,7 +35,26 @@ namespace DataAccessLayer.Concrete
         public DbSet<Subscribe> Subscribes { get; set; }
         public DbSet<WhoWeUs> WhoWeUs { get; set; }
         public DbSet<Writer> Writers { get; set; }
-       
-        
+
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<BlogTag> BlogTags { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<BlogTag>()
+                .HasKey(bt => new { bt.BlogID, bt.TagID });
+
+            modelBuilder.Entity<BlogTag>()
+                .HasOne(bt => bt.Blog)
+                .WithMany(b => b.BlogTags)
+                .HasForeignKey(bt => bt.BlogID);
+
+            modelBuilder.Entity<BlogTag>()
+                .HasOne(bt => bt.Tag)
+                .WithMany(t => t.BlogTags)
+                .HasForeignKey(bt => bt.TagID);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

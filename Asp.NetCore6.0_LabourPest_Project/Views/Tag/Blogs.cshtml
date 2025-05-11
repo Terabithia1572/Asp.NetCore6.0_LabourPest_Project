@@ -1,0 +1,87 @@
+﻿@model List<Blog>
+@{
+    ViewData["Title"] = "Etikete Göre Bloglar";
+    Layout = "~/Views/Shared/_BlogLayout.cshtml";
+}
+
+<section class="page_title ds s-parallax s-overlay s-py-65">
+    <div class="s-blur"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center text-sm-left">
+                <h1>Etiket: @ViewBag.Tag</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="/Home/Deneme">Ana Sayfa</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="/Home/Deneme/#blog">Bloglar</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        @ViewBag.Tag
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ls blog-section s-pt-xl-135 s-pt-lg-115 s-pt-md-75 s-pt-55 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="special-heading text-center">"@ViewBag.Tag" Etiketine Ait Bloglar</h2>
+                <div class="divider-40 hidden-below-md"></div>
+                <div class="divider-30 hidden-above-md"></div>
+
+                <div class="row c-gutter-60">
+                    @if (Model.Any())
+                    {
+                        @foreach (var item in Model)
+                        {
+                                    <div class="col-md-6 col-lg-4">
+                                        <article class="vertical-item text-center">
+                                            <div class="item-media post-thumbnail">
+                                                <a href="/blogdetails/@item.SlugUrl">
+                                                    <img src="@item.BlogImage" alt="img">
+                                                </a>
+                                            </div>
+                                            <div class="item-content">
+                                                <header class="entry-header">
+                                                    <div class="cat-links">
+                                                        <a href="/blogdetails/@item.SlugUrl" rel="category tag">
+                                                    @item.BlogCategory.BlogCategories
+                                                        </a>
+                                                    </div>
+                                                    <h6 class="entry-title">
+                                                        <a href="/blogdetails/@item.SlugUrl" rel="bookmark">
+                                                    @item.BlogTitle
+                                                        </a>
+                                                    </h6>
+                                                </header>
+                                                <footer class="entry-footer">
+                                                    <div class="byline">
+                                                        <time class="entry-date published updated" datetime="@item.BlogDate.ToString("s")">
+                                                            <i class="far fa-clock"></i>
+                                                    @item.BlogDate.ToShortDateString()
+                                                        </time>
+                                                        <div class="author vcard">
+                                                            <i class="far fa-user"></i>
+                                                    @item.Writer.WriterName @item.Writer.WriterSurname
+                                                        </div>
+                                                    </div>
+                                                </footer>
+                                            </div>
+                                        </article>
+                                    </div>
+                        }
+                    }
+                    else
+                    {
+                            <p class="text-center">Bu etikete ait blog bulunamadı.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

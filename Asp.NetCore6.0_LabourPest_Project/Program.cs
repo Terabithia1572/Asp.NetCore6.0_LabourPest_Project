@@ -1,5 +1,6 @@
 using BusinessLayer.Concrete;
 using DataAccessLayer.Abstract;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -15,6 +16,7 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
     // options.KnownProxies.Add(IPAddress.Parse("PROXY_IP_ADDRESS"));
 });
 // Add services to the container.
+builder.Services.AddDbContext<Context>(); // BU SATIRI EKLE
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IBlogDal, EfBlogRepository>(); // IBlogRepository için EfBlogRepository kullanýmý
 builder.Services.AddScoped<BlogManager>(); // BlogManager'ý ekleyin
