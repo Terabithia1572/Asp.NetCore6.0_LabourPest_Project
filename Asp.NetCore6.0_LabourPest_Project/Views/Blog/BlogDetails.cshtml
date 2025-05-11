@@ -102,7 +102,7 @@
                                     <strong><i class="fas fa-tags"></i> Etiketler:</strong>
                                     @foreach (var tag in Model.BlogTags)
                                     {
-                                        <a href="/Tag/Blogs/@tag.Tag.TagName" class="badge bg-secondary mx-1">@tag.Tag.TagName</a>
+                                        <a href="/Tag/Blogs/@tag.Tags.TagName" class="badge bg-secondary mx-1">@tag.Tags.TagName</a>
                                     }
                                 </div>
                             }
