@@ -21,12 +21,23 @@ namespace DataAccessLayer.EntityFramework
                     .Include(b => b.BlogCategory)
                     .Include(b => b.Writer)
                     .Include(b => b.BlogTags)
-                        .ThenInclude(bt => bt.Tag)
+                        .ThenInclude(bt => bt.Tags)
                     .ToList();
             }
         }
 
-
+        public List<Blog> GetBlogListWithCategoryWriterAndTags()
+        {
+            using (var context = new Context())
+            {
+                return context.Blogs
+                    .Include(b => b.BlogCategory)
+                    .Include(b => b.Writer)
+                    .Include(b => b.BlogTags)
+                        .ThenInclude(bt => bt.Tags)
+                    .ToList();
+            }
+        }
         public List<Blog> GetListWithCategoryByWriter(int id)
         {
             using (var c = new Context())

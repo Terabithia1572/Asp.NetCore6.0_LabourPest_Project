@@ -45,12 +45,12 @@ namespace DataAccessLayer.Concrete
                 .HasKey(bt => new { bt.BlogID, bt.TagID });
 
             modelBuilder.Entity<BlogTag>()
-                .HasOne(bt => bt.Blog)
+                .HasOne(bt => bt.Blogs)
                 .WithMany(b => b.BlogTags)
                 .HasForeignKey(bt => bt.BlogID);
 
             modelBuilder.Entity<BlogTag>()
-                .HasOne(bt => bt.Tag)
+                .HasOne(bt => bt.Tags)
                 .WithMany(t => t.BlogTags)
                 .HasForeignKey(bt => bt.TagID);
 
