@@ -27,7 +27,7 @@
         border-radius: 5px;
     }
 
-#izmir path {
+#mugla path {
     fill: #aade87 !important;
 }
 
@@ -35,7 +35,7 @@
     fill: #aade87 !important;
 }
 
-#izmir text {
+#mugla text {
     font-family: Arial, sans-serif;
     font-size: 14px;
     fill: #000000; /* Siyah renk */
@@ -59,7 +59,7 @@
         cursor: pointer;
     }
 
-    #izmir path:hover {
+    #mugla path:hover {
         fill: #a1a1a1 !important;
         cursor: pointer;
     }

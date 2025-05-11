@@ -229,7 +229,8 @@
 			
 
 			@await Component.InvokeAsync("PageSliderViewComponentPartial") <!--Burası En Başta Bulunan Slider Kısmı Kalite Hizmet ile başlayan kısım-->
-				@await Component.InvokeAsync("ProductAlternatifViewComponentPartial") <!--Burası Popüler Ürünlerin Başladığı Kısım-->
+				@* @await Component.InvokeAsync("ProductAlternatifViewComponentPartial") <!--Burası Popüler Ürünlerin Başladığı Kısım--> *@
+                @await Component.InvokeAsync("AboutUsViewComponentPartial") <!--Burası Hakkımızda Kısmı-->
 
 			@await Component.InvokeAsync("ServicesViewComponentPartial") <!--Burası Servislerin Bulunduğu Kısım Ürünlerin Hemen Altında Bulunan Kısım-->
 

@@ -19307,11 +19307,11 @@ widget_product_search
 	width: 5px;
 }
 
-.page_footer .widget_mailchimp button:before {
-	color: #ebc912;
-	content: "\f35a";
-	font-size: 16px;
-}
+	.page_footer .widget_mailchimp button:before {
+		color: #ebc912;
+		content: "\f35a";
+		font-size: 16px;
+	}
 
 .widget_search button,
 .widget_mailchimp button,
@@ -26403,7 +26403,7 @@ img.absolute_image {
 }
 
 .section-about {
-	background: url("../images/about_bg.jpg") no-repeat center/cover;
+	background: url("../images/about_ba.jpg") no-repeat center/cover;
 }
 
 @media (max-width: 991px) {
@@ -26413,7 +26413,7 @@ img.absolute_image {
 }
 
 .section-features.s-parallax {
-	background-image: url("../images/features_bg.jpg");
+	background-image: url("../images/pestcontrol.jpg");
 }
 
 .contact {
@@ -26421,7 +26421,7 @@ img.absolute_image {
 }
 
 .faq-contact {
-	background: url("../images/fq_bg.jpg") no-repeat center/cover;
+	background: url("../images/fq_bgg.jpg") no-repeat center/cover;
 }
 
 .testimonials-section {
@@ -26429,11 +26429,11 @@ img.absolute_image {
 }
 
 .delivery-section {
-	background: url("../images/delivery_bg.jpg") no-repeat center/cover;
+	background: url("../images/delivery_bg3.jpg") no-repeat center/cover;
 }
 
 .section-subscribe {
-	background: url("../images/subscribe_bg.jpg") no-repeat center/cover;
+	background: url("../images/fq_bgg.jpg") no-repeat center/cover;
 }
 
 .shop-categories-section {
