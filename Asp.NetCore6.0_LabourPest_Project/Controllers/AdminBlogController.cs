@@ -27,52 +27,61 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             ViewBag.blogSayisi = blogManager.GetBlogListWithBlogCategory().Count();
             return View(values);
         }
-        [Authorize(Roles = "Admin,Müşteri")]
         [HttpGet]
+        [Authorize(Roles = "Admin,Müşteri")]
         public IActionResult AddBlog()
         {
-            List<SelectListItem> categoryValues = (from x in blogCategoryManager.GetAll()
-                                                   select new SelectListItem
-                                                   {
-                                                       Text = x.BlogCategories,
-                                                       Value = x.BlogCategoryID.ToString()
-                                                   }).ToList();
+            List<SelectListItem> categoryValues = blogCategoryManager.GetAll()
+                .Select(x => new SelectListItem
+                {
+                    Text = x.BlogCategories,
+                    Value = x.BlogCategoryID.ToString()
+                }).ToList();
             ViewBag.cv = categoryValues;
+
+            // Etiketleri çek
+            ViewBag.Tags = _context.Tags.Select(t => new SelectListItem
+            {
+                Text = t.TagName,
+                Value = t.TagID.ToString()
+            }).ToList();
+
             return View();
         }
-        [Authorize(Roles = "Admin,Müşteri")]
         [HttpPost]
+        [Authorize(Roles = "Admin,Müşteri")]
         public IActionResult AddBlog(Blog blog)
         {
-            string[] tagArray = Request.Form["Tags"].ToString().Split(',', StringSplitOptions.RemoveEmptyEntries);
-            foreach (var tagText in tagArray)
-            {
-                string trimmed = tagText.Trim().ToLower();
-
-                // Etiket zaten var mı?
-                var existingTag = _context.Tags.FirstOrDefault(t => t.TagName == trimmed);
-                if (existingTag == null)
-                {
-                    existingTag = new Tag { TagName = trimmed };
-                    _context.Tags.Add(existingTag);
-                    _context.SaveChanges();
-                }
-
-                _context.BlogTags.Add(new BlogTag
-                {
-                    BlogID = blog.BlogID,
-                    TagID = existingTag.TagID
-                });
-            }
-            _context.SaveChanges();
-
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             int writerId = Convert.ToInt32(userId);
             blog.BlogStatus = true;
             blog.BlogDate = DateTime.Now;
             blog.WriterID = writerId;
-            blog.SlugUrl = CreateUniqueSlug(blog.BlogTitle); // benzersiz slug üret
+            blog.SlugUrl = CreateUniqueSlug(blog.BlogTitle);
+
+            // Önce blog'u kaydet
             blogManager.TAdd(blog);
+
+            // Kaydedilen blogu slug üzerinden tekrar çek
+            var savedBlog = _context.Blogs.FirstOrDefault(b => b.SlugUrl == blog.SlugUrl);
+
+            // Seçili checkbox etiketlerini al
+            var selectedTagIds = Request.Form["SelectedTags"].ToList();
+
+            // Etiketleri ilişkilendir
+            foreach (var tagId in selectedTagIds)
+            {
+                if (int.TryParse(tagId, out int parsedTagId))
+                {
+                    _context.BlogTags.Add(new BlogTag
+                    {
+                        BlogID = savedBlog.BlogID,
+                        TagID = parsedTagId
+                    });
+                }
+            }
+
+            _context.SaveChanges();
 
             if (User.IsInRole("Admin"))
             {
@@ -83,12 +92,22 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
                 return RedirectToAction("Deneme", "Home");
             }
         }
+
+
         [Authorize(Roles = "Admin")]
         public IActionResult DeleteBlog(int id)
         {
-            var values = blogManager.TGetByID(id);
-            blogManager.TDelete(values);
-            return RedirectToAction("BlogList", "AdminBlog");
+            var blog = blogManager.TGetByID(id);
+            if (blog == null) return NotFound();
+
+            // Etiket ilişkilerini sil
+            var blogTags = _context.BlogTags.Where(bt => bt.BlogID == id).ToList();
+            _context.BlogTags.RemoveRange(blogTags);
+            _context.SaveChanges();
+
+            // Blogu sil
+            blogManager.TDelete(blog);
+            return RedirectToAction("BlogList","AdminBlog");
         }
         private string CreateSlug(string phrase)
         {
@@ -131,6 +150,75 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 
             return slug;
         }
+        [HttpGet]
+        public IActionResult UpdateBlog(int id)
+        {
+            // blogu id'ye göre bul
+            var blog = blogManager.TGetByID(id);
+            if (blog == null) return NotFound();
+
+            // kategori dropdown'u tekrar yolla
+            ViewBag.cv = blogCategoryManager.GetAll()
+                          .Select(x => new SelectListItem
+                          {
+                              Text = x.BlogCategories,
+                              Value = x.BlogCategoryID.ToString()
+                          }).ToList();
+            ViewBag.Tags = _context.Tags.Select(t => new SelectListItem
+            {
+                Text = t.TagName,
+                Value = t.TagID.ToString()
+            }).ToList();
+
+            ViewBag.SelectedTagIds = _context.BlogTags
+                .Where(bt => bt.BlogID == id)
+                .Select(bt => bt.TagID)
+                .ToList();
+
+
+            return View(blog); // UpdateBlog.cshtml
+        }
+
+        [HttpPost]
+        public IActionResult UpdateBlog(Blog blog)
+        {
+            // Güncellenecek blogu veritabanından al
+            var existingBlog = _context.Blogs.FirstOrDefault(b => b.BlogID == blog.BlogID);
+            if (existingBlog == null)
+                return NotFound();
+
+            // Güncelleme işlemleri
+            existingBlog.BlogTitle = blog.BlogTitle;
+            existingBlog.BlogContent = blog.BlogContent;
+            existingBlog.BlogImage = blog.BlogImage;
+            existingBlog.BlogCategoryID = blog.BlogCategoryID;
+            existingBlog.BlogDate = DateTime.Now;
+            existingBlog.SlugUrl = CreateUniqueSlug(blog.BlogTitle);
+
+            // Var olan etiketleri sil
+            var oldTags = _context.BlogTags.Where(bt => bt.BlogID == blog.BlogID);
+            _context.BlogTags.RemoveRange(oldTags);
+
+            // Yeni seçilen etiketleri ekle
+            var selectedTagIds = Request.Form["SelectedTags"].ToList();
+            foreach (var tagId in selectedTagIds)
+            {
+                if (int.TryParse(tagId, out int parsedTagId))
+                {
+                    _context.BlogTags.Add(new BlogTag
+                    {
+                        BlogID = blog.BlogID,
+                        TagID = parsedTagId
+                    });
+                }
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("BlogList", "AdminBlog");
+        }
+
+
 
 
 

@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Concrete;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -30,5 +31,48 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             ViewBag.Tag = id;
             return View(blogs);
         }
+        [HttpGet]
+        public IActionResult AddTag()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddTag(Tag tag)
+        {
+            tag.TagName = tag.TagName.Trim().ToLower();
+            if (!_context.Tags.Any(t => t.TagName == tag.TagName))
+            {
+                _context.Tags.Add(tag);
+                _context.SaveChanges();
+                ViewBag.Message = "Etiket başarıyla eklendi.";
+            }
+            else
+            {
+                ViewBag.Message = "Bu etiket zaten mevcut.";
+            }
+            return View();
+        }
+        [Authorize(Roles = "Admin")]
+        public IActionResult TagList()
+        {
+            using var context = new Context();
+            var tags = context.Tags.ToList();
+            return View(tags);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult DeleteTag(int id)
+        {
+            using var context = new Context();
+            var tag = context.Tags.Find(id);
+            if (tag != null)
+            {
+                context.Tags.Remove(tag);
+                context.SaveChanges();
+            }
+            return RedirectToAction("TagList");
+        }
+
     }
 }
