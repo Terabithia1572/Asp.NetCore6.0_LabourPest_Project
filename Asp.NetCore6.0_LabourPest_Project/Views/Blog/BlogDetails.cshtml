@@ -79,7 +79,57 @@
 
                         <div class="entry-content">
                             <p>
-                                @Model.BlogContent
+                                <div id="blogContentContainer">
+                                    @{
+                                        string content = Model.BlogContent ?? "";
+                                        int limit = 1100;
+
+                                        string previewText = content;
+                                        string remainder1 = "";
+                                        string remainder2 = "";
+
+                                        if (content.Length > limit)
+                                        {
+                                            // 1. Kesme Noktasını Cümleye Göre Bul
+                                            int cutIndex1 = content.IndexOfAny(new[] { '.', '!', '?' }, limit);
+                                            if (cutIndex1 > 0 && cutIndex1 < content.Length - 1)
+                                            {
+                                                previewText = content.Substring(0, cutIndex1 + 1);
+                                                remainder1 = content.Substring(cutIndex1 + 1);
+                                            }
+
+                                            // 2. İkinci kesme için yine aynı mantık
+                                            if (remainder1.Length > limit)
+                                            {
+                                                int cutIndex2 = remainder1.IndexOfAny(new[] { '.', '!', '?' }, limit);
+                                                if (cutIndex2 > 0 && cutIndex2 < remainder1.Length - 1)
+                                                {
+                                                    var temp = remainder1;
+                                                    remainder1 = temp.Substring(0, cutIndex2 + 1);
+                                                    remainder2 = temp.Substring(cutIndex2 + 1);
+                                                }
+                                            }
+                                        }
+                                    }
+                                    <div id="blogContentContainer">
+                                        <p id="contentPart1">@Html.Raw(previewText)</p>
+
+                                        @if (!string.IsNullOrEmpty(remainder1))
+                                        {
+                                            <p id="contentPart2" style="display:none">@Html.Raw(remainder1)</p>
+                                        }
+                                        @if (!string.IsNullOrEmpty(remainder2))
+                                        {
+                                            <p id="contentPart3" style="display:none">@Html.Raw(remainder2)</p>
+                                        }
+
+                                        @if (!string.IsNullOrEmpty(remainder1))
+                                        {
+                                            <button id="readMoreBtn" class="btn btn-outline-secondary mt-3">Devamını Oku</button>
+                                        }
+                                    </div>
+
+                                </div>
                             </p>
 
                             <blockquote>
@@ -169,3 +219,24 @@
 </section>
 
 <link href="~/canabicom/dynamic5/resimblogdetail.css" rel="stylesheet" />
+<script>
+    let currentPart = 1;
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const btn = document.getElementById("readMoreBtn");
+        if (!btn) return;
+
+        btn.addEventListener("click", function () {
+            currentPart++;
+            const nextPart = document.getElementById("contentPart" + currentPart);
+            if (nextPart) {
+                nextPart.style.display = "block";
+                if (!document.getElementById("contentPart" + (currentPart + 1))) {
+                    btn.style.display = "none"; // Tüm içerik gösterildiyse butonu gizle
+                }
+            } else {
+                btn.style.display = "none";
+            }
+        });
+    });
+</script>
