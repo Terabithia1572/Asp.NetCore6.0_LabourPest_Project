@@ -1,0 +1,39 @@
+﻿@model List<EntityLayer.Concrete.Tag>
+@{
+    ViewData["Title"] = "Etiket Listesi";
+    Layout = "~/Views/Shared/_AdminDashboard.cshtml";
+}
+
+<div class="mb-9">
+    <h2 class="mb-4">Etiket Listesi <span class="text-body-tertiary fw-normal">(@Model.Count)</span></h2>
+    <div class="mb-4 todo-list">
+        @foreach (var tag in Model)
+        {
+                <div class="row justify-content-between align-items-md-center hover-actions-trigger btn-reveal-trigger border-translucent py-3 gx-0 cursor-pointer border-top">
+                    <div class="col-12 col-md-auto flex-1">
+                        <div>
+                            <div class="form-check mb-1 mb-md-0 d-flex align-items-center lh-1">
+                                <input class="form-check-input flex-shrink-0 form-check-line-through mt-0 me-2" type="checkbox" disabled />
+                                <label class="form-check-label mb-0 fs-8 me-2 line-clamp-1 flex-grow-1 flex-md-grow-0 cursor-pointer">@tag.TagName</label>
+                                <span class="badge badge-phoenix fs-10 badge-phoenix-success">Etiket</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-auto">
+                        <div class="d-flex ms-4 lh-1 align-items-center">
+                            <div class="d-none d-md-block end-0 position-absolute" style="top: 23%;">
+                                <div class="hover-actions end-0">
+                                    <a href="#" class="btn btn-phoenix-secondary btn-icon me-1 fs-10 text-body px-0"><span class="fas fa-edit"></span></a>
+                                    <a href="/Tag/DeleteTag/@tag.TagID" class="btn btn-phoenix-secondary btn-icon fs-10 text-danger px-0"><span class="fas fa-trash"></span></a>
+                                </div>
+                            </div>
+                            <div class="hover-md-hide hover-lg-show hover-xl-hide">
+                                <p class="text-body-tertiary fs-10 ps-md-3 border-start-md fw-bold mb-md-0 mb-0">ID: @tag.TagID</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        }
+    </div>
+    <a class="fw-bold fs-9 mt-4 d-inline-block" href="/Tag/AddTag"><span class="fas fa-plus me-1"></span>Yeni Etiket Ekle</a>
+</div>

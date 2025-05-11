@@ -1,0 +1,21 @@
+﻿@model EntityLayer.Concrete.Tag
+@{
+    ViewData["Title"] = "Etiket Ekle";
+    Layout = "~/Views/Shared/_AdminDashboard.cshtml";
+}
+
+<div class="container mt-4">
+    <h3 class="mb-3">Etiket Ekle</h3>
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-info">@ViewBag.Message</div>
+    }
+    <form method="post">
+        <div class="form-group">
+            <label for="TagName">Etiket Adı</label>
+            <input type="text" class="form-control" id="TagName" name="TagName" required placeholder="örn: ilaçlama">
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Ekle</button>
+    </form>
+</div>
