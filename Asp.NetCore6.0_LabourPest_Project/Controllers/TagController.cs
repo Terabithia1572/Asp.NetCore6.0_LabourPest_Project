@@ -19,13 +19,13 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         {
             // BlogTag'ler üzerinden Include ile Blog -> Writer ve BlogCategory bilgilerini çekiyoruz
             var blogTags = _context.BlogTags
-                .Include(bt => bt.Blog).ThenInclude(b => b.Writer)
-                .Include(bt => bt.Blog).ThenInclude(b => b.BlogCategory)
-                .Where(bt => bt.Tag.TagName == id)
+                .Include(bt => bt.Blogs).ThenInclude(b => b.Writer)
+                .Include(bt => bt.Blogs).ThenInclude(b => b.BlogCategory)
+                .Where(bt => bt.Tags.TagName == id)
                 .ToList();
 
             // Sadece Blog listesini View'a göndermek için çıkarıyoruz
-            var blogs = blogTags.Select(bt => bt.Blog).ToList();
+            var blogs = blogTags.Select(bt => bt.Blogs).ToList();
 
             ViewBag.Tag = id;
             return View(blogs);
