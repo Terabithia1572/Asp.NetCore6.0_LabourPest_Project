@@ -5,6 +5,7 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
 
 namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 {
@@ -23,10 +24,13 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 			_blogManager = blogManager;
 		}
 
-        public IActionResult BlogDetails(int id)
+        public IActionResult BlogDetails(string slug)
         {
-            // İlgili blogu veritabanından çekelim.
-            var blog = blogManager.TGetByID(id);
+            var blog = _context.Blogs
+     .Include(b => b.Writer)
+     .Include(b => b.BlogCategory)
+     .FirstOrDefault(b => b.SlugUrl == slug);
+
             if (blog == null)
             {
                 return NotFound();
@@ -81,16 +85,11 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 
             // Günün sözünü belirlemek için indeksi hesaplıyoruz.
             // Örneğin: yılın kaçıncı günü olduğunu kullanıyoruz.
-            int index = DateTime.Now.DayOfYear % quotes.Count;
-            string dailyQuote = quotes[index];
+            int index = DateTime.Now.DayOfYear % quotes.Count; // Bu şekilde her gün farklı bir söz gösterilecektir.
+            ViewBag.DailyQuote = quotes[index]; // Günün sözü
+            ViewBag.id = blog.BlogID; // Blog ID'si
 
-            // Günün sözü ViewBag üzerinden view'a gönderiliyor.
-            ViewBag.DailyQuote = dailyQuote;
-
-            // (İsterseniz burada ViewBag.id'yi de ayarlayabilirsiniz.)
-            ViewBag.id = blog.BlogID; // Bu satırı ekleyebilirsiniz.
-
-            return View(blog);
+            return View(blog); // Blog detaylarını döndürüyoruz.
         }
 
         // POST: Yorum ekleme
@@ -121,7 +120,10 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             blogCommentManager.TAdd(newComment);
 
             // Yorum ekleme işleminden sonra BlogDetails sayfasına yönlendirme.
-            return RedirectToAction("BlogDetails", "Blog", new { id = BlogID });
+            var blog = blogManager.TGetByID(BlogID);
+
+            // Yönlendirme slug ile yapılmalı
+            return RedirectToAction("BlogDetails", "Blog", new { slug = blog.SlugUrl });
         }
 
 
@@ -133,5 +135,30 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             return View(values);
         }
 
+        private string CreateSlug(string phrase)
+        {
+            var dict = new Dictionary<string, string>()
+    {
+        { "ş", "s" }, { "Ş", "s" },
+        { "ı", "i" }, { "İ", "i" },
+        { "ğ", "g" }, { "Ğ", "g" },
+        { "ü", "u" }, { "Ü", "u" },
+        { "ö", "o" }, { "Ö", "o" },
+        { "ç", "c" }, { "Ç", "c" }
+    };
+
+            foreach (var entry in dict)
+            {
+                phrase = phrase.Replace(entry.Key, entry.Value);
+            }
+
+            phrase = phrase.ToLowerInvariant();
+            phrase = Regex.Replace(phrase, @"[^a-z0-9\s-]", "");  // Geçersiz karakterleri sil
+            phrase = Regex.Replace(phrase, @"\s+", " ").Trim();  // Fazla boşlukları temizle
+            phrase = Regex.Replace(phrase, @"\s", "-");          // Boşlukları tire ile değiştir
+            phrase = Regex.Replace(phrase, @"-+", "-");          // Çift tireleri teke indir
+
+            return phrase;
+        }
     }
 }

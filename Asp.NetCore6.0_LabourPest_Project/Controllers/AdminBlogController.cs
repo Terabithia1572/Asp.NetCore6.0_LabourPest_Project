@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 
 namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 {
@@ -46,6 +47,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             blog.BlogStatus = true;
             blog.BlogDate = DateTime.Now;
             blog.WriterID = writerId;
+            blog.SlugUrl = CreateUniqueSlug(blog.BlogTitle); // benzersiz slug üret
             blogManager.TAdd(blog);
 
             if (User.IsInRole("Admin"))
@@ -64,6 +66,48 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             blogManager.TDelete(values);
             return RedirectToAction("BlogList", "AdminBlog");
         }
+        private string CreateSlug(string phrase)
+        {
+            var dict = new Dictionary<string, string>
+    {
+        { "ş", "s" }, { "Ş", "s" },
+        { "ı", "i" }, { "İ", "i" },
+        { "ğ", "g" }, { "Ğ", "g" },
+        { "ü", "u" }, { "Ü", "u" },
+        { "ö", "o" }, { "Ö", "o" },
+        { "ç", "c" }, { "Ç", "c" }
+    };
+
+            foreach (var entry in dict)
+            {
+                phrase = phrase.Replace(entry.Key, entry.Value);
+            }
+
+            phrase = phrase.ToLowerInvariant();
+            phrase = Regex.Replace(phrase, @"[^a-z0-9\s-]", "");  // Geçersiz karakterleri sil
+            phrase = Regex.Replace(phrase, @"\s+", " ").Trim();  // Fazla boşlukları temizle
+            phrase = Regex.Replace(phrase, @"\s", "-");          // Boşlukları tire ile değiştir
+            phrase = Regex.Replace(phrase, @"-+", "-");          // Çift tireleri teke indir
+
+            return phrase;
+        }
+        private string CreateUniqueSlug(string title)
+        {
+            // Temel slug'ı üret
+            string slug = CreateSlug(title);
+            string baseSlug = slug;
+            int count = 1;
+
+            // Slug benzersiz mi kontrol et
+            while (blogManager.GetAll().Any(b => b.SlugUrl == slug))
+            {
+                slug = $"{baseSlug}-{count}";
+                count++;
+            }
+
+            return slug;
+        }
+
 
 
 

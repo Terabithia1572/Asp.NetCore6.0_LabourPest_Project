@@ -28,36 +28,19 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         [HttpPost]
         public IActionResult AddImage(Image image)
         {
-            //string[] imageClasses = { "col-md-6 corporate", "col-md-6 entertainment innovations", "col-md-3" };
-            //var images = imageManager.GetAll();
-            //int imageCount = images.Count;
-            //image.ImageClass = imageClasses[imageCount % imageClasses.Length];
+            var allImages = imageManager.GetAll().OrderBy(x => x.ImageID).ToList(); // Eskiden OrderByDescending kullanıyorduk
 
-            //// Resim durumunu ayarla ve kaydet
-            //image.ImageStatus = true;
-            //imageManager.TAdd(image);
+            // Tam sıralı döngü
+            string[] imageClasses = { "col-md-6 corporate", "col-md-6 entertainment innovations", "col-md-3", "col-md-3", "col-md-6 corporate" };
 
-            //return RedirectToAction("ImageList", "Image");
-            var allImages = imageManager.GetAll().OrderByDescending(x => x.ImageID).ToList();
+            // Eklenen toplam resim sayısını al
+            int imageCount = allImages.Count;
 
-            // Son eklenen kaydın ImageClass değerine bak
-            if (allImages.Any())
-            {
-                var lastImageClass = allImages.First().ImageClass;
+            // Yeni resme atanacak indexi belirle
+            int nextIndex = imageCount % imageClasses.Length;
 
-                // ImageClass değerine göre yeni resim için sınıf ata
-                image.ImageClass = lastImageClass switch
-                {
-                    "col-md-6 corporate" => "col-md-6 entertainment innovations",
-                    "col-md-6 entertainment innovations" => "col-md-3",
-                    _ => "col-md-6 corporate"
-                };
-            }
-            else
-            {
-                // İlk resim ekleniyorsa varsayılan değer
-                image.ImageClass = "col-md-6 corporate";
-            }
+            // Yeni sınıfı ata
+            image.ImageClass = imageClasses[nextIndex];
 
             // Resim durumunu aktif olarak işaretle ve kaydet
             image.ImageStatus = true;
@@ -65,11 +48,19 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 
             return RedirectToAction("ImageList", "Image");
         }
+
+
+        [HttpPost]
         public IActionResult DeleteImage(int id)
         {
             var imageValue = imageManager.TGetByID(id);
+            if (imageValue == null)
+            {
+                return NotFound();
+            }
+
             imageManager.TDelete(imageValue);
-            return RedirectToAction("ImageList", "Image");
+            return Json(new { success = true });
         }
         [HttpGet]
         public IActionResult UpdateImage(int id)
