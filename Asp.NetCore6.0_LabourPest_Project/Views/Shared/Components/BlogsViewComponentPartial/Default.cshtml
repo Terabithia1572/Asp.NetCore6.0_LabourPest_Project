@@ -1,68 +1,88 @@
 ﻿@model List<Blog>
 
-<section id="blog" class="ls blog-section s-pt-xl-135 s-pt-lg-115 s-pt-md-75 s-pt-55 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55">
-	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="special-heading text-center">İlaçlamayla İlgili Bloglar</h2>
-				<p class="special-heading text-center big">
-					Bitkilerden tıbbi kas kremlerine kadar yüzlerce üründe kenevir konsantreleri bulabilirsiniz
-				</p>
-				<div class="divider-60 hidden-below-md"></div>
-				<div class="divider-40 hidden-above-md"></div>
-				<div class="owl-carousel blog-carousel" data-center="false" data-nav="false" data-margin="60" data-loop="true" data-responsive-lg="3" data-responsive-md="2" data-responsive-sm="1" data-responsive-xs="1">
-					@foreach (var item in Model)
-					{
-						<article class="vertical-item text-center">
-							<div class="item-media post-thumbnail">
-								<a href="@Url.Action("BlogDetails", "Blog", new { slug = item.SlugUrl })">
-									<img src="@item.BlogImage" alt="img">
-								</a>
-							</div><!-- .post-thumbnail -->
-							<div class="item-content">
-								<header class="entry-header">
-									<div class="cat-links">
-										<a href="@Url.Action("BlogDetails", "Blog", new { slug = item.SlugUrl })" rel="category tag">
-											@item.BlogCategory.BlogCategories
-										</a>
-									</div>
-									<h6 class="entry-title">
-										<a href="@Url.Action("BlogDetails", "Blog", new { slug = item.SlugUrl })" rel="bookmark">
-											@item.BlogTitle
-										</a>
-									</h6>
+<style>
+    /* Sadece bu sayfaya özel görsel hizalama ve kırpma ayarı */
+    .blog-image-wrapper {
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+        border-radius: 10px;
+    }
 
-									<!-- ⭐ Etiketler burada -->
-									@if (item.BlogTags != null && item.BlogTags.Any())
-									{
-										<div class="mt-2">
-											<i class="fas fa-tags"></i>
-											@foreach (var tag in item.BlogTags)
-											{
-												<a href="/Tag/Blogs/@tag.Tags.TagName" class="badge bg-light text-dark mx-1">@tag.Tags.TagName</a>
-											}
-										</div>
-									}
-								</header>
-								<footer class="entry-footer">
-									<div class="byline">
-										<a href="@Url.Action("BlogDetails", "Blog", new { slug = item.SlugUrl })" rel="bookmark">
-											<time class="entry-date published updated" datetime="2018-03-18T15:15:12+00:00">
-												<i class="far fa-clock"></i>
-												@item.BlogDate.ToShortDateString()
-											</time>
-										</a>
-										<div class="author vcard">
-											<i class="far fa-user"></i>
-											<a class="url color-main2 fn n" href="blog-right.html">@item.Writer.WriterName @item.Writer.WriterSurname</a>
-										</div>
-									</div>
-								</footer>
-							</div>
-						</article>
-					}
-				</div>
-			</div>
-		</div>
-	</div>
+        .blog-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+</style>
+
+<section id="blog" class="ls blog-section s-pt-xl-135 s-pt-lg-115 s-pt-md-75 s-pt-55 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="special-heading text-center">İlaçlamayla İlgili Bloglar</h2>
+                <p class="special-heading text-center big">
+                    Bitkilerden tıbbi kas kremlerine kadar yüzlerce üründe kenevir konsantreleri bulabilirsiniz
+                </p>
+                <div class="divider-60 hidden-below-md"></div>
+                <div class="divider-40 hidden-above-md"></div>
+                <div class="owl-carousel blog-carousel" data-center="false" data-nav="false" data-margin="60" data-loop="true" data-responsive-lg="3" data-responsive-md="2" data-responsive-sm="1" data-responsive-xs="1">
+                    @foreach (var item in Model)
+                    {
+                        <article class="vertical-item text-center">
+                            <div class="item-media post-thumbnail">
+                                <a href="@Url.Action("BlogDetails", "Blog", new { slug = item.SlugUrl })">
+                                    <div class="blog-image-wrapper">
+                                        <img src="@item.BlogImage" alt="img" />
+                                    </div>
+                                </a>
+                            </div><!-- .post-thumbnail -->
+                            <div class="item-content">
+                                <header class="entry-header">
+                                    <div class="cat-links">
+                                        <a href="@Url.Action("BlogDetails", "Blog", new { slug = item.SlugUrl })" rel="category tag">
+                                            @item.BlogCategory.BlogCategories
+                                        </a>
+                                    </div>
+                                    <h6 class="entry-title">
+                                        <a href="@Url.Action("BlogDetails", "Blog", new { slug = item.SlugUrl })" rel="bookmark">
+                                            @item.BlogTitle
+                                        </a>
+                                    </h6>
+
+                                    @if (item.BlogTags != null && item.BlogTags.Any())
+                                    {
+                                        <div class="mt-2">
+                                            <i class="fas fa-tags"></i>
+                                            @foreach (var tag in item.BlogTags)
+                                            {
+                                                <a href="/Tag/Blogs/@tag.Tags.TagName" class="badge bg-light text-dark mx-1">@tag.Tags.TagName</a>
+                                            }
+                                        </div>
+                                    }
+                                </header>
+                                <footer class="entry-footer">
+                                    <div class="byline">
+                                        <a href="@Url.Action("BlogDetails", "Blog", new { slug = item.SlugUrl })" rel="bookmark">
+                                            <time class="entry-date published updated" datetime="@item.BlogDate.ToString("s")">
+                                                <i class="far fa-clock"></i>
+                                                @item.BlogDate.ToShortDateString()
+                                            </time>
+                                        </a>
+                                        <div class="author vcard">
+                                            <i class="far fa-user"></i>
+                                            <a class="url color-main2 fn n" href="#">
+                                                @item.Writer.WriterName @item.Writer.WriterSurname
+                                            </a>
+                                        </div>
+                                    </div>
+                                </footer>
+                            </div>
+                        </article>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
