@@ -56,8 +56,20 @@
                 <div class="form-floating"><input class="form-control" id="floatingInputTitle" type="text" placeholder="title" name="BlogImage" /><label for="floatingInputTitle">RESİM</label></div>
             </div>
             <br />
-            <label for="Tags">Etiketler (virgülle ayır):</label>
-            <input type="text" class="form-control" name="Tags" placeholder="örnek: haşere, ilaçlama, sağlık">
+            <br />
+            <label>Etiket Seç (birden fazla seçebilirsiniz):</label>
+            <div class="row">
+                @foreach (var tag in ViewBag.Tags as List<SelectListItem>)
+                {
+                    <div class="col-6 col-md-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="SelectedTags" value="@tag.Value" id="tag_@tag.Value" />
+                            <label class="form-check-label" for="tag_@tag.Value">@tag.Text</label>
+                        </div>
+                    </div>
+                }
+            </div>
+
 
         </div>
     </div>
