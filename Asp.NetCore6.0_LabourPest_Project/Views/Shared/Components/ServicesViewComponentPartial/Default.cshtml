@@ -20,8 +20,7 @@
                 <div class="item">
                     <!-- Eğer grid yapısını korumak istiyorsanız, buraya col-* sınıflarını ekleyebilirsiniz -->
                     <div class="icon-box text-center">
-                        <div class="icon-styled fs-60 color-main2">
-                            @* Belirli ikon isimleri için <i> etiketi, aksi halde <img> kullan *@
+                        <div class="image-container">
                             @if (item.ServicesImageURL.Contains("icon-spa") ||
                            item.ServicesImageURL.Contains("icon-food") ||
                            item.ServicesImageURL.Contains("icon-herbal") ||
@@ -37,6 +36,7 @@
                         <h6 class="text-uppercase">@item.ServicesTitle</h6>
                         <p>@item.ServicesDescription</p>
                     </div>
+
                 </div>
             }
         </div>
@@ -45,11 +45,15 @@
 </section>
 
 <style>
-    .yunus1 {
-        display: inline-block;
-        width: 60px;
-        height: 60px;
-        object-fit: cover; /* Resmi orantılı kırpar ve boyuta sığdırır */
-        border-radius: 50%; /* Yuvarlak yapmak isterseniz */
+    #services .yunus1 {
+        display: block;
+        width: 100%;
+        max-width: 600px; /* Genişlik sabit */
+        height: 400px; /* Yükseklik sabit */
+        object-fit: cover; /* Resmi en iyi şekilde kırparak sığdırır */
+        border-radius: 10px; /* Hafif yuvarlatılmış köşeler */
     }
+
+
+
 </style>

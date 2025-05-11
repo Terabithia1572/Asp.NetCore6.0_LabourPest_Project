@@ -15,26 +15,26 @@
 					{
 						<article class="vertical-item text-center">
 							<div class="item-media post-thumbnail">
-								<a href="@Url.Action("BlogDetails", "Blog", new { id = item.BlogID })">
+								<a href="@Url.Action("BlogDetails", "Blog", new { slug = item.SlugUrl })">
 									<img src="@item.BlogImage" alt="img">
 								</a>
 							</div><!-- .post-thumbnail -->
 							<div class="item-content">
 								<header class="entry-header">
 									<div class="cat-links">
-										<a href="@Url.Action("BlogDetails", "Blog", new { id = item.BlogID }) rel="category tag">
+										<a href="@Url.Action("BlogDetails", "Blog", new { slug = item.SlugUrl })" rel="category tag">
 											@item.BlogCategory.BlogCategories
 										</a>
 									</div>
 									<h6 class="entry-title">
-										<a href="@Url.Action("BlogDetails", "Blog", new { id = item.BlogID })" rel="bookmark">
+										<a href="@Url.Action("BlogDetails", "Blog", new { slug = item.SlugUrl })" rel="bookmark">
 											@item.BlogTitle
 										</a>
 									</h6>
 								</header>
 								<footer class="entry-footer">
 									<div class="byline">
-										<a href="@Url.Action("BlogDetails", "Blog", new { id = item.BlogID })" rel="bookmark">
+										<a href="@Url.Action("BlogDetails", "Blog", new { slug = item.SlugUrl })" rel="bookmark">
 											<time class="entry-date published updated" datetime="2018-03-18T15:15:12+00:00">
 												<i class="far fa-clock"></i>
 												@item.BlogDate.ToShortDateString()
