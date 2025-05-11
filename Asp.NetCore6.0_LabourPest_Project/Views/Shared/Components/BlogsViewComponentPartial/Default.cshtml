@@ -36,11 +36,10 @@
 									@if (item.BlogTags != null && item.BlogTags.Any())
 									{
 										<div class="mt-2">
+											<i class="fas fa-tags"></i>
 											@foreach (var tag in item.BlogTags)
 											{
-												<a href="/Tag/Blogs/@tag.Tag.TagName" class="badge bg-secondary text-white mx-1" style="font-size: 12px;">
-													@tag.Tag.TagName
-												</a>
+												<a href="/Tag/Blogs/@tag.Tag.TagName" class="badge bg-light text-dark mx-1">@tag.Tag.TagName</a>
 											}
 										</div>
 									}
