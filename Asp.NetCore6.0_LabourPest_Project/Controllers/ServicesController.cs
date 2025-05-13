@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Asp.NetCore6._0_LabourPest_Project.Controllers
@@ -12,7 +13,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         {
             return View();
         }
-       
+      
         public IActionResult ServicesList()
         {
             var values = servicesManager.GetAll();

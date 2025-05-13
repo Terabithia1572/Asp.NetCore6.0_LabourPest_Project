@@ -21,13 +21,13 @@
                 </li>
 
                 <!-- MENÜ 1: Sadece Admin (Müşteri değil) için gösterilecek -->
-                
-                    <li class="nav-item">
-                        <p class="navbar-vertical-label">MENÜ 1</p>
-                        <hr class="navbar-vertical-line" />
-                        <!-- Ana Sayfa İşlemleri -->
-                         @if (userRole != "Müşteri")
-                                {
+
+                <li class="nav-item">
+                    <p class="navbar-vertical-label">MENÜ 1</p>
+                    <hr class="navbar-vertical-line" />
+                    <!-- Ana Sayfa İşlemleri -->
+                    @if (userRole != "Müşteri")
+                    {
                         <div class="nav-item-wrapper">
                             <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce6" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce6">
                                 <div class="d-flex align-items-center">
@@ -57,22 +57,22 @@
                                 </ul>
                             </div>
                         </div>
-                                }
-                        <!-- Blog İşlemleri -->
-                        <div class="nav-item-wrapper">
-                            <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce">
-                                <div class="d-flex align-items-center">
-                                    <div class="dropdown-indicator-icon-wrapper">
-                                        <span class="fas fa-caret-right dropdown-indicator-icon"></span>
-                                    </div>
-                                    <span class="nav-link-icon"><span data-feather="share-2"></span></span>
-                                    <span class="nav-link-text">Blog İşlemleri</span>
+                    }
+                    <!-- Blog İşlemleri -->
+                    <div class="nav-item-wrapper">
+                        <a class="nav-link dropdown-indicator label-1" href="#nv-e-commerce" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-e-commerce">
+                            <div class="d-flex align-items-center">
+                                <div class="dropdown-indicator-icon-wrapper">
+                                    <span class="fas fa-caret-right dropdown-indicator-icon"></span>
                                 </div>
-                            </a>
-                            <div class="parent-wrapper label-1">
-                                <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce">
-                                    <!-- Blog İşlemleri (Liste/Ekle) -->
-                                     @if (userRole != "Müşteri")
+                                <span class="nav-link-icon"><span data-feather="share-2"></span></span>
+                                <span class="nav-link-text">Blog İşlemleri</span>
+                            </div>
+                        </a>
+                        <div class="parent-wrapper label-1">
+                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-e-commerce">
+                                <!-- Blog İşlemleri (Liste/Ekle) -->
+                                @if (userRole != "Müşteri")
                                 {
                                     <li class="nav-item">
                                         <a class="nav-link" href="/AdminBlog/BlogList">
@@ -82,18 +82,18 @@
                                         </a>
                                     </li>
                                 }
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/AdminBlog/AddBlog">
-                                            <div class="d-flex align-items-center">
-                                                <span class="nav-link-text">Blog Ekle</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                            
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/AdminBlog/AddBlog">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">Blog Ekle</span>
+                                        </div>
+                                    </a>
+                                </li>
 
 
-                                    <!-- Blog Kategori İşlemleri -->
-                                     @if (userRole != "Müşteri")
+
+                                <!-- Blog Kategori İşlemleri -->
+                                @if (userRole != "Müşteri")
                                 {
                                     <li class="nav-item">
                                         <a class="nav-link" href="/AdminBlogCategory/BlogCategoryList">
@@ -125,41 +125,43 @@
                                         </a>
                                     </li>
                                 }
-                                </ul>
-                            </div>
-                        </div>
-                    <!-- Etiket İşlemleri -->
-                    <div class="nav-item-wrapper">
-                        <a class="nav-link dropdown-indicator label-1" href="#nv-tag-operations" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-tag-operations">
-                            <div class="d-flex align-items-center">
-                                <div class="dropdown-indicator-icon-wrapper">
-                                    <span class="fas fa-caret-right dropdown-indicator-icon"></span>
-                                </div>
-                                <span class="nav-link-icon"><span data-feather="tag"></span></span>
-                                <span class="nav-link-text">Etiket İşlemleri</span>
-                            </div>
-                        </a>
-                        <div class="parent-wrapper label-1">
-                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-tag-operations">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/Tag/AddTag">
-                                        <div class="d-flex align-items-center">
-                                            <span class="nav-link-text">Etiket Ekle</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/Tag/TagList">
-                                        <div class="d-flex align-items-center">
-                                            <span class="nav-link-text">Etiket Listesi</span>
-                                        </div>
-                                    </a>
-                                </li>
                             </ul>
                         </div>
                     </div>
-
-                         @if (userRole != "Müşteri")
+                    @if (userRole != "Müşteri")
+                    {
+                        <!-- Etiket İşlemleri -->
+                        <div class="nav-item-wrapper">
+                            <a class="nav-link dropdown-indicator label-1" href="#nv-tag-operations" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-tag-operations">
+                                <div class="d-flex align-items-center">
+                                    <div class="dropdown-indicator-icon-wrapper">
+                                        <span class="fas fa-caret-right dropdown-indicator-icon"></span>
+                                    </div>
+                                    <span class="nav-link-icon"><span data-feather="tag"></span></span>
+                                    <span class="nav-link-text">Etiket İşlemleri</span>
+                                </div>
+                            </a>
+                            <div class="parent-wrapper label-1">
+                                <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-tag-operations">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Tag/AddTag">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Etiket Ekle</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Tag/TagList">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-text">Etiket Listesi</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    }
+                    @if (userRole != "Müşteri")
                                 {
                         <!-- Ürün İşlemleri -->
                         <div class="nav-item-wrapper">

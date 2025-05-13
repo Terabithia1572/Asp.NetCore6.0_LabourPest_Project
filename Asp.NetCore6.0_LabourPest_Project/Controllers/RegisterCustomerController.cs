@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RegisterCustomerController : Controller
     {
         WriterManager writerManager = new WriterManager(new EfWriterRepository());
