@@ -1,4 +1,6 @@
-﻿namespace Asp.NetCore6._0_LabourPest_Project.Models
+﻿using EntityLayer.Concrete;
+
+namespace Asp.NetCore6._0_LabourPest_Project.Models
 {
     public class ProfileViewModel
     {
@@ -11,6 +13,8 @@
         public int ImageCount { get; set; }
         public int CategoryCount { get; set; }
         public int UserCount { get; set; }
+        public List<BlogComment> BlogComments { get; set; } // yorum yapanlarla birlikte
+
     }
   
 }
