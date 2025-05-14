@@ -5,6 +5,7 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using System.Text.RegularExpressions;
 
 namespace Asp.NetCore6._0_LabourPest_Project.Controllers
@@ -96,35 +97,32 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         [HttpPost]
         public IActionResult AddComment(int BlogID, string author, string email, string title, string comment)
         {
-            // Giriş yapan kullanıcının (yazarın) bilgilerini çekelim.
-            // Burada 'email' parametresi form üzerinden geliyorsa; daha güvenilir olması için User.Identity.Name veya benzeri bir yöntem kullanılabilir.
-            var writer = writerManager.GetAll()
-                                      .FirstOrDefault(w => w.WriterMail.Equals(email, StringComparison.OrdinalIgnoreCase));
-            // Eğer writer bulunamazsa varsayılan bir resim kullanabilirsiniz.
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int writerId = Convert.ToInt32(userId);
+
+            var writer = writerManager.TGetByID(writerId);
+
             string imageUrl = writer != null ? writer.WriterImage : "/images/default-user.png";
 
-            // Yeni yorum nesnesi oluşturuluyor.
             BlogComment newComment = new BlogComment
             {
                 BlogID = BlogID,
-                BlogCommentUserName = author, // Yorum yapan kişinin adı (giriş yapan kullanıcı)
+                BlogCommentUserName = author,
                 BlogCommentContent = comment,
                 BlogCommentDate = DateTime.Now,
-                BlogCommentStatus = true, // Yorum otomatik yayınlansın; moderasyona tabi ise false yapabilirsiniz.
+                BlogCommentStatus = true,
                 BlogCommentTitle = string.IsNullOrEmpty(title) ? "Yorum" : title,
- // Kullanıcı form üzerinden başlık girmediyse, varsayılan da atayabilirsiniz.
-                BlogImageUrl = imageUrl // Yazarın resim URL'si
+                BlogImageUrl = imageUrl,
+                WriterID = writer?.WriterID // ✨ Yorum yazan kullanıcının ID’si
             };
 
-            // Yorum ekleniyor.
+
             blogCommentManager.TAdd(newComment);
 
-            // Yorum ekleme işleminden sonra BlogDetails sayfasına yönlendirme.
             var blog = blogManager.TGetByID(BlogID);
-
-            // Yönlendirme slug ile yapılmalı
             return RedirectToAction("BlogDetails", "Blog", new { slug = blog.SlugUrl });
         }
+
 
 
 

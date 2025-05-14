@@ -20,10 +20,13 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         // Yeni: Yorum, Kategori ve Kullanıcı (eğer farklıysa) verilerini çekmek için manager örnekleri.
         CommentManager commentManager = new CommentManager(new EfCommentRepository());
         CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
+        BlogCommentManager blogCommentManager = new BlogCommentManager(new EfBlogCommentRepository());
 
         public IActionResult Profile()
         {
-            var subscribeCount=subscribeManager.GetAll().Count();
+          
+
+            var subscribeCount =subscribeManager.GetAll().Count();
             ViewBag.SubscribeCount = subscribeCount;
             var customerCount = writerManager.GetAll().Count();
             ViewBag.CustomerCount = customerCount;
@@ -34,6 +37,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             // Yazar bilgileri
             Writer writer = writerManager.TGetByID(writerId);
             var blogs = blogManager.GetRecentBlogsByWriter(writerId, 3);
+            var blogComments = blogCommentManager.GetListWithWriterByBlogList(blogs.Select(b => b.BlogID).ToList());
             var allImages = imageManager.GetAll() ?? new List<EntityLayer.Concrete.Image>();
             var recentImages = allImages.OrderByDescending(i => i.ImageID)
                                         .Take(6)
@@ -55,7 +59,8 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
                 CommentCount = commentCount,
                 ImageCount = imageCount,
                 CategoryCount = categoryCount,
-                UserCount = userCount
+                UserCount = userCount,
+                BlogComments = blogComments
             };
 
             // Günün sözleri listesi
