@@ -21,6 +21,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         CommentManager commentManager = new CommentManager(new EfCommentRepository());
         CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
         BlogCommentManager blogCommentManager = new BlogCommentManager(new EfBlogCommentRepository());
+        NotificationManager notificationManager = new NotificationManager(new EfNotificationRepository());
 
         public IActionResult Profile()
         {
@@ -172,5 +173,24 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 
             return RedirectToAction("ProfileSettings", "AdminDashboard");
         }
+        [HttpPost]
+        public IActionResult MarkAllAsRead()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int writerId = Convert.ToInt32(userId);
+
+            var unreadNotifications = notificationManager.TGetList()
+                .Where(x => x.WriterID == writerId && x.NotificationStatus == false)
+                .ToList();
+
+            foreach (var notification in unreadNotifications)
+            {
+                notification.NotificationStatus = true;
+                notificationManager.TUpdate(notification);
+            }
+
+            return Ok();
+        }
+
     }
 }

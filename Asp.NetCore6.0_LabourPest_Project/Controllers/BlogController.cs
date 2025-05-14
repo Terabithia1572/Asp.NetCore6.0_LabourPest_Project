@@ -17,6 +17,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         BlogCategoryManager blogCategoryManager = new BlogCategoryManager(new EfBlogCategoryRepository());
         BlogCommentManager blogCommentManager = new BlogCommentManager(new EfBlogCommentRepository());
         WriterManager writerManager = new WriterManager(new EfWriterRepository());
+        NotificationManager notificationManager = new NotificationManager(new EfNotificationRepository());
 		Context _context = new();
 		private readonly BlogManager _blogManager;
 
@@ -101,9 +102,9 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             int writerId = Convert.ToInt32(userId);
 
             var writer = writerManager.TGetByID(writerId);
-
             string imageUrl = writer != null ? writer.WriterImage : "/images/default-user.png";
 
+            // Yorum ekleniyor
             BlogComment newComment = new BlogComment
             {
                 BlogID = BlogID,
@@ -113,15 +114,30 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
                 BlogCommentStatus = true,
                 BlogCommentTitle = string.IsNullOrEmpty(title) ? "Yorum" : title,
                 BlogImageUrl = imageUrl,
-                WriterID = writer?.WriterID // ✨ Yorum yazan kullanıcının ID’si
+                WriterID = writer?.WriterID
             };
-
-
             blogCommentManager.TAdd(newComment);
 
+            // Blog yazısını bulan yazar (blogun sahibi)
             var blog = blogManager.TGetByID(BlogID);
+            int? yazarId = blog.WriterID;
+
+            // Bildirimi oluştur
+            Notification notification = new Notification
+            {
+                NotificationType = "Comment",
+                NotificationMessage = $"{writer.WriterName} {writer.WriterSurname} blogunuza yorum yaptı",
+                NotificationDate = DateTime.Now,
+                NotificationStatus = false,
+                WriterID = yazarId, // Blog sahibine gidecek
+                SenderWriterID = writer.WriterID, // Yorumu yapan kullanıcı
+                NotificationUrl = "/Blog/BlogDetails?slug=" + blog.SlugUrl
+            };
+            notificationManager.TAdd(notification);
+
             return RedirectToAction("BlogDetails", "Blog", new { slug = blog.SlugUrl });
         }
+
 
 
 
