@@ -1,0 +1,93 @@
+﻿@model List<Notification>
+
+<li class="nav-item dropdown">
+    <a class="nav-link" href="#" style="min-width: 2.25rem" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">
+        <span class="d-block" style="height:20px;width:20px;"><span data-feather="bell" style="height:20px;width:20px;"></span></span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-end notification-dropdown-menu py-0 shadow border navbar-dropdown-caret" id="navbarDropdownNotfication" aria-labelledby="navbarDropdownNotfication">
+        <div class="card position-relative border-0">
+            <div class="card-header p-2">
+                <div class="d-flex justify-content-between">
+                    <h5 class="text-body-emphasis mb-0">Bildirimler</h5>
+                    <button class="btn btn-link p-0 fs-9 fw-normal" id="markAllReadBtn" type="button">Hepsini Okundu Olarak İşaretle</button>
+
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="scrollbar-overlay" style="height: 27rem;">
+                    @foreach (var notification in Model)
+                    {
+                        <a href="@notification.NotificationUrl" class="text-decoration-none">
+                            <div class="px-2 px-sm-3 py-3 notification-card position-relative @(notification.NotificationStatus ? "read" : "unread") border-bottom">
+                                <div class="d-flex align-items-center justify-content-between position-relative">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-m status-online me-3">
+                                            <img class="rounded-circle" src="@Url.Content(notification.SenderWriter?.WriterImage ?? "~/labourpestcustomer/assets/img/team/40x40/avatar.webp")" alt="Profil Fotoğrafı">
+                                        </div>
+                                        <div class="flex-1 me-sm-3 overflow-hidden">
+                                            <h4 class="fs-9 text-body-emphasis text-truncate mb-1" style="max-width: 180px;">
+                                                @(notification.SenderWriter?.WriterName + " " + notification.SenderWriter?.WriterSurname)
+                                            </h4>
+                                            <p class="fs-9 text-body-highlight mb-2 mb-sm-3 fw-normal text-truncate" style="max-width: 260px;">
+                                                <span class="me-1 fs-10">
+                                                    @if (notification.NotificationType == "Comment")
+                                                    {
+                                                        <text>💬</text>
+                                                    }
+                                                    else if (notification.NotificationType == "Message")
+                                                    {
+                                                        <text>📩</text>
+                                                    }
+                                                    else if (notification.NotificationType == "Subscribe")
+                                                    {
+                                                        <text>👤</text>
+                                                    }
+                                                </span>
+                                                @notification.NotificationMessage
+                                                <span class="ms-2 text-body-quaternary text-opacity-75 fw-bold fs-10">@notification.NotificationDate.ToString("g")</span>
+                                            </p>
+                                            <p class="text-body-secondary fs-9 mb-0">
+                                                <i class="fa-solid fa-clock me-1"></i>
+                                                <span class="fw-bold">@notification.NotificationDate.ToString("t")</span>
+                                                @notification.NotificationDate.ToString("MMMM dd, yyyy")
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown notification-dropdown">
+                                        <button class="btn fs-10 btn-sm dropdown-toggle dropdown-caret-none transition-none" type="button" data-bs-toggle="dropdown">
+                                            <i class="fas fa-ellipsis-h fs-10 text-body"></i>
+                                        </button>
+                                        <div class="dropdown-menu py-2">
+                                            <a class="dropdown-item" href="#">İşaretle</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                </div>
+            </div>
+            <div class="card-footer p-0 border-top border-translucent border-0">
+                <div class="my-2 text-center fw-bold fs-10 text-body-tertiary text-opactity-85">
+                    <a class="fw-bolder" href="/Notification/Index">Tüm Bildirimler</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>
+@section Scripts {
+    <script>
+        $('#markAllReadBtn').on('click', function () {
+            $.ajax({
+                type: 'POST',
+                url: '/AdminDashboard/MarkAllAsRead',
+                success: function () {
+                    location.reload(); // Sayfayı yenile, bildirimler okunmuş gibi görünsün
+                },
+                error: function () {
+                    alert('Bir hata oluştu!');
+                }
+            });
+        });
+    </script>
+}
