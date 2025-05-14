@@ -10,5 +10,7 @@ namespace DataAccessLayer.Abstract
     public interface IBlogCommentDal:IGenericDal<BlogComment>
     {
         List<BlogComment> GetCommentListWithBlog();
+        List<BlogComment> GetListWithWriterByBlogList(List<int> blogIds);
+
     }
 }

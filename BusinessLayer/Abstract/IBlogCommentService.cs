@@ -11,5 +11,7 @@ namespace BusinessLayer.Abstract
     {
         List<BlogComment> GetComments(int id);
         List<BlogComment> GetCommentListWithBlog();
+        List<BlogComment> GetListWithWriterByBlogList(List<int> blogIds);
+
     }
 }

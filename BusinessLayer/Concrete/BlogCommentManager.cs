@@ -22,6 +22,11 @@ namespace BusinessLayer.Concrete
         {
             return _blogCommentDal.GetListAll(x=>x.BlogID==1);
 		}
+        public List<BlogComment> GetListWithWriterByBlogList(List<int> blogIds)
+        {
+            return _blogCommentDal.GetListWithWriterByBlogList(blogIds);
+        }
+
 
         public List<BlogComment> GetCommentListWithBlog()
         {
