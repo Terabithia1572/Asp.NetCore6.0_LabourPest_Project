@@ -30,6 +30,8 @@ builder.Services.AddControllersWithViews(options =>
                     .Build();
     options.Filters.Add(new AuthorizeFilter(policy));
 });
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
