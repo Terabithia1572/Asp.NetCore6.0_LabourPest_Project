@@ -34,6 +34,26 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         {
             return ViewComponent("NotificationList");
         }
+        [HttpGet]
+        public IActionResult GetLatestNotificationsJson()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int writerId = Convert.ToInt32(userId);
+
+            var notifications = _notificationManager.GetListByWriter(writerId)
+                .OrderByDescending(x => x.NotificationDate)
+                .Take(5)
+                .Select(x => new
+                {
+                    x.NotificationMessage,
+                    NotificationDate = x.NotificationDate.ToString("g"),
+                    senderName = x.SenderWriter?.WriterName + " " + x.SenderWriter?.WriterSurname,
+                    x.NotificationUrl
+                }).ToList();
+
+            return Json(notifications);
+        }
+
 
 
     }
