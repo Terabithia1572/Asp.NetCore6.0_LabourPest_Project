@@ -1,4 +1,9 @@
-﻿<section id="home" class="page_topline topline-1 ls s-borderbottom py-9">
+﻿@using System.Security.Claims
+@inject IHttpContextAccessor httpContextAccessor
+@{
+	var isAuthenticated = httpContextAccessor.HttpContext.User.Identity.IsAuthenticated;
+}
+<section id="home" class="page_topline topline-1 ls s-borderbottom py-9">
 	<div class="container">
 		<div class="row align-items-center">
 			<div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12 text-md-left text-center ">
@@ -16,14 +21,12 @@
 					<a class="login-form-btn" href="#"><i class="fa fa-user"></i></a>
 				</div>
 
-				<!--user action-->
 				<div class="dropdown widget_search">
 					<a class="dropdown-toggle dropdown-toggle-split" href="#" id="headerSearchDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="fa fa-search"></i>
 					</a>
-
 					<div class="dropdown-menu ls ms " aria-labelledby="headerSearchDropdown">
-						<form role="search" method="get" class="search-form" action="https://html.modernwebtemplates.com/">
+						<form role="search" method="get" class="search-form" action="#">
 							<label for="search-form-top">
 								<span class="screen-reader-text">Search for:</span>
 							</label>
@@ -35,67 +38,95 @@
 					</div>
 				</div>
 
-				<div class="dropdown shopping-cart">
-					<a class="dropdown-toggle dropdown-shopping-cart" href="#" role="button" id="dropdown-shopping-cart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-shopping-bag"></i>
-						<span class="badge bg-maincolor2">3</span>
+				<!-- Bildirim ikonu -->
+				<div class="dropdown shopping-cart" style="position: relative; z-index: 9999;">
+					<a class="dropdown-toggle dropdown-shopping-cart" href="#" role="button" id="dropdown-notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fas fa-bell"></i>
+						<span id="notification-count" class="badge bg-maincolor2">0</span>
 					</a>
-					<div class="dropdown-menu ls" aria-labelledby="dropdown-shopping-cart">
-						<div class="widget woocommerce widget_shopping_cart">
 
-
-							<div class="widget_shopping_cart_content">
-
-								<ul class="woocommerce-mini-cart cart_list product_list_widget ">
-									<li class="woocommerce-mini-cart-item mini_cart_item">
-										<a href="#" class="remove" aria-label="Remove this item" data-product_id="73" data-product_sku="">×</a>
-										<a href="shop-product-right.html">
-											<img src="~/canabicom/images/shop/26.jpg" alt="">Medical marijuana THC
-										</a>
-
-										<span class="quantity">
-											1 ×
-											<span class="woocommerce-Price-amount amount">
-												<span class="woocommerce-Price-currencySymbol">$</span>
-												12.00
-											</span>
-										</span>
-									</li>
-									<li class="woocommerce-mini-cart-item mini_cart_item">
-										<a href="#" class="remove" aria-label="Remove this item" data-product_id="76" data-product_sku="">×</a>
-										<a href="shop-product-right.html">
-											<img src="~/canabicom/images/shop/26.jpg" alt="">Medical marijuana THC
-										</a>
-
-										<span class="quantity">
-											1 ×
-											<span class="woocommerce-Price-amount amount">
-												<span class="woocommerce-Price-currencySymbol">$</span>
-												15.00
-											</span>
-										</span>
-									</li>
-								</ul>
-
-								<p class="woocommerce-mini-cart__total total">
-									<strong>Subtotal:</strong>
-									<span class="woocommerce-Price-amount amount">
-										<span class="woocommerce-Price-currencySymbol">$</span>
-										27.00
-									</span>
-								</p>
-
-								<p class="woocommerce-mini-cart__buttons buttons">
-									<a href="shop-cart.html" class="button wc-forward">View cart</a>
-									<a href="shop-checkout.html" class="button checkout wc-forward">Checkout</a>
-								</p>
+					@if (isAuthenticated)
+					{
+						<div class="dropdown-menu ls p-3"
+							 style="top: 100%; right: 0; min-width: 300px; max-height: 350px; overflow-y: auto; z-index: 99999; background: #fff; position: absolute; box-shadow: 0 4px 16px rgba(0,0,0,0.15); display: none;" id="notification-dropdown-content">
+							<div id="notificationList"></div>
+							<div class="text-center mt-2">
+								<a href="/Notification/Index" class="btn btn-maincolor4">Tüm Bildirimler</a>
 							</div>
 						</div>
-
-					</div>
+					}
+					else
+					{
+						<div class="dropdown-menu ls p-3 text-center"
+							 style="top: 100%; right: 0; min-width: 300px; z-index: 99999; background: #fff; position: absolute; box-shadow: 0 4px 16px rgba(0,0,0,0.15); display: none;" id="notification-dropdown-content">
+							<p class="text-danger mb-0">Bildirimleri görmek için giriş yapmalısınız.</p>
+						</div>
+					}
 				</div>
-
 			</div>
 		</div>
 	</div>
-</section> 
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+<script>
+	const connection = new signalR.HubConnectionBuilder().withUrl("/notificationhub").build();
+
+	connection.on("ReceiveNotification", () => {
+		console.log("📡 Yeni bildirim geldi!");
+		fetchNotifications();
+	});
+
+	connection.start().then(() => {
+		console.log("✅ SignalR bağlantısı kuruldu.");
+		fetchNotifications();
+	}).catch(err => console.error("❌ SignalR hatası:", err));
+
+	function fetchNotifications() {
+		$.get('/Notification/GetLatestNotificationsJson', function (data) {
+			const list = $('#notificationList');
+			list.empty();
+
+			if (data.length === 0) {
+				list.append('<p class="text-center">Henüz bildiriminiz yok.</p>');
+				$('#notification-count').text('0');
+				return;
+			}
+
+			$('#notification-count').text(data.length);
+			data.forEach(n => {
+				list.append(`
+					<div class="mb-2 border-bottom pb-2">
+						<strong>${n.senderName}</strong><br />
+						<small>${n.notificationMessage}</small><br />
+						<span class="text-muted fs-10">${n.notificationDate}</span>
+					</div>
+				`);
+			});
+		});
+	}
+
+	// Tıklanınca dropdown aç/kapa
+	$('#dropdown-notification').on('click', function (e) {
+		e.preventDefault();
+		$('#notification-dropdown-content').fadeToggle(150);
+	});
+
+	// Sayfa dışında bir yere tıklanırsa kapat
+	$(document).on('click', function (e) {
+		if (!$(e.target).closest('.shopping-cart').length) {
+			$('#notification-dropdown-content').fadeOut(150);
+		}
+	});
+</script>
+
+<style>
+	.page_topline,
+	.page_topline .container,
+	.page_topline .row,
+	.page_topline .dropdown-menu {
+		overflow: visible !important;
+		z-index: 99999 !important;
+		position: relative !important;
+	}
+</style>
