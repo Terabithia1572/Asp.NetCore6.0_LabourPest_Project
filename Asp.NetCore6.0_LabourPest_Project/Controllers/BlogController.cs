@@ -1,9 +1,11 @@
-﻿using BusinessLayer.Concrete;
+﻿using Asp.NetCore6._0_LabourPest_Project.Hubs;
+using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using System.Text.RegularExpressions;
@@ -20,11 +22,15 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         NotificationManager notificationManager = new NotificationManager(new EfNotificationRepository());
 		Context _context = new();
 		private readonly BlogManager _blogManager;
+        private readonly IHubContext<NotificationHub> _hubContext;
 
-		public BlogController(BlogManager blogManager)
+
+        public BlogController(BlogManager blogManager, IHubContext<NotificationHub> hubContext)
 		{
 			_blogManager = blogManager;
-		}
+            _hubContext = hubContext;
+
+        }
 
         public IActionResult BlogDetails(string slug)
         {
@@ -96,15 +102,15 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 
         // POST: Yorum ekleme
         [HttpPost]
-        public IActionResult AddComment(int BlogID, string author, string email, string title, string comment)
+        [HttpPost]
+        public async Task<IActionResult> AddComment(int BlogID, string author, string email, string title, string comment)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             int writerId = Convert.ToInt32(userId);
-
             var writer = writerManager.TGetByID(writerId);
-            string imageUrl = writer != null ? writer.WriterImage : "/images/default-user.png";
 
-            // Yorum ekleniyor
+            string imageUrl = writer?.WriterImage ?? "/images/default-user.png";
+
             BlogComment newComment = new BlogComment
             {
                 BlogID = BlogID,
@@ -114,29 +120,34 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
                 BlogCommentStatus = true,
                 BlogCommentTitle = string.IsNullOrEmpty(title) ? "Yorum" : title,
                 BlogImageUrl = imageUrl,
-                WriterID = writer?.WriterID
+                WriterID = writer.WriterID
             };
+
             blogCommentManager.TAdd(newComment);
 
-            // Blog yazısını bulan yazar (blogun sahibi)
+            // Bildirim oluştur
             var blog = blogManager.TGetByID(BlogID);
-            int? yazarId = blog.WriterID;
-
-            // Bildirimi oluştur
-            Notification notification = new Notification
+            var notification = new Notification
             {
                 NotificationType = "Comment",
-                NotificationMessage = $"{writer.WriterName} {writer.WriterSurname} blogunuza yorum yaptı",
+                NotificationMessage = $"{writer.WriterName} adlı kullanıcı blogunuza yorum yaptı.",
                 NotificationDate = DateTime.Now,
                 NotificationStatus = false,
-                WriterID = yazarId, // Blog sahibine gidecek
-                SenderWriterID = writer.WriterID, // Yorumu yapan kullanıcı
+                WriterID = blog.WriterID, // Blogun sahibi
+                SenderWriterID = writer.WriterID,
                 NotificationUrl = "/Blog/BlogDetails?slug=" + blog.SlugUrl
             };
+
             notificationManager.TAdd(notification);
+
+            // ✅ SignalR tetikle
+            // SignalR ile gerçek zamanlı gönder
+            var hubContext = HttpContext.RequestServices.GetRequiredService<IHubContext<NotificationHub>>();
+            await hubContext.Clients.All.SendAsync("ReceiveNotification");
 
             return RedirectToAction("BlogDetails", "Blog", new { slug = blog.SlugUrl });
         }
+
 
 
 

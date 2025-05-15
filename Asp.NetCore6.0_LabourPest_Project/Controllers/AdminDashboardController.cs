@@ -191,6 +191,19 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 
             return Ok();
         }
+        [HttpGet]
+        public IActionResult GetLatestNotifications()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int writerId = Convert.ToInt32(userId);
+
+            var values = notificationManager.GetListByWriter(writerId)
+                                            .Where(x => x.NotificationStatus == false)
+                                            .Take(5)
+                                            .ToList();
+
+            return PartialView("~/Views/Shared/Components/NotificationList/_NotificationDropdown.cshtml", values);
+        }
 
     }
 }
