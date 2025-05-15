@@ -1,6 +1,6 @@
 ﻿@model List<Notification>
 
-<li class="nav-item dropdown">
+<li class="nav-item dropdown" id="notificationDropdown">
     <a class="nav-link" href="#" style="min-width: 2.25rem" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">
         <span class="d-block" style="height:20px;width:20px;"><span data-feather="bell" style="height:20px;width:20px;"></span></span>
     </a>
@@ -10,7 +10,6 @@
                 <div class="d-flex justify-content-between">
                     <h5 class="text-body-emphasis mb-0">Bildirimler</h5>
                     <button class="btn btn-link p-0 fs-9 fw-normal" id="markAllReadBtn" type="button">Hepsini Okundu Olarak İşaretle</button>
-
                 </div>
             </div>
             <div class="card-body p-0">
@@ -75,6 +74,10 @@
         </div>
     </div>
 </li>
+
+<!-- 🔍 TEST için geçici görünmeyen log div -->
+<div id="debugHtmlOutput" style="display:none;"></div>
+
 @section Scripts {
     <script>
         $('#markAllReadBtn').on('click', function () {
@@ -82,7 +85,7 @@
                 type: 'POST',
                 url: '/AdminDashboard/MarkAllAsRead',
                 success: function () {
-                    location.reload(); // Sayfayı yenile, bildirimler okunmuş gibi görünsün
+                    location.reload();
                 },
                 error: function () {
                     alert('Bir hata oluştu!');
@@ -91,29 +94,43 @@
         });
     </script>
 }
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
 <script>
     const connection = new signalR.HubConnectionBuilder()
         .withUrl("/notificationhub")
         .build();
 
-    connection.start().then(() => {
-        console.log("✅ SignalR bağlantısı kuruldu.");
-    }).catch(err => console.error("❌ SignalR bağlantı hatası: ", err));
-
-       connection.on("ReceiveNotification", () => {
-        console.log("🔔 Yeni bildirim geldi. ViewComponent tetikleniyor...");
+    connection.on("ReceiveNotification", payload => {
+        console.log("🔔 Bildirim alındı:", payload);
 
         $.ajax({
             url: '/Notification/GetNotificationComponent',
             type: 'GET',
-            success: function (html) {
-                $('.scrollbar-overlay').html(html); // component çıktısını bildirime yaz
-            },
+                success: function (html) {
+        console.clear();
+        console.log("📦 Gelen HTML:", html);
+
+        $('#debugHtmlOutput').html(html); // log
+
+        // DOM hedefleme
+        const newDropdown = $(html);
+        const oldDropdown = $('#notificationDropdown');
+
+        if (oldDropdown.length && newDropdown.length) {
+            oldDropdown.replaceWith(newDropdown);
+            console.log("✅ DOM güncellendi.");
+        } else {
+            console.warn("⚠️ DOM hedefi veya içerik eksik.");
+        }
+    },
             error: function () {
-                console.error("🚫 Bildirim ViewComponent'i yüklenemedi.");
+                console.error("🚫 Component yüklenemedi.");
             }
         });
     });
 
+    connection.start()
+        .then(() => console.log("✅ SignalR bağlantısı kuruldu."))
+        .catch(err => console.error("❌ SignalR bağlantı hatası:", err));
 </script>

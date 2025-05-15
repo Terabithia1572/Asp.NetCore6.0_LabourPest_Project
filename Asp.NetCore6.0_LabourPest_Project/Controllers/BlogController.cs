@@ -12,22 +12,22 @@ using System.Text.RegularExpressions;
 
 namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 {
-	[AllowAnonymous]
-	public class BlogController : Controller
+    [AllowAnonymous]
+    public class BlogController : Controller
     {
         BlogManager blogManager = new BlogManager(new EfBlogRepository());
         BlogCategoryManager blogCategoryManager = new BlogCategoryManager(new EfBlogCategoryRepository());
         BlogCommentManager blogCommentManager = new BlogCommentManager(new EfBlogCommentRepository());
         WriterManager writerManager = new WriterManager(new EfWriterRepository());
         NotificationManager notificationManager = new NotificationManager(new EfNotificationRepository());
-		Context _context = new();
-		private readonly BlogManager _blogManager;
+        Context _context = new();
+        private readonly BlogManager _blogManager;
         private readonly IHubContext<NotificationHub> _hubContext;
 
 
         public BlogController(BlogManager blogManager, IHubContext<NotificationHub> hubContext)
-		{
-			_blogManager = blogManager;
+        {
+            _blogManager = blogManager;
             _hubContext = hubContext;
 
         }
@@ -142,8 +142,15 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 
             // ✅ SignalR tetikle
             // SignalR ile gerçek zamanlı gönder
-            var hubContext = HttpContext.RequestServices.GetRequiredService<IHubContext<NotificationHub>>();
-            await hubContext.Clients.All.SendAsync("ReceiveNotification");
+            await _hubContext                        // DI ile gelen _hubContext’i kullan
+     .Clients
+     .User(blog.WriterID.ToString())      // Bildirimin sahibi (blog yazarı)
+     .SendAsync("ReceiveNotification", new
+     {
+         message = notification.NotificationMessage,
+         url = notification.NotificationUrl,
+         time = notification.NotificationDate.ToString("g")
+     });
 
             return RedirectToAction("BlogDetails", "Blog", new { slug = blog.SlugUrl });
         }

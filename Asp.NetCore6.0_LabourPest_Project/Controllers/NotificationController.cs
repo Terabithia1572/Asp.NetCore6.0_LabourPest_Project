@@ -28,11 +28,13 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             return PartialView("~/Views/Shared/Components/NotificationList/_NotificationDropdown.cshtml", values);
         }
 
+        [Authorize] // Mutlaka bu olmalı
         [HttpGet]
         public IActionResult GetNotificationComponent()
         {
             return ViewComponent("NotificationList");
         }
+
 
     }
 

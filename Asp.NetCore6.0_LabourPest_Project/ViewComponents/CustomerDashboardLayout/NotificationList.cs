@@ -11,17 +11,25 @@ namespace Asp.NetCore6._0_LabourPest_Project.ViewComponents.CustomerDashboardLay
 
         public IViewComponentResult Invoke()
         {
-            var userId = UserClaimsPrincipal.FindFirstValue(ClaimTypes.NameIdentifier);
-            int writerId = Convert.ToInt32(userId);
+            var userIdRaw = UserClaimsPrincipal?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(userIdRaw))
+            {
+                // Bu, tarayıcıdan AJAX gelince çalışmazsa, sebep budur
+                return Content("⚠️ ViewComponent içinde kullanıcı bilgisi yok.");
+            }
+
+            int writerId = Convert.ToInt32(userIdRaw);
 
             var values = notificationManager.GetLatestNotificationsByWriter(writerId, 5)
-                                            .Where(x => x.NotificationStatus == false)
+                                            //.Where(x => x.NotificationStatus == false)
                                             .ToList();
 
             return View(values);
         }
-
-
-
     }
+
+
+
 }
+
