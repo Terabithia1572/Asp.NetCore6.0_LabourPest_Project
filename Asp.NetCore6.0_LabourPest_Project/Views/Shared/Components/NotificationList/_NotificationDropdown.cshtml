@@ -1,0 +1,10 @@
+﻿@model List<EntityLayer.Concrete.Notification>
+
+@foreach (var notification in Model)
+{
+    <a href="@notification.NotificationUrl" class="text-decoration-none">
+        <div class="px-2 px-sm-3 py-3 notification-card position-relative @(notification.NotificationStatus ? "read" : "unread") border-bottom">
+            <!-- kart içeriği -->
+        </div>
+    </a>
+}

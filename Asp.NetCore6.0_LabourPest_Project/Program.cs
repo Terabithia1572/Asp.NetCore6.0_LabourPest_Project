@@ -1,3 +1,4 @@
+using Asp.NetCore6._0_LabourPest_Project.Hubs;
 using BusinessLayer.Concrete;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
@@ -18,6 +19,7 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
 // Add services to the container.
 builder.Services.AddDbContext<Context>(); // BU SATIRI EKLE
 builder.Services.AddControllersWithViews();
+builder.Services.AddSignalR(); // <- Bunu ekle
 builder.Services.AddScoped<IBlogDal, EfBlogRepository>(); // IBlogRepository için EfBlogRepository kullanýmý
 builder.Services.AddScoped<BlogManager>(); // BlogManager'ý ekleyin
 builder.Services.AddControllersWithViews(options =>
@@ -74,6 +76,7 @@ endpoints.MapControllerRoute(
         pattern: "{controller=Home}/{action=Deneme}/{id?}");
     endpoints.MapControllers(); // UploadImage için gerekli
 });
+app.MapHub<NotificationHub>("/notificationhub");
 
 
 app.Run();

@@ -14,13 +14,14 @@ namespace Asp.NetCore6._0_LabourPest_Project.ViewComponents.CustomerDashboardLay
             var userId = UserClaimsPrincipal.FindFirstValue(ClaimTypes.NameIdentifier);
             int writerId = Convert.ToInt32(userId);
 
-            var values = notificationManager.GetListByWriter(writerId)
+            var values = notificationManager.GetLatestNotificationsByWriter(writerId, 5)
                                             .Where(x => x.NotificationStatus == false)
-                                            .Take(5)
                                             .ToList();
 
             return View(values);
         }
+
+
 
     }
 }
