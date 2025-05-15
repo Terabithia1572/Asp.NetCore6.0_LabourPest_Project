@@ -10,5 +10,6 @@ namespace BusinessLayer.Abstract
     public interface INotificationService : IGenericService<Notification>
     {
         List<Notification> GetListByWriter(int writerId);
+        List<Notification> GetLatestNotificationsByWriter(int writerId, int count = 5);
     }
 }

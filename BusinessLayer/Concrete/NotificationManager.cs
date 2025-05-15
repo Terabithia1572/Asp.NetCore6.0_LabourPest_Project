@@ -26,6 +26,10 @@ namespace BusinessLayer.Concrete
         {
             return _notificationDal.GetListAll();
         }
+        public List<Notification> GetLatestNotificationsByWriter(int writerId, int count = 5)
+        {
+            return _notificationDal.GetLatestNotificationsByWriter(writerId, count);
+        }
 
         public void TAdd(Notification t)
         {

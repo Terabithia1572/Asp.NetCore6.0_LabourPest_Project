@@ -22,6 +22,16 @@ namespace DataAccessLayer.EntityFramework
                 .OrderByDescending(x => x.NotificationDate)
                 .ToList();
         }
+        public List<Notification> GetLatestNotificationsByWriter(int writerId, int count = 5)
+        {
+            using var context = new Context();
+            return context.Notifications
+                          .Include(x => x.SenderWriter)
+                          .Where(x => x.WriterID == writerId)
+                          .OrderByDescending(x => x.NotificationDate)
+                          .Take(count)
+                          .ToList();
+        }
 
     }
 }
