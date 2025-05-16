@@ -43,16 +43,37 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             var notifications = _notificationManager.GetListByWriter(writerId)
                 .OrderByDescending(x => x.NotificationDate)
                 .Take(5)
-                .Select(x => new
-                {
-                    x.NotificationMessage,
-                    NotificationDate = x.NotificationDate.ToString("g"),
-                    senderName = x.SenderWriter?.WriterName + " " + x.SenderWriter?.WriterSurname,
-                    x.NotificationUrl
-                }).ToList();
+               .Select(x => new
+               {
+                   x.NotificationID,
+                   x.NotificationMessage,
+                   NotificationDate = x.NotificationDate.ToString("g"),
+                   senderName = x.SenderWriter?.WriterName + " " + x.SenderWriter?.WriterSurname,
+                   senderImage = x.SenderWriter?.WriterImage ?? "/default-user.png",
+                   x.NotificationStatus,
+                   x.NotificationUrl
+               }).ToList();
 
             return Json(notifications);
         }
+        [HttpPost]
+        public IActionResult MarkAllAsRead()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int writerId = Convert.ToInt32(userId);
+
+            var notifications = _notificationManager.GetListByWriter(writerId)
+                .Where(x => !x.NotificationStatus).ToList();
+
+            foreach (var item in notifications)
+            {
+                item.NotificationStatus = true;
+                _notificationManager.TUpdate(item);
+            }
+
+            return Ok();
+        }
+
 
 
 

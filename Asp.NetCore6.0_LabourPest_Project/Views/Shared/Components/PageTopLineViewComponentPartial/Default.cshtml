@@ -6,13 +6,13 @@
 <section id="home" class="page_topline topline-1 ls s-borderbottom py-9">
 	<div class="container">
 		<div class="row align-items-center">
-			<div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12 text-md-left text-center ">
+			<div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12 text-md-left text-center">
 				<span class="social-icons">
-					<a href="#" class="fab fab fa-facebook-f " title="facebook"></a>
-					<a href="#" class="fab fa-telegram-plane " title="telegram"></a>
-					<a href="#" class="fab fa-linkedin-in " title="linkedin"></a>
-					<a href="#" class="fab fa-instagram " title="instagram"></a>
-					<a href="#" class="fab fa-youtube " title="youtube"></a>
+					<a href="#" class="fab fab fa-facebook-f" title="facebook"></a>
+					<a href="#" class="fab fa-telegram-plane" title="telegram"></a>
+					<a href="#" class="fab fa-linkedin-in" title="linkedin"></a>
+					<a href="#" class="fab fa-instagram" title="instagram"></a>
+					<a href="#" class="fab fa-youtube" title="youtube"></a>
 				</span>
 			</div>
 
@@ -22,25 +22,21 @@
 				</div>
 
 				<div class="dropdown widget_search">
-					<a class="dropdown-toggle dropdown-toggle-split" href="#" id="headerSearchDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<a class="dropdown-toggle dropdown-toggle-split" href="#" id="headerSearchDropdown" data-toggle="dropdown">
 						<i class="fa fa-search"></i>
 					</a>
-					<div class="dropdown-menu ls ms " aria-labelledby="headerSearchDropdown">
+					<div class="dropdown-menu ls ms" aria-labelledby="headerSearchDropdown">
 						<form role="search" method="get" class="search-form" action="#">
-							<label for="search-form-top">
-								<span class="screen-reader-text">Search for:</span>
-							</label>
-							<input type="search" id="search-form-top" class="search-field" placeholder="Search keyword" value="" name="search">
-							<button type="submit" class="search-submit">
-								<span class="screen-reader-text">Search</span>
-							</button>
+							<label for="search-form-top"><span class="screen-reader-text">Search for:</span></label>
+							<input type="search" id="search-form-top" class="search-field" placeholder="Search keyword" name="search">
+							<button type="submit" class="search-submit"><span class="screen-reader-text">Search</span></button>
 						</form>
 					</div>
 				</div>
 
-				<!-- Bildirim ikonu -->
+				<!-- Bildirim -->
 				<div class="dropdown shopping-cart" style="position: relative; z-index: 9999;">
-					<a class="dropdown-toggle dropdown-shopping-cart" href="#" role="button" id="dropdown-notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<a class="dropdown-toggle dropdown-shopping-cart" href="#" id="dropdown-notification" data-toggle="dropdown">
 						<i class="fas fa-bell"></i>
 						<span id="notification-count" class="badge bg-maincolor2">0</span>
 					</a>
@@ -48,17 +44,18 @@
 					@if (isAuthenticated)
 					{
 						<div class="dropdown-menu ls p-3"
-							 style="top: 100%; right: 0; min-width: 300px; max-height: 350px; overflow-y: auto; z-index: 99999; background: #fff; position: absolute; box-shadow: 0 4px 16px rgba(0,0,0,0.15); display: none;" id="notification-dropdown-content">
+							 style="top: 100%; right: 0; min-width: 300px; max-height: 400px; overflow-y: auto; background: #fff; position: absolute; box-shadow: 0 4px 16px rgba(0,0,0,0.15); display: none;" id="notification-dropdown-content">
 							<div id="notificationList"></div>
-							<div class="text-center mt-2">
-								<a href="/Notification/Index" class="btn btn-maincolor4">Tüm Bildirimler</a>
+							<div class="text-center mt-2 d-flex justify-content-between">
+								<a href="/Notification/Index" class="btn btn-maincolor4 btn-sm" onclick="event.stopPropagation();">Tüm Bildirimler</a>
+								<button class="btn btn-outline-secondary btn-sm ml-2" onclick="markAllAsRead(event)">Tümünü Okundu</button>
 							</div>
 						</div>
 					}
 					else
 					{
 						<div class="dropdown-menu ls p-3 text-center"
-							 style="top: 100%; right: 0; min-width: 300px; z-index: 99999; background: #fff; position: absolute; box-shadow: 0 4px 16px rgba(0,0,0,0.15); display: none;" id="notification-dropdown-content">
+							 style="top: 100%; right: 0; min-width: 300px; background: #fff; position: absolute; box-shadow: 0 4px 16px rgba(0,0,0,0.15); display: none;" id="notification-dropdown-content">
 							<p class="text-danger mb-0">Bildirimleri görmek için giriş yapmalısınız.</p>
 						</div>
 					}
@@ -93,30 +90,67 @@
 				return;
 			}
 
-			$('#notification-count').text(data.length);
+			let unreadCount = 0;
+
 			data.forEach(n => {
+				const isUnread = !n.notificationStatus;
+				if (isUnread) unreadCount++;
+
+				const unreadClass = isUnread ? 'font-weight-bold text-dark' : '';
+				const img = `<img src="${n.senderImage}" class="rounded-circle me-2" width="30" height="30" alt="Profil">`;
+
 				list.append(`
-					<div class="mb-2 border-bottom pb-2">
-						<strong>${n.senderName}</strong><br />
-						<small>${n.notificationMessage}</small><br />
-						<span class="text-muted fs-10">${n.notificationDate}</span>
+					<div class="notification-item d-flex align-items-start mb-2 ${unreadClass}" title="Blog Detayı: ${n.notificationUrl}" data-id="${n.notificationID}" data-url="${n.notificationUrl}" style="cursor:pointer;">
+						${img}
+						<div>
+							<strong>${n.senderName}</strong><br />
+							<small>${n.notificationMessage}</small><br />
+							<span class="text-muted fs-10">${n.notificationDate}</span>
+						</div>
 					</div>
 				`);
 			});
+
+			$('#notification-count').text(unreadCount);
 		});
 	}
 
-	// Tıklanınca dropdown aç/kapa
-	$('#dropdown-notification').on('click', function (e) {
-		e.preventDefault();
-		$('#notification-dropdown-content').fadeToggle(150);
+	// Tıklayınca okundu ve yönlendir
+	$(document).on('click', '.notification-item', function () {
+		const id = $(this).data('id');
+		const url = $(this).data('url');
+
+		$.post('/Notification/MarkAsRead', { id: id }, function () {
+			window.location.href = url;
+		});
 	});
 
-	// Sayfa dışında bir yere tıklanırsa kapat
+	// Tümünü okundu yap
+	function markAllAsRead(e) {
+		e.stopPropagation();
+		$.post('/Notification/MarkAllAsRead', function () {
+			fetchNotifications();
+		});
+	}
+
+	// Aç/kapa
+	$('#dropdown-notification').on('click', function (e) {
+		if ($(e.target).closest('i').length || $(e.target).hasClass('dropdown-shopping-cart')) {
+			e.preventDefault();
+			$('#notification-dropdown-content').fadeToggle(150);
+		}
+	});
+
+	// Sayfa dışı tıklamada menüyü kapat
 	$(document).on('click', function (e) {
 		if (!$(e.target).closest('.shopping-cart').length) {
 			$('#notification-dropdown-content').fadeOut(150);
 		}
+	});
+
+	// Tüm bildirimler linki menüyü kapatmasın
+	$(document).on('click', '.btn-maincolor4', function (e) {
+		e.stopPropagation();
 	});
 </script>
 
