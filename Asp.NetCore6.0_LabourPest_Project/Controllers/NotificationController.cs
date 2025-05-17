@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
     {
         private readonly NotificationManager _notificationManager = new NotificationManager(new EfNotificationRepository());
         private readonly WriterManager _writerManager = new WriterManager(new EfWriterRepository());
+        Context _context = new Context();
 
         public IActionResult Index()
         {
@@ -74,6 +76,68 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        public IActionResult DeleteAllNotifications()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int writerId = Convert.ToInt32(userId);
+
+            var notifications = _notificationManager.GetListByWriter(writerId).ToList();
+
+            foreach (var notification in notifications)
+            {
+                _notificationManager.TDelete(notification);
+            }
+
+            return Ok();
+        }
+
+        public IActionResult GetFilteredNotifications(string status)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int writerId = Convert.ToInt32(userId);
+
+            var notifications = _notificationManager.GetListByWriter(writerId)
+                .Where(n => status == "all"
+                            || (status == "read" && n.NotificationStatus)
+                            || (status == "unread" && !n.NotificationStatus))
+                .OrderByDescending(n => n.NotificationDate)
+                .Select(n => new {
+                    n.NotificationID,
+                    n.NotificationMessage,
+                    NotificationDate = n.NotificationDate.ToString("g"),
+                    n.NotificationType,
+                    senderName = n.SenderWriter?.WriterName + " " + n.SenderWriter?.WriterSurname,
+                    senderImage = n.SenderWriter?.WriterImage ?? "/default-user.png",
+                    n.NotificationStatus,
+                    n.NotificationUrl
+                }).ToList();
+
+            return Json(notifications);
+        }
+        [HttpPost]
+        public IActionResult MarkAsRead(int id)
+        {
+            var notification = _context.Notifications.Find(id);
+            if (notification != null)
+            {
+                notification.NotificationStatus = true;
+                _context.SaveChanges();
+            }
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var notification = _context.Notifications.Find(id);
+            if (notification != null)
+            {
+                _context.Notifications.Remove(notification);
+                _context.SaveChanges();
+            }
+            return Ok();
+        }
 
 
 

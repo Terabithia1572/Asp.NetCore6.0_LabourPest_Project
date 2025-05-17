@@ -15,12 +15,10 @@
 					<a href="#" class="fab fa-youtube" title="youtube"></a>
 				</span>
 			</div>
-
 			<div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12 d-flex justify-content-md-end justify-content-center align-items-center">
 				<div class="login-modal">
 					<a class="login-form-btn" href="#"><i class="fa fa-user"></i></a>
 				</div>
-
 				<div class="dropdown widget_search">
 					<a class="dropdown-toggle dropdown-toggle-split" href="#" id="headerSearchDropdown" data-toggle="dropdown">
 						<i class="fa fa-search"></i>
@@ -33,29 +31,25 @@
 						</form>
 					</div>
 				</div>
-
-				<!-- Bildirim -->
 				<div class="dropdown shopping-cart" style="position: relative; z-index: 9999;">
 					<a class="dropdown-toggle dropdown-shopping-cart" href="#" id="dropdown-notification" data-toggle="dropdown">
 						<i class="fas fa-bell"></i>
 						<span id="notification-count" class="badge bg-maincolor2">0</span>
 					</a>
-
 					@if (isAuthenticated)
 					{
-						<div class="dropdown-menu ls p-3"
-							 style="top: 100%; right: 0; min-width: 300px; max-height: 400px; overflow-y: auto; background: #fff; position: absolute; box-shadow: 0 4px 16px rgba(0,0,0,0.15); display: none;" id="notification-dropdown-content">
+						<div class="dropdown-menu ls p-3" style="top: 100%; right: 0; min-width: 310px; max-height: 430px; overflow-y: auto; background: #fff; position: absolute; box-shadow: 0 4px 16px rgba(0,0,0,0.15); display: none;" id="notification-dropdown-content">
 							<div id="notificationList"></div>
-							<div class="text-center mt-2 d-flex justify-content-between">
-								<a href="/Notification/Index" class="btn btn-maincolor4 btn-sm" onclick="event.stopPropagation();">Tüm Bildirimler</a>
-								<button class="btn btn-outline-secondary btn-sm ml-2" onclick="markAllAsRead(event)">Tümünü Okundu</button>
+							<div class="text-center mt-3">
+								<a href="/Notification/Index" class="btn btn-maincolor4 btn-sm btn-notification w-100" onclick="event.stopPropagation();">
+									<i class="fas fa-bell mr-1"></i> Tüm Bildirimler
+								</a>
 							</div>
 						</div>
 					}
 					else
 					{
-						<div class="dropdown-menu ls p-3 text-center"
-							 style="top: 100%; right: 0; min-width: 300px; background: #fff; position: absolute; box-shadow: 0 4px 16px rgba(0,0,0,0.15); display: none;" id="notification-dropdown-content">
+						<div class="dropdown-menu ls p-3 text-center" style="top: 100%; right: 0; min-width: 310px; background: #fff; position: absolute; box-shadow: 0 4px 16px rgba(0,0,0,0.15); display: none;" id="notification-dropdown-content">
 							<p class="text-danger mb-0">Bildirimleri görmek için giriş yapmalısınız.</p>
 						</div>
 					}
@@ -68,16 +62,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
 <script>
 	const connection = new signalR.HubConnectionBuilder().withUrl("/notificationhub").build();
+	const notificationSound = new Audio("/sounds/notification.mp3");
 
 	connection.on("ReceiveNotification", () => {
-		console.log("📡 Yeni bildirim geldi!");
+		notificationSound.play().catch(err => console.warn("Ses çalınamadı", err));
 		fetchNotifications();
 	});
 
-	connection.start().then(() => {
-		console.log("✅ SignalR bağlantısı kuruldu.");
-		fetchNotifications();
-	}).catch(err => console.error("❌ SignalR hatası:", err));
+	connection.start().then(() => fetchNotifications());
 
 	function fetchNotifications() {
 		$.get('/Notification/GetLatestNotificationsJson', function (data) {
@@ -96,44 +88,55 @@
 				const isUnread = !n.notificationStatus;
 				if (isUnread) unreadCount++;
 
-				const unreadClass = isUnread ? 'font-weight-bold text-dark' : '';
-				const img = `<img src="${n.senderImage}" class="rounded-circle me-2" width="30" height="30" alt="Profil">`;
+				let icon = '<i class="fas fa-info-circle text-info mr-2"></i>';
+				let badgeColor = isUnread ? '#e6f7ff' : '#f4f4f4';
+
+				if (n.notificationType === 'Comment') {
+					icon = '<i class="fas fa-comment-dots text-primary mr-2"></i>';
+				} else if (n.notificationType === 'Message') {
+					icon = '<i class="fas fa-envelope text-success mr-2"></i>';
+				} else if (n.notificationType === 'System') {
+					icon = '<i class="fas fa-cogs text-danger mr-2"></i>';
+				}
 
 				list.append(`
-					<div class="notification-item d-flex align-items-start mb-2 ${unreadClass}" title="Blog Detayı: ${n.notificationUrl}" data-id="${n.notificationID}" data-url="${n.notificationUrl}" style="cursor:pointer;">
-						${img}
-						<div>
-							<strong>${n.senderName}</strong><br />
-							<small>${n.notificationMessage}</small><br />
-							<span class="text-muted fs-10">${n.notificationDate}</span>
+					<div class="notification-item p-2 border rounded mb-2 position-relative d-flex" style="background-color: ${badgeColor};">
+						<div class="d-flex align-items-center mr-3">
+							${icon}
+							<img src="${n.senderImage}" class="rounded-circle shadow-sm ml-2" width="32" height="32" alt="Profil">
+						</div>
+						<div class="d-flex flex-column flex-grow-1" style="padding-right: 50px;">
+							<a href="${n.notificationUrl}" class="stretched-link" onclick="event.stopPropagation();" style="text-decoration:none; color:inherit;">
+								<div class="text-dark font-weight-bold">${n.senderName}</div>
+								<small class="text-muted d-block">${n.notificationMessage}</small>
+								<small class="text-secondary fs-10">${n.notificationDate}</small>
+							</a>
+						</div>
+						<div style="position: absolute; top: 8px; right: 0; display: flex; flex-direction: column; gap: 4px; z-index: 999; align-items: flex-end;">
+							<button onclick="event.stopPropagation(); markSingleAsRead(${n.notificationID});" class="btn notification-btn-hover p-0 border-0 bg-transparent" title="Okundu Yap">
+								<i class="fas fa-check-circle text-success" style="font-size: 15px;"></i>
+							</button>
+							<button onclick="event.stopPropagation(); deleteSingleNotification(${n.notificationID});" class="btn notification-btn-hover p-0 border-0 bg-transparent" title="Sil">
+								<i class="fas fa-trash-alt text-danger" style="font-size: 15px;"></i>
+							</button>
 						</div>
 					</div>
 				`);
 			});
-
 			$('#notification-count').text(unreadCount);
 		});
 	}
 
-	// Tıklayınca okundu ve yönlendir
-	$(document).on('click', '.notification-item', function () {
-		const id = $(this).data('id');
-		const url = $(this).data('url');
-
-		$.post('/Notification/MarkAsRead', { id: id }, function () {
-			window.location.href = url;
-		});
-	});
-
-	// Tümünü okundu yap
-	function markAllAsRead(e) {
-		e.stopPropagation();
-		$.post('/Notification/MarkAllAsRead', function () {
-			fetchNotifications();
-		});
+	function markSingleAsRead(id) {
+		$.post(`/Notification/MarkAsRead/${id}`, fetchNotifications);
 	}
 
-	// Aç/kapa
+	function deleteSingleNotification(id) {
+		if (confirm("Bu bildirimi silmek istiyor musunuz?")) {
+			$.post(`/Notification/Delete/${id}`, fetchNotifications);
+		}
+	}
+
 	$('#dropdown-notification').on('click', function (e) {
 		if ($(e.target).closest('i').length || $(e.target).hasClass('dropdown-shopping-cart')) {
 			e.preventDefault();
@@ -141,26 +144,67 @@
 		}
 	});
 
-	// Sayfa dışı tıklamada menüyü kapat
 	$(document).on('click', function (e) {
 		if (!$(e.target).closest('.shopping-cart').length) {
 			$('#notification-dropdown-content').fadeOut(150);
 		}
 	});
-
-	// Tüm bildirimler linki menüyü kapatmasın
-	$(document).on('click', '.btn-maincolor4', function (e) {
-		e.stopPropagation();
-	});
 </script>
 
 <style>
-	.page_topline,
-	.page_topline .container,
-	.page_topline .row,
-	.page_topline .dropdown-menu {
+	.page_topline, .page_topline .container, .page_topline .row, .page_topline .dropdown-menu {
 		overflow: visible !important;
 		z-index: 99999 !important;
 		position: relative !important;
 	}
+
+	.notification-item {
+		transition: background-color 0.2s ease;
+		position: relative;
+	}
+
+		.notification-item:hover {
+			background-color: #f9f9f9;
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+		}
+
+	.stretched-link::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+	}
+
+	.notification-btn-hover {
+		width: 24px;
+		height: 24px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		transition: background-color 0.2s ease, transform 0.2s ease;
+	}
+
+		.notification-btn-hover:hover {
+			background-color: rgba(0, 0, 0, 0.06);
+			transform: scale(1.1);
+			cursor: pointer;
+		}
+
+	.btn-notification {
+		transition: all 0.3s ease-in-out;
+		padding: 6px 12px;
+		border-radius: 6px;
+		display: inline-flex;
+		align-items: center;
+		gap: 5px;
+		font-size: 12px;
+		justify-content: center;
+		text-align: center;
+	}
+
+		.btn-notification:hover {
+			transform: translateY(-1px);
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+		}
 </style>
