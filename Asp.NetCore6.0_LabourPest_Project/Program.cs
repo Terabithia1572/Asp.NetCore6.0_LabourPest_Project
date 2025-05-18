@@ -74,6 +74,11 @@ endpoints.MapControllerRoute(
 
   );
     endpoints.MapControllerRoute(
+        name: "servicedetails",
+        pattern: "services/detail/{slug}",
+        defaults: new { controller = "Services", action = "Detail" });
+
+    endpoints.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Deneme}/{id?}");
     endpoints.MapControllers(); // UploadImage için gerekli
