@@ -1,0 +1,41 @@
+﻿@model Services
+@{
+    ViewData["Title"] = Model.ServicesTitle;
+    Layout = "~/Views/Shared/_ServicesLayout.cshtml"; // veya _MainLayout
+}
+
+<section class="page_title ds s-parallax s-overlay s-py-65">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center text-sm-left">
+                <h1>@Model.ServicesTitle</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ls s-py-xl-150 s-py-lg-130 s-py-md-90 s-py-60">
+    <div class="container">
+        <div class="row">
+            <main class="col-lg-8">
+                <div class="vertical-item content-padding bordered text-left">
+                    <div class="item-media">
+                        <img src="@Model.ServicesImageURL" alt="@Model.ServicesTitle" />
+                    </div>
+                    <div class="item-content">
+                        <p class="excerpt">@Model.ServicesDescription</p>
+                        <p>@Model.ServicesLongDescription</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</section>
+
+<style>
+	.long-description {
+		font-size: 1.05rem;
+		line-height: 1.8;
+		color: #444;
+	}
+</style>

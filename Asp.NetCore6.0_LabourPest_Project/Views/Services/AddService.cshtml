@@ -7,10 +7,10 @@
 <form class="mb-9" method="post">
     <div class="row g-3 flex-between-end mb-5">
         <div class="col-auto">
-            <h2 class="mb-2">Services Ekleme Sayfası</h2>
+            <h2 class="mb-2">Servis Ekleme Sayfası</h2>
             <h5 class="text-body-tertiary fw-semibold">Sitenize Bir Services Ekleyerek Diğer Kullanıcıları Bilgilendirin..</h5>
         </div>
-        <div class="col-auto"><button class="btn btn-phoenix-secondary me-2 mb-2 mb-sm-0" type="button">İptal Et</button><a class="btn btn-phoenix-primary me-2 mb-2 mb-sm-0" href="/Services/ServicesList">Servis Listesi</a><button class="btn btn-primary mb-2 mb-sm-0" type="submit">Services Ekle</button></div>
+        <div class="col-auto"><button class="btn btn-phoenix-secondary me-2 mb-2 mb-sm-0" type="button">İptal Et</button><a class="btn btn-phoenix-primary me-2 mb-2 mb-sm-0" href="/Services/ServicesList">Servis Listesi</a><button class="btn btn-primary mb-2 mb-sm-0" type="submit">Servis Ekle</button></div>
     </div>
     <div class="row g-5">
         <div class="col-12 col-xl-8">
@@ -20,6 +20,13 @@
                 <div class="form-floating"><textarea class="form-control" id="floatingProjectOverview" name="ServicesDescription" placeholder="Servis Açıklaması" style="height: 100px"></textarea><label for="floatingProjectOverview">Servis Açıklaması</label></div>
             </div>
             <br />
+            <h4 class="mb-3 mt-4">Uzun Açıklama</h4>
+            <div class="form-floating">
+                <textarea class="form-control" id="floatingLongDescription" name="ServicesLongDescription" placeholder="Uzun Servis Açıklaması" style="height: 150px;"></textarea>
+                <label for="floatingLongDescription">Servis Uzun Açıklaması</label>
+            </div>
+            <br />
+
             <h4 class="mb-3">Servis Resmi</h4>
             <div class="dropzone dropzone-multiple p-0 mb-5" id="my-awesome-dropzone" data-dropzone="data-dropzone">
                 <!-- Fallback input for file selection -->
