@@ -17,8 +17,7 @@
             @foreach (var item in Model)
             {
                 <!-- Her bir slide için "item" sınıfını ekleyin -->
-                <div class="item">
-                    <!-- Eğer grid yapısını korumak istiyorsanız, buraya col-* sınıflarını ekleyebilirsiniz -->
+                <a href="/services/detail/@item.ServicesSlug" class="text-decoration-none">
                     <div class="icon-box text-center">
                         <div class="image-container">
                             @if (item.ServicesImageURL.Contains("icon-spa") ||
@@ -36,8 +35,8 @@
                         <h6 class="text-uppercase">@item.ServicesTitle</h6>
                         <p>@item.ServicesDescription</p>
                     </div>
+                </a>
 
-                </div>
             }
         </div>
         <div class="mt--30"></div>
