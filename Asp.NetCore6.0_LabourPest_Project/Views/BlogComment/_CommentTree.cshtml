@@ -1,0 +1,48 @@
+﻿@* @model List<CommentTreeViewModel>
+
+@foreach (var comment in Model)
+{
+    <li class="comment">
+        <article class="comment-body">
+            <header class="comment-meta">
+                <div class="comment-author vcard">
+                    <img alt="" src="@comment.ProfileImage" />
+                    <b class="fn">
+                        <a href="#">@comment.AuthorName</a>
+                    </b>
+                </div>
+            </header>
+
+            <div class="comment-content">
+                <p>@comment.CommentText</p>
+            </div>
+
+            <footer class="comment-footer">
+                <span class="edit-link">
+                    <i class="far fa-edit"></i>
+                    <a class="comment-edit-link" href="/BlogComment/EditComment/@comment.CommentID">Edit</a>
+                </span>
+                <span class="entry-meta-divider">|</span>
+                <div class="reply">
+                    <i class="far fa-share-square"></i>
+                    <a class="comment-reply-link" href="/BlogComment/Reply/@comment.CommentID">Reply</a>
+                </div>
+                <span class="entry-meta-divider">|</span>
+                <div class="comment-metadata">
+                    <i class="far fa-clock"></i>
+                    <time datetime="@comment.CommentDate.ToString("yyyy-MM-ddTHH:mm:ss")">
+                        @comment.CommentDate.ToString("dd MMM yyyy HH:mm")
+                    </time>
+                </div>
+            </footer>
+        </article>
+
+        @if (comment.Replies != null && comment.Replies.Any())
+        {
+            <ol class="children">
+                @await Html.PartialAsync("_CommentTree", comment.Replies)
+            </ol>
+        }
+    </li>
+}
+ *@
