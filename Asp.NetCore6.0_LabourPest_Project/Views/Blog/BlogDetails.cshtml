@@ -161,7 +161,7 @@
                     </div>
                     <!-- .item-content -->
                 </article>
-
+                
                 <div id="comments" class="comments-area">
                     @* Yorum listesini Component veya Partial olarak çağırmaya devam edebilirsiniz *@
                     @await Component.InvokeAsync("BlogCommentList", new { id = Model.BlogID })
@@ -170,33 +170,23 @@
                     <div id="respond" class="comment-respond ls">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <form asp-controller="Blog" asp-action="AddComment" method="post" id="commentform" class="comment-form" novalidate="">
-                                <!-- Gizli alan: Yorum yapılacak blogun ID'si -->
+                            <form asp-controller="Blog" asp-action="AddComment" method="post" id="commentform" class="comment-form">
+                                <!-- Blog ID -->
                                 <input type="hidden" name="BlogID" value="@Model.BlogID" />
+
+                                <!-- Parent Comment ID (Yanıtlanacak yorum varsa buraya düşer) -->
+                                <input type="hidden" name="ParentCommentID" id="ParentCommentID" value="" />
+
                                 <p class="comment-form-title form-group has-placeholder">
                                     <label for="title">Konu <span class="required">*</span></label>
-                                    <input class="form-control" id="title" name="title" placeholder="Başlık" type="text" required="required">
+                                    <input class="form-control" id="title" name="title" placeholder="Başlık" type="text" required />
                                 </p>
 
-                                <p class="comment-form-author form-group has-placeholder" style="display:none">
-                                    <label for="author1213">
-                                        Ad Soyad
-                                        <span class="required">*</span>
-                                    </label>
-                                    <input class="form-control" id="author1213" placeholder="Name" name="author" type="text"
-                                           value="@ViewBag.CurrentWriterName" size="30" maxlength="245" aria-required="true" required="required">
-                                </p>
-                                <p class="comment-form-email form-group has-placeholder" style="display:none">
-                                    <label for="email234">
-                                        Email <span class="required">*</span>
-                                    </label>
-                                    <input class="form-control" id="email234" name="email" placeholder="Email" type="email"
-                                           value="@ViewBag.CurrentWriterMail" size="30" maxlength="100" aria-required="true" required="required">
-                                </p>
                                 <p class="comment-form-comment form-group has-placeholder">
-                                    <label for="comment234">Comment</label>
-                                    <textarea id="comment234" name="comment" class="form-control" placeholder="Yorumunuz" cols="45" rows="4" maxlength="65525" aria-required="true" required="required"></textarea>
+                                    <label for="comment234">Yorum</label>
+                                    <textarea id="comment234" name="comment" class="form-control" placeholder="Yorumunuz" cols="45" rows="4" required></textarea>
                                 </p>
+
                                 <p class="form-submit form-group mt-10">
                                     <input name="submit" type="submit" class="submit btn btn-outline-maincolor" value="Gönder">
                                 </p>
@@ -204,11 +194,10 @@
                         }
                         else
                         {
-                            <p>
-                                Yorum yapmak için lütfen <a href="@Url.Action("SignIN", "Login")">giriş yapın</a>.
-                            </p>
+                            <p>Yorum yapmak için lütfen <a href="@Url.Action("SignIN", "Login")">giriş yapın</a>.</p>
                         }
                     </div>
+
 
                     <!-- #respond -->
                 </div>
@@ -239,4 +228,9 @@
             }
         });
     });
+      function setReplyTo(commentId) {
+        document.getElementById("ParentCommentID").value = commentId;
+        document.getElementById("comment234").focus();
+        return false;
+    }
 </script>

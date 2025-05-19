@@ -1,0 +1,39 @@
+﻿@model EntityLayer.Concrete.BlogComment
+@{
+    ViewData["Title"] = "Yorumu Düzenle";
+    Layout = "~/Views/Shared/_BlogLayout.cshtml";
+}
+
+<section class="ls s-py-60">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h3 class="text-center mb-4">Yorumu Düzenle</h3>
+                <form asp-controller="Blog" asp-action="EditComment" method="post">
+                    <input type="hidden" name="BlogCommentID" value="@Model.BlogCommentID" />
+                    <input type="hidden" name="BlogID" value="@Model.BlogID" />
+
+                    <div class="form-group mb-3">
+                        <label for="BlogCommentTitle">Konu</label>
+                        <input class="form-control" type="text" name="BlogCommentTitle" value="@Model.BlogCommentTitle" />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="BlogCommentContent">Yorum</label>
+                        <textarea class="form-control" name="BlogCommentContent" rows="5">@Model.BlogCommentContent</textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-outline-maincolor">Kaydet</button>
+                    <a href="/Blog/BlogDetails?slug=@Model.Blog?.SlugUrl" class="btn btn-secondary ms-2">İptal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* @section Scripts {
+    <script>
+        console.log("EditComment sayfası yüklendi.");
+    </script>
+}
+ *@
