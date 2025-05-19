@@ -26,5 +26,9 @@ namespace EntityLayer.Concrete
         public Blog Blog { get; set; }
         public int? WriterID { get; set; } // null olabilen bir alan
         public Writer Writer { get; set; } // Writer ile ilişki
+
+        public int? ParentCommentID { get; set; } // 🔁 Yanıt özelliği için eklendi
+        [ForeignKey("ParentCommentID")]
+        public BlogComment ParentComment { get; set; } // (İsteğe bağlı navigation)
     }
 }
