@@ -1,4 +1,5 @@
 ﻿using Asp.NetCore6._0_LabourPest_Project.Hubs;
+using Asp.NetCore6._0_LabourPest_Project.Models;
 using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
@@ -102,8 +103,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 
         // POST: Yorum ekleme
         [HttpPost]
-        [HttpPost]
-        public async Task<IActionResult> AddComment(int BlogID, string author, string email, string title, string comment)
+        public async Task<IActionResult> AddComment(int BlogID, string author, string email, string title, string comment, int? ParentCommentID)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             int writerId = Convert.ToInt32(userId);
@@ -114,18 +114,19 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             BlogComment newComment = new BlogComment
             {
                 BlogID = BlogID,
-                BlogCommentUserName = author,
+                BlogCommentUserName = writer.WriterName + " " + writer.WriterSurname, // 👈 NULL gelmesin
                 BlogCommentContent = comment,
                 BlogCommentDate = DateTime.Now,
                 BlogCommentStatus = true,
                 BlogCommentTitle = string.IsNullOrEmpty(title) ? "Yorum" : title,
                 BlogImageUrl = imageUrl,
-                WriterID = writer.WriterID
+                WriterID = writer.WriterID,
+                ParentCommentID = ParentCommentID
             };
 
             blogCommentManager.TAdd(newComment);
 
-            // Bildirim oluştur
+            // Bildirim
             var blog = blogManager.TGetByID(BlogID);
             var notification = new Notification
             {
@@ -133,27 +134,26 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
                 NotificationMessage = $"{writer.WriterName} adlı kullanıcı blogunuza yorum yaptı.",
                 NotificationDate = DateTime.Now,
                 NotificationStatus = false,
-                WriterID = blog.WriterID, // Blogun sahibi
+                WriterID = blog.WriterID,
                 SenderWriterID = writer.WriterID,
                 NotificationUrl = "/Blog/BlogDetails?slug=" + blog.SlugUrl
             };
 
             notificationManager.TAdd(notification);
 
-            // ✅ SignalR tetikle
-            // SignalR ile gerçek zamanlı gönder
-            await _hubContext                        // DI ile gelen _hubContext’i kullan
-     .Clients
-     .User(blog.WriterID.ToString())      // Bildirimin sahibi (blog yazarı)
-     .SendAsync("ReceiveNotification", new
-     {
-         message = notification.NotificationMessage,
-         url = notification.NotificationUrl,
-         time = notification.NotificationDate.ToString("g")
-     });
+            await _hubContext.Clients
+                .User(blog.WriterID.ToString())
+                .SendAsync("ReceiveNotification", new
+                {
+                    message = notification.NotificationMessage,
+                    url = notification.NotificationUrl,
+                    time = notification.NotificationDate.ToString("g")
+                });
 
             return RedirectToAction("BlogDetails", "Blog", new { slug = blog.SlugUrl });
         }
+
+
 
 
 
@@ -166,6 +166,69 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             var values = blogManager.GetBlogListWithBlogCategory();
             return View(values);
         }
+
+        // BlogController.cs
+        [HttpGet]
+        public IActionResult EditComment(int id)
+        {
+            var comment = _context.BlogsComments
+                .Include(x => x.Blog)
+                .FirstOrDefault(x => x.BlogCommentID == id);
+
+            if (comment == null)
+                return NotFound();
+
+            return View(comment);
+        }
+
+        [HttpPost]
+        public IActionResult EditComment(BlogComment updatedComment)
+        {
+            var comment = _context.BlogsComments
+                .FirstOrDefault(x => x.BlogCommentID == updatedComment.BlogCommentID);
+
+            if (comment == null)
+                return NotFound();
+
+            comment.BlogCommentTitle = updatedComment.BlogCommentTitle;
+            comment.BlogCommentContent = updatedComment.BlogCommentContent;
+            comment.BlogCommentDate = DateTime.Now;
+
+            _context.SaveChanges();
+
+            // blog detay sayfasına yönlendir
+            var blog = _context.Blogs.FirstOrDefault(x => x.BlogID == comment.BlogID);
+            if (blog != null)
+                return RedirectToAction("BlogDetails", "Blog", new { slug = blog.SlugUrl });
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public IActionResult UpdateCommentAjax(int id, string title, string content)
+        {
+            var comment = _context.BlogsComments.FirstOrDefault(x => x.BlogCommentID == id);
+            if (comment == null)
+            {
+                return Json(new { success = false, message = "Yorum bulunamadı." });
+            }
+
+            comment.BlogCommentTitle = title;
+            comment.BlogCommentContent = content;
+            comment.BlogCommentDate = DateTime.Now;
+            _context.SaveChanges();
+
+            return Json(new
+            {
+                success = true,
+                updatedTitle = comment.BlogCommentTitle,
+                updatedContent = comment.BlogCommentContent,
+                updatedDate = comment.BlogCommentDate.ToString("dd MMM yyyy HH:mm")
+            });
+        }
+
+
+
 
         private string CreateSlug(string phrase)
         {
