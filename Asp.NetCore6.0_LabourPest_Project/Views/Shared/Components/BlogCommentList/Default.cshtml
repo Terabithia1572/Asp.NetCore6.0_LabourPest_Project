@@ -34,14 +34,26 @@
                     <div id="editForm-@comment.CommentID" class="mt-2" style="display:none;">
                         <input type="text" class="form-control mb-2" id="editTitle-@comment.CommentID" value="@comment.Title" />
                         <textarea class="form-control mb-2" id="editContent-@comment.CommentID" rows="3">@comment.Content</textarea>
-                        <button onclick="submitEdit(@comment.CommentID)" class="btn btn-sm btn-success">Kaydet</button>
-                        <button onclick="cancelEdit(@comment.CommentID)" class="btn btn-sm btn-secondary">İptal</button>
+                        <div class="comment-footer d-flex align-items-center" style="gap: 10px;">
+                            <span class="edit-link">
+                                <i class="fas fa-check text-success"></i>
+                                <a href="javascript:void(0);" onclick="submitEdit(@comment.CommentID)">Kaydet</a>
+                            </span>
+                            <span class="edit-link">
+                                <i class="fas fa-times text-danger"></i>
+                                <a href="javascript:void(0);" onclick="cancelEdit(@comment.CommentID)">İptal</a>
+                            </span>
+                        </div>
                     </div>
 
-                    <footer class="comment-footer">
+
+
+                    <footer class="comment-footer d-flex align-items-center" style="gap: 10px;">
                         <div class="comment-metadata">
                             <i class="far fa-clock"></i>
-                            <time id="comment-time-@comment.CommentID" datetime="@comment.CommentDate.ToString("s")">@comment.CommentDate.ToString("dd MMM yyyy HH:mm")</time>
+                            <time id="comment-time-@comment.CommentID" datetime="@comment.CommentDate.ToString("s")">
+                                @comment.CommentDate.ToString("dd MMM yyyy HH:mm")
+                            </time>
                         </div>
                         <div class="reply">
                             <i class="far fa-share-square"></i>
@@ -57,6 +69,7 @@
                             </span>
                         }
                     </footer>
+
                 </article>
 
                 @if (comment.Replies != null && comment.Replies.Any())
@@ -85,7 +98,7 @@
                                         <button onclick="cancelEdit(@reply.CommentID)" class="btn btn-sm btn-secondary">İptal</button>
                                     </div>
 
-                                    <footer class="comment-footer">
+                                    <footer class="comment-footer" style="gap: 10px;">
                                         <div class="comment-metadata">
                                             <i class="far fa-clock"></i>
                                             <time id="comment-time-@reply.CommentID" datetime="@reply.CommentDate.ToString("s")">@reply.CommentDate.ToString("dd MMM yyyy HH:mm")</time>
