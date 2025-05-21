@@ -22,6 +22,11 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 
         public IActionResult SignIN()
         {
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Profile", "AdminDashboard");
+            }
+
             return View();
         }
 

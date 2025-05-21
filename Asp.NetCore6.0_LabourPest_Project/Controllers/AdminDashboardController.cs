@@ -25,7 +25,8 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 
         public IActionResult Profile()
         {
-          
+            var role = User.IsInRole("Admin") ? "Admin" : "Müşteri";
+            var lastLogin = DateTime.Now; // Gelişmiş sistemlerde veritabanından çekilir.
 
             var subscribeCount =subscribeManager.GetAll().Count();
             ViewBag.SubscribeCount = subscribeCount;
@@ -45,7 +46,10 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
                                         .ToList();
 
             // Dashboard verileri
-            int blogCount = blogManager.GetAll().Count();
+            int blogCount = blogManager.GetAll().Count(x => x.WriterID == writerId);
+
+            int blogCount1 = blogManager.GetAll().Count();
+            ViewBag.blogCount = blogCount1;
             int commentCount = commentManager.GetAll().Count();
             int imageCount = imageManager.GetAll().Count();
             int categoryCount = categoryManager.GetAll().Count();
@@ -61,7 +65,9 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
                 ImageCount = imageCount,
                 CategoryCount = categoryCount,
                 UserCount = userCount,
-                BlogComments = blogComments
+                BlogComments = blogComments,
+                UserRole = role,
+                LastLoginTime = lastLogin
             };
 
             // Günün sözleri listesi

@@ -152,6 +152,19 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             return View("MailList", values);
         }
 
+        [HttpGet]
+        public IActionResult MailSend()
+        {
+            var writers = writerManager.GetAll();
+            ViewBag.Writers = writers;
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var writer = writerManager.TGetByID(Convert.ToInt32(userId));
+            ViewBag.CurrentWriterName = writer.WriterName;
+            ViewBag.CurrentWriterSurname = writer.WriterSurname;
+
+            return View();
+        }
 
 
 
