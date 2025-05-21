@@ -36,11 +36,25 @@
                     </div>
 
                     <div class="mb-5">
-                        <div class="d-md-flex align-items-center">
-                            <div class="d-flex align-items-center"><span class="fa-solid fa-user-group fs-9 text-body-tertiary me-2 me-lg-1 me-xl-2"></span><a class="text-body-emphasis" href="#!"><span class="fs-7 fw-bold text-body-tertiary text-opacity-85 text-body-emphasis-hover">@ViewBag.SubscribeCount <span class="fw-semibold ms-1 me-4">Abonelikler</span></span></a></div>
-                            <div class="d-flex align-items-center"><span class="fa-solid fa-user-check fs-9 text-body-tertiary me-2 me-lg-1 me-xl-2"></span><a class="text-body-emphasis" href="#!"><span class="fs-7 fw-bold text-body-tertiary text-opacity-85 text-body-emphasis-hover">@ViewBag.CustomerCount <span class="fw-semibold ms-1 me-4">Müşteri Sayısı</span></span></a></div>
-                            <div class="d-flex align-items-center"><span class="fa-solid fa-location-dot fs-9 text-body-tertiary me-2 me-lg-1 me-xl-2"></span><a class="text-body-emphasis" href="#!"><span class="fs-7 fw-semibold text-body-tertiary text-opacity-85 text-body-emphasis-hover">Türkiye</span></a></div>
+                        <div class="d-flex gap-3 flex-wrap mb-3">
+                            <div class="d-flex align-items-center">
+                                <span class="fa-solid fa-clock fs-7 text-primary me-2"></span>
+                                <span class="fw-semibold text-dark">Son Giriş:</span>
+                                <span class="ms-1">@Model.LastLoginTime.ToString("dd.MM.yyyy HH:mm")</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="fa-solid fa-user-tag fs-7 text-success me-2"></span>
+                                <span class="fw-semibold text-dark">Rol:</span>
+                                <span class="ms-1">@Model.UserRole</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="fa-solid fa-blog fs-7 text-warning me-2"></span>
+                                <span class="fw-semibold text-dark">Blog:</span>
+                                <span class="ms-1">@Model.BlogCount</span>
+                            </div>
                         </div>
+
+
                     </div>
                     <p class="fs-6 text-body-secondary">
                         “@ViewBag.DailyQuote”
@@ -65,14 +79,67 @@
         <div class="col-xl-4 d-none d-xl-block">
             <div class="mb-8">
                 <div class="row g-0">
-                    <div class="col-6 border-1 border-bottom border-translucent border-end py-2"> <a class="btn btn-link ps-2 fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="/RegisterCustomer/CustomerList"><span class="fa-solid fa-user-group me-2 mb-2 mb-xxl-0"></span>Müşteriler</a></div>
-                    <div class="col-6 border-1 border-bottom border-translucent py-2"><a class="btn btn-link fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="RegisterCustomer/AddCustomer"><span class="fa-solid fa-users me-2 mb-2 mb-xxl-0"></span>Müşteri Ekle</a></div>
-                    <div class="col-6 border-1 border-bottom border-translucent border-end py-2"><a class="btn btn-link ps-2 fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="/File/FileList"><span class="fa-solid fa-photo-film me-2 mb-2 mb-xxl-0"></span>Dosyalar</a></div>
-                    <div class="col-6 border-1 border-bottom border-translucent py-2"><a class="btn btn-link fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="#!"><span class="fa-solid fa-calendar-days me-2 mb-2 mb-xxl-0"></span>Etkinlikler</a></div>
-                    <div class="col-6 border-1 border-end border-translucent py-2"><a class="btn btn-link ps-2 fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="/Subscribe/SubscribeList"><span class="fa-solid fa-dice me-2 mb-2 mb-xxl-0"></span>Abonelikler</a></div>
-                    <div class="col-6 border-1 py-2"><a class="btn btn-link fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="/AdminDashboard/ProfileSettings"><span class="fa-solid fa-user-gear me-2 mb-2 mb-xxl-0"></span>Ayarlar </a></div>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="col-6 border-1 border-bottom border-translucent border-end py-2">
+                            <a class="btn btn-link ps-2 fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="/RegisterCustomer/CustomerList">
+                                <span class="fa-solid fa-user-group me-2 mb-2 mb-xxl-0"></span>Müşteriler
+                            </a>
+                        </div>
+                        <div class="col-6 border-1 border-bottom border-translucent py-2">
+                            <a class="btn btn-link fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="/RegisterCustomer/AddCustomer">
+                                <span class="fa-solid fa-users me-2 mb-2 mb-xxl-0"></span>Müşteri Ekle
+                            </a>
+                        </div>
+                        <div class="col-6 border-1 border-bottom border-translucent border-end py-2">
+                            <a class="btn btn-link ps-2 fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="/File/FileList">
+                                <span class="fa-solid fa-photo-film me-2 mb-2 mb-xxl-0"></span>Dosyalar
+                            </a>
+                        </div>
+                        <div class="col-6 border-1 border-bottom border-translucent py-2">
+                            <a class="btn btn-link fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="#!">
+                                <span class="fa-solid fa-calendar-days me-2 mb-2 mb-xxl-0"></span>Etkinlikler
+                            </a>
+                        </div>
+                        <div class="col-6 border-1 border-end border-translucent py-2">
+                            <a class="btn btn-link ps-2 fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="/Subscribe/SubscribeList">
+                                <span class="fa-solid fa-dice me-2 mb-2 mb-xxl-0"></span>Abonelikler
+                            </a>
+                        </div>
+                        <div class="col-6 border-1 py-2">
+                            <a class="btn btn-link fs-8 text-body-secondary text-primary-hover fw-semibold d-flex flex-column d-xxl-inline-block" href="/AdminDashboard/ProfileSettings">
+                                <span class="fa-solid fa-user-gear me-2 mb-2 mb-xxl-0"></span>Ayarlar
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-12">
+                            <div class="card p-4 bg-white shadow-sm border border-1 border-light rounded-3">
+                                <h5 class="fw-bold mb-3 text-dark">
+                                    LabourPest Müşteri Paneline Hoş Geldiniz
+                                </h5>
+                                <p class="fs-8 text-muted mb-3">
+                                    Bu panel üzerinden dosyalarınızı görüntüleyebilir, blog içeriklerinizi yönetebilir ve kişisel ayarlarınızı düzenleyebilirsiniz. Aşağıdaki kısayollar ile işlemlerinizi kolayca başlatabilirsiniz.
+                                </p>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a href="/File/FileList" class="btn btn-sm btn-outline-primary">
+                                        <i class="fa-solid fa-folder-open me-1"></i> Dosyalarım
+                                    </a>
+                                    <a href="/AdminDashboard/ProfileSettings" class="btn btn-sm btn-outline-secondary">
+                                        <i class="fa-solid fa-gear me-1"></i> Ayarlar
+                                    </a>
+                                    <a href="#my-blogs" class="btn btn-sm btn-outline-success">
+                                        <i class="fa-solid fa-blog me-1"></i> Bloglarım
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
+
             <div class="mb-8">
                 <div class="d-flex pb-4 align-items-end">
                     <h3 class="flex-1 mb-0">Fotoğraflar</h3><a class="fw-bold fs-9 me-4" href="/Image/ImageList">Albümler</a><a class="fw-bold fs-9" href="/Image/ImageList">Tümünü Gör</a>
@@ -103,7 +170,7 @@
             <div class="row g-0 mb-5 mb-lg-0">
                 <div class="col-12 border-1 border-bottom border-translucent py-2">
                     <a class="btn btn-link px-0 fs-8 text-body-secondary text-primary-hover fw-semibold d-flex" href="#!">
-                        <span class="fa-solid fa-user-group me-2 mb-2 mb-xxl-0"></span> @Model.BlogCount Toplam Blog Sayısı
+                        <span class="fa-solid fa-user-group me-2 mb-2 mb-xxl-0"></span> @ViewBag.blogCount Toplam Blog Sayısı
                     </a>
                 </div>
                 <div class="col-12 border-1 border-bottom border-translucent py-2">
@@ -132,7 +199,7 @@
 
 <!-- Diğer yazar bilgileri burada görüntülenecek -->
 
-<div class="col-12 col-xl-8">
+        <div class="col-12 col-xl-8" id="my-blogs">
     @foreach (var blog in Model.Blogs)
     {
         <div class="mb-5">
