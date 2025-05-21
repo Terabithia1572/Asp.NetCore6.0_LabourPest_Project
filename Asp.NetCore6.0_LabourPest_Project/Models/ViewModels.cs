@@ -15,6 +15,9 @@ namespace Asp.NetCore6._0_LabourPest_Project.Models
         public int UserCount { get; set; }
         public List<BlogComment> BlogComments { get; set; } // yorum yapanlarla birlikte
 
+        public string UserRole { get; set; }
+        public DateTime LastLoginTime { get; set; }
+
     }
   
 }
