@@ -28,7 +28,7 @@
         </select>
     </div>
 
-    <!-- Adınız: Giriş yapanın adı otomatik dolsun -->
+  @*   <!-- Adınız: Giriş yapanın adı otomatik dolsun -->
     <div class="mb-3">
         <label for="name" class="form-label">Adınız</label>
         <input type="text" class="form-control" id="name" name="MailName"
@@ -40,7 +40,10 @@
         <label for="surname" class="form-label">Soyadınız</label>
         <input type="text" class="form-control" id="surname" name="MailSurname"
                value="@ViewBag.CurrentWriterSurname" required />
-    </div>
+    </div> *@
+    <input type="hidden" name="MailName" value="@ViewBag.CurrentWriterName" />
+    <input type="hidden" name="MailSurname" value="@ViewBag.CurrentWriterSurname" />
+
 
     <!-- Konu alanı; gelen mailin konusu önceden dolu gelsin -->
     <div class="mb-3">
