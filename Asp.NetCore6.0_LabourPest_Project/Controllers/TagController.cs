@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [AllowAnonymous]
     public class TagController : Controller
     {
@@ -37,6 +38,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             return View();
         }
 
+        
         [HttpPost]
         public IActionResult AddTag(Tag tag)
         {
