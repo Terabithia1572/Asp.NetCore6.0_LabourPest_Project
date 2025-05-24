@@ -15,13 +15,31 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
             return View();
         }
         [HttpPost]
-      public IActionResult AddComment(Comment comment)
+        public async Task<IActionResult> AddComment(Comment comment)
         {
+            var recaptchaResponse = Request.Form["g-recaptcha-response"];
+            var client = new HttpClient();
+            var secretKey = "6LeFuEMrAAAAABBa2p2hKa0XddVxoV5sS--ewoQT";
+
+            var response = await client.PostAsync(
+                $"https://www.google.com/recaptcha/api/siteverify?secret={secretKey}&response={recaptchaResponse}", null);
+
+            var result = await response.Content.ReadAsStringAsync();
+
+            if (!result.Contains("\"success\": true"))
+            {
+                TempData["RecaptchaError"] = "Lütfen 'Ben robot değilim' kutusunu işaretleyin.";
+                return RedirectToAction("Deneme", "Home");
+            }
+
+            // Bot değilse yorum kaydedilir
             comment.CommentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             comment.CommentStatus = true;
             commentManager.TAdd(comment);
+
             return RedirectToAction("Deneme", "Home");
         }
+
         [HttpPost]
         public async Task<IActionResult> UploadImage(IFormFile file)
         {

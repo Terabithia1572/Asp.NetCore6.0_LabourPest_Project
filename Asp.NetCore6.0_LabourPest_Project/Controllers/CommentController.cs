@@ -14,6 +14,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         {
             return View();
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult CommentList()
         {
             var values = commentManager.GetAll();

@@ -14,12 +14,13 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
         {
             return View();
         }
-      
+        [Authorize(Roles = "Admin")]
         public IActionResult ServicesList()
         {
             var values = servicesManager.GetAll();
             return View(values);
         }
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult AddService()
         {

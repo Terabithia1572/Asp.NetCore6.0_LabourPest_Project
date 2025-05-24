@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Asp.NetCore6._0_LabourPest_Project.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class FAQsController : Controller
     {
         
