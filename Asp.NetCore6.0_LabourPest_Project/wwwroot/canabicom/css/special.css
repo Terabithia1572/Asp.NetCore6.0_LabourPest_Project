@@ -1,0 +1,13 @@
+.logo-subtext {
+    color: #000 !important; /* Siyah yap veya çok koyu gri */
+}
+
+.page_copyright,
+.copyright_year,
+.credits {
+    color: #e0e0e0 !important; /* Açık değil, yeterince koyu ton kullan */
+}
+.page_copyright {
+    background-color: #222 !important;
+    color: #fff !important;
+}
