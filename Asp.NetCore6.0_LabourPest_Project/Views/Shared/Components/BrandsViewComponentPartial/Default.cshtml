@@ -17,12 +17,16 @@
                      data-responsive-xs="2">
                     @foreach (var item in Model)
                     {
+                        var brandName = System.IO.Path.GetFileNameWithoutExtension(item.BrandsImage).Replace("-", " ");
+
                         <a href="@item.BrandsImage">
                             <div class="brand-img-wrapper yunus">
-                                <img src="@item.BrandsImage" alt="">
+                                <img src="@item.BrandsImage" alt="@brandName">
+                                <span class="sr-only">@brandName markasına ait görsel</span>
                             </div>
                         </a>
                     }
+
                 </div>
             </div>
         </div>
@@ -47,5 +51,16 @@
             /* Eğer tamamen doldurmasını istiyorsanız, 'cover' kullanabilirsiniz */
         }
 
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+        white-space: nowrap;
+    }
 </style>
 

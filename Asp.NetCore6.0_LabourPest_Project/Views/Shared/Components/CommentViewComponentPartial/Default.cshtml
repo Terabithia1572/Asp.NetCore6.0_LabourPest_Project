@@ -84,10 +84,20 @@
             <div class="row">
                 <div class="col-sm-12 text-center">
                     <div class="form-group">
+                        <div class="row justify-content-center mt-4 mb-4">
+                            <div class="col-md-8 d-flex justify-content-center">
+                                <div class="g-recaptcha" data-sitekey="6LeFuEMrAAAAAEn3ckOJfmG3FHi1YyV4sxgHz2Sb"></div>
+                            </div>
+                        </div>
+                        <br />
+
                         <input class="btn btn-maincolor3" type="submit" value="Gönder" />
                     </div>
                 </div>
+
             </div>
+           
+
         </form>
     </div>
 </div>
@@ -164,6 +174,7 @@
         });
     });
 </script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <style>
     .file-upload {
         position: relative;
@@ -210,5 +221,23 @@
         font-size: 1rem;
     }
 
+    .g-recaptcha {
+        transform: scale(1.05);
+        transform-origin: center;
+        border: 1px dashed #ccc;
+        padding: 10px;
+        border-radius: 6px;
+        background-color: #f8f8f8;
+        box-shadow: 0 0 10px rgba(0,0,0,0.03);
+    }
+
+    @@media (max-width: 576px) {
+        .g-recaptcha
+
+    {
+        transform: scale(0.95);
+    }
+
+    }
 
 </style>
