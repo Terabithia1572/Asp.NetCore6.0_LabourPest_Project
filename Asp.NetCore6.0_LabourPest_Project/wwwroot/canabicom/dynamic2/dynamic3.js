@@ -1,4 +1,4 @@
-<script>
+
     $(document).ready(function () {
         $('#partners-carousel').owlCarousel({
             loop: true, // Sonsuz döngü
@@ -19,4 +19,3 @@
             }
         });
     });
-</script>

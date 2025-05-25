@@ -22,49 +22,46 @@
         background: #222;
         color: #fff;
         padding: 10px 20px;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
         border-radius: 5px;
     }
 
-#mugla path {
-    fill: #aade87 !important;
+/* === GENEL İL STİLİ === */
+.il {
+    fill: #dcdcdc;
+    stroke: #fff;
+    stroke-width: 0.8;
+    transition: fill 0.3s ease;
 }
 
-#antalya path {
-    fill: #aade87 !important;
-}
+    .il:hover {
+        fill: #66ff66;
+        cursor: pointer;
+    }
 
-#mugla text {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    fill: #000000; /* Siyah renk */
-    font-weight: bold;
-}
+    /* === SEÇİLİ İLLER === */
+    .il[data-plakakodu='07'], /* Antalya */
+    .il[data-plakakodu='48'], /* Muğla */
+    #antalya,
+    #mugla {
+        fill: #9fe69f !important;
+    }
 
-#antalya text {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    fill: #000000; /* Siyah renk */
-    font-weight: bold;
-}
+        /* === ANTALYA & MUĞLA YAZILARI (SVG'de <text>) === */
+        #antalya text,
+        #mugla text {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            fill: #000;
+            font-weight: bold;
+        }
 
-
+/* === GENEL HARİTA STİLİ === */
 #turkiye-haritasi path {
     fill: #ccc;
+    transition: fill 0.3s ease;
 }
 
     #turkiye-haritasi path:hover {
         fill: #a1a1a1;
         cursor: pointer;
     }
-
-    #mugla path:hover {
-        fill: #a1a1a1 !important;
-        cursor: pointer;
-    }
-#antalya path:hover {
-    fill: #a1a1a1 !important;
-    cursor: pointer;
-  
-}
