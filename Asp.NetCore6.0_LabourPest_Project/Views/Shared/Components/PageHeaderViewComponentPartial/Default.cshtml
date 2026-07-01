@@ -1,101 +1,70 @@
-﻿<header class="page_header header-1 ls s-py-20 ">
-
+﻿<header class="page_header header-1 ls s-py-20">
 	<div class="container">
-
-		<div class="row ">
+		<div class="row">
+			<!-- LOGO -->
 			<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
-				<a href="/Home/Deneme" class="logo">
-					<img src="~/canabicom/images/labourpesticon2.webp" alt="LabourPest Logo"/>
+				<a href="/Home/Deneme" class="logo" aria-label="Ana Sayfa - Labour Pest">
+					<img 
+						src="~/canabicom/images/labourpesticon2.webp" 
+						alt="LabourPest Logo" 
+						width="204" 
+						height="204" 
+						loading="eager"
+					/>
 					<span class="d-flex flex-column">
 						<span class="logo-text color-darkgrey">Labour</span>
 						<span class="logo-subtext">Pest</span>
 					</span>
 				</a>
 			</div>
-			<div class="col-xl-7 col-lg-6 col-md-5 col-sm-4 col-12 d-flex align-items-center justify-content-end ">
-				<!-- main nav start -->
-				<nav class="top-nav">
+
+			<!-- NAVIGATION -->
+			<div class="col-xl-7 col-lg-6 col-md-5 col-sm-4 col-12 d-flex align-items-center justify-content-end">
+				<nav class="top-nav" aria-label="Ana menü">
 					<ul class="nav sf-menu">
-					
-
+						<li><a href="#home" title="Ana Sayfa">Ana Sayfa</a></li>
+						<li><a href="#about" title="Hakkımızda">Hakkımızda</a></li>
+						<li><a href="#blog" title="Bloglar">Bloglar</a></li>
+						<li><a href="#comment" title="Yorumlar">Yorumlar</a></li>
 						<li>
-							<a href="#home">Ana Sayfa</a>
-						</li>
-
-						<li>
-							<a href="#about">Hakkımızda</a>
-						</li>
-
-						<li>
-							<a href="#blog">Bloglar</a>
-						</li>
-						
-						<li>
-							<a href="#comment">Yorumlar</a>
-						</li>
-						
-						<li>
-							<a href="#box_wrapper">Diğer Menüler</a>
+							<a href="#box_wrapper" title="Diğer Menüler">Diğer Menüler</a>
 							<ul>
-								
-								<li>
-									<a href="#product">Ürünler</a>
-								</li>
-								<li>
-									<a href="#gallery">Galeri</a>
-								</li>
-								<li>
-									<a href="/Contact/AddContact">İletişim</a>
-								</li>
-								<li>
-									<a href="#ss">Sık Sorulanlar</a>
-								</li>
-								<li>
-									<a href="#services">Servislermiz</a>
-								</li>
-								<li>
-									<a href="#brands">Haşereler</a>
-								</li>
-								<li>
-									<a href="#subscribe">Bültenimiz</a>
-								</li>
-								<li>
-									<a href="#category">Kategoriler</a>
-								</li>
-								<li>
-									<a href="/JobApplication/AddJobApplication">İş Başvurusu</a>
-								</li>
-								
+								<li><a href="#product" title="Ürünler">Ürünler</a></li>
+								<li><a href="#gallery" title="Galeri">Galeri</a></li>
+								<li><a href="/Contact/AddContact" title="İletişim">İletişim</a></li>
+								<li><a href="#ss" title="Sık Sorulan Sorular">Sık Sorulanlar</a></li>
+								<li><a href="#services" title="Servislerimiz">Servislerimiz</a></li>
+								<li><a href="#brands" title="Haşereler">Haşereler</a></li>
+								<li><a href="#subscribe" title="Bülten">Bültenimiz</a></li>
+								<li><a href="#category" title="Kategoriler">Kategoriler</a></li>
+								<li><a href="/JobApplication/AddJobApplication" title="İş Başvurusu">İş Başvurusu</a></li>
 							</ul>
 						</li>
+
+						<!-- Mobil Giriş Butonu -->
 						<li class="d-block d-md-none">
-							<a href="/Login/SignIN" style="display:inline-block; width: 150px; text-align:center; padding: 10px 0; font-size: 14px; font-weight: 500; background-color: #55c2bb; color: white; border-radius: 30px; margin: 8px auto; white-space: nowrap;">Müşteri Girişi</a>
+							<a href="/Login/SignIN"
+							   style="display:inline-block; width: 150px; text-align:center; padding: 10px 0; font-size: 14px; font-weight: 500; background-color: #55c2bb; color: white; border-radius: 30px; margin: 8px auto; white-space: nowrap;"
+							   aria-label="Müşteri Giriş Sayfasına Git">
+								Müşteri Girişi
+							</a>
 						</li>
-						<!-- contacts -->
-						
-						<!-- eof contacts -->
-					
-					
 					</ul>
 				</nav>
-				<!-- eof main nav -->
-
 			</div>
+
+			<!-- Masaüstü Giriş Butonu -->
 			<div class="col-xl-2 col-lg-3 col-md-4 col-sm-5 col-12 d-none d-sm-flex align-items-center justify-content-md-center justify-content-xl-end">
-				<a href="/Login/SignIN" class="btn btn-maincolor4">Müşteri Girişi</a>
-
+				<a href="/Login/SignIN" class="btn btn-maincolor4" aria-label="Müşteri Giriş Sayfasına Git">Müşteri Girişi</a>
 			</div>
-			<button type="button" class="close btn btn-maincolor4" data-dismiss="modal" aria-label="Close">
+
+			<!-- Kapatma Butonu -->
+			<button type="button" class="close btn btn-maincolor4" data-dismiss="modal" aria-label="Menüyü Kapat">
 				<span aria-hidden="true">&times;</span>
 			</button>
-
 		</div>
-
 	</div>
-	<!-- header toggler -->
-	<span class="toggle_menu"><span></span></span>
+
+	<!-- Menü Toggle Butonu -->
+	<span class="toggle_menu" aria-label="Menüyü Aç" role="button" tabindex="0"><span></span></span>
 </header>
-<style>
-
-
-</style>

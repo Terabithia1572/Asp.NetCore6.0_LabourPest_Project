@@ -1,17 +1,26 @@
 ﻿@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment env
-<section class="ls ms  map-section s-pt-xl-150 s-pt-lg-130 s-pt-md-90 s-pt-60 s-pb-xl-140 s-pb-lg-120 s-pb-md-80 s-pb-50 text-center text-sm-left">
+<section class="ls ms map-section s-pt-xl-150 s-pt-lg-130 s-pt-md-90 s-pt-60 s-pb-xl-140 s-pb-lg-120 s-pb-md-80 s-pb-50 text-center text-sm-left">
     <div class="container">
         <div class="row">
-            <div class="col-lg-7">
+            <!-- Harita Alanı -->
+            <div class="col-lg-7 col-12 mb-5 mb-lg-0">
                 <div class="il-tooltip"></div>
-                <div class="harita-wrap">
-                    <div class="harita-wrap">
-                        @Html.Raw(System.IO.File.ReadAllText(System.IO.Path.Combine(env.WebRootPath, "canabicom/svg/turkiye-haritasi-final.svg")))
-                    </div>
+                <div class="harita-wrap text-center">
+                    <picture>
+                        <source srcset="~/canabicom/svg/turkiye-haritasi-final3.webp" type="image/webp">
+                        <img src="~/canabicom/svg/turkiye-haritasi-final.png"
+                             alt="Türkiye Haritası"
+                             class="img-fluid"
+                             loading="lazy"
+                             width="1200"
+                             height="700">
+                    </picture>
+
                 </div>
             </div>
 
-            <div class="col-lg-5">
+            <!-- Bilgi Alanı -->
+            <div class="col-lg-5 col-12">
                 <div class="divider-80 hidden-below-md hidden-above-lg"></div>
                 <div class="divider-50 hidden-above-md"></div>
                 <h1 class="special-heading sub-title"><span>Labour Pest ŞUBELERİMİZ</span></h1>
@@ -51,4 +60,13 @@
         </div>
     </div>
 </section>
-<link rel="stylesheet" href="~/css/turkiye-haritasi.css" />
+<style>
+    .harita-wrap picture img {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+        display: block;
+    }
+
+</style>
+                        

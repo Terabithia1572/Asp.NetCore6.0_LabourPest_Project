@@ -1,97 +1,136 @@
 ﻿@model List<HomePage>
+@{
+    bool isFirst = true;
+    var firstImage = Model.FirstOrDefault()?.HomePageImage ?? "";
+}
+<!-- Görsel ön yükleme -->
+<link rel="preload" as="image" href="@firstImage" />
+
 <section class="page_slider">
-	<div class="mouse_down">
-		<a href="#about"><img src="~/canabicom/images/mouse.webp" alt="mouse"></a>
-		<svg width="320" height="45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-			<g>
-				<title>Layer 1</title>
-				<g stroke="null" transform="translate(0,41) scale(0.10000000149011612,-0.10000000149011612)" fill="#000000" id="svg_1">
-					<path stroke="null" d="m1473.10742,340.22054c-80.80281,-29.99595 -133.2782,-69.99055 -259.12626,-198.97314c-125.84807,-128.98259 -190.39744,-170.97692 -286.52491,-184.97503c-28.32742,-4.99933 271.66462,-7.99891 666.39101,-7.99891c394.72638,0 695.64718,2.99959 668.71292,6.99905c-98.4494,14.99798 -159.74809,53.99271 -290.23998,186.97476c-132.34943,134.98178 -177.39467,168.97719 -260.05503,197.97328c-51.54662,17.99757 -189.93304,17.99757 -239.15775,0l0,-0.00001z" id="svg_2" />
-				</g>
-			</g>
-		</svg>
-	</div>
-	<div class="flexslider">
-		<ul class="slides">
-			@foreach (var item in Model)
-			{
-				<li class="ds cover-image s-overlay text-left">
-					<img src="@item.HomePageImage" alt="img" loading="lazy">
+    <div class="mouse_down">
+        <a href="#about">
+            <img src="~/canabicom/images/mouse.webp" alt="mouse" loading="lazy" width="14" height="24">
+        </a>
+        <svg width="320" height="45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+            <g>
+                <title>Layer 1</title>
+                <g stroke="null" transform="translate(0,41) scale(0.1,-0.1)" fill="#000000" id="svg_1">
+                    <path stroke="null" d="m1473.1,340.2c-80.8,-30 -133.3,-70 -259.1,-199c-125.8,-129 -190.4,-171 -286.5,-185c-28.3,-5 271.7,-8 666.4,-8s695.6,3 668.7,7c-98.4,15 -159.7,54 -290.2,187c-132.3,135 -177.4,169 -260.1,198c-51.5,18 -189.9,18 -239.2,0z" id="svg_2" />
+                </g>
+            </g>
+        </svg>
+    </div>
 
-					<div class="container">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="intro_layers_wrapper">
-									<div class="intro_layers">
-										<div class="intro_layer">
+    <div class="flexslider">
+        <ul class="slides">
+            @foreach (var item in Model)
+            {
+                <li class="ds cover-image s-overlay text-left">
+                    <img src="@item.HomePageImage"
+                         alt="@item.HomePageDescription1 @item.HomePageDescription2"
+                         class="homepage-slider-img"
+                         loading="@(isFirst ? "eager" : "lazy")"
+                         width="1920"
+                         height="500" />
 
-											<h2 class="text-capitalize intro_featured_word">
-												<span class="color-main">@item.HomePageDescription1</span> @item.HomePageDescription2
-											</h2>
+                    @{
+                        isFirst = false;
+                    }
 
-											@{
-												// HomePageSubDescription içeriğini alalım.
-												var subDesc = item.HomePageSubDescription;
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="intro_layers_wrapper">
+                                    <div class="intro_layers">
+                                        <div class="intro_layer">
+                                            <h2 class="text-capitalize intro_featured_word">
+                                                <span class="color-main">@item.HomePageDescription1</span> @item.HomePageDescription2
+                                            </h2>
 
-												// Eğer metin "İşimiz" ve "Gücümüz" içeriyorsa, bu kelimeleri değiştirelim.
-												if (subDesc.Contains("İŞİMİZ") && subDesc.Contains("GÜCÜMÜZ"))
-												{
-													subDesc = subDesc
-													.Replace("İŞİMİZ", "<span style='color:#55c2bb; font-weight:bold;'>İŞİMİZ</span>")
-													.Replace("GÜCÜMÜZ", "<span style='color:#55c2bb; font-weight:bold;'>GÜCÜMÜZ</span>");
-												}
-											}
-											<p class="intro_after_featured_word text-sm-left" style="color:floralwhite">
-												@Html.Raw(subDesc)
-											</p>
-											<a href="/Contact/AddContact" class="btn btn-maincolor medium-btn">İletişime Geç</a>
+                                            @{
+                                                var subDesc = item.HomePageSubDescription;
+                                                if (subDesc.Contains("İŞİMİZ") && subDesc.Contains("GÜCÜMÜZ"))
+                                                {
+                                                    subDesc = subDesc
+                                                    .Replace("İŞİMİZ", "<span style='color:#55c2bb; font-weight:bold;'>İŞİMİZ</span>")
+                                                    .Replace("GÜCÜMÜZ", "<span style='color:#55c2bb; font-weight:bold;'>GÜCÜMÜZ</span>");
+                                                }
+                                            }
 
-										</div>
-									</div> <!-- eof .intro_layers -->
-								</div> <!-- eof .intro_layers_wrapper -->
-							</div> <!-- eof .col-* -->
-						</div><!-- eof .row -->
-					</div><!-- eof .container-fluid -->
-				</li>
-			}
+                                            <p class="intro_after_featured_word text-sm-left" style="color:floralwhite">
+                                                @Html.Raw(subDesc)
+                                            </p>
 
-		</ul>
-	</div> <!-- eof flexslider -->
+                                            <a href="/Contact/AddContact" class="btn btn-maincolor medium-btn">İletişime Geç</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
 </section>
 
-
 <style>
-	.intro_featured_word {
-		font-size: 36px; /* Genel yazı boyutu */
-		line-height: 1.5; /* Satır aralığı */
-	}
+    .intro_featured_word {
+        font-size: 36px;
+        line-height: 1.5;
+    }
 
-	.color-main {
-		font-size: inherit; /* H2 boyutuna eşitler */
-		font-weight: bold; /* Yazının kalınlığını artırır (isteğe bağlı) */
-		color: #ff6600; /* Yazı rengi */
-	}
+    .color-main {
+        font-size: inherit;
+        font-weight: bold;
+        color: #ff6600;
+    }
 
+    .slides img,
+    .homepage-slider-img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        display: block;
+        max-height: 500px;
+    }
 
-	.slides img {
-		width: 100%; /* Resmi slider genişliğine göre ölçeklendirir */
-		height: auto; /* Yüksekliği orantılı olarak ayarlar */
-		object-fit: cover; /* Resmi alanı kaplayacak şekilde kırpar */
-		max-height: 500px; /* Maksimum yükseklik belirler (ihtiyaca göre ayarlayın) */
-		overflow: hidden; /* Taşan içeriği gizler */
-	}
+    .vurgulu {
+        color: #55c2bb;
+        font-weight: bold;
+    }
 
-	.slides img {
-		width: 100%; /* Resmi slider genişliğine göre ölçeklendirir */
-		height: auto; /* Yüksekliği orantılı olarak ayarlar */
-		object-fit: cover; /* Resmi alanı kaplayacak şekilde kırpar */
-		max-height: 500px; /* Maksimum yükseklik belirler (ihtiyaca göre ayarlayın) */
-		overflow: hidden; /* Taşan içeriği gizler */
-	}
+    @@media screen and (max-width: 768px) {
+        .homepage-slider-img
 
-	.vurgulu {
-		color: #55c2bb;
-		font-weight: bold;
-	}
+    {
+        height: 240px;
+        max-height: 240px;
+    }
 
+    .intro_featured_word {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .intro_after_featured_word {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .intro_layer {
+        text-align: center !important;
+    }
+
+    .btn.medium-btn {
+        font-size: 14px;
+        padding: 8px 14px;
+        display: inline-block;
+    }
+
+    .mouse_down {
+        display: none;
+    }
+
+    }
 </style>

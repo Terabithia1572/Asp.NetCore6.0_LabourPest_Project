@@ -29,7 +29,9 @@
                             }
                             else
                             {
-                                <img class="yunus1" src="@item.ServicesImageURL" alt="@item.ServicesTitle" />
+                                <img class="yunus1" src="@item.ServicesImageURL" alt="@item.ServicesTitle" loading="lazy"
+                                     width="600"
+                                     height="400" />
                             }
                         </div>
                         <h6 class="text-uppercase">@item.ServicesTitle</h6>
@@ -47,12 +49,33 @@
     #services .yunus1 {
         display: block;
         width: 100%;
-        max-width: 600px; /* Genişlik sabit */
-        height: 400px; /* Yükseklik sabit */
-        object-fit: cover; /* Resmi en iyi şekilde kırparak sığdırır */
-        border-radius: 10px; /* Hafif yuvarlatılmış köşeler */
+        max-width: 600px;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 10px;
     }
 
+    /* Mobil görünüm için özel düzenleme */
+    @@media (max-width: 576px) {
+        #services .image-container
 
+    {
+        width: 100%;
+        height: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
 
+    #services .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    }
 </style>

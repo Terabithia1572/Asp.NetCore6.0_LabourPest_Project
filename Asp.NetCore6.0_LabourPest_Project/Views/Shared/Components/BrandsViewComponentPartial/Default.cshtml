@@ -21,35 +21,49 @@
 
                         <a href="@item.BrandsImage">
                             <div class="brand-img-wrapper yunus">
-                                <img src="@item.BrandsImage" alt="@brandName">
+                                <img src="@item.BrandsImage"
+                                     alt="@brandName markasına ait görsel"
+                                     width="300"
+                                     height="300"
+                                     loading="lazy">
                                 <span class="sr-only">@brandName markasına ait görsel</span>
                             </div>
                         </a>
                     }
-
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 <style>
-    /* Sabit yükseklik belirleyin. Örneğin: */
     .yunus {
-        height: 100px; /* İstediğiniz sabit yüksekliği verin */
-        width: auto; /* Genişlik isteğe bağlı */
-        overflow: hidden; /* Taşan kısımların gizlenmesi */
+        height: 100px;
+        width: auto;
+        overflow: hidden;
         display: flex;
-        align-items: center; /* Resmi dikeyde ortalamak için */
-        justify-content: center; /* Resmi yatayda ortalamak için */
+        align-items: center;
+        justify-content: center;
     }
 
         .yunus img {
-            /* Resmin wrapper alanına uyum sağlaması için */
             width: auto;
             height: 100%;
-            object-fit: contain; /* Resmin oranını bozmadan sığdırır */
-            /* Eğer tamamen doldurmasını istiyorsanız, 'cover' kullanabilirsiniz */
+            object-fit: contain;
         }
+
+    @@media (max-width: 576px) {
+        .yunus
+
+    {
+        height: 70px !important;
+    }
+
+    .yunus img {
+        height: 70px !important;
+    }
+
+    }
 
     .sr-only {
         position: absolute;
@@ -63,4 +77,3 @@
         white-space: nowrap;
     }
 </style>
-

@@ -4,9 +4,52 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Asp.NetCore6._0_LabourPest_Project</title>
+    <meta name="description" content="LabourPest olarak ev ve iş yerleriniz için böcek, fare, tahta kurusu ve tüm haşere türlerine karşı garantili ilaçlama hizmeti sunuyoruz.">
+    <meta name="keywords" content="ilaçlama, pest control, böcek ilaçlama, haşere kontrolü, Konya ilaçlama, profesyonel ilaçlama">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Asp.NetCore6._0_LabourPest_Project.styles.css" asp-append-version="true" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="LabourPest - Antalya, İzmir ve Muğla İlaçlama Firması" />
+    <meta property="og:description" content="Antalya, İzmir ve Muğla bölgelerinde profesyonel haşere kontrol hizmeti." />
+    <meta property="og:image" content="https://labourpest.com/labourpestcustomer/assets/img/logo.png" />
+    <meta property="og:url" content="https://labourpest.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+        {
+          "@@context": "https://schema.org",
+          "@@type": "LocalBusiness",
+          "name": "LabourPest",
+          "image": "https://labourpest.com/labourpestcustomer/assets/img/logo.png",
+          "@@id": "https://labourpest.com",
+          "url": "https://labourpest.com",
+          "telephone": "+90-533-699-2275",
+          "address": {
+            "@@type": "PostalAddress",
+            "streetAddress": "Merkez",
+            "addressLocality": "Antalya, İzmir, Muğla",
+            "postalCode": "00000",
+            "addressCountry": "TR"
+          },
+          "geo": {
+            "@@type": "GeoCoordinates",
+            "latitude": 36.8969,
+            "longitude": 30.7133
+          },
+          "openingHours": "Mo-Sa 09:00-18:00",
+          "sameAs": [
+            "https://facebook.com/labourpest",
+            "https://instagram.com/labourpest",
+            "https://linkedin.com/company/labourpest"
+          ]
+        }
+    </script>
+    <link rel="canonical" href="@Context.Request.Scheme://@Context.Request.Host@Context.Request.Path" />
+
+    <!-- 👆 Buraya kadar -->
 </head>
 <body>
     <header>

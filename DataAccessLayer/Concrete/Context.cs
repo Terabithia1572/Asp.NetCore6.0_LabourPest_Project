@@ -13,7 +13,7 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-             // optionsBuilder.UseSqlServer("server=.;database=LabourPestDB;integrated security=true;");
+              optionsBuilder.UseSqlServer("server=.;database=LabourPestDB;integrated security=true;");
 
         }
         public DbSet<Admin> Admins { get; set; }

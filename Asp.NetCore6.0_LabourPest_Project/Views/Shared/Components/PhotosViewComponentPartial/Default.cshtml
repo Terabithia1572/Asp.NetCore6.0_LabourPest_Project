@@ -16,20 +16,59 @@
                 <div class="@image.ImageClass custom-image-container">
                     <div class="vertical-item item-gallery content-absolute text-center">
                         <div class="item-media">
-                            <!-- Resim için CSS sınıfı uygulanır -->
-                            <img src="@image.ImageUpload" alt="img" class="responsive-image">
+                            <img src="@image.ImageUpload"
+                                 alt="Galeri - @System.IO.Path.GetFileNameWithoutExtension(image.ImageUpload)"
+                                 loading="lazy"
+                                 class="responsive-gallery-img" />
                         </div>
                         <div class="item-content">
                             <div class="icons-link">
-                                <a class="link-zoom photoswipe-link" title="" href="@image.ImageUpload"><i class="fa fa-search-plus"></i></a>
+                                <a class="link-zoom photoswipe-link"
+                                   aria-label="Resmi büyütmek için tıklayın"
+                                   title="Galeriyi büyüt"
+                                   href="@image.ImageUpload">
+                                    <i class="fa fa-search-plus"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             }
-            @* Resimleri özel boyutlandırma ve sıralama tamamlandı *@
         </div>
         <div class="mb--10"></div>
     </div>
 </section>
+
+<style>
+    .responsive-gallery-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+
+        .responsive-gallery-img:hover {
+            transform: scale(1.02);
+        }
+
+    @@media (max-width: 768px) {
+        .responsive-gallery-img
+
+    {
+        aspect-ratio: 4 / 3;
+    }
+
+    .item-gallery .item-content {
+        padding: 0 10px;
+    }
+
+    .item-gallery .icons-link i {
+        font-size: 18px;
+    }
+
+    }
+</style>
+
 <link href="~/canabicom/dynamic5/resim.css" rel="stylesheet" />
