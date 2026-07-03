@@ -32,6 +32,20 @@ builder.Services.AddScoped<IGenericDal<Blog>, EfBlogRepository>();
 builder.Services.AddScoped<IBlogDal, EfBlogRepository>();
 builder.Services.AddScoped<IBlogService, BlogManager>(); // Generic Service'ten türeyen ana arayüzün
 
+// ✅ JobApplication Modülü İçin Bağımlılık Enjeksiyonu (Dependency Injection) Tanımı
+builder.Services.AddScoped<IGenericDal<JobApplication>, EfJobApplicationRepository>();
+builder.Services.AddScoped<IJobApplicationDal, EfJobApplicationRepository>();
+builder.Services.AddScoped<IJobApplicationService, JobApplicationManager>();
+
+builder.Services.AddScoped<IGenericDal<FAQ>, EfFAQRepository>();
+builder.Services.AddScoped<IFAQDal, EfFAQRepository>();
+builder.Services.AddScoped<IFAQService, FAQManager>();
+
+builder.Services.AddScoped<IGenericDal<Product>, EfProductRepository>();
+builder.Services.AddScoped<IProductDal, EfProductRepository>();
+builder.Services.AddScoped<IProductService, ProductManager>();
+
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
