@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace EntityLayer.Concrete
@@ -23,15 +24,19 @@ namespace EntityLayer.Concrete
         // BlogCategory ile ilişki
         public int BlogCategoryID { get; set; }
         [ForeignKey("BlogCategoryID")]
+        [JsonIgnore] // 🎯 Swagger'da görünmesini engeller
         public BlogCategory BlogCategory { get; set; }
 
         // BlogComments ile ilişki (1-n ilişki)
+        [JsonIgnore] // 🎯 Swagger'da görünmesini engeller
         public List<BlogComment> BlogComments { get; set; }
 
         // Writer ile ilişki
         public int WriterID { get; set; }
         [ForeignKey("WriterID")]
+        [JsonIgnore] // 🎯 Swagger'da görün
         public Writer Writer { get; set; }
+        [JsonIgnore] // 🎯 Swagger'da görünmesini engeller
         public List<BlogTag> BlogTags { get; set; }
 
     }

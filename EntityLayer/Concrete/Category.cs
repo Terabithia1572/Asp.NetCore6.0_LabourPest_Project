@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace EntityLayer.Concrete
@@ -15,6 +16,7 @@ namespace EntityLayer.Concrete
         public string CategoryDescription { get; set; }
         public string CategoryImages { get; set; }
         public bool CategoryStatus { get; set; }
+        [JsonIgnore] // 🎯 Swagger'da görünmesini engeller
         public List<Product> Products { get; set; }
     }
 }
