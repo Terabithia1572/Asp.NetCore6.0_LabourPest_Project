@@ -1,0 +1,39 @@
+@{
+    Layout = null;
+    // Public pages need Google's supported checkbox resources. Keep this policy scoped
+    // to this layout instead of changing authenticated portals' middleware policies.
+    Context.Response.Headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/; connect-src 'self' https://www.google.com/recaptcha/; object-src 'none'; base-uri 'self'; form-action 'self';";
+    Context.Response.Headers.Remove("Cross-Origin-Embedder-Policy");
+    Context.Response.Headers["Cross-Origin-Opener-Policy"] = "same-origin-allow-popups";
+    var title = ViewData["PublicHome"] as bool? == true ? "LabourPest | Profesyonel Haşere Kontrol ve İlaçlama Hizmeti" : $"{ViewData["Title"]} | LabourPest";
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@title</title>
+    <meta name="description" content="@(ViewData["Description"] ?? "LabourPest olarak ev ve iş yerleriniz için böcek, fare, tahta kurusu ve tüm haşere türlerine karşı garantili ilaçlama hizmeti sunuyoruz.")" />
+    <meta name="keywords" content="ilaçlama, pest control, böcek ilaçlama, haşere kontrolü, Konya ilaçlama, profesyonel ilaçlama" />
+    <link rel="canonical" href="@Context.Request.Scheme://@Context.Request.Host@Context.Request.Path@(Context.Request.Query.ContainsKey("bolum") ? Context.Request.QueryString.ToString() : "")" />
+    <partial name="~/Views/Shared/Public/_Metadata.cshtml" />
+    <link rel="icon" href="~/canabicom/images/labourpesticon2.webp" />
+    <link rel="stylesheet" href="~/public-web/css/public.css" asp-append-version="true" />
+    <noscript><style>@@media(max-width:980px){.lp-public .lp-nav{position:static}.lp-public .lp-header{position:static}}</style></noscript>
+    <script src="~/public-web/js/public.js" asp-append-version="true" defer></script>
+    <script src="~/public-web/js/motion.js" asp-append-version="true" defer></script>
+    @if (ViewData["PublicHome"] as bool? == true) { <script src="~/public-web/js/carousels.js" asp-append-version="true" defer></script> }
+    @await RenderSectionAsync("Head", required: false)
+</head>
+<body class="lp-public">
+    <partial name="~/Views/Shared/Public/_Header.cshtml" />
+    <main id="main-content" tabindex="-1">@RenderBody()</main>
+    <partial name="~/Views/Shared/Public/_Footer.cshtml" />
+    <dialog class="lp-lightbox" aria-labelledby="gallery-caption">
+        <form method="dialog"><button class="lp-button lp-button-outline" aria-label="Görseli kapat">Kapat ×</button></form>
+        <img src="~/public-web/images/placeholder.svg" alt="" width="1000" height="700" />
+        <p id="gallery-caption"></p>
+    </dialog>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

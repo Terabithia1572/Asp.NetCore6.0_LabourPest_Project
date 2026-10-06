@@ -1,0 +1,13 @@
+@model int
+@{
+    var page = int.TryParse(Context.Request.Query["sayfa"], out var requested) ? Math.Clamp(requested, 1, Math.Max(1, Model)) : 1;
+    var section = Context.Request.Query["bolum"].ToString();
+}
+@if (Model > 1)
+{
+    <nav class="lp-pagination" aria-label="Sayfalama">
+        @if (page > 1) { <a class="lp-button lp-button-outline" asp-controller="Home" asp-action="Deneme" asp-route-bolum="@(section)" asp-route-sayfa="@(page - 1)">← Önceki</a> }
+        <span>Sayfa @(page) / @Model</span>
+        @if (page < Model) { <a class="lp-button lp-button-outline" asp-controller="Home" asp-action="Deneme" asp-route-bolum="@(section)" asp-route-sayfa="@(page + 1)">Sonraki →</a> }
+    </nav>
+}

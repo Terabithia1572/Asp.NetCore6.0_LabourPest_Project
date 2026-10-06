@@ -1,119 +1,19 @@
-﻿@model Contact
-@{
-    ViewData["Title"] = "AddContact";
-    Layout = "~/Views/Shared/_MainLayout.cshtml";
-}
-
-<section class="ls ms s-py-xl-150 s-py-lg-130 s-py-md-90 s-py-60">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 animate" data-animation="scaleAppear">
-				<h4 class="special-heading text-center text-capitalize">Bizimle İletişime Geçin</h4>
-				<p class="special-heading text-center">Merak Ettiklerinizi Bize Sorun!</p>
-				<div class="divider-50 hidden-below-md"></div>
-				<div class="divider-20 hidden-above-md"></div>
-
-				<!-- Form -->
-				<form class="contact-form content-center c-mb-40 c-gutter-20" method="post" action="/Contact/AddContact">
-
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="form-group has-placeholder">
-								<label for="ContactUserName">ADINIZ SOYADINIZ <span class="required">*</span></label>
-								<input type="text" name="ContactUserName" id="ContactUserName" class="form-control" placeholder="ADINIZ SOYADINIZ" required>
-							</div>
-						</div>
-
-						<div class="col-sm-12">
-							<div class="form-group has-placeholder">
-								<label for="ContactSubject">KONU <span class="required">*</span></label>
-								<input type="text" name="ContactSubject" id="ContactSubject" class="form-control" placeholder="KONU" required>
-							</div>
-						</div>
-
-						<div class="col-sm-12">
-							<div class="form-group has-placeholder">
-								<label for="ContactMail">MAİL <span class="required">*</span></label>
-								<input type="email" name="ContactMail" id="ContactMail" class="form-control" placeholder="Mail" required>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-sm-12 mb-0">
-							<div class="form-group has-placeholder">
-								<label for="ContactMessage">MESAJINIZ</label>
-								<textarea name="ContactMessage" id="ContactMessage" rows="3" class="form-control" placeholder="MESAJINIZ"></textarea>
-							</div>
-						</div>
-					</div>
-					<br />
-					<div class="row">
-						<div class="col-sm-12 text-center">
-							<div class="form-group">
-								<button class="btn btn-maincolor5" type="submit">Ekle</button>
-							</div>
-						</div>
-					</div>
-				</form>
-				<!-- Form End -->
-			</div>
-
-			<div class="col-lg-4 animate" data-animation="scaleAppear">
-				<div class="p-xl-60 p-lg-40 p-30">
-					<h4 class="special-heading">İletişim Bilgileri</h4>
-					<div class="divider-50 hidden-below-md"></div>
-					<div class="divider-20 hidden-above-md"></div>
-					<div class="media text-center text-sm-left mb-30">
-						<div class="icon-styled color-main fs-28">
-							<img src="~/canabicom/images/icons/icon1.png" alt="">
-						</div>
-						<div class="media-body">
-							<h5>Adres</h5>
-							<p>
-								Elmalı Mahallesi 7.Sokak<br>
-								Zamanlar İş Merkezi No:18/406<br>
-								Muratpaşa/ANTALYA
-							</p>
-						</div>
-					</div>
-					<div class="media text-center text-sm-left mb-30">
-						<div class="icon-styled color-main fs-28">
-							<img src="~/canabicom/images/icons/icon2.png" alt="">
-						</div>
-						<div class="media-body">
-							<h5>Çalışma Saatleri</h5>
-							<p>Pzt-Cuma: 09:00 - 17:00</p>
-						</div>
-					</div>
-					<div class="media text-center text-sm-left">
-						<div class="icon-styled color-main fs-28">
-							<img src="~/canabicom/images/icons/icon3.png" alt="">
-						</div>
-						<div class="media-body">
-							<h5>Mail Adresi</h5>
-							<p>
-								<a href="mailto:murat.koc@labourpest.com">murat.koc@labourpest.com</a>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<style>
-	/* Normal durumdaki buton */
-	.btn-maincolor5 {
-		background-color: #55c2bb;
-		color: white; /* Normal durumda metin rengini istediğiniz gibi ayarlayabilirsiniz */
-		border: none; /* İsteğe bağlı: Kenarlık yok */
-		transition: background-color 0.3s, color 0.3s; /* Geçiş efektleri */
-	}
-
-		/* Üzerine gelindiğinde */
-		.btn-maincolor5:hover {
-			background-color: #ebc912;
-			color: white;
-		}
-</style>
+@model Contact
+@{ ViewData["Title"] = "İletişim ve teklif talebi"; Layout = "~/Views/Shared/_PublicLayout.cshtml"; }
+<header class="lp-page-heading"><div class="lp-container"><nav class="lp-breadcrumb" aria-label="İçerik yolu"><a asp-controller="Home" asp-action="Deneme">Ana Sayfa</a><span aria-hidden="true">/</span><span>İletişim</span></nav><h1>Birlikte çözüm bulalım.</h1><p>İhtiyacınızı paylaşın, hizmetlerimiz hakkında bilgi alın.</p></div></header>
+<section class="lp-section"><div class="lp-container lp-detail-grid">
+    <div class="lp-panel"><h2>Bize yazın</h2><p class="lp-help">Yıldız (*) ile işaretlenmiş alanlar zorunludur.</p>
+        <form class="lp-form" method="post" action="/Contact/AddContact">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="All" role="alert"></div>
+            <div class="lp-form-grid">
+                <div><label for="ContactUserName">Adınız soyadınız *</label><input asp-for="ContactUserName" autocomplete="name" required /><span asp-validation-for="ContactUserName"></span></div>
+                <div><label for="ContactMail">E-posta adresiniz *</label><input asp-for="ContactMail" type="email" autocomplete="email" required /><span asp-validation-for="ContactMail"></span></div>
+            </div>
+            <div><label for="ContactSubject">Konu *</label><input asp-for="ContactSubject" required /><span asp-validation-for="ContactSubject"></span></div>
+            <div><label for="ContactMessage">Mesajınız</label><textarea asp-for="ContactMessage" rows="6"></textarea><span asp-validation-for="ContactMessage"></span></div>
+            <div><button class="lp-button" type="submit">Mesajı gönder <span aria-hidden="true">↗</span></button></div>
+        </form>
+    </div>
+    <partial name="~/Views/Shared/Public/_ContactInfo.cshtml" />
+</div></section>

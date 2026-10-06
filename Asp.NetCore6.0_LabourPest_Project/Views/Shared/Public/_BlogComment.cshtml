@@ -1,0 +1,29 @@
+@model Asp.NetCore6._0_LabourPest_Project.Models.CommentTreeViewModel
+@{
+    var name = string.IsNullOrWhiteSpace(Model.AuthorName) ? "Ziyaretçi" : Model.AuthorName;
+    var initials = string.Concat(name.Split(' ', StringSplitOptions.RemoveEmptyEntries).Take(2).Select(x => x[0])).ToUpper(new System.Globalization.CultureInfo("tr-TR"));
+    var loggedIn = User.Identity?.IsAuthenticated == true;
+    int.TryParse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value, out var writerId);
+}
+<li class="comment" id="comment-@Model.CommentID">
+    <article class="comment-body">
+        <header class="comment-author"><span class="lp-avatar" aria-hidden="true">@initials</span><strong>@name</strong></header>
+        <div class="comment-content"><strong class="comment-title">@Model.Title</strong><p class="comment-text">@Model.Content</p></div>
+        @if (loggedIn && Model.WriterID == writerId)
+        {
+            <div id="editForm-@Model.CommentID" class="lp-form" style="display:none;">
+                <div><label for="editTitle-@Model.CommentID">Konu</label><input id="editTitle-@Model.CommentID" value="@Model.Title" /></div>
+                <div><label for="editContent-@Model.CommentID">Yorum</label><textarea id="editContent-@Model.CommentID" rows="3">@Model.Content</textarea></div>
+                <div class="lp-actions"><button type="button" class="lp-button" onclick="submitEdit(@Model.CommentID)">Kaydet</button><button type="button" class="lp-button lp-button-outline" onclick="cancelEdit(@Model.CommentID)">İptal</button></div>
+            </div>
+        }
+        <footer class="comment-footer"><time id="comment-time-@Model.CommentID" datetime="@Model.CommentDate.ToString("s")">@Model.CommentDate.ToString("dd.MM.yyyy HH:mm")</time>
+            @if (loggedIn) { <button type="button" class="lp-button lp-button-outline" onclick="setReplyTo(@Model.CommentID)">Yanıtla</button> }
+            @if (loggedIn && Model.WriterID == writerId) { <button type="button" class="lp-button lp-button-outline comment-edit-btn" data-edit-id="@Model.CommentID">Düzenle</button> }
+        </footer>
+    </article>
+    @if (Model.Replies?.Any() == true)
+    {
+        <ol class="children">@foreach (var reply in Model.Replies) { <partial name="~/Views/Shared/Public/_BlogComment.cshtml" model="reply" /> }</ol>
+    }
+</li>

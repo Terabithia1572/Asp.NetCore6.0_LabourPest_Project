@@ -1,79 +1,8 @@
-﻿@model List<Brands>
-
-<section id="brands" class="ls container-px-0 s-py-70">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 text-center">
-                <div class="owl-carousel widget widget_partners_carousel"
-                     id="partners-carousel"
-                     data-center="false"
-                     data-margin="20"
-                     data-loop="true"
-                     data-autoplay="true"
-                     data-autoplay-timeout="2000"
-                     data-responsive-lg="6"
-                     data-responsive-md="4"
-                     data-responsive-sm="3"
-                     data-responsive-xs="2">
-                    @foreach (var item in Model)
-                    {
-                        var brandName = System.IO.Path.GetFileNameWithoutExtension(item.BrandsImage).Replace("-", " ");
-
-                        <a href="@item.BrandsImage">
-                            <div class="brand-img-wrapper yunus">
-                                <img src="@item.BrandsImage"
-                                     alt="@brandName markasına ait görsel"
-                                     width="300"
-                                     height="300"
-                                     loading="lazy">
-                                <span class="sr-only">@brandName markasına ait görsel</span>
-                            </div>
-                        </a>
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<style>
-    .yunus {
-        height: 100px;
-        width: auto;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-        .yunus img {
-            width: auto;
-            height: 100%;
-            object-fit: contain;
-        }
-
-    @@media (max-width: 576px) {
-        .yunus
-
-    {
-        height: 70px !important;
-    }
-
-    .yunus img {
-        height: 70px !important;
-    }
-
-    }
-
-    .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        border: 0;
-        white-space: nowrap;
-    }
-</style>
+@using Asp.NetCore6._0_LabourPest_Project.Presentation
+@model List<Brands>
+<section id="brands" class="lp-section"><div class="lp-container"><p>Haşere görsellerini yakından incelemek için bir görsele dokunun.</p><div class="lp-gallery lp-pest-gallery">
+@foreach (var item in Model ?? new List<Brands>())
+{
+    <a href="@Url.Content(PublicContent.Image(item.BrandsImage))" data-gallery aria-label="Haşere görselini büyüt"><img src="@Url.Content(PublicContent.Image(item.BrandsImage))" alt="Haşere görseli" width="400" height="300" loading="lazy" data-fallback /><span aria-hidden="true">↗</span></a>
+}
+</div></div></section>

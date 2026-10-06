@@ -6,7 +6,7 @@ namespace Asp.NetCore6._0_LabourPest_Project.ViewComponents.MainLayout
 	{
 		public IViewComponentResult Invoke()
 		{
-			return View();
+			return View(new Asp.NetCore6._0_LabourPest_Project.Models.PublicReviewInput());
 		}
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using Asp.NetCore6._0_LabourPest_Project.Hubs;
+using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
@@ -31,6 +32,14 @@ builder.Services.AddControllersWithViews(options =>
 });
 
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddSingleton<Asp.NetCore6._0_LabourPest_Project.Presentation.PublicImageVariants>();
+
+// Public MVC reviews reuse the existing persistence service; the API has its own setup.
+builder.Services.AddScoped<ICommentDal, EfCommentRepository>();
+builder.Services.AddScoped<ICommentService, CommentManager>();
+builder.Services.Configure<Asp.NetCore6._0_LabourPest_Project.Presentation.Reviews.RecaptchaOptions>(builder.Configuration.GetSection("Recaptcha"));
+builder.Services.AddHttpClient<Asp.NetCore6._0_LabourPest_Project.Presentation.Reviews.IReviewCaptchaVerifier,
+    Asp.NetCore6._0_LabourPest_Project.Presentation.Reviews.RecaptchaVerifier>(client => client.Timeout = TimeSpan.FromSeconds(8));
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>

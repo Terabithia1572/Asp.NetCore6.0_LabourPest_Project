@@ -1,0 +1,10 @@
+@model Asp.NetCore6._0_LabourPest_Project.Models.PublicReviewInput
+@{
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+    ViewData["Title"] = "Yorumunuzu paylaşın";
+}
+<header class="lp-page-heading"><div class="lp-container"><nav class="lp-breadcrumb" aria-label="İçerik yolu"><a asp-controller="Home" asp-action="Deneme">Ana Sayfa</a><span aria-hidden="true">/</span><span>Yorumunuzu paylaşın</span></nav><h1>Yorumunuzu paylaşın</h1></div></header>
+<partial name="~/Views/Shared/Components/CommentViewComponentPartial/Default.cshtml" model="Model" />
+@section Scripts {
+    <script src="~/public-web/js/review-form.js" asp-append-version="true" defer></script>
+}

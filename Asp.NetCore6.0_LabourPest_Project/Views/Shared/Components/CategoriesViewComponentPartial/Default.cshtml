@@ -1,45 +1,18 @@
-﻿@model List<Category>
-<section id="category" class="ls shop-categories-section s-pt-xl-135 s-pt-lg-115 s-pt-md-75 s-pt-55 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h2 class="special-heading text-center">İlaç Kategorileri</h2>
-                <p class="special-heading text-center big">
-                    Bitkilerden tıbbi kas kremlerine kadar yüzlerce ürün bulabilirsiniz
-                </p>
-                <div class="divider-60 hidden-below-md"></div>
-                <div class="divider-40 hidden-above-md"></div>
-                <div class="owl-carousel shop-categories-carousel" id="partners-carousel" data-center="false" data-margin="20" data-loop="true" data-autoplay="true" data-autoplay-timeout="2000" data-responsive-lg="3" data-responsive-md="2" data-responsive-sm="2" data-responsive-xs="1">
-                    @foreach (var item in Model)
-                    {
-                        <article class="vertical-item text-center">
-                            <div class="item-media post-thumbnail">
-                                <a href="@item.CategoryImages">
-                                    <img src="@item.CategoryImages"
-                                         alt="@item.CategoryName kategori görseli"
-                                         width="300"
-                                         height="300"
-                                         loading="lazy">
-                                </a>
-                            </div>
-                            <div class="item-content">
-                                <div class="cat-links">
-                                    <a href="@item.CategoryImages" rel="category tag">
-                                        @item.CategoryName
-                                    </a>
-                                </div>
-                                <div class="description">
-                                    <p>@item.CategoryDescription</p>
-                                </div>
-                            </div>
-                        </article>
-                    }
-                   
-                   
-                </div>
+@using Asp.NetCore6._0_LabourPest_Project.Presentation
+@model List<Category>
+@{ var items = Model ?? new List<Category>(); }
+<section id="category" class="lp-section"><div class="lp-container">
+    <div class="lp-section-heading"><div><p class="lp-eyebrow">Hizmet ve uygulama bilgileri</p><h2>İlaç Kategorileri</h2></div></div>
+    <div class="lp-category-grid">
+    @foreach (var item in items)
+    {
+        <article class="lp-category">
+            <a href="@Url.Content(PublicContent.Image(item.CategoryImages))" data-gallery aria-label="@($"{item.CategoryName} görselini büyüt")"><img src="@Url.Content(PublicContent.Image(item.CategoryImages))" alt="@item.CategoryName" width="240" height="240" loading="lazy" data-fallback /></a>
+            <div><h3>@item.CategoryName</h3><p>@PublicContent.Excerpt(item.CategoryDescription, 180)</p>
+            @if ((item.CategoryDescription?.Length ?? 0) > 180) { <details class="lp-disclosure"><summary aria-controls="category-content-@item.CategoryID">Açıklamanın tamamı</summary><p id="category-content-@item.CategoryID">@item.CategoryDescription</p></details> }
             </div>
-        </div>
+        </article>
+    }
     </div>
-</section>
-
-   
+    @if (items.Count == 0) { <p class="lp-empty">Henüz kategori bilgisi bulunmuyor.</p> }
+</div></section>

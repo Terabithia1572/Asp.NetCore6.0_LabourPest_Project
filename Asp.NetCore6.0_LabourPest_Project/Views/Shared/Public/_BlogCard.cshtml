@@ -1,0 +1,16 @@
+@using Asp.NetCore6._0_LabourPest_Project.Presentation
+@model Blog
+@{ var articleUrl = string.IsNullOrWhiteSpace(Model.SlugUrl) ? null : Url.RouteUrl("blogdetails", new { slug = Model.SlugUrl }); }
+<article class="lp-card lp-blog-card">
+    @if (articleUrl != null)
+    {
+        <a class="lp-card-image" href="@articleUrl" aria-label="@($"Yazıyı okuyun: {Model.BlogTitle}")"><img src="@Url.Content(PublicContent.Image(Model.BlogImage))" alt="@Model.BlogTitle" width="600" height="400" loading="lazy" data-fallback /></a>
+    }
+    else
+    {
+        <img src="@Url.Content(PublicContent.Image(Model.BlogImage))" alt="@Model.BlogTitle" width="600" height="400" loading="lazy" data-fallback />
+    }
+    <div class="lp-card-body"><p class="lp-meta">@Model.BlogCategory?.BlogCategories @if (Model.BlogDate != default) { <span aria-hidden="true">·</span> <time datetime="@Model.BlogDate.ToString("yyyy-MM-dd")">@Model.BlogDate.ToString("dd.MM.yyyy")</time> }</p>
+    <h3>@if (articleUrl != null) { <a href="@articleUrl">@Model.BlogTitle</a> } else { @Model.BlogTitle }</h3><p>@PublicContent.Excerpt(Model.BlogContent, 130)</p>
+    @if (articleUrl != null) { <a class="lp-text-link" href="@articleUrl" aria-label="@($"Yazıyı okuyun: {Model.BlogTitle}")">Yazıyı okuyun <span aria-hidden="true">↗</span></a> }</div>
+</article>

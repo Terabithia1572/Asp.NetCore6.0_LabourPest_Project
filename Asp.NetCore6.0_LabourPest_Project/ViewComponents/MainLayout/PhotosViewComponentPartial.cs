@@ -1,4 +1,4 @@
-﻿using BusinessLayer.Concrete;
+using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,8 +11,13 @@ namespace Asp.NetCore6._0_LabourPest_Project.ViewComponents.MainLayout
 		{
             var images = _imageManager.GetAll()
             .OrderByDescending(x => x.ImageID) // En son eklenenler önce gelsin
-            .Take(4) // Son 4 veriyi al
             .ToList();
+
+            // Keep the existing homepage selection; the gallery view paginates the full list.
+            if (HttpContext.Request.Query["bolum"] != "galeri")
+            {
+                images = images.Take(4).ToList();
+            }
 
             // Özel sıralama işlemi
             var sortedImages = images

@@ -1,0 +1,168 @@
+{
+  "/canabicom/images/pestcontrol.webp": {
+    "sha256": "8892618d740e8ed89851bf9f43deb7d5cddc43032f3ae26d84beee27c8c796cb",
+    "variants": [
+      {
+        "width": 384,
+        "url": "/public-web/images/responsive/8892618d740e8ed89851bf9f-384.webp"
+      },
+      {
+        "width": 640,
+        "url": "/public-web/images/responsive/8892618d740e8ed89851bf9f-640.webp"
+      },
+      {
+        "width": 960,
+        "url": "/public-web/images/responsive/8892618d740e8ed89851bf9f-960.webp"
+      },
+      {
+        "width": 1280,
+        "url": "/public-web/images/responsive/8892618d740e8ed89851bf9f-1280.webp"
+      }
+    ]
+  },
+  "/canabicom/images/labourpesticon2.webp": {
+    "sha256": "7d8ca1455a74f7adb2e3e8f7fc747de391fb489abb60343aa7ebdf1e90395092",
+    "variants": [
+      {
+        "width": 96,
+        "url": "/public-web/images/responsive/7d8ca1455a74f7adb2e3e8f7-96.webp"
+      }
+    ]
+  },
+  "/labourpestcustomer/homePageImage/2ad9a0ab-b79a-49b5-a71a-5df4b854957e.webp": {
+    "sha256": "61ef42caf82fc07236b891b2619ce007be9c43020af595370bca2658f5598680",
+    "variants": [
+      {
+        "width": 384,
+        "url": "/public-web/images/responsive/61ef42caf82fc07236b891b2-384.webp"
+      },
+      {
+        "width": 640,
+        "url": "/public-web/images/responsive/61ef42caf82fc07236b891b2-640.webp"
+      },
+      {
+        "width": 960,
+        "url": "/public-web/images/responsive/61ef42caf82fc07236b891b2-960.webp"
+      },
+      {
+        "width": 1280,
+        "url": "/public-web/images/responsive/61ef42caf82fc07236b891b2-1280.webp"
+      }
+    ]
+  },
+  "/labourpestcustomer/homePageImage/706c1e56-8707-46eb-9dc5-587dbba1c2a2.webp": {
+    "sha256": "90c90c505d628b93e5c63f0ed42052f2a207135c05b57b28cd6ce19d66f95ce2",
+    "variants": [
+      {
+        "width": 384,
+        "url": "/public-web/images/responsive/90c90c505d628b93e5c63f0e-384.webp"
+      },
+      {
+        "width": 540,
+        "url": "/public-web/images/responsive/90c90c505d628b93e5c63f0e-540.webp"
+      }
+    ]
+  },
+  "/labourpestcustomer/homePageImage/d718d0a0-ec56-4c75-8803-a5a65b97714f.webp": {
+    "sha256": "a4911bcf6f16cb19bc27c15dfb2588d51d7f3f12340fb9a88544d1861afb9fa5",
+    "variants": [
+      {
+        "width": 384,
+        "url": "/public-web/images/responsive/a4911bcf6f16cb19bc27c15d-384.webp"
+      },
+      {
+        "width": 640,
+        "url": "/public-web/images/responsive/a4911bcf6f16cb19bc27c15d-640.webp"
+      },
+      {
+        "width": 960,
+        "url": "/public-web/images/responsive/a4911bcf6f16cb19bc27c15d-960.webp"
+      },
+      {
+        "width": 1280,
+        "url": "/public-web/images/responsive/a4911bcf6f16cb19bc27c15d-1280.webp"
+      }
+    ]
+  },
+  "/labourpestcustomer/servicesImage/14edd002-bd5d-4e7d-97c0-ebc5c594061e.webp": {
+    "sha256": "2fcd362a9476c3d3267aa1c2a50bce7892d28ebf96b606e34146c7535914dbcd",
+    "variants": [
+      {
+        "width": 384,
+        "url": "/public-web/images/responsive/2fcd362a9476c3d3267aa1c2-384.webp"
+      },
+      {
+        "width": 640,
+        "url": "/public-web/images/responsive/2fcd362a9476c3d3267aa1c2-640.webp"
+      },
+      {
+        "width": 768,
+        "url": "/public-web/images/responsive/2fcd362a9476c3d3267aa1c2-768.webp"
+      }
+    ]
+  },
+  "/labourpestcustomer/servicesImage/2217ae25-a3c3-410b-8b90-3c18e67c8892.webp": {
+    "sha256": "0ad274e42122799dd8f8ec2929a076c54001807f0bb834b8561087cb705f4e1a",
+    "variants": [
+      {
+        "width": 384,
+        "url": "/public-web/images/responsive/0ad274e42122799dd8f8ec29-384.webp"
+      },
+      {
+        "width": 640,
+        "url": "/public-web/images/responsive/0ad274e42122799dd8f8ec29-640.webp"
+      },
+      {
+        "width": 880,
+        "url": "/public-web/images/responsive/0ad274e42122799dd8f8ec29-880.webp"
+      }
+    ]
+  },
+  "/labourpestcustomer/servicesImage/600135ef-05c3-4330-8a82-c9f28266e384.webp": {
+    "sha256": "86a81fa252b25f4605b401700663d9404cf2a72f60f0e99c950d68cd0110909b",
+    "variants": [
+      {
+        "width": 384,
+        "url": "/public-web/images/responsive/86a81fa252b25f4605b40170-384.webp"
+      },
+      {
+        "width": 640,
+        "url": "/public-web/images/responsive/86a81fa252b25f4605b40170-640.webp"
+      },
+      {
+        "width": 768,
+        "url": "/public-web/images/responsive/86a81fa252b25f4605b40170-768.webp"
+      }
+    ]
+  },
+  "/labourpestcustomer/servicesImage/d28c36a0-794d-4666-822b-d472b60950a9.webp": {
+    "sha256": "63834847ef5f958afcb6ff811cb22e75420e163a5bc2d5d4c15a8cc1f9eb78db",
+    "variants": [
+      {
+        "width": 384,
+        "url": "/public-web/images/responsive/63834847ef5f958afcb6ff81-384.webp"
+      },
+      {
+        "width": 640,
+        "url": "/public-web/images/responsive/63834847ef5f958afcb6ff81-640.webp"
+      },
+      {
+        "width": 768,
+        "url": "/public-web/images/responsive/63834847ef5f958afcb6ff81-768.webp"
+      }
+    ]
+  },
+  "/labourpestcustomer/servicesImage/df66ac6a-c42e-4569-8fe0-127a5ec5a228.webp": {
+    "sha256": "e55f7fc47cb46f094c5ec460aa5ba84b06f83c558f0cd019efa83fb2ceca9016",
+    "variants": [
+      {
+        "width": 384,
+        "url": "/public-web/images/responsive/e55f7fc47cb46f094c5ec460-384.webp"
+      },
+      {
+        "width": 425,
+        "url": "/public-web/images/responsive/e55f7fc47cb46f094c5ec460-425.webp"
+      }
+    ]
+  }
+}

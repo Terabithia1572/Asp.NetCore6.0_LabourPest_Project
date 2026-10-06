@@ -1,66 +1,15 @@
-﻿<section id="ss" class="ls s-py-0 c-gutter-0 container-px-0 text-center text-sm-left">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-12">
-				<h1 class="special-heading sub-title text-center"><span>Sıkça Sorulan Sorular ?</span></h1>
-				<h2 class="special-heading text-center">Sıkça Sorulanlar</h2>
-				<div class="divider-50 hidden-below-md"></div>
-				<div class="divider-30 hidden-above-md"></div>
-			</div>
-		</div>
-		<div class="row ">
-			<div class="col-lg-6 py-xl-150 py-lg-130 py-md-90 py-60 ls ms">
-				<div class="content-center">
-                    <div id="accordion01" role="tablist">
-                        <h6 class="title-accordion">Sık Sorulan Sorular ?</h6>
-                        @foreach (var item in ViewBag.Accordion01)
-                        {
-                            string uniqueId = $"accordion01_item_{item.FAQID}";
-                            <!-- Benzersiz ID oluşturma -->
-                            <div class="card">
-                                <div class="card-header" role="tab" id="uniqueId_header">
-                                    <h5>
-                                        <a class="collapsed" data-toggle="collapse" href="#@uniqueId" aria-expanded="false" aria-controls="@uniqueId">
-                                            @item.FAQTitle
-                                        </a>
-                                    </h5>
-                                </div>
-                                <div id="@uniqueId" class="collapse" role="tabpanel" aria-labelledby="uniqueId_header" data-parent="#accordion01">
-                                    <div class="card-body">
-                                        @item.FAQDescription
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-
-                    <div id="accordion02" role="tablist">
-                        <h6 class="title-accordion">Sık Sorulan Sorular ?</h6>
-                        @foreach (var item in ViewBag.Accordion02)
-                        {
-                            string uniqueId = $"accordion02_item_{item.FAQID}";
-                            <!-- Benzersiz ID oluşturma -->
-                            <div class="card">
-                                <div class="card-header" role="tab" id="uniqueId_header">
-                                    <h5>
-                                        <a class="collapsed" data-toggle="collapse" href="#@uniqueId" aria-expanded="false" aria-controls="@uniqueId">
-                                            @item.FAQTitle
-                                        </a>
-                                    </h5>
-                                </div>
-                                <div id="@uniqueId" class="collapse" role="tabpanel" aria-labelledby="uniqueId_header" data-parent="#accordion02">
-                                    <div class="card-body">
-                                        @item.FAQDescription
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-
-				</div>
-
-			</div>
-		@await Component.InvokeAsync("CommentViewComponentPartial")
-		</div>
-	</div>
-</section>
+@{
+    var items = ((ViewData["Accordion01"] as IEnumerable<FAQ>) ?? Enumerable.Empty<FAQ>())
+        .Concat((ViewData["Accordion02"] as IEnumerable<FAQ>) ?? Enumerable.Empty<FAQ>()).GroupBy(x => x.FAQID).Select(x => x.First()).ToList();
+    var listing = ViewData["PublicListing"] as bool? == true;
+}
+<section id="ss" class="lp-section lp-tinted"><div class="lp-container lp-faq-grid">
+    <div><p class="lp-eyebrow">Merak ettikleriniz</p><h2>Sıkça sorulan sorular</h2><p>İlaçlama öncesi ve sonrası hakkında bilgi edinin.</p><a class="lp-text-link" asp-controller="Home" asp-action="Deneme" asp-route-bolum="sss">Tüm sorular <span aria-hidden="true">↗</span></a></div>
+    <div class="lp-accordion">
+    @foreach (var item in (listing ? items : items.Take(5)))
+    {
+        <details class="lp-disclosure" id="faq-@item.FAQID"><summary id="faq-trigger-@item.FAQID" aria-controls="faq-panel-@item.FAQID">@item.FAQTitle</summary><div id="faq-panel-@item.FAQID" aria-labelledby="faq-trigger-@item.FAQID" class="lp-prose"><p>@item.FAQDescription</p></div></details>
+    }
+    @if (items.Count == 0) { <p>Sorularınız için <a asp-controller="Contact" asp-action="AddContact">bize ulaşabilirsiniz</a>.</p> }
+    </div>
+</div></section>

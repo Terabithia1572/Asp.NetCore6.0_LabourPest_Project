@@ -1,5 +1,5 @@
-﻿using BusinessLayer.Concrete;
-using DataAccessLayer.EntityFramework;
+using Asp.NetCore6._0_LabourPest_Project.Models;
+using Asp.NetCore6._0_LabourPest_Project.Presentation.Reviews;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,37 +9,74 @@ namespace Asp.NetCore6._0_LabourPest_Project.Controllers
     [AllowAnonymous]
     public class MainCommentController : Controller
     {
-        CommentManager commentManager = new CommentManager(new EfCommentRepository());
-        public IActionResult Index()
+        private readonly BusinessLayer.Abstract.ICommentService comments;
+        private readonly IReviewCaptchaVerifier captcha;
+        private readonly ILogger<MainCommentController> logger;
+
+        public MainCommentController(BusinessLayer.Abstract.ICommentService comments, IReviewCaptchaVerifier captcha, ILogger<MainCommentController> logger)
         {
-            return View();
+            this.comments = comments;
+            this.captcha = captcha;
+            this.logger = logger;
         }
+
+        public IActionResult Index() => View();
+
         [HttpPost]
-        public async Task<IActionResult> AddComment(Comment comment)
+        [ValidateAntiForgeryToken]
+        [ReviewAntiforgeryFeedback]
+        [RequestSizeLimit(65536)]
+        public async Task<IActionResult> AddComment(PublicReviewInput input, CancellationToken cancellationToken)
         {
-            var recaptchaResponse = Request.Form["g-recaptcha-response"];
-            var client = new HttpClient();
-            var secretKey = "6LeFuEMrAAAAABBa2p2hKa0XddVxoV5sS--ewoQT";
+            if (!ModelState.IsValid) return ReviewFailure(input, 422);
 
-            var response = await client.PostAsync(
-                $"https://www.google.com/recaptcha/api/siteverify?secret={secretKey}&response={recaptchaResponse}", null);
-
-            var result = await response.Content.ReadAsStringAsync();
-
-            if (!result.Contains("\"success\": true"))
+            var verification = await captcha.VerifyAsync(Request.Form["g-recaptcha-response"].ToString(), cancellationToken);
+            if (verification != CaptchaVerification.Valid)
             {
-                TempData["RecaptchaError"] = "Lütfen 'Ben robot değilim' kutusunu işaretleyin.";
-                return RedirectToAction("Deneme", "Home");
+                var message = verification switch {
+                    CaptchaVerification.Missing => "Lütfen 'Ben robot değilim' doğrulamasını tamamlayın.",
+                    CaptchaVerification.Expired => "Doğrulamanın süresi doldu veya daha önce kullanıldı. Lütfen yeniden doğrulayın.",
+                    CaptchaVerification.Rejected => "Doğrulama kabul edilmedi. Lütfen yeniden doğrulayın.",
+                    _ => "Doğrulama hizmetine şu anda ulaşılamıyor. Bilgileriniz korunuyor; lütfen biraz sonra yeniden deneyin."
+                };
+                ModelState.AddModelError("", message);
+                return ReviewFailure(input, verification is CaptchaVerification.Unavailable or CaptchaVerification.NotConfigured ? 503 : 422);
             }
 
-            // Bot değilse yorum kaydedilir
-            comment.CommentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            comment.CommentStatus = true;
-            commentManager.TAdd(comment);
+            var comment = new Comment {
+                CommentUserName = input.CommentUserName!.Trim(),
+                CommentTitle = input.CommentTitle!.Trim(),
+                CommentContent = input.CommentContent!.Trim(),
+                // The form photo is optional, but the existing ImageUrl column is NOT NULL.
+                ImageUrl = string.IsNullOrWhiteSpace(input.ImageUrl) ? PublicReviewInput.DefaultAvatar : input.ImageUrl,
+                CommentDate = DateTime.Today,
+                CommentStatus = true
+            };
+            try
+            {
+                comments.TAdd(comment);
+            }
+            catch (Exception exception)
+            {
+                var sql = exception.GetBaseException() as Microsoft.Data.SqlClient.SqlException;
+                logger.LogError("Public review persistence failed. Type={ExceptionType}; SqlNumber={SqlNumber}; Trace={Trace}; Location={Location}",
+                    exception.GetType().Name, sql?.Number, HttpContext.TraceIdentifier, exception.StackTrace);
+                ModelState.AddModelError("", "Kaydetme sırasında sorun oluştu. Yorumunuzun kaydedildiğini doğrulayamadık. Tekrar göndermeden önce bizimle iletişime geçebilirsiniz.");
+                return ReviewFailure(input, 503);
+            }
 
-            return RedirectToAction("Deneme", "Home");
+            // Success is set only after SaveChanges returns. Refresh now performs a GET.
+            TempData["ReviewSuccess"] = "Yorumunuz alındı. Deneyiminizi paylaştığınız için teşekkür ederiz.";
+            return RedirectToAction("Deneme", "Home", null, "comment");
         }
 
+        private IActionResult ReviewFailure(PublicReviewInput input, int status)
+        {
+            Response.StatusCode = status;
+            Response.Headers["Cache-Control"] = "no-store";
+            ViewData["ReviewFailure"] = true;
+            return View("AddComment", input);
+        }
         [HttpPost]
         public async Task<IActionResult> UploadImage(IFormFile file)
         {

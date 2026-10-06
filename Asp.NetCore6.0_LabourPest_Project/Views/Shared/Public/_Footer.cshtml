@@ -1,0 +1,39 @@
+<footer class="lp-footer">
+    <div class="lp-container lp-footer-grid">
+        <div>
+            <a class="lp-brand" asp-controller="Home" asp-action="Deneme"><img src="~/canabicom/images/labourpesticon2.webp" width="48" height="48" alt="" /><span>Labour<span class="lp-brand-accent">Pest</span></span></a>
+            <p>Ev, iş yeri ve endüstriyel alanlar için profesyonel haşere kontrol hizmetleri.</p>
+            <a class="lp-social" href="https://www.instagram.com/labourpest" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a>
+        </div>
+        <nav aria-label="Hizmet ve bilgi bağlantıları">
+            <h2>Hizmet ve bilgi</h2>
+            <a asp-controller="Home" asp-action="Deneme" asp-route-bolum="hizmetler">Hizmetlerimiz</a>
+            <a asp-controller="Home" asp-action="Deneme" asp-route-bolum="kategoriler">İlaçlama kategorileri</a>
+            <a asp-controller="Home" asp-action="Deneme" asp-route-bolum="urunler">Ürünler</a>
+            <a asp-controller="Home" asp-action="Deneme" asp-route-bolum="hasereler">Haşereler</a>
+            <a asp-controller="Home" asp-action="Deneme" asp-route-bolum="sss">Sıkça sorulan sorular</a>
+            <a asp-controller="Home" asp-action="Deneme" asp-fragment="reviews">Müşteri yorumları</a>
+        </nav>
+        <nav aria-label="Kurumsal bağlantılar">
+            <h2>LabourPest</h2>
+            <a asp-controller="Home" asp-action="Deneme" asp-route-bolum="kurumsal">Hakkımızda</a>
+            <a asp-controller="Home" asp-action="Deneme" asp-route-bolum="galeri">Fotoğraf galerisi</a>
+            <a asp-controller="Home" asp-action="Deneme" asp-route-bolum="blog">Blog</a>
+            <a asp-controller="JobApplication" asp-action="AddJobApplication">İş başvurusu</a>
+            <a asp-controller="Home" asp-action="Deneme" asp-route-bolum="yorum">Yorumunuzu paylaşın</a>
+            <a asp-controller="Home" asp-action="Privacy">Gizlilik</a>
+        </nav>
+        <div>
+            <h2>İletişim</h2>
+            <a class="lp-footer-phone" href="tel:+905336992275">+90 533 699 22 75</a>
+            <a href="mailto:murat.koc@labourpest.com">murat.koc@labourpest.com</a>
+            <p>Antalya</p>
+            <a class="lp-text-link" asp-controller="Contact" asp-action="AddContact">İletişim bilgileri <span aria-hidden="true">↗</span></a>
+            <a class="lp-text-link" asp-controller="Home" asp-action="Deneme" asp-fragment="locations">Şubeler ve hizmet bölgeleri <span aria-hidden="true">↗</span></a>
+        </div>
+    </div>
+    <div class="lp-container lp-footer-bottom">
+        <p>© @DateTime.Now.Year LabourPest. Tüm hakları saklıdır.</p>
+        <p>Tasarlayan <a href="https://www.instagram.com/yunusiinan/">Yunus İNAN</a></p>
+    </div>
+</footer>

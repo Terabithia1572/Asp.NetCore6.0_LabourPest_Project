@@ -1,4 +1,10 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+    ViewData["Title"] = "Ana Sayfa";
+    ViewData["PublicHome"] = true;
 }
-
+<partial name="~/Views/Shared/Public/_HomePageBody.cshtml" />
+@section Scripts {
+    <script src="~/public-web/js/review-form.js" asp-append-version="true" defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+}

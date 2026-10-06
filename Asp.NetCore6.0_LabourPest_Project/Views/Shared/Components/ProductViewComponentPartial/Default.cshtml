@@ -1,55 +1,13 @@
-﻿@model List<Product>
-
-<section id="product" class="ls s-pt-xl-140 s-pt-lg-120 s-pt-md-80 s-pt-50 s-pb-xl-145 s-pb-lg-125 s-pb-md-85 s-pb-55  text-center text-sm-left">
-	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<h6 class="special-heading sub-title text-center"><span>KENDİ ÜRÜNLERİMİZ</span></h6>
-				<h2 class="special-heading text-center">Popüler Ürünler</h2>
-				<div class="divider-50 hidden-below-md"></div>
-				<div class="divider-30 hidden-above-md"></div>
-			</div>
-		</div>
-		<div class="row c-mb-50 c-gutter-40">
-			@foreach (var item in Model)
-			{
-				<div class="col-lg-4 col-md-6">
-					<div class="icon-box text-center">
-						<div class="icon-styledd fs-60 color-main2">
-							@if (!string.IsNullOrEmpty(item.ProductImageURL) && item.ProductImageURL.Contains("."))
-							{
-								<!-- Resim URL'si mevcutsa -->
-								<img src="@item.ProductImageURL" alt="@item.ProductName" style="max-width: 60px; max-height: 60px; object-fit: cover;">
-							}
-							else
-							{
-								<!-- İkon sınıfı varsa -->
-								<i class="icon-fonts @item.ProductImageURL"></i>
-							}
-						</div>
-						<h6 class="text-uppercase">
-							<a href="shop-right.html">@item.ProductName</a>
-						</h6>
-						<p>
-							@item.ProductDescription
-						</p>
-					</div>
-				</div>
-			}
-			
-
-		</div>
-		<div class="mt--50"></div>
-	</div>
-</section>
-
-<style>
-	.icon-styledd img {
-		display: inline-block;
-		width: 60px;
-		height: 60px;
-		object-fit: cover; /* Resmi orantılı kırpar ve boyuta sığdırır */
-		border-radius: 50%; /* Yuvarlak yapmak isterseniz */
-	}
-
-</style>
+@using Asp.NetCore6._0_LabourPest_Project.Presentation
+@model List<Product>
+@{
+    var items = Model ?? new List<Product>();
+    var pageCount = (int)Math.Ceiling(items.Count / 12d);
+    var page = int.TryParse(Context.Request.Query["sayfa"], out var requested) ? Math.Clamp(requested, 1, Math.Max(1, pageCount)) : 1;
+}
+<section id="product" class="lp-section"><div class="lp-container"><div class="lp-grid">
+@foreach (var item in items.Skip((page - 1) * 12).Take(12))
+{
+    <article class="lp-card"><img src="@Url.Content(PublicContent.Image(item.ProductImageURL))" alt="@item.ProductName" width="600" height="400" loading="lazy" data-fallback /><div class="lp-card-body"><h2>@item.ProductName</h2><p>@PublicContent.Excerpt(item.ProductDescription)</p><a class="lp-text-link" asp-controller="Product" asp-action="ProductDetail" asp-route-id="@item.ProductID">Ürünü inceleyin <span aria-hidden="true">↗</span></a></div></article>
+}
+</div>@if (items.Count == 0) { <p class="lp-empty">Henüz ürün bilgisi bulunmuyor.</p> }<partial name="~/Views/Shared/Public/_Pagination.cshtml" model="pageCount" /></div></section>

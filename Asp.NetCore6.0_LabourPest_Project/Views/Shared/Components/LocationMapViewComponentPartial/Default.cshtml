@@ -1,72 +1,22 @@
-﻿@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment env
-<section class="ls ms map-section s-pt-xl-150 s-pt-lg-130 s-pt-md-90 s-pt-60 s-pb-xl-140 s-pb-lg-120 s-pb-md-80 s-pb-50 text-center text-sm-left">
-    <div class="container">
-        <div class="row">
-            <!-- Harita Alanı -->
-            <div class="col-lg-7 col-12 mb-5 mb-lg-0">
-                <div class="il-tooltip"></div>
-                <div class="harita-wrap text-center">
-                    <picture>
-                        <source srcset="~/canabicom/svg/turkiye-haritasi-final3.webp" type="image/webp">
-                        <img src="~/canabicom/svg/turkiye-haritasi-final.png"
-                             alt="Türkiye Haritası"
-                             class="img-fluid"
-                             loading="lazy"
-                             width="1200"
-                             height="700">
-                    </picture>
-
-                </div>
-            </div>
-
-            <!-- Bilgi Alanı -->
-            <div class="col-lg-5 col-12">
-                <div class="divider-80 hidden-below-md hidden-above-lg"></div>
-                <div class="divider-50 hidden-above-md"></div>
-                <h1 class="special-heading sub-title"><span>Labour Pest ŞUBELERİMİZ</span></h1>
-                <h2 class="special-heading">Türkiye</h2>
-                <div class="divider-50 hidden-below-md"></div>
-                <div class="divider-30 hidden-above-md"></div>
-                <h3 class="thin">
-                    Ege ve Akdeniz Bölgesi
-                </h3>
-                <ul>
-                    <li class="icon-inline">
-                        <div class="icon-styled icon-top color-main fs-14">
-                            <i class="fa fa-map-marker"></i>
-                        </div>
-                        <p>
-                            Elmalı Mahallesi 7.Sokak<br>
-                            Zamanlar İş Merkezi No:18/406<br>
-                            Muratpaşa/ANTALYA
-                        </p>
-                    </li>
-                    <li class="icon-inline">
-                        <div class="icon-styled icon-top color-main fs-14">
-                            <i class="fa fa-phone"></i>
-                        </div>
-                        <p>+90 533 699 22 75</p>
-                    </li>
-                    <li class="icon-inline">
-                        <div class="icon-styled icon-top color-main fs-14">
-                            <i class="fa fa-envelope"></i>
-                        </div>
-                        <p>
-                            <a href="mailto:murat.koc@labourpest.com?subject=İlaçlama Talebi&body=Merhaba,%0A%0Aİlaçlama hizmeti hakkında bilgi almak istiyorum...">murat.koc@labourpest.com</a>
-                        </p>
-                    </li>
-                </ul>
-            </div>
+<section id="locations" class="lp-section lp-locations"><div class="lp-container">
+    <div class="lp-section-heading"><div><p class="lp-eyebrow">Neredeyiz?</p><h2>Şubelerimiz ve Hizmet Bölgelerimiz</h2></div></div>
+    <div class="lp-map-grid">
+        <figure class="lp-map">
+            <img src="~/public-web/images/turkiye.svg" alt="Türkiye il sınırları haritası. Antalya ve Muğla hizmet bölgeleri aynı yeşil renkle işaretlenmiştir. Ofis adresimiz Antalya'dadır." width="1008" height="440" loading="lazy" />
+            <figcaption><span class="lp-map-legend"><span aria-hidden="true"></span>Antalya ve Muğla · Hizmet bölgeleri</span><span>Diğer iller: açık gri</span></figcaption>
+        </figure>
+        <div class="lp-location-info">
+            <h3>Antalya ofisi</h3>
+            <dl class="lp-map-contact">
+                <dt>Adres</dt><dd><address>Elmalı Mahallesi 7.Sokak<br />Zamanlar İş Merkezi No:18/406<br />Muratpaşa/ANTALYA</address></dd>
+                <dt>Telefon</dt><dd><a href="tel:+905336992275">+90 533 699 22 75</a></dd>
+                <dt>E-posta</dt><dd><a href="mailto:murat.koc@labourpest.com?subject=%C4%B0la%C3%A7lama%20Talebi&amp;body=Merhaba,%0A%0A%C4%B0la%C3%A7lama%20hizmeti%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum...">murat.koc@labourpest.com</a></dd>
+            </dl>
+            <hr />
+            <h3>Hizmet bölgeleri</h3>
+            <ul><li>Antalya</li><li>Muğla</li></ul>
+            <p class="lp-help">Bulunduğunuz il ve ilçedeki hizmet uygunluğu için bizimle iletişime geçebilirsiniz.</p>
+            <a class="lp-text-link" asp-controller="Contact" asp-action="AddContact">Bölgeniz için bilgi alın <span aria-hidden="true">↗</span></a>
         </div>
     </div>
-</section>
-<style>
-    .harita-wrap picture img {
-        max-width: 100%;
-        height: auto;
-        object-fit: cover;
-        display: block;
-    }
-
-</style>
-                        
+</div></section>

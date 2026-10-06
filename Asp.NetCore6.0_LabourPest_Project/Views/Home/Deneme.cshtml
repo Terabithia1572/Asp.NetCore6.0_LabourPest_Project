@@ -1,7 +1,37 @@
-﻿
 @{
-    ViewData["Title"] = "Deneme";
-    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+    var sections = new Dictionary<string, (string Title, string Component)>
+    {
+        ["hizmetler"] = ("Hizmetlerimiz", "ServicesViewComponentPartial"),
+        ["kurumsal"] = ("LabourPest hakkında", "WhoWeUsViewComponentPartial"),
+        ["blog"] = ("Blog", "BlogsViewComponentPartial"),
+        ["sss"] = ("Sıkça sorulan sorular", "FAQViewComponentPartial"),
+        ["galeri"] = ("Fotoğraf galerisi", "PhotosViewComponentPartial"),
+        ["kategoriler"] = ("İlaçlama kategorileri", "CategoriesViewComponentPartial"),
+        ["hasereler"] = ("Haşereler", "BrandsViewComponentPartial"),
+        ["urunler"] = ("Ürünler", "ProductViewComponentPartial"),
+        ["yorum"] = ("Yorumunuzu paylaşın", "CommentViewComponentPartial")
+    };
+    var key = Context.Request.Query["bolum"].ToString();
+    var listing = sections.TryGetValue(key, out var section);
+    ViewData["PublicListing"] = listing;
+    ViewData["PublicHome"] = !listing;
+    ViewData["Title"] = listing ? section.Title : "Ana Sayfa";
 }
-
-
+@if (listing)
+{
+    <header class="lp-page-heading"><div class="lp-container"><nav class="lp-breadcrumb" aria-label="İçerik yolu"><a asp-controller="Home" asp-action="Deneme">Ana Sayfa</a><span aria-hidden="true">/</span><span>@(section.Title)</span></nav><h1>@(section.Title)</h1></div></header>
+    @if (key == "kurumsal") { @await Component.InvokeAsync("AboutUsViewComponentPartial") }
+    @await Component.InvokeAsync(section.Component)
+    <partial name="~/Views/Shared/Public/_ContactCta.cshtml" />
+}
+else
+{
+    <partial name="~/Views/Shared/Public/_HomePageBody.cshtml" />
+}
+@section Scripts {
+    @if (!listing || key == "yorum")
+    {
+        <script src="~/public-web/js/review-form.js" asp-append-version="true" defer></script>
+    }
+}

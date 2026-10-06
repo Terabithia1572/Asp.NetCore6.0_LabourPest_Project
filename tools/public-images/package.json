@@ -1,0 +1,6 @@
+{
+  "name": "labourpest-public-image-derivatives",
+  "private": true,
+  "scripts": { "build": "node build.mjs" },
+  "dependencies": { "sharp": "0.35.5" }
+}

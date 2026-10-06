@@ -1,0 +1,25 @@
+@inject Asp.NetCore6._0_LabourPest_Project.Presentation.PublicImageVariants Images
+@{
+    var section = Context.Request.Query["bolum"].ToString();
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+}
+<a class="lp-skip" href="#main-content">İçeriğe geç</a>
+<header class="lp-header">
+    <div class="lp-container lp-header-inner">
+        <a class="lp-brand" asp-controller="Home" asp-action="Deneme">
+            <img src="~/canabicom/images/labourpesticon2.webp" srcset="@Images.SrcSet("/canabicom/images/labourpesticon2.webp")" sizes="(max-width:980px) 40px, 48px" width="48" height="48" alt="" />
+            <span>Labour<span class="lp-brand-accent">Pest</span><small>Haşere kontrol hizmetleri</small></span>
+        </a>
+        <button class="lp-menu-toggle" type="button" aria-expanded="false" aria-controls="public-navigation" hidden>
+            <span class="lp-menu-symbol" aria-hidden="true">☰</span><span data-menu-label>Menü</span>
+        </button>
+        <nav class="lp-nav" id="public-navigation" aria-label="Ana menü">
+            <a asp-controller="Home" asp-action="Deneme" aria-current="@(controller == "Home" && string.IsNullOrEmpty(section) ? "page" : null)">Ana Sayfa</a>
+            <a asp-controller="Home" asp-action="Deneme" asp-route-bolum="hizmetler" aria-current="@(section == "hizmetler" || controller == "Services" ? "page" : null)">Hizmetlerimiz</a>
+            <a asp-controller="Home" asp-action="Deneme" asp-route-bolum="kurumsal" aria-current="@(section == "kurumsal" ? "page" : null)">Kurumsal</a>
+            <a asp-controller="Home" asp-action="Deneme" asp-route-bolum="blog" aria-current="@(section == "blog" || controller == "Blog" || controller == "Tag" ? "page" : null)">Blog</a>
+            <a asp-controller="Contact" asp-action="AddContact" aria-current="@(controller == "Contact" ? "page" : null)">İletişim</a>
+            <a class="lp-login" asp-controller="Login" asp-action="SignIN">Müşteri Girişi <span aria-hidden="true">↗</span></a>
+        </nav>
+    </div>
+</header>

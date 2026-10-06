@@ -1,0 +1,17 @@
+@inject Asp.NetCore6._0_LabourPest_Project.Presentation.PublicImageVariants Images
+@using Asp.NetCore6._0_LabourPest_Project.Presentation
+@model Services
+@{ var detailUrl = string.IsNullOrWhiteSpace(Model.ServicesSlug) ? null : Url.RouteUrl("servicedetails", new { slug = Model.ServicesSlug }); }
+<article class="lp-card lp-service-card">
+    @if (detailUrl != null)
+    {
+        <a class="lp-card-image" href="@detailUrl" aria-label="@($"{Model.ServicesTitle} hizmetini inceleyin")"><img src="@Url.Content(PublicContent.Image(Model.ServicesImageURL))" srcset="@Images.SrcSet(PublicContent.Image(Model.ServicesImageURL))" sizes="(max-width:700px) calc(100vw - 36px), (max-width:980px) calc((100vw - 80px) / 2), (max-width:1256px) calc((100vw - 104px) / 3), 384px" alt="@Model.ServicesTitle" width="600" height="400" loading="lazy" data-fallback /></a>
+    }
+    else
+    {
+        <img src="@Url.Content(PublicContent.Image(Model.ServicesImageURL))" srcset="@Images.SrcSet(PublicContent.Image(Model.ServicesImageURL))" sizes="(max-width:700px) calc(100vw - 36px), (max-width:980px) calc((100vw - 80px) / 2), (max-width:1256px) calc((100vw - 104px) / 3), 384px" alt="@Model.ServicesTitle" width="600" height="400" loading="lazy" data-fallback />
+    }
+    <div class="lp-card-body"><h3>@Model.ServicesTitle</h3><p>@PublicContent.Excerpt(Model.ServicesDescription)</p>
+    @if (detailUrl != null) { <a class="lp-text-link" href="@detailUrl" aria-label="@($"Hizmeti inceleyin: {Model.ServicesTitle}")">Hizmeti inceleyin <span aria-hidden="true">↗</span></a> }
+    </div>
+</article>
