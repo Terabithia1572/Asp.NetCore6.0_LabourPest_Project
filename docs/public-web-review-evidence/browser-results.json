@@ -1,0 +1,1240 @@
+{
+  "checks": [
+    {
+      "name": "home",
+      "width": 360,
+      "status": 200,
+      "scrollWidth": 360,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "index",
+      "width": 360,
+      "status": 200,
+      "scrollWidth": 360,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "services",
+      "width": 360,
+      "status": 200,
+      "scrollWidth": 360,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "corporate",
+      "width": 360,
+      "status": 200,
+      "scrollWidth": 360,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "blog",
+      "width": 360,
+      "status": 200,
+      "scrollWidth": 360,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "faq",
+      "width": 360,
+      "status": 200,
+      "scrollWidth": 360,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "gallery",
+      "width": 360,
+      "status": 200,
+      "scrollWidth": 360,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "categories",
+      "width": 360,
+      "status": 200,
+      "scrollWidth": 360,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "pests",
+      "width": 360,
+      "status": 200,
+      "scrollWidth": 360,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "products",
+      "width": 360,
+      "status": 200,
+      "scrollWidth": 360,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "contact",
+      "width": 360,
+      "status": 200,
+      "scrollWidth": 360,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "jobs",
+      "width": 360,
+      "status": 200,
+      "scrollWidth": 360,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "article",
+      "width": 360,
+      "status": 200,
+      "scrollWidth": 360,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "service",
+      "width": 360,
+      "status": 200,
+      "scrollWidth": 360,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "product",
+      "width": 360,
+      "status": 200,
+      "scrollWidth": 360,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "tags",
+      "width": 360,
+      "status": 200,
+      "scrollWidth": 360,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "privacy",
+      "width": 360,
+      "status": 200,
+      "scrollWidth": 360,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "error",
+      "width": 360,
+      "status": 200,
+      "scrollWidth": 360,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "review",
+      "width": 360,
+      "status": 200,
+      "scrollWidth": 360,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "home",
+      "width": 390,
+      "status": 200,
+      "scrollWidth": 390,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "index",
+      "width": 390,
+      "status": 200,
+      "scrollWidth": 390,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "services",
+      "width": 390,
+      "status": 200,
+      "scrollWidth": 390,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "corporate",
+      "width": 390,
+      "status": 200,
+      "scrollWidth": 390,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "blog",
+      "width": 390,
+      "status": 200,
+      "scrollWidth": 390,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "faq",
+      "width": 390,
+      "status": 200,
+      "scrollWidth": 390,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "gallery",
+      "width": 390,
+      "status": 200,
+      "scrollWidth": 390,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "categories",
+      "width": 390,
+      "status": 200,
+      "scrollWidth": 390,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "pests",
+      "width": 390,
+      "status": 200,
+      "scrollWidth": 390,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "products",
+      "width": 390,
+      "status": 200,
+      "scrollWidth": 390,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "contact",
+      "width": 390,
+      "status": 200,
+      "scrollWidth": 390,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "jobs",
+      "width": 390,
+      "status": 200,
+      "scrollWidth": 390,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "article",
+      "width": 390,
+      "status": 200,
+      "scrollWidth": 390,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "service",
+      "width": 390,
+      "status": 200,
+      "scrollWidth": 390,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "product",
+      "width": 390,
+      "status": 200,
+      "scrollWidth": 390,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "tags",
+      "width": 390,
+      "status": 200,
+      "scrollWidth": 390,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "privacy",
+      "width": 390,
+      "status": 200,
+      "scrollWidth": 390,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "error",
+      "width": 390,
+      "status": 200,
+      "scrollWidth": 390,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "review",
+      "width": 390,
+      "status": 200,
+      "scrollWidth": 390,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "home",
+      "width": 768,
+      "status": 200,
+      "scrollWidth": 768,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "index",
+      "width": 768,
+      "status": 200,
+      "scrollWidth": 768,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "services",
+      "width": 768,
+      "status": 200,
+      "scrollWidth": 768,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "corporate",
+      "width": 768,
+      "status": 200,
+      "scrollWidth": 768,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "blog",
+      "width": 768,
+      "status": 200,
+      "scrollWidth": 768,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "faq",
+      "width": 768,
+      "status": 200,
+      "scrollWidth": 768,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "gallery",
+      "width": 768,
+      "status": 200,
+      "scrollWidth": 768,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "categories",
+      "width": 768,
+      "status": 200,
+      "scrollWidth": 768,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "pests",
+      "width": 768,
+      "status": 200,
+      "scrollWidth": 768,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "products",
+      "width": 768,
+      "status": 200,
+      "scrollWidth": 768,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "contact",
+      "width": 768,
+      "status": 200,
+      "scrollWidth": 768,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "jobs",
+      "width": 768,
+      "status": 200,
+      "scrollWidth": 768,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "article",
+      "width": 768,
+      "status": 200,
+      "scrollWidth": 768,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "service",
+      "width": 768,
+      "status": 200,
+      "scrollWidth": 768,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "product",
+      "width": 768,
+      "status": 200,
+      "scrollWidth": 768,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "tags",
+      "width": 768,
+      "status": 200,
+      "scrollWidth": 768,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "privacy",
+      "width": 768,
+      "status": 200,
+      "scrollWidth": 768,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "error",
+      "width": 768,
+      "status": 200,
+      "scrollWidth": 768,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "review",
+      "width": 768,
+      "status": 200,
+      "scrollWidth": 768,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "home",
+      "width": 1024,
+      "status": 200,
+      "scrollWidth": 1024,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "index",
+      "width": 1024,
+      "status": 200,
+      "scrollWidth": 1024,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "services",
+      "width": 1024,
+      "status": 200,
+      "scrollWidth": 1024,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "corporate",
+      "width": 1024,
+      "status": 200,
+      "scrollWidth": 1024,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "blog",
+      "width": 1024,
+      "status": 200,
+      "scrollWidth": 1024,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "faq",
+      "width": 1024,
+      "status": 200,
+      "scrollWidth": 1024,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "gallery",
+      "width": 1024,
+      "status": 200,
+      "scrollWidth": 1024,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "categories",
+      "width": 1024,
+      "status": 200,
+      "scrollWidth": 1024,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "pests",
+      "width": 1024,
+      "status": 200,
+      "scrollWidth": 1024,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "products",
+      "width": 1024,
+      "status": 200,
+      "scrollWidth": 1024,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "contact",
+      "width": 1024,
+      "status": 200,
+      "scrollWidth": 1024,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "jobs",
+      "width": 1024,
+      "status": 200,
+      "scrollWidth": 1024,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "article",
+      "width": 1024,
+      "status": 200,
+      "scrollWidth": 1024,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "service",
+      "width": 1024,
+      "status": 200,
+      "scrollWidth": 1024,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "product",
+      "width": 1024,
+      "status": 200,
+      "scrollWidth": 1024,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "tags",
+      "width": 1024,
+      "status": 200,
+      "scrollWidth": 1024,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "privacy",
+      "width": 1024,
+      "status": 200,
+      "scrollWidth": 1024,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "error",
+      "width": 1024,
+      "status": 200,
+      "scrollWidth": 1024,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "review",
+      "width": 1024,
+      "status": 200,
+      "scrollWidth": 1024,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "home",
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "index",
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "services",
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "corporate",
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "blog",
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "faq",
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "gallery",
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "categories",
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "pests",
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "products",
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "contact",
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "jobs",
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "article",
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "service",
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "product",
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "tags",
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "privacy",
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "error",
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "review",
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "home",
+      "width": 1920,
+      "status": 200,
+      "scrollWidth": 1920,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "index",
+      "width": 1920,
+      "status": 200,
+      "scrollWidth": 1920,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "services",
+      "width": 1920,
+      "status": 200,
+      "scrollWidth": 1920,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "corporate",
+      "width": 1920,
+      "status": 200,
+      "scrollWidth": 1920,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "blog",
+      "width": 1920,
+      "status": 200,
+      "scrollWidth": 1920,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "faq",
+      "width": 1920,
+      "status": 200,
+      "scrollWidth": 1920,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "gallery",
+      "width": 1920,
+      "status": 200,
+      "scrollWidth": 1920,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "categories",
+      "width": 1920,
+      "status": 200,
+      "scrollWidth": 1920,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "pests",
+      "width": 1920,
+      "status": 200,
+      "scrollWidth": 1920,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "products",
+      "width": 1920,
+      "status": 200,
+      "scrollWidth": 1920,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "contact",
+      "width": 1920,
+      "status": 200,
+      "scrollWidth": 1920,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "jobs",
+      "width": 1920,
+      "status": 200,
+      "scrollWidth": 1920,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "article",
+      "width": 1920,
+      "status": 200,
+      "scrollWidth": 1920,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "service",
+      "width": 1920,
+      "status": 200,
+      "scrollWidth": 1920,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "product",
+      "width": 1920,
+      "status": 200,
+      "scrollWidth": 1920,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "tags",
+      "width": 1920,
+      "status": 200,
+      "scrollWidth": 1920,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "privacy",
+      "width": 1920,
+      "status": 200,
+      "scrollWidth": 1920,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "error",
+      "width": 1920,
+      "status": 200,
+      "scrollWidth": 1920,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "name": "review",
+      "width": 1920,
+      "status": 200,
+      "scrollWidth": 1920,
+      "h1": 1,
+      "duplicates": [],
+      "overflow": [],
+      "brokenImages": []
+    },
+    {
+      "test": "menu opens",
+      "pass": true
+    },
+    {
+      "test": "Escape restores focus/scroll",
+      "pass": true
+    },
+    {
+      "test": "resize restores scroll",
+      "pass": true
+    },
+    {
+      "test": "FAQ keyboard/ARIA",
+      "pass": true
+    },
+    {
+      "test": "gallery modal",
+      "pass": true
+    },
+    {
+      "test": "gallery focus/scroll restored",
+      "pass": true
+    },
+    {
+      "test": "contact form",
+      "form": {
+        "action": "/Contact/AddContact",
+        "method": "post",
+        "enctype": "application/x-www-form-urlencoded",
+        "fields": [
+          "__RequestVerificationToken",
+          "ContactUserName",
+          "ContactMail",
+          "ContactSubject",
+          "ContactMessage"
+        ],
+        "antiforgery": true,
+        "unlabelled": [],
+        "captcha": false
+      }
+    },
+    {
+      "test": "jobs form",
+      "form": {
+        "action": "/JobApplication/AddJobApplication",
+        "method": "post",
+        "enctype": "multipart/form-data",
+        "fields": [
+          "JobApplicationName",
+          "JobApplicationSurName",
+          "JobApplicationNumber",
+          "JobApplicationMail",
+          "JobApplicationAboutYou",
+          "JobApplicationCV",
+          "__RequestVerificationToken"
+        ],
+        "antiforgery": true,
+        "unlabelled": [],
+        "captcha": false
+      }
+    },
+    {
+      "test": "review form",
+      "form": {
+        "action": "/MainComment/AddComment",
+        "method": "post",
+        "enctype": "application/x-www-form-urlencoded",
+        "fields": [
+          "CommentUserName",
+          "CommentTitle",
+          "CommentContent",
+          "file",
+          "ImageUrl",
+          "__RequestVerificationToken"
+        ],
+        "antiforgery": true,
+        "unlabelled": [],
+        "captcha": true
+      }
+    },
+    {
+      "test": "200% reflow equivalent",
+      "pass": true
+    },
+    {
+      "test": "long Turkish text",
+      "pass": true
+    },
+    {
+      "test": "no JS navigation",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "failures": []
+}

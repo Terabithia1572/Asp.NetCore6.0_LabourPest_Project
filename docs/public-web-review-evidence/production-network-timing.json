@@ -1,0 +1,36 @@
+{
+  "capturedAt": "2026-10-05T17:50:46.909Z",
+  "navigation": {
+    "domainLookupStart": 1,
+    "domainLookupEnd": 3101.2000000476837,
+    "connectStart": 3101.2000000476837,
+    "connectEnd": 3120.100000023842,
+    "secureConnectionStart": 3108.2000000476837,
+    "requestStart": 3120.2000000476837,
+    "responseStart": 3156,
+    "responseEnd": 3162.300000011921,
+    "redirectStart": 0,
+    "redirectEnd": 0
+  },
+  "cdpTiming": {
+    "requestTime": 459010.038832,
+    "proxyStart": -1,
+    "proxyEnd": -1,
+    "dnsStart": 0,
+    "dnsEnd": 3100.27,
+    "connectStart": 3100.299,
+    "connectEnd": 3119.191,
+    "sslStart": 3107.263,
+    "sslEnd": 3119.188,
+    "workerStart": -1,
+    "workerReady": -1,
+    "workerFetchStart": -1,
+    "workerRespondWithSettled": -1,
+    "sendStart": 3119.242,
+    "sendEnd": 3119.296,
+    "pushStart": 0,
+    "pushEnd": 0,
+    "receiveHeadersStart": 3155.041,
+    "receiveHeadersEnd": 3155.123
+  }
+}

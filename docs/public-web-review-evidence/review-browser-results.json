@@ -1,0 +1,55 @@
+{
+  "checks": [
+    {
+      "name": "CAPTCHA deferred until focus; one script and widget; pending button disabled",
+      "pass": true
+    },
+    {
+      "name": "Expired/error callbacks disable submission and reset the correct widget ID",
+      "pass": true
+    },
+    {
+      "name": "Resize only recreates at a size boundary and invalidates the old token",
+      "pass": true
+    },
+    {
+      "name": "Optional upload preserves existing path contract; failure restores form without enabling unverified submission",
+      "pass": true
+    },
+    {
+      "name": "Rapid double submit sends one POST; HTML validation response retains input and resets CAPTCHA",
+      "pass": true
+    },
+    {
+      "name": "Script network failure is truthful, blocks submission and supports explicit retry",
+      "pass": true
+    },
+    {
+      "name": "Browser back-cache restoration requires a fresh CAPTCHA and clears the submit lock",
+      "pass": true
+    },
+    {
+      "name": "Readable validation feedback without overflow at 360",
+      "pass": true
+    },
+    {
+      "name": "Readable validation feedback without overflow at 390",
+      "pass": true
+    },
+    {
+      "name": "Readable validation feedback without overflow at 768",
+      "pass": true
+    },
+    {
+      "name": "Readable validation feedback without overflow at 1024",
+      "pass": true
+    },
+    {
+      "name": "Readable validation feedback without overflow at 1440",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "posts": 1,
+  "failures": []
+}

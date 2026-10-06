@@ -1,0 +1,129 @@
+{
+  "BaselineFiles": 1847,
+  "Changed": [
+    {
+      "Path": "Asp.NetCore6.0_LabourPest_Project/Views/Shared/Public/_BlogCard.cshtml",
+      "State": "changed"
+    },
+    {
+      "Path": "Asp.NetCore6.0_LabourPest_Project/Views/Shared/Public/_Header.cshtml",
+      "State": "changed"
+    },
+    {
+      "Path": "Asp.NetCore6.0_LabourPest_Project/Views/Shared/Public/_ServiceCard.cshtml",
+      "State": "changed"
+    },
+    {
+      "Path": "Asp.NetCore6.0_LabourPest_Project/Views/Shared/_PublicLayout.cshtml",
+      "State": "changed"
+    },
+    {
+      "Path": "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/css/public.css",
+      "State": "changed"
+    },
+    {
+      "Path": "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/js/carousels.js",
+      "State": "changed"
+    },
+    {
+      "Path": "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/js/public.js",
+      "State": "changed"
+    },
+    {
+      "Path": "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/js/review-form.js",
+      "State": "changed"
+    },
+    {
+      "Path": "Asp.NetCore6.0_LabourPest_Project/Controllers/MainCommentController.cs",
+      "State": "changed"
+    },
+    {
+      "Path": "Asp.NetCore6.0_LabourPest_Project/Program.cs",
+      "State": "changed"
+    },
+    {
+      "Path": "Asp.NetCore6.0_LabourPest_Project/ViewComponents/MainLayout/CommentViewComponentPartial.cs",
+      "State": "changed"
+    },
+    {
+      "Path": "Asp.NetCore6.0_LabourPest_Project/Views/Home/Deneme.cshtml",
+      "State": "changed"
+    },
+    {
+      "Path": "Asp.NetCore6.0_LabourPest_Project/Views/Shared/Components/AboutUsViewComponentPartial/Default.cshtml",
+      "State": "changed"
+    },
+    {
+      "Path": "Asp.NetCore6.0_LabourPest_Project/Views/Shared/Components/CommentViewComponentPartial/Default.cshtml",
+      "State": "changed"
+    },
+    {
+      "Path": "Asp.NetCore6.0_LabourPest_Project/Views/Shared/Components/PageSliderViewComponentPartial/Default.cshtml",
+      "State": "changed"
+    }
+  ],
+  "Added": [
+    "Asp.NetCore6.0_LabourPest_Project/Models/PublicReviewInput.cs",
+    "Asp.NetCore6.0_LabourPest_Project/Presentation/PublicImageVariants.cs",
+    "Asp.NetCore6.0_LabourPest_Project/Presentation/Reviews/RecaptchaOptions.cs",
+    "Asp.NetCore6.0_LabourPest_Project/Presentation/Reviews/RecaptchaVerifier.cs",
+    "Asp.NetCore6.0_LabourPest_Project/Presentation/Reviews/ReviewAntiforgeryFeedbackAttribute.cs",
+    "Asp.NetCore6.0_LabourPest_Project/Views/MainComment/AddComment.cshtml",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/0ad274e42122799dd8f8ec29-384.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/0ad274e42122799dd8f8ec29-640.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/0ad274e42122799dd8f8ec29-880.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/2fcd362a9476c3d3267aa1c2-384.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/2fcd362a9476c3d3267aa1c2-640.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/2fcd362a9476c3d3267aa1c2-768.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/61ef42caf82fc07236b891b2-1280.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/61ef42caf82fc07236b891b2-384.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/61ef42caf82fc07236b891b2-640.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/61ef42caf82fc07236b891b2-960.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/63834847ef5f958afcb6ff81-384.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/63834847ef5f958afcb6ff81-640.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/63834847ef5f958afcb6ff81-768.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/7d8ca1455a74f7adb2e3e8f7-96.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/86a81fa252b25f4605b40170-384.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/86a81fa252b25f4605b40170-640.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/86a81fa252b25f4605b40170-768.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/8892618d740e8ed89851bf9f-1280.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/8892618d740e8ed89851bf9f-384.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/8892618d740e8ed89851bf9f-640.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/8892618d740e8ed89851bf9f-960.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/90c90c505d628b93e5c63f0e-384.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/90c90c505d628b93e5c63f0e-540.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/a4911bcf6f16cb19bc27c15d-1280.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/a4911bcf6f16cb19bc27c15d-384.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/a4911bcf6f16cb19bc27c15d-640.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/a4911bcf6f16cb19bc27c15d-960.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/e55f7fc47cb46f094c5ec460-384.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/e55f7fc47cb46f094c5ec460-425.webp",
+    "Asp.NetCore6.0_LabourPest_Project/wwwroot/public-web/images/responsive/manifest.json",
+    "docs/public-web-review-evidence/browser-results.json",
+    "docs/public-web-review-evidence/captcha-1440.png",
+    "docs/public-web-review-evidence/captcha-360.png",
+    "docs/public-web-review-evidence/captcha-390.png",
+    "docs/public-web-review-evidence/captcha-layout-results.json",
+    "docs/public-web-review-evidence/enhancement-results.json",
+    "docs/public-web-review-evidence/performance-summary.json",
+    "docs/public-web-review-evidence/production-network-timing.json",
+    "docs/public-web-review-evidence/review-browser-results.json",
+    "docs/public-web-review-evidence/scope-audit.json",
+    "docs/public-web-review-performance.md",
+    "tests/PublicWeb.Tests/LegacyReviewReproductionTests.cs",
+    "tests/PublicWeb.Tests/PublicImageVariantsTests.cs",
+    "tests/PublicWeb.Tests/PublicWeb.Tests.csproj",
+    "tests/PublicWeb.Tests/README.md",
+    "tests/PublicWeb.Tests/RecaptchaVerifierTests.cs",
+    "tests/PublicWeb.Tests/ReviewDatabase.cs",
+    "tests/PublicWeb.Tests/ReviewSubmissionTests.cs",
+    "tools/public-images/README.md",
+    "tools/public-images/build.mjs",
+    "tools/public-images/package-lock.json",
+    "tools/public-images/package.json"
+  ],
+  "ProtectedChanges": [],
+  "ProtectedAdditions": [],
+  "MobileGitStatus": [],
+  "MobileNote": "Nested Git repository; pre-existing directory excluded from parent file baseline. Current nested Git worktree is clean."
+}
